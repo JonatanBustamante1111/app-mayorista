@@ -1,20 +1,28 @@
-import React from 'react'
+import React, { Children } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import NavBar from './components/NavBar'
+import Layout from './components/Layout'
+import Inicio from './pages/Inicio'
+
 
 const router = createBrowserRouter ([
   {
     path: '/',
-    element: <NavBar />
+    element: <Layout/>,
+    children: [
+      {
+        index:true,
+        element:<Inicio/>
+      }
+    ]
   },
   {
-    path: '/nosotros',
+    path: '/productos',
     element: <h2>prueba 2</h2>
   },
   {
-    path: '/contacto'
+    path: '/nosotros'
   } 
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

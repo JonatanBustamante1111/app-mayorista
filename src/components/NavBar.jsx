@@ -1,26 +1,119 @@
-import Nav from "./Nav";
+import React from 'react'
+import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
+export default function Navbar() {
 
-const NavBar = () => {
-    // const theme = {
-    //   colors: {
-    //     footer_bg: "#0a1435",
-    //     btn: "rgb(98 84 243)",
-    //     border: "rgba(98,84,243,0.5)",
-    //     hr:"#fffff",
-    //     gradient:
-    //     "linear-gradient(0deg, rgb(132 144 255) 0%, rgb(98 189 253) 100%)",
-    //     shadow: "rgba(0,0,0,0.02) 0px 1px 3px 0px, rgba(27,31,35,0.15 )",
-    //     shadowSupport:"rgba(0,0,0,0.16) 0px 1px 4px",
-    //   },
-    //   media: {
-    //     mobile: "768px",
-    //     tab: "998px",
-    //   },
-    // };
+  const [nav, setNav] = useState(false)
+  const location = useLocation()
+
+  const handleNav = () => {
+    setNav(!nav)
+  }
   return (
-    <Nav></Nav>
-  );
-};
+    <>
+      <div className='flex px-5 md:px-2  justify-between  items-center  shadow'>
 
-export default NavBar;
+        <div className='flex justify-between items-center w-[70%] px-4'>
+          <div className='flex items-center text-indigo-500 text-xl gap-x-2'>
+            <ion-icon name="cash-outline"></ion-icon>
+            <p className='font-normal py-3 text-xl lg:text-2xl text-slate-900 uppercase tracking-widest'>millionare mind</p>
+          </div>
+          <ul className='hidden md:flex gap-x-7 uppercase font-semibold text-xs'>
+            {
+              location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros'
+                ? (
+                  <>
+                    <Link to={'/'}>
+                      <li className='py-4 '>Home</li>
+                    </Link>
+                    <Link to={'/turnos'}>
+                      <li className='py-4 '>Productos</li>
+                    </Link>
+                    <Link to={'/nosotros'}>
+                      <li className='py-4 '>Nosotros</li>
+                    </Link>
+                  </>
+                )
+                :
+                (
+                  <>
+                    <Link to={'/admin'}>
+                      <li className='py-4  '>Home</li>
+                    </Link>
+                    <Link to={'/admin/agenda'}>
+                      <li className='py-4  '>Nuevo Producto</li>
+                    </Link>
+                    <Link to={'/admin/administrarturnos'}>
+                      <li className='py-4  '>Admninistrar Turnos</li>
+                    </Link>
+                  </>
+                )
+            }
+          </ul>
+        </div>
+        <div className='hidden md:flex items-center gap-x-5'>
+          <Link className='text-2xl' to={'/carrito'}>
+            <ion-icon name="cart-outline"></ion-icon>
+          </Link>
+          <Link to={'/'} className='text-xs font-semibold hidden md:block uppercase'
+          >Mi cuenta</Link>
+        </div>
+        <div className='relative py-5'>
+
+          <div onClick={handleNav} className='bars__menu absolute top-1 right-5 z-50 md:hidden'>
+            <span className={nav ? 'line1__bars-menu' : ''}></span>
+            <span className={nav ? 'line2__bars-menu' : ''}></span>
+            <span className={nav ? 'line3__bars-menu' : ''}></span>
+          </div>
+
+        </div>
+      </div>
+      <div className={nav ? 'md:hidden fixed left-0 top-0 w-full h-screen transition-colors duration-300 bg-black/5 z-20' : 'z-30'}>
+        <div
+          className={
+            nav
+              ? 'fixed left-0 top-0 w-[75%] sm:w-[65%] md:w-[45%] h-screen bg-white shadow-md p-10 ease-in duration-500 z-20'
+              : 'fixed left-[-100%] top-0 p-10 ease-in transition-all duration-500 z-20'
+          }
+        >
+          <div >
+            <div className='flex items-center text-indigo-500 text-xl gap-x-2 border-b w-full border-gray-300'>
+              <ion-icon name="cash-outline"></ion-icon>
+              <p className='font-normal py-3 text-xl lg:text-2xl text-slate-900 uppercase tracking-widest'>millionare mind</p>
+            </div>
+
+          </div>
+          <div className='py-4 flex flex-col mt-10 items-start'>
+            <ul className='uppercase ' onClick={handleNav}>
+              <Link to={'/'}> <li className='py-4 '>Home</li> </Link>
+              <Link to={'/turnos'}> <li className='py-4 '>Productos</li> </Link>
+              <Link to={'/nosotros'}> <li className='py-4 '>Nosotros</li> </Link>
+
+            </ul>
+            <div className='flex flex-col gap-y-3 md:hidden items-start'>
+              <Link className='py-3 text-2xl' to={'/carrito'}> 
+                <ion-icon name="cart-outline"></ion-icon>
+              </Link>
+              <Link className='uppercase'>Mi cuenta</Link>
+            </div>
+            <div className="pt-20">
+              <p className='text-sm sm:text-lg uppercase tracking-widest text-indigo-600'>¡Sigamos conectados!</p>
+              <div className='flex items-center justify-between my-4 w-full sm:w-[80%]'>
+                <div className='icons__menu'>
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                </div>
+                <div className='icons__menu'>
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </div>
+                <div className='icons__menu'>
+                  <ion-icon name="mail-outline"></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
