@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bars__menu {
+  @apply w-[30px] h-[30px] cursor-pointer;
+}
+
+.bars__menu span {
+  @apply block w-full h-[2px] bg-indigo-700 mt-[6px] origin-bottom-left  transition-all duration-500;
+}
+.bars__menu .line1__bars-menu {
+  @apply rotate-45 translate-x-[-2px] translate-y-[-3px];
+}
+.bars__menu .line2__bars-menu {
+  @apply ml-[-30px] opacity-0;
+}
+.bars__menu .line3__bars-menu {
+  @apply rotate-[-45deg] translate-x-[-2px] translate-y-[2px];
+}
+
+.icons__menu {
+  @apply flex justify-center items-center  rounded-full shadow-lg shadow-purple-500 text-purple-400 
+  text-2xl  h-12 w-12  cursor-pointer  ease-in duration-300 hover:bg-purple-400 hover:text-white hover:shadow-gray-400;
+}
