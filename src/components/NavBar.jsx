@@ -27,7 +27,7 @@ export default function Navbar() {
                     <Link to={'/'}>
                       <li className='py-4 '>Home</li>
                     </Link>
-                    <Link to={'/turnos'}>
+                    <Link to={'/productos'}>
                       <li className='py-4 '>Productos</li>
                     </Link>
                     <Link to={'/nosotros'}>
@@ -39,13 +39,10 @@ export default function Navbar() {
                 (
                   <>
                     <Link to={'/admin'}>
-                      <li className='py-4  '>Home</li>
+                      <li className='py-4  '>Home Admin</li>
                     </Link>
-                    <Link to={'/admin/agenda'}>
+                    <Link to={'/admin/nuevoproducto'}>
                       <li className='py-4  '>Nuevo Producto</li>
-                    </Link>
-                    <Link to={'/admin/administrarturnos'}>
-                      <li className='py-4  '>Admninistrar Turnos</li>
                     </Link>
                   </>
                 )
@@ -86,13 +83,36 @@ export default function Navbar() {
           </div>
           <div className='py-4 flex flex-col mt-10 items-start'>
             <ul className='uppercase ' onClick={handleNav}>
-              <Link to={'/'}> <li className='py-4 '>Home</li> </Link>
-              <Link to={'/turnos'}> <li className='py-4 '>Productos</li> </Link>
-              <Link to={'/nosotros'}> <li className='py-4 '>Nosotros</li> </Link>
-
+              {
+                location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros'
+                  ? (
+                    <>
+                      <Link to={'/'}>
+                        <li className='py-4 '>Home</li>
+                      </Link>
+                      <Link to={'/productos'}>
+                        <li className='py-4 '>Productos</li>
+                      </Link>
+                      <Link to={'/nosotros'}>
+                        <li className='py-4 '>Nosotros</li>
+                      </Link>
+                    </>
+                  )
+                  :
+                  (
+                    <>
+                      <Link to={'/admin'}>
+                        <li className='py-4'>Home Admin</li>
+                      </Link>
+                      <Link to={'/admin/nuevoproducto'}>
+                        <li className='py-4  '>Nuevo Producto</li>
+                      </Link>
+                    </>
+                  )
+              }
             </ul>
             <div className='flex flex-col gap-y-3 md:hidden items-start'>
-              <Link className='py-3 text-2xl' to={'/carrito'}> 
+              <Link className='py-3 text-2xl' to={'/carrito'}>
                 <ion-icon name="cart-outline"></ion-icon>
               </Link>
               <Link className='uppercase'>Mi cuenta</Link>

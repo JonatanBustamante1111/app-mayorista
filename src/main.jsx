@@ -2,8 +2,15 @@ import React, { Children } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Layout from './components/Layout'
+// Pages
 import Inicio from './pages/Inicio'
+import AdminInicio from './pages/AdminInicio'
+import AdminNuevoProducto  from './pages/AdminNuevoProducto'
+import AdminEditarProducto, { loader as AdminEditarProductoLoader } from './pages/AdminEditarProducto'
+
+// Components
+import Layout from './components/Layout'
+import Productos from './pages/Productos'
 
 
 const router = createBrowserRouter ([
@@ -14,16 +21,42 @@ const router = createBrowserRouter ([
       {
         index:true,
         element:<Inicio/>
-      }
+      },
+      {
+        path: '/productos',
+        element: <Productos/>
+      },
+      {
+        path: '/nosotros',
+        element: <h2>nosotros</h2>
+      } 
+    ],
+  },
+  {
+    path:'/admin',
+    element:<Layout/>,
+    children: [
+        {
+          index: true,
+          element: <AdminInicio/>
+        },
+        {
+          path:'/admin/productos',
+          element: <h2>Productos</h2>
+        },
+        {
+          path:'/admin/nuevoproducto',
+          element: <AdminNuevoProducto/>,
+        },
+        {
+          path:'/admin/editarproducto/:productoId',
+          element: <AdminEditarProducto/>,
+          loader:AdminEditarProductoLoader
+        },
     ]
-  },
-  {
-    path: '/productos',
-    element: <h2>prueba 2</h2>
-  },
-  {
-    path: '/nosotros'
-  } 
+  }
+ 
+  
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
