@@ -18,7 +18,7 @@ export default function Card({ producto, eliminarProducto }) {
                 <button onClick={() => eliminarProducto(id)} className='text-red-500 '><ion-icon name="trash-sharp"></ion-icon></button>
                 <Link to={`/admin/editarproducto/${id}`} className=' text-cyan-500'><ion-icon name="pencil-sharp"></ion-icon></Link>
               </div>
-            : <Link to={'/cart'} onClick={() => agregarCarrito(id)} className='py-1 px-2 bg-purple-800 rounded-lg text-white font-semibold uppercase'>agregar a carrito</Link>
+            : <Link to={`/producto/${id}`} className='py-1 px-2 bg-purple-800 rounded-lg text-white font-semibold uppercase'>ver producto</Link>
         }
       </div>
     </div>
