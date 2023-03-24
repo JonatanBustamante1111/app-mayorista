@@ -1,4 +1,4 @@
-import TablaCarrito from "./TablaCarrito";
+import TablaCarrito from "../components/TablaCarrito";
 
 export default function Carrito() {
     return(
@@ -13,7 +13,7 @@ export default function Carrito() {
           </tr>
         </thead>
         <tbody>
-            <TablaCarrito/>
+          <TablaCarrito/>
         </tbody>
       </table>
     )

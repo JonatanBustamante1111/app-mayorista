@@ -4,6 +4,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // Pages
 import Inicio from './pages/Inicio'
+import Carrito from './pages/Carrito'
 import AdminInicio from './pages/AdminInicio'
 import AdminNuevoProducto  from './pages/AdminNuevoProducto'
 import AdminEditarProducto, { loader as AdminEditarProductoLoader } from './pages/AdminEditarProducto'
@@ -11,8 +12,6 @@ import AdminEditarProducto, { loader as AdminEditarProductoLoader } from './page
 // Components
 import Layout from './components/Layout'
 import Productos from './pages/Productos'
-import Carrito from './pages/Carrito'
-
 
 const router = createBrowserRouter ([
   {
@@ -34,7 +33,7 @@ const router = createBrowserRouter ([
       {
         path: '/carrito',
         element: <Carrito/>
-      } 
+      }
     ],
   },
   {

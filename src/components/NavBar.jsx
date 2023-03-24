@@ -21,7 +21,7 @@ export default function Navbar() {
           </div>
           <ul className='hidden md:flex gap-x-7 uppercase font-semibold text-xs'>
             {
-              location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros'
+              location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros'  || location.pathname === '/carrito'
                 ? (
                   <>
                     <Link to={'/'}>
