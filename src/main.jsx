@@ -11,6 +11,7 @@ import AdminEditarProducto, { loader as AdminEditarProductoLoader } from './page
 // Components
 import Layout from './components/Layout'
 import Productos from './pages/Productos'
+import Cart from './pages/Cart'
 
 
 const router = createBrowserRouter ([
@@ -29,6 +30,10 @@ const router = createBrowserRouter ([
       {
         path: '/nosotros',
         element: <h2>nosotros</h2>
+      },
+      {
+        path: '/carrito',
+        element: <Cart/>
       } 
     ],
   },
