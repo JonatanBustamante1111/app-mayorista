@@ -1,5 +1,5 @@
 
-export default function CartTable() {
+export default function TablaCarrito() {
   return (
     <tr>
       <td>aro</td>

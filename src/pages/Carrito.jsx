@@ -1,6 +1,6 @@
-import CartTable from "./CartTable";
+import TablaCarrito from "./TablaCarrito";
 
-export default function Cart() {
+export default function Carrito() {
     return(
         <table>
         <thead>
@@ -13,7 +13,7 @@ export default function Cart() {
           </tr>
         </thead>
         <tbody>
-            <CartTable/>
+            <TablaCarrito/>
         </tbody>
       </table>
     )
