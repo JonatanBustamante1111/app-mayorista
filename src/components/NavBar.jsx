@@ -84,7 +84,7 @@ export default function Navbar() {
           <div className='py-4 flex flex-col mt-10 items-start'>
             <ul className='uppercase ' onClick={handleNav}>
               {
-                location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros'
+                location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros' || location.pathname === '/producto/:productoId'
                   ? (
                     <>
                       <Link to={'/'}>

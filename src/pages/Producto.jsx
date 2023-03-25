@@ -1,26 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../utils/firebaseconfig";
 
 export default function Producto() {
-  const { carrito, setCarrito } = useContext(CartContext);
-  const producto = {
-    name: "hola",
-    apellido: "cualq"
+  const [dato, setDato] = useState({});
+  const { productoId } = useParams();
+
+  async function getProducto() {
+    const docRef = doc(db, "productos", productoId);
+    const result = await getDoc(docRef);
+
+    if (result.exists()) {
+      return {
+        id: productoId,
+        ...result.data(),
+      };
+    } else {
+      console.log("no such document");
+    }
   }
-  const agregarProducto = () => {
-    setCarrito(producto);
-  }
-  
-  console.log(carrito)
+  useEffect(() => {
+    getProducto()
+      .then((result) => setDato(result))
+      .catch((err) => console.log(err));
+  }, []);
+  const { descripcion, imagen, nombre, precio } = dato;
   return (
     <div className="product-view">
-      <div className="product-image">{/* imagen del producto */}</div>
+      <img
+        src={imagen}
+        className="h-60 w-full object-cover rounded-xl"
+        alt={`Imagen de ${nombre}`}
+      />
+
       <div className="product-info">
-        <h1>Nombre del Producto</h1>
-        <p>Descripción del producto</p> 
-        <h3>Precio: $X</h3>
-        <p>Cantidad disponible: X</p>
-        <button onClick={() => agregarProducto()}>Agregar al carrito</button>
+        <h1>{`${nombre}`}</h1>
+        <p>{`${descripcion}`}</p>
+        <h3>{`Precio: ${precio}`}</h3>
+        <p>{`Cantidad disponible: ${nombre}`}</p>
+        <button>Agregar al carrito</button>
       </div>
     </div>
   );
