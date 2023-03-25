@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import TablaCarrito from "../components/TablaCarrito";
+import { CartContext } from "../context/CartContext";
 
 export default function Carrito() {
+   const {cart} = useContext(CartContext)
+
     return(
         <table>
         <thead>
@@ -13,7 +17,12 @@ export default function Carrito() {
           </tr>
         </thead>
         <tbody>
-          <TablaCarrito/>
+          {
+            cart.carrito.length > 0
+            && cart.carrito.map(
+              producto => <TablaCarrito key={producto.id} producto={producto}/>
+            )
+          }
         </tbody>
       </table>
     )

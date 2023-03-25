@@ -5,6 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 
 export default function Producto() {
+  const {cart} = useContext(CartContext);
   const [dato, setDato] = useState({});
   const { productoId } = useParams();
 
@@ -26,7 +27,11 @@ export default function Producto() {
       .then((result) => setDato(result))
       .catch((err) => console.log(err));
   }, []);
-  const { descripcion, imagen, nombre, precio } = dato;
+  const { descripcion, imagen, nombre, precio,id } = dato;
+  function agregarAlCarrito() {
+    cart.agregarCarrito(dato);
+  }
+
   return (
     <div className="product-view">
       <img
@@ -38,9 +43,9 @@ export default function Producto() {
       <div className="product-info">
         <h1>{`${nombre}`}</h1>
         <p>{`${descripcion}`}</p>
-        <h3>{`Precio: ${precio}`}</h3>
+        <h3>{`Precio: ${precio}`}</h3>  
         <p>{`Cantidad disponible: ${nombre}`}</p>
-        <button>Agregar al carrito</button>
+        <button onClick={() => agregarAlCarrito()}>Agregar al carrito</button>
       </div>
     </div>
   );

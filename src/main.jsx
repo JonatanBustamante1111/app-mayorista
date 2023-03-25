@@ -17,6 +17,7 @@ import AdminEditarProducto, {
 // Components
 import Layout from "./components/Layout";
 import CartContextProvider from "./context/CartContext";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/carrito",
         element: <Carrito />,
+      },
+      {
+        path: "/login",
+        element: <Login/>,
       },
     ],
   },

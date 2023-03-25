@@ -21,7 +21,7 @@ export default function Navbar() {
           </div>
           <ul className='hidden md:flex gap-x-7 uppercase font-semibold text-xs'>
             {
-              location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros'  || location.pathname === '/carrito'|| location.pathname === '/producto'
+              location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros'  || location.pathname === '/carrito'
                 ? (
                   <>
                     <Link to={'/'}>
@@ -42,7 +42,7 @@ export default function Navbar() {
                       <li className='py-4  '>Home Admin</li>
                     </Link>
                     <Link to={'/admin/nuevoproducto'}>
-                      <li className='py-4  '>Nuevo Producto</li>
+                      <li className='py-4'>Nuevo Producto</li>
                     </Link>
                   </>
                 )
@@ -53,8 +53,8 @@ export default function Navbar() {
           <Link className='text-2xl' to={'/carrito'}>
             <ion-icon name="cart-outline"></ion-icon>
           </Link>
-          <Link to={'/'} className='text-xs font-semibold hidden md:block uppercase'
-          >Mi cuenta</Link>
+          <Link to={'/login'} className='text-xs font-semibold hidden md:block uppercase'
+          >Mi cuenta</Link> 
         </div>
         <div className='relative py-5'>
 
@@ -84,7 +84,7 @@ export default function Navbar() {
           <div className='py-4 flex flex-col mt-10 items-start'>
             <ul className='uppercase ' onClick={handleNav}>
               {
-                location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros' || location.pathname === '/producto/:productoId'
+                location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros' || location.pathname === '/login' || location.pathname === '/producto/:productoId'
                   ? (
                     <>
                       <Link to={'/'}>
@@ -105,7 +105,7 @@ export default function Navbar() {
                         <li className='py-4'>Home Admin</li>
                       </Link>
                       <Link to={'/admin/nuevoproducto'}>
-                        <li className='py-4  '>Nuevo Producto</li>
+                        <li className='py-4'>Nuevo Producto</li>
                       </Link>
                     </>
                   )
@@ -115,7 +115,7 @@ export default function Navbar() {
               <Link className='py-3 text-2xl' to={'/carrito'}>
                 <ion-icon name="cart-outline"></ion-icon>
               </Link>
-              <Link className='uppercase'>Mi cuenta</Link>
+              <Link to={'/login'} className='uppercase'>Mi cuenta</Link>
             </div>
             <div className="pt-20">
               <p className='text-sm sm:text-lg uppercase tracking-widest text-indigo-600'>¡Sigamos conectados!</p>
