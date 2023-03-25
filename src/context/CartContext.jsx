@@ -10,9 +10,15 @@ const CartContextProvider = (props) => {
     function agregarCarrito(producto) {
         setCarrito([...carrito, producto]);
       }
+
+    function eliminarProducto(id){
+        const newArray = carrito.filter(element => element.id !== id )
+        setCarrito(newArray)
+    }  
       const cart = {
         carrito,
         agregarCarrito,
+        eliminarProducto
       };
     console.log(carrito)
     return (
