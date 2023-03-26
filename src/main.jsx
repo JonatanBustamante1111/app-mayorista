@@ -18,6 +18,7 @@ import AdminEditarProducto, {
 import Layout from "./components/Layout";
 import CartContextProvider from "./context/CartContext";
 import Login from "./pages/Login";
+import Registro from "./pages/Registro";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login/>,
       },
+      {
+        path: "/registro",
+        element: <Registro/>,
+      }
     ],
   },
   {

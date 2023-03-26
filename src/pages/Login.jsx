@@ -2,7 +2,7 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
-import Registro from "./Registro";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -42,36 +42,48 @@ function Login() {
     clearState();
   };
   const clearState = () => {
-    setEmail('')
-    setPassword('')
-  }
+    setEmail("");
+    setPassword("");
+  };
   return (
     <>
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Iniciar Sesión</button>
-      </form>
-    </div>
-    <Registro/>
+      <div>
+        <h2>BIENVENIDO</h2>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Correo electrónico:
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Contraseña:
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <br />
+            <button type="submit">Iniciar Sesión</button>
+            <div>
+              <Link to={"/registro"}>
+                <p>¿No tienes cuenta?</p>
+                <button>Registrate</button>
+              </Link>
+            </div>
+          </form>
+        </div>
+        <div>
+          <Link to={"/"}>
+            <button>Volver</button>
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

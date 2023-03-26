@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../utils/firebaseconfig';
+import { Link } from 'react-router-dom'
 
 function Registro() {
   const [email, setEmail] = useState('');
@@ -31,17 +32,24 @@ function Registro() {
     setPassword('')
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Correo electrónico:
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <label>
-        Contraseña:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </label>
-      <button type="submit">Registrarse</button>
-    </form>
+    <div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Correo electrónico:
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </label>
+          <label>
+            Contraseña:
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </label>
+          <button type="submit">Registrarse</button>
+        </form>
+      </div>
+        <div>
+          <Link to={'/login'}><button>Volver</button></Link>
+        </div>
+    </div>
   );
 }
 
