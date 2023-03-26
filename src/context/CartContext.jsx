@@ -20,7 +20,7 @@ const CartContextProvider = (props) => {
         agregarCarrito,
         eliminarProducto
       };
-    console.log(carrito)
+
     return (
 
         <CartContext.Provider value={{cart}}>
