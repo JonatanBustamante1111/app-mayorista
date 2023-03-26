@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { db, storage } from '../utils/firebaseconfig'
 import { doc, getDoc, getDocs, collection } from 'firebase/firestore'
 import Card from '../components/Card'
+import { categorias } from '../utils/categorias'
 
 export default function Productos() {
 
@@ -9,58 +10,7 @@ export default function Productos() {
   const [categoriaFiltrada, setCategoriaFiltrada] = useState('')
   const [subCategoriaFiltrada, setSubCategoriaFiltrada] = useState('')
 
-  const categorias = [
-    'Bijou',
-    'Electro',
-    'Marroquinería',
-    'Cosmética',
-    'Packaging',
-    'Pelo',
-    'Relojería',
-    'Librería',
-    'otros'
-  ]
-  const categorias2 = [
-    {
-      id: 1,
-      label: "Category 1",
-      children: [
-        { id: 11, label: "Subcategory 1.1" },
-        { id: 12, label: "Subcategory 1.2" },
-        { id: 13, label: "Subcategory 1.3" },
-      ],
-    },
-    {
-      id: 2,
-      label: "Category 2",
-      children: [{ id: 21, label: "Subcategory 2.1" },],
-    },
-    {
-      id: 2,
-      label: "Category 2",
-      children: [{
-        id: 21, label: "Subcategory 2.1",
-        id: 22, label: "Subcategory 2.1",
-      },],
-    },
-    {
-      id: 2,
-      label: "Category 2",
-      children: [{ id: 21, label: "Subcategory 2.1" },],
-    },
-    {
-      id: 3,
-      label: "Category 2",
-      children: [],
-    },
-    {
-      id: 4,
-      label: "Category 2",
-      children: [],
-    },
-
-  ]
-
+  
 
   useEffect(() => {
     const consultarProductos = async () => {
@@ -88,7 +38,7 @@ export default function Productos() {
           <h2 className='text-center text-xl font-semibold text-slate-800'>Categorias</h2>
           <div className='ml-5'>
             {
-              categorias2.map((categoria, i) =>
+              categorias.map((categoria, i) =>
                 <div key={i}>
                   <p className='block my-2 text-lg text-indigo-500 font-normal text-start cursor-pointer hover:underline'
                     onClick={() => setCategoriaFiltrada(categoria.label)}
@@ -112,18 +62,20 @@ export default function Productos() {
           </div>
 
         </aside>
-        <article className='grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-8 w-full '>
+        <article >
 
-          {
-            categoriaFiltrada !== ''
-              ?
-              filtrar.map(producto =>
-                <Card key={producto.id} producto={producto} />
-              )
-              : productos.map(producto =>
-                <Card key={producto.id} producto={producto} />
-              )
-          }
+          <div className='grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-8 w-full h-auto'>
+            {
+              categoriaFiltrada !== ''
+                ?
+                filtrar.map(producto =>
+                  <Card key={producto.id} producto={producto} />
+                )
+                : productos.map(producto =>
+                  <Card key={producto.id} producto={producto} />
+                )
+            }
+          </div>
         </article>
       </section>
     </main>
