@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import Formulario from '../components/Formulario'
-import Error from '../components/Error'
+//import Error from '../components/Error'
 
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { addDoc, collection } from 'firebase/firestore'
@@ -10,33 +10,42 @@ import { useNavigate } from 'react-router-dom'
 
 
 export default function AdminNuevoProducto() {
-
+    // Hooks del input file
     const [archivoSeleccionado, setArchivoSeleccionado] = useState({})
     const [nombreArchivo, setNombreArchivo] = useState('')
+    const inputFileRef = useRef(null)
 
     const [camposProducto, setCamposProducto] = useState({
         nombre: '',
         precio: '',
         descripcion: '',
-        categoria: '',
+        categoria:'',
         imagen: ''
     })
-    const inputFileRef = useRef(null)
+    const [ subCategoria, setSubCategoria ] = useState('')
+
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // Subimos la imagen al Storage y obtenemos la url para utilizarla en el documento a subir
+        // Validacion
         if (Object.values(camposProducto).includes('')) {
-            errores.push('Rellena todos los campos')
+            console.log('Rellena todos los campos')
             return
         }
-        //const storageRef = ref(storage, nombreArchivo)
+        // Subimos la imagen al Storage y obtenemos la url para utilizarla en el documento a subir
         const storageRef = ref(storage, nombreArchivo);
         await uploadBytes(storageRef, archivoSeleccionado)
         const url = await getDownloadURL(storageRef);
-        await addDoc(collection(db, 'productos'), { ...camposProducto, imagen: url })
+
+        // Agregar documento a la collecion
+        await addDoc(collection(db, 'productos'), { ...camposProducto,
+            imagen: url ,
+            subcategoria:subCategoria
+        })
+
+        // Restablecer campos
         setCamposProducto({
             nombre: '',
             precio: '',
@@ -44,8 +53,9 @@ export default function AdminNuevoProducto() {
             categoria: '',
             imagen: ''
         })
-        // Restablecer input file despues de subir el producto
+        setSubCategoria('')
         inputFileRef.current.value = null;
+        // Alerta
         Swal.fire({
             icon: 'success',
             title: '¡Producto agregado correctamente!'
@@ -74,13 +84,13 @@ export default function AdminNuevoProducto() {
 
                     <form
                         onSubmit={handleSubmit}
-
                     >
                         <Formulario
                             handleChangeArchivo={handleChangeArchivo}
                             camposProducto={camposProducto}
                             setCamposProducto={setCamposProducto}
                             inputFileRef={inputFileRef}
+                            setSubCategoria={setSubCategoria}
                         />
                         <input
                             type="submit"

@@ -1,31 +1,28 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { categorias } from '../utils/categorias'
 
-
-export default function Formulario({ 
+export default function Formulario({
     handleChangeArchivo,
     camposProducto,
     setCamposProducto,
     inputFileRef,
-    imagenUrl 
+    imagenUrl,
+    setSubCategoria
 }) {
 
-
-    const categorias = [
-        'Bijou',
-        'Electro',
-        'Marroquinería',
-        'Cosmética',
-        'Packaging',
-        'Pelo',
-        'Relojería',
-        'Librería',
-        'otros'
-    ]
-
+    
+    const handleChangeCategoria = (e) => {
+        setCamposProducto({
+            ...camposProducto,
+            categoria:e.target.value
+        })
+        console.log(e.target.value)
+    }
+    // Metodo para acceder al objeto de la categoria seleccionada
+    const categoriaFind = categorias.find(cat => cat.label === camposProducto.categoria);
+   
     return (
         <>
-{/*  En el onChange se crea una copia del objeto actual  y se reemplaza el campo seleccionado por el valor nuevo del input*/}
+            {/*  En el onChange se crea una copia del objeto actual  y se reemplaza el campo seleccionado por el valor nuevo del input*/}
             <div className="mb-4">
                 <label
                     className="text-gray-800"
@@ -38,7 +35,7 @@ export default function Formulario({
                     placeholder="Nombre del Producto"
                     name="nombre"
                     value={camposProducto.nombre}
-                    onChange={(e) => setCamposProducto({...camposProducto,nombre: e.target.value})}
+                    onChange={(e) => setCamposProducto({ ...camposProducto, nombre: e.target.value })}
                 />
             </div>
             <div className="mb-4">
@@ -53,7 +50,7 @@ export default function Formulario({
                     placeholder="Precio del Producto"
                     name="precio"
                     value={camposProducto.precio}
-                    onChange={(e) => setCamposProducto({...camposProducto,precio: e.target.value})}
+                    onChange={(e) => setCamposProducto({ ...camposProducto, precio: e.target.value })}
                 />
             </div>
             <div className="mb-4">
@@ -80,15 +77,40 @@ export default function Formulario({
                     id="categoria"
                     className='w-full py-3 text-center'
                     value={camposProducto.categoria}
-                    onChange={(e) => setCamposProducto({ ...camposProducto, categoria: e.target.value })}
+                    onChange={handleChangeCategoria}
                 >
                     <option value="">-- Seleccione la Categoria --</option>
                     {
-                    categorias.map((categoria, i) =>(<option key={i} value={categoria}>{categoria}</option>))
+                        categorias.map((categoria, i) => (<option key={i} value={categoria.label}>{categoria.label}</option>))
                     }
                 </select>
 
             </div>
+            {
+
+                 categoriaFind && categoriaFind.children && categoriaFind.children.length > 0 && (
+                    <div className="mb-4">
+                        <label className="text-gray-800" htmlFor="subcategoria">Subcategoría:</label>
+                        <select 
+                            className='w-full py-3 text-center' 
+                            id="subcategoria"
+                            value={camposProducto.subcategoria}
+                            onChange={e => {
+                                setSubCategoria(e.target.value) 
+                                setCamposProducto({...camposProducto, subcategoria:e.target.value})
+                            }}
+                            >
+                            <option value="">Seleccione una subcategoría</option>
+                            {categoriaFind.children.map(subcategoria => (
+                                <option key={subcategoria.id} value={subcategoria.label}>
+                                    {subcategoria.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )
+          
+            }
             <div className="mb-4">
                 {
                     imagenUrl === null &&
@@ -105,9 +127,9 @@ export default function Formulario({
                     placeholder="Selecciona la imagen"
                     name="imagen"
                     ref={inputFileRef}
-                    onChange={(e) => { 
-                        handleChangeArchivo(e), 
-                        setCamposProducto({ ...camposProducto, imagen: e.target.files[0].name }) 
+                    onChange={(e) => {
+                        handleChangeArchivo(e),
+                            setCamposProducto({ ...camposProducto, imagen: e.target.files[0].name })
                     }}
                 />
             </div>
