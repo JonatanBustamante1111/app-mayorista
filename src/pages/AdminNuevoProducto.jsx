@@ -84,7 +84,6 @@ export default function AdminNuevoProducto() {
 
                     <form
                         onSubmit={handleSubmit}
-
                     >
                         <Formulario
                             handleChangeArchivo={handleChangeArchivo}
