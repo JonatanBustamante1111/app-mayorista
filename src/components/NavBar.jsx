@@ -20,8 +20,10 @@ export default function Navbar() {
             <p className='font-normal py-3 text-xl lg:text-2xl text-slate-900 uppercase tracking-widest'>millionare mind</p>
           </div>
           <ul className='hidden md:flex gap-x-7 uppercase font-semibold text-xs'>
-            {
-              location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros'  || location.pathname === '/carrito' || location.pathname === '/login' || location.pathname === '/registro' 
+            {     
+                location.pathname !== '/admin' ||
+                location.pathname !== '/admin/nuevoproducto' || 
+                location.pathname !== '/admin/editarproducto/:productoId' 
                 ? (
                   <>
                     <Link to={'/'}>
@@ -83,38 +85,37 @@ export default function Navbar() {
           </div>
           <div className='py-4 flex flex-col mt-10 items-start'>
             <ul className='uppercase ' onClick={handleNav}>
-              {
-                location.pathname === '/' || location.pathname === '/productos' || location.pathname === '/' || location.pathname === '/nosotros' || location.pathname === '/login' || location.pathname === '/producto/:productoId'
-                  ? (
-                    <>
-                      <Link to={'/'}>
-                        <li className='py-4 '>Home</li>
-                      </Link>
-                      <Link to={'/productos'}>
-                        <li className='py-4 '>Productos</li>
-                      </Link>
-                      <Link to={'/nosotros'}>
-                        <li className='py-4 '>Nosotros</li>
-                      </Link>
-                    </>
-                  )
-                  :
-                  (
-                    <>
-                      <Link to={'/admin'}>
-                        <li className='py-4'>Home Admin</li>
-                      </Link>
-                      <Link to={'/admin/nuevoproducto'}>
-                        <li className='py-4'>Nuevo Producto</li>
-                      </Link>
-                    </>
-                  )
-              }
+            {     
+                location.pathname !== '/admin' ||
+                location.pathname !== '/admin/nuevoproducto' || 
+                location.pathname !== '/admin/editarproducto/:productoId' 
+                ? (
+                  <>
+                    <Link to={'/'}>
+                      <li className='py-4 '>Home</li>
+                    </Link>
+                    <Link to={'/productos'}>
+                      <li className='py-4 '>Productos</li>
+                    </Link>
+                    <Link to={'/nosotros'}>
+                      <li className='py-4 '>Nosotros</li>
+                    </Link>
+                  </>
+                )
+                :
+                (
+                  <>
+                    <Link to={'/admin'}>
+                      <li className='py-4  '>Home Admin</li>
+                    </Link>
+                    <Link to={'/admin/nuevoproducto'}>
+                      <li className='py-4'>Nuevo Producto</li>
+                    </Link>
+                  </>
+                )
+            }
             </ul>
             <div className='flex flex-col gap-y-3 md:hidden items-start'>
-              <Link className='py-3 text-2xl' to={'/carrito'}>
-                <ion-icon name="cart-outline"></ion-icon>
-              </Link>
               <Link to={'/login'} className='uppercase'>Mi cuenta</Link>
             </div>
             <div className="pt-20">
