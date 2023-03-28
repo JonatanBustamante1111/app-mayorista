@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
-export default function TablaCarrito({ producto }) {
-  const { imagen, nombre, precio,id } = producto;
+export default function TablaCarrito({id,imagen,nombre,cantidad,precio}) {
   const {cart} = useContext(CartContext)
-
-  const {eliminarProducto} = cart;
-
+  const {eliminarProducto} = cart;  
   return (
     <tr>
       <td>
@@ -16,9 +13,9 @@ export default function TablaCarrito({ producto }) {
           alt={`Imagen de ${nombre}`}
         />
       </td>
-      <td>`2`</td>
-      <td>`${precio}`</td>
-      <td>`${precio * 2}`</td>
+      <td>{cantidad}</td>
+      <td>${precio}</td>
+      <td>${cantidad * precio}</td>
       <td>
         <button onClick={() => eliminarProducto(id)} className="text-red-600">
           <ion-icon name="trash-outline"></ion-icon>
