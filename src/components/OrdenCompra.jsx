@@ -12,7 +12,7 @@ export default function OrdenCompra() {
       } else {
         // Redirigir al usuario al formulario de inicio de sesión
         console.log("Debe iniciar sesión para hacer la compra");
-        navigate('/login');
+        navigate('/micuenta');
       }
     };
   return (

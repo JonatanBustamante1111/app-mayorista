@@ -42,7 +42,7 @@ export default function Productos() {
   return (
     <main>
      <div className='w-[30%] mx-auto flex justify-center'>
-       <h2 className=' py-8 font-semibold text-slate-800 uppercase'>
+       <h2 className='  py-8 font-semibold text-slate-800 uppercase '>
          {categoriaFiltrada === '' && subCategoriaFiltrada === '' 
        ? 'Todos los productos'
        : `Filtrar por : ${categoriaFiltrada} / ${subCategoriaFiltrada} 
