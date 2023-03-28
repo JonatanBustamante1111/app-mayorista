@@ -65,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/productos",
-        element: <h2>Productos</h2>,
+        element: <h2>Producto</h2>,
       },
       {
         path: "/admin/nuevoproducto",
