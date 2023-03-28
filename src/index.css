@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
+/*Menu hamburguesa con animacion*/
 .bars__menu {
   @apply w-[30px] h-[30px] cursor-pointer;
 }
@@ -19,6 +21,7 @@
   @apply rotate-[-45deg] translate-x-[-2px] translate-y-[2px];
 }
 
+/* Iconos del navbar responsive */
 .icons__menu {
   @apply flex justify-center items-center  rounded-full shadow-lg shadow-purple-500 text-purple-400 
   text-2xl  h-12 w-12  cursor-pointer  ease-in duration-300 hover:bg-purple-400 hover:text-white hover:shadow-gray-400;
