@@ -32,10 +32,13 @@ export default function AdminEditarProducto() {
     precio: producto.data().precio,
     descripcion: producto.data().descripcion,
     categoria: producto.data().categoria,
+    subcategoria: producto.data().subcategoria,
     imagen: producto.data().imagen
   })
   const [archivoSeleccionado, setArchivoSeleccionado] = useState({})
   const [nombreArchivo, setNombreArchivo] = useState('')
+  const [ subCategoria, setSubCategoria ] = useState('')
+
 
   // Para Identificar si viene una imagen de firebase, en caso de ser asi la imagen se muestra en el formulario
   const [imagenUrl, setImagenUrl] = useState(null)
@@ -59,7 +62,7 @@ export default function AdminEditarProducto() {
       const storageRef = ref(storage, nombreArchivo);
       await uploadBytes(storageRef, archivoSeleccionado)
       const url = await getDownloadURL(storageRef);
-      await updateDoc(docref, { ...camposProducto, imagen: url })
+      await updateDoc(docref, { ...camposProducto, imagen: url, subcategoria:subCategoria })
     } else {
       await updateDoc(docref, camposProducto)
     }
@@ -100,6 +103,7 @@ export default function AdminEditarProducto() {
             camposProducto={camposProducto}
             setCamposProducto={setCamposProducto}
             imagenUrl={imagenUrl}
+            setSubCategoria={setSubCategoria}
           />
           <input
             type="submit"
