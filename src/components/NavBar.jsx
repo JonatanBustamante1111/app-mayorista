@@ -55,7 +55,7 @@ export default function Navbar() {
           <Link className='text-2xl' to={'/carrito'}>
             <ion-icon name="cart-outline"></ion-icon>
           </Link>
-          <Link to={'/login'} className='text-xs font-semibold hidden md:block uppercase'
+          <Link to={'/micuenta'} className='text-xs font-semibold hidden md:block uppercase'
           >Mi cuenta</Link> 
         </div>
         <div className='relative py-5'>
@@ -116,7 +116,7 @@ export default function Navbar() {
             }
             </ul>
             <div className='flex flex-col gap-y-3 md:hidden items-start'>
-              <Link to={'/login'} className='uppercase'>Mi cuenta</Link>
+              <Link to={'/micuenta'} className='uppercase'>Mi cuenta</Link>
             </div>
             <div className="pt-20">
               <p className='text-sm sm:text-lg uppercase tracking-widest text-indigo-600'>¡Sigamos conectados!</p>

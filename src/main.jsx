@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -13,12 +13,11 @@ import AdminNuevoProducto from "./pages/AdminNuevoProducto";
 import AdminEditarProducto, {
   loader as AdminEditarProductoLoader,
 } from "./pages/AdminEditarProducto";
+import MiCuenta from "./pages/MiCuenta";
 
 // Components
 import Layout from "./components/Layout";
 import CartContextProvider from "./context/CartContext";
-import Login from "./pages/Login";
-import Registro from "./pages/Registro";
 
 const router = createBrowserRouter([
   {
@@ -46,13 +45,10 @@ const router = createBrowserRouter([
         element: <Carrito />,
       },
       {
-        path: "/login",
-        element: <Login/>,
+        path: "/micuenta",
+        element: <MiCuenta/>,
       },
-      {
-        path: "/registro",
-        element: <Registro/>,
-      }
+     
     ],
   },
   {
@@ -65,7 +61,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/productos",
-        element: <h2>Productos</h2>,
+        element: <h2>Producto</h2>,
       },
       {
         path: "/admin/nuevoproducto",

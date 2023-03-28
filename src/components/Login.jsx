@@ -4,7 +4,8 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
 import { Link } from "react-router-dom";
 
-function Login() {
+
+function Login({ handleChangeLogin}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -46,45 +47,40 @@ function Login() {
     setPassword("");
   };
   return (
-    <>
+
+    <main>
+      <h2 className="font-monsterrat text-slate-700 text-center font-bold text-3xl pt-8">Iniciar Sesion</h2>
       <div>
-        <h2>BIENVENIDO</h2>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Correo electrónico:
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </label>
-            <br />
-            <label>
-              Contraseña:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </label>
-            <br />
-            <button type="submit">Iniciar Sesión</button>
-            <div>
-              <Link to={"/registro"}>
-                <p>¿No tienes cuenta?</p>
-                <button>Registrate</button>
-              </Link>
-            </div>
-          </form>
-        </div>
-        <div>
-          <Link to={"/"}>
-            <button>Volver</button>
-          </Link>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Correo electrónico:
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+          <br />
+          <label>
+            Contraseña:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <br />
+          <button type="submit">Iniciar Sesión</button>
+          <div>
+            ¿No tiene cuenta? 
+            <button onClick={() => handleChangeLogin()}> Registrate</button>
+          </div>
+        </form>
       </div>
-    </>
+      <div>
+          <Link to={'/'}><button>Volver</button></Link>
+      </div>
+    </main>
   );
 }
 

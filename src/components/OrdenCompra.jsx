@@ -16,11 +16,7 @@ export default function OrdenCompra() {
       } else {
         // Redirigir al usuario al formulario de inicio de sesión
         console.log("Debe iniciar sesión para hacer la compra");
-        navigate('/login');
-        // se crea cuenta o se loguea
-        // redirecciona al carrito
-        // setea el estado de logged
-        // nuevamente el cliente clickea en comprar se activa la funcion y entra en el if true.
+        navigate('/micuenta');
       }
     };
   return (
