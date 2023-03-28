@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { db, storage } from '../utils/firebaseconfig'
-import { doc, getDoc, getDocs, collection } from 'firebase/firestore'
+import { db} from '../utils/firebaseconfig'
+import {  getDocs, collection } from 'firebase/firestore'
 import Card from '../components/Card'
-import { categorias } from '../utils/categorias'
 import DropDown from '../components/DropDown'
+import { categorias } from '../utils/categorias'
 
 export default function Productos() {
 
@@ -41,7 +41,14 @@ export default function Productos() {
 
   return (
     <main>
-      <h2 className='text-center py-8 font-semibold text-teal-400'> Productos</h2>
+     <div className='w-[30%] mx-auto flex justify-center'>
+       <h2 className=' py-8 font-semibold text-slate-800 uppercase'>
+         {categoriaFiltrada === '' && subCategoriaFiltrada === '' 
+       ? 'Todos los productos'
+       : `Filtrar por : ${categoriaFiltrada} / ${subCategoriaFiltrada} 
+       `}
+       </h2>
+     </div>
       <section className='grid md:grid-cols-[1fr,4fr] gap-x-7'>
         <aside className=''>
           <h2 className='text-center text-xl font-semibold text-slate-800'>Categorias</h2>
