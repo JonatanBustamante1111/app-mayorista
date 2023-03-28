@@ -55,10 +55,9 @@ export default function DropDown({ setCategoriaFiltrada, setSubCategoriaFiltrada
                 <p
                   key={subCategoria.id}
                   className="block my-2 text-lg text-indigo-500 font-normal text-start cursor-pointer hover:underline"
-                  onClick={() => {
-                    setCategoriaFiltrada(categoria.label)
+                  onClick={() => 
                     setSubCategoriaFiltrada(subCategoria.label) 
-                  }}
+                }
                 >
                   {subCategoria.label}
                 </p>
