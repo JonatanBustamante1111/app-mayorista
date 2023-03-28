@@ -4,7 +4,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
 import { Link } from "react-router-dom";
 
-function Login() {
+function Login({ setLogin, login }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -71,10 +71,7 @@ function Login() {
           <br />
           <button type="submit">Iniciar Sesión</button>
           <div>
-            <Link to={"/registro"}>
-              <p>¿No tienes cuenta?</p>
-              <button>Registrate</button>
-            </Link>
+            <button onClick={()=> setLogin(!login)}>Registrate</button>
           </div>
         </form>
       </div>
