@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
+import ItemCount from "../components/ItemCount";
 
 export default function Producto() {
-  const {cart} = useContext(CartContext);
+  const [itemCount,setItemCount] = useState(0);
+  const { cart } = useContext(CartContext);
   const [dato, setDato] = useState({});
   const { productoId } = useParams();
 
@@ -27,9 +29,11 @@ export default function Producto() {
       .then((result) => setDato(result))
       .catch((err) => console.log(err));
   }, []);
-  const { descripcion, imagen, nombre, precio,id } = dato;
-  function agregarAlCarrito() {
-    cart.agregarCarrito(dato);
+  const { descripcion, imagen, nombre, precio } = dato;
+
+  function onAdd(cantidad) {
+    cart.agregarCarrito(dato,cantidad);
+    setItemCount(dato,cantidad)
   }
 
   return (
@@ -40,12 +44,19 @@ export default function Producto() {
         alt={`Imagen de ${nombre}`}
       />
 
-      <div className="product-info">
+      <div>
         <h1>{`${nombre}`}</h1>
         <p>{`${descripcion}`}</p>
-        <h3>{`Precio: ${precio}`}</h3>  
-        <p>{`Cantidad disponible: ${nombre}`}</p>
-        <button onClick={() => agregarAlCarrito()}>Agregar al carrito</button>
+        <p>{`Cantidad disponible: 2`}</p>
+        <h3>{`Precio: ${precio}`}</h3>
+        {itemCount === 0 
+        ? ( <ItemCount initial={itemCount} onAdd={onAdd} /> ) 
+        : (
+          <Link to="/carrito">
+            <button>Ver carrito</button>
+          </Link>
+          )
+        }
       </div>
     </div>
   );
