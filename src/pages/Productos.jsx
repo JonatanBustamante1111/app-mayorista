@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react'
 import { db} from '../utils/firebaseconfig'
 import {  getDocs, collection } from 'firebase/firestore'
 import Card from '../components/Card'
+import DropDown from '../components/DropDown'
 
 export default function Productos() {
 
   const [productos, setProductos] = useState([])
   const [categoriaFiltrada, setCategoriaFiltrada] = useState('')
   const [subCategoriaFiltrada, setSubCategoriaFiltrada] = useState('')
-
-  
 
   useEffect(() => {
     const consultarProductos = async () => {

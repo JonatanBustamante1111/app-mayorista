@@ -4,7 +4,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../utils/firebaseconfig';
 import { Link } from 'react-router-dom'
 
-function Registro() {
+function Registro({handleChangeLogin}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,6 +33,8 @@ function Registro() {
   }
   return (
     <div>
+            <h2 className="font-monsterrat text-slate-700 text-center font-bold text-3xl pt-8 ">Registro</h2>
+
       <div>
         <form onSubmit={handleSubmit}>
           <label>
@@ -46,9 +48,9 @@ function Registro() {
           <button type="submit">Registrarse</button>
         </form>
       </div>
-        <div>
-          <Link to={'/login'}><button>Volver</button></Link>
-        </div>
+      <div>
+          <button onClick={()=> handleChangeLogin()}>Volver</button>
+      </div>
     </div>
   );
 }
