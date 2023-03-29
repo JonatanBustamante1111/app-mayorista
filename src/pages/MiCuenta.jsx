@@ -4,7 +4,7 @@ import Login from "../components/Login";
 
 export default function MiCuenta() {
   const [login, setLogin] = useState(false);
-
+  const [loggedIn, setLoggedIn] = useState(false);
   const handleChangeLogin = () => {
     setLogin(!login);
   };
