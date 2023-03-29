@@ -1,13 +1,19 @@
-import { useState } from "react";
+import React,{ useContext, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
+import { CartContext } from '../context/CartContext';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 
 function Login({ handleChangeLogin}) {
+  const {cart} = useContext(CartContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {setLoggedIn} = cart;
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,10 +39,12 @@ function Login({ handleChangeLogin}) {
       if (usuario.rol === "cliente") {
         console.log("Bienvenido cliente");
         // redireccionar a la pagina de cliente
+        navigate(-1);
       } else if (usuario.rol === "admin") {
         console.log("Bienvenido administrador");
         // redireccionar a la pagina de administrador
       }
+      setLoggedIn(true)
     } catch (error) {
       console.error(error);
     }
@@ -78,7 +86,7 @@ function Login({ handleChangeLogin}) {
         </form>
       </div>
       <div>
-          <Link to={'/'}><button>Volver</button></Link>
+         <Link to={'/'}><button>Volver</button></Link>
       </div>
     </main>
   );

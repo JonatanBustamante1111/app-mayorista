@@ -37,12 +37,20 @@ const CartContextProvider = (props) => {
         const newArray = carrito.filter(element => element.id !== id )
         setCarrito(newArray)
     }  
+    const sumaCantidadBadge = () => { 
+      let acc = 0;  
+      carrito.forEach(item => acc += item.cantidad);
+      return acc;
+  }
+
+
       const cart = {
         carrito,
         agregarCarrito,
         eliminarProducto,
         loggedIn, 
-        setLoggedIn
+        setLoggedIn,
+        sumaCantidadBadge
       };
 
     return (
