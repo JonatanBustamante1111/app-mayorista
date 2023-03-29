@@ -39,7 +39,7 @@ const CartContextProvider = (props) => {
     }  
     const sumaCantidadBadge = () => { 
       let acc = 0;  
-      carrito.forEach(item => acc += item.cantidad);
+      carrito.forEach(item => acc ++);
       return acc;
   }
 
