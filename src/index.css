@@ -32,3 +32,6 @@
   --color-dorado: #735CDD;
   --color-violeta: #F7B32B;
 } 
+ body{
+  background-color: var(--color-azul);
+}
