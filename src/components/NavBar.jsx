@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
+import { Badge } from '@mui/material';
+import { CartContext } from '../context/CartContext';
 export default function Navbar() {
 
   const [nav, setNav] = useState(false)
   const location = useLocation()
+  const {cart} = useContext(CartContext)
+  const {sumaCantidadBadge} = cart
 
   const handleNav = () => {
     setNav(!nav)
   }
+  
   return (
     <>
       <div className='flex px-5 md:px-2  justify-between  items-center  shadow'>
@@ -53,7 +57,9 @@ export default function Navbar() {
         </div>
         <div className='hidden md:flex items-center gap-x-5'>
           <Link className='text-2xl' to={'/carrito'}>
-            <ion-icon name="cart-outline"></ion-icon>
+            <Badge badgeContent={sumaCantidadBadge()} color="secondary" >
+               <ion-icon name="cart-outline"></ion-icon>
+            </Badge>
           </Link>
           <Link to={'/micuenta'} className='text-xs font-semibold hidden md:block uppercase'
           >Mi cuenta</Link> 
