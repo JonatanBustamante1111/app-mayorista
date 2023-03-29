@@ -25,10 +25,22 @@ export default function Navbar() {
           </div>
           <ul className='hidden md:flex gap-x-7 uppercase font-semibold text-xs'>
             {     
-                location.pathname !== '/admin' ||
-                location.pathname !== '/admin/nuevoproducto' || 
-                location.pathname !== '/admin/editarproducto/:productoId' 
+                location.pathname == '/admin' ||
+                location.pathname == '/admin/nuevoproducto' || 
+                location.pathname == '/admin/editarproducto/:productoId' 
                 ? (
+                  <>
+                    <Link to={'/admin'}>
+                      <li className='py-4  '>Home Admin</li>
+                    </Link>
+                    <Link to={'/admin/nuevoproducto'}>
+                      <li className='py-4'>Nuevo Producto</li>
+                    </Link>
+                    
+                  </>
+                )
+                :
+                (
                   <>
                     <Link to={'/'}>
                       <li className='py-4 '>Home</li>
@@ -38,17 +50,6 @@ export default function Navbar() {
                     </Link>
                     <Link to={'/nosotros'}>
                       <li className='py-4 '>Nosotros</li>
-                    </Link>
-                  </>
-                )
-                :
-                (
-                  <>
-                    <Link to={'/admin'}>
-                      <li className='py-4  '>Home Admin</li>
-                    </Link>
-                    <Link to={'/admin/nuevoproducto'}>
-                      <li className='py-4'>Nuevo Producto</li>
                     </Link>
                   </>
                 )
@@ -92,12 +93,24 @@ export default function Navbar() {
           <div className='py-4 flex flex-col mt-10 items-start'>
             <ul className='uppercase ' onClick={handleNav}>
             {     
-                location.pathname !== '/admin' ||
-                location.pathname !== '/admin/nuevoproducto' || 
-                location.pathname !== '/admin/editarproducto/:productoId' 
+                (location.pathname == '/admin') || 
+                (location.pathname == '/admin/nuevoproducto') || 
+                (location.pathname == '/admin/editarproducto/:productoId') 
                 ? (
                   <>
-                    <Link to={'/'}>
+                  <Link to={'/admin'}>
+                      <li className='py-4'>Home Admin</li>
+                    </Link>
+                    <Link to={'/admin/nuevoproducto'}>
+                      <li className='py-4'>Nuevo Producto</li>
+                    </Link>
+                   
+                  </>
+                )
+                :
+                (
+                  <>
+                     <Link to={'/'}>
                       <li className='py-4 '>Home</li>
                     </Link>
                     <Link to={'/productos'}>
@@ -105,17 +118,6 @@ export default function Navbar() {
                     </Link>
                     <Link to={'/nosotros'}>
                       <li className='py-4 '>Nosotros</li>
-                    </Link>
-                  </>
-                )
-                :
-                (
-                  <>
-                    <Link to={'/admin'}>
-                      <li className='py-4  '>Home Admin</li>
-                    </Link>
-                    <Link to={'/admin/nuevoproducto'}>
-                      <li className='py-4'>Nuevo Producto</li>
                     </Link>
                   </>
                 )

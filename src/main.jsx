@@ -60,10 +60,6 @@ const router = createBrowserRouter([
         element: <AdminInicio />,
       },
       {
-        path: "/admin/productos",
-        element: <h2>Producto</h2>,
-      },
-      {
         path: "/admin/nuevoproducto",
         element: <AdminNuevoProducto />,
       },
