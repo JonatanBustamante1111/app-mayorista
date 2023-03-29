@@ -4,6 +4,7 @@ import { categorias } from "../utils/categorias";
 export default function DropDown({ setCategoriaFiltrada, setSubCategoriaFiltrada, filtrarPorTodosLosProductos }) {
 
   const [open, setOpen] = useState(false);
+  const [rotate, setRotate] = useState(false);
   // Estado para manejar la categoría seleccionada
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
 
@@ -14,9 +15,11 @@ export default function DropDown({ setCategoriaFiltrada, setSubCategoriaFiltrada
     if (categoriaSeleccionada === categoria) {
       setCategoriaSeleccionada(null);
       setOpen(false);
+      setRotate(false); // Agregamos esta línea para desactivar el giro
     } else {
       setCategoriaSeleccionada(categoria);
       setOpen(true);
+      setRotate(true); // Agregamos esta línea para activar el giro
     }
   };
 
@@ -41,7 +44,10 @@ export default function DropDown({ setCategoriaFiltrada, setSubCategoriaFiltrada
             {/* Si la categoría tiene subcategorías, mostramos el botón */}
             {categoria.children.length !== 0 && (
               <button 
-                className=""
+                className={`${rotate && categoriaSeleccionada === categoria 
+                ? 'duration-300 -rotate-180' 
+                : 'duration-300'}`}
+
                 onClick={() => handleCategoriaClick(categoria)}>
                <ion-icon name="chevron-up-outline"></ion-icon>
               </button>
@@ -49,7 +55,7 @@ export default function DropDown({ setCategoriaFiltrada, setSubCategoriaFiltrada
           </div>
           {/* Si la categoría tiene subcategorías y está seleccionada, las mostramos */}
           {categoria.children.length !== 0 && categoriaSeleccionada === categoria && open && (
-            <div>
+            <div className=''>
               {/* Recorremos las subcategorías y generamos un bloque para cada una */}
               {categoria.children.map((subCategoria) => (
                 <p
