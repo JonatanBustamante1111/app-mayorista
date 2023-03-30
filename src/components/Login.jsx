@@ -42,11 +42,12 @@ function Login({ handleChangeLogin}) {
         navigate(-1);
       } else if (usuario.rol === "admin") {
         console.log("Bienvenido administrador");
+        navigate('/admin')
         // redireccionar a la pagina de administrador
       }
       setLoggedIn(true)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
     clearState();
   };
@@ -54,6 +55,7 @@ function Login({ handleChangeLogin}) {
     setEmail("");
     setPassword("");
   };
+
   return (
 
     <main>

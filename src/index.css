@@ -33,5 +33,7 @@
   --color-violeta: #F7B32B;
 } 
  body{
-  background-color: var(--color-azul);
+  /* background-color: var(--color-azul);
+  color: var(--color-blanco); */
+  
 }
