@@ -52,7 +52,7 @@ function Login({ handleChangeLogin}) {
       if (usuario.rol === "cliente") {
         console.log("Bienvenido cliente");
         // redireccionar a la pagina de cliente
-        navigate(-1);
+        navigate('/carrito');
       } else if (usuario.rol === "admin") {
         console.log("Bienvenido administrador");
         navigate('/admin')
