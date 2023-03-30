@@ -2,15 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
-import { CartContext } from '../context/CartContext';
+import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function Login({ handleChangeLogin}) {
-  const {cart} = useContext(CartContext);
+function Login({ handleChangeLogin }) {
+  const { cart } = useContext(CartContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);gi
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,15 +52,15 @@ function Login({ handleChangeLogin}) {
       if (usuario.rol === "cliente") {
         console.log("Bienvenido cliente");
         // redireccionar a la pagina de cliente
-        navigate('/carrito');
+        navigate("/carrito");
       } else if (usuario.rol === "admin") {
         console.log("Bienvenido administrador");
-        navigate('/admin')
+        navigate("/admin");
         // redireccionar a la pagina de administrador
       }
       setLoggedIn(true);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
     clearState();
   };
@@ -79,43 +79,47 @@ function Login({ handleChangeLogin}) {
         </div>
       ) : (
         <div>
-          <h2 className="font-monsterrat text-slate-700 text-center font-bold text-3xl pt-8">Iniciar Sesion</h2>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Correo electrónico:
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </label>
-            <br />
-            <label>
-              Contraseña:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </label>
-            <br />
-        <button type="submit" className="btn btn-primary my-4">
-          Iniciar sesión
-        </button>
-      </form>
-      <p>
-        ¿No tienes cuenta?{" "}
-        <Link
-          to="/registro"
-          className="text-slate-700 font-bold hover:text-slate-900"
-        >
-          Regístrate
-        </Link>
-      </p>
-    </div>
-  )}
-</main>
-);
+          <div>
+            <h2 className="font-monsterrat text-slate-700 text-center font-bold text-3xl pt-8">
+              Iniciar Sesion
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <label>
+                Correo electrónico:
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
+              <br />
+              <label>
+                Contraseña:
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </label>
+              <br />
+              <button type="submit" className="btn btn-primary my-4">
+                Iniciar sesión
+              </button>
+            </form>
+            <div>
+              ¿No tienes cuenta?{" "}
+              <button onClick={() => handleChangeLogin()}> Registrate</button>
+            </div>
+          </div>
+          <div>
+            <Link to={"/"}>
+              <button>Volver</button>
+            </Link>
+          </div>
+        </div>
+      )}
+    </main>
+  );
 }
 
 export default Login;
