@@ -41,15 +41,17 @@ const CartContextProvider = (props) => {
       }
     }, []);
     function eliminarProducto(id){
-        const newArray = carrito.filter(element => element.id !== id )
-        setCarrito(newArray)
-    }  
+      const newArray = carrito.filter(element => element.id !== id );
+      localStorage.setItem('carrito', JSON.stringify(newArray));
+      setCarrito(newArray);
+    }
+    
     const sumaCantidadBadge = () => { 
       let acc = 0;  
-      carrito.forEach(item => acc += item.cantidad);
+      carrito.forEach(item => acc ++);
       return acc;
-  }
-
+    } 
+    
 
       const cart = {
         carrito,
