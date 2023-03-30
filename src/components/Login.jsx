@@ -1,17 +1,30 @@
 import React, { useContext, useState, useEffect } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+
 function Login({ handleChangeLogin }) {
   const { cart } = useContext(CartContext);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);gi
+  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+  const handleSignInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      // Se ha iniciado sesión con éxito
+      console.log(result.user);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -83,6 +96,9 @@ function Login({ handleChangeLogin }) {
             <h2 className="font-monsterrat text-slate-700 text-center font-bold text-3xl pt-8">
               Iniciar Sesion
             </h2>
+            <div>
+              <button onClick={handleSignInWithGoogle}>Iniciar sesión con Google</button>
+            </div>
             <form onSubmit={handleSubmit}>
               <label>
                 Correo electrónico:

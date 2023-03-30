@@ -35,12 +35,12 @@ export default function Navbar() {
               </Link>
             </ul>
             <div className="hidden md:flex items-center gap-x-5">
-              <Link
+              {/* <Link
                 to={"/micuenta"}
                 className="text-xs font-semibold hidden md:block uppercase"
               >
                 Mi cuenta
-              </Link>
+              </Link> */}
             </div>
           </>
         ) : (
