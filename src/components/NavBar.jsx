@@ -34,14 +34,14 @@ export default function Navbar() {
                 <li className="py-4">Nuevo Producto</li>
               </Link>
             </ul>
-            <div className="hidden md:flex items-center gap-x-5">
+            {/* <div className="hidden md:flex items-center gap-x-5">
               <Link
                 to={"/micuenta"}
                 className="text-xs font-semibold hidden md:block uppercase"
               >
-                Mi cuenta
+                Mi cuenta222
               </Link>
-            </div>
+            </div> */}
           </>
         ) : (
           <>
