@@ -17,7 +17,6 @@ export default function Navbar() {
   return (
     <>
       <div className='flex px-5 md:px-2  justify-between  items-center  shadow'>
-        <span>Prueba</span>
         <div className='flex justify-between items-center w-[70%] px-4'>
           <div className='flex items-center text-indigo-500 text-xl gap-x-2'>
             <ion-icon name="cash-outline"></ion-icon>
