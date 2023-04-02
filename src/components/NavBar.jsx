@@ -12,13 +12,13 @@ export default function Navbar() {
   const handleNav = () => {
     setNav(!nav);
   };
-
+  const isAdminRoute = location.pathname == "/admin" ||
+  location.pathname == "/admin/nuevoproducto" ||
+  location.pathname.startsWith("/admin/editarproducto/")
   return (
     <>
       <div className="flex px-5 md:px-2  justify-between  items-center  shadow">
-        {location.pathname == "/admin" ||
-        location.pathname == "/admin/nuevoproducto" ||
-        location.pathname == "/admin/editarproducto/:productoId" ? (
+        {(isAdminRoute) ? (
           <>
             <div className="flex items-center text-indigo-500 text-xl gap-x-2">
               <ion-icon name="cash-outline"></ion-icon>
@@ -109,9 +109,7 @@ export default function Navbar() {
           </div>
           <div className="py-4 flex flex-col mt-10 items-start">
             <ul className="uppercase " onClick={handleNav}>
-              {location.pathname == "/admin" ||
-              location.pathname == "/admin/nuevoproducto" ||
-              location.pathname == "/admin/editarproducto/:productoId" ? (
+              {(isAdminRoute) ? (
                 <>
                   <Link to={"/admin"}>
                     <li className="py-4">Home Admin</li>

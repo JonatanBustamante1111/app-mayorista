@@ -3,14 +3,11 @@ import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
-import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-
-function Login({ handleChangeLogin }) {
-  const { cart } = useContext(CartContext);
-  const [email, setEmail] = useState(""); 
+function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -69,6 +66,7 @@ function Login({ handleChangeLogin }) {
       } else if (usuario.rol === "admin") {
         console.log("Bienvenido administrador");
         navigate("/admin");
+        setIsLoggedAdmin(true);
         // redireccionar a la pagina de administrador
       }
       setLoggedIn(true);
@@ -77,18 +75,26 @@ function Login({ handleChangeLogin }) {
     }
     clearState();
   };
-
+ 
   const clearState = () => {
     setEmail("");
     setPassword("");
   };
+  console.log(isLoggedAdmin);
 
   return (
     <main>
       {loggedIn ? (
         <div>
           <p>¡Bienvenido! Ya has iniciado sesión.</p>
-          <button onClick={() => auth.signOut()}>Cerrar sesión</button>
+          <button
+            onClick={() => {
+              auth.signOut();
+              setIsLoggedAdmin(false);
+            }}
+          >
+            Cerrar sesión
+          </button>
         </div>
       ) : (
         <div>
@@ -97,7 +103,9 @@ function Login({ handleChangeLogin }) {
               Iniciar Sesion
             </h2>
             <div>
-              <button onClick={handleSignInWithGoogle}>Iniciar sesión con Google</button>
+              <button onClick={handleSignInWithGoogle}>
+                Iniciar sesión con Google
+              </button>
             </div>
             <form onSubmit={handleSubmit}>
               <label>

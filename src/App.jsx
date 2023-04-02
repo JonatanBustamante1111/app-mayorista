@@ -19,8 +19,7 @@ import Layout from "./components/Layout";
 import CartContextProvider from "./context/CartContext";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] =   useState(false); // Inicialmente el usuario no está logueado como admin
-  
+  const [isLoggedAdmin, setIsLoggedAdmin] = useState(false);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -48,7 +47,7 @@ const App = () => {
         },
         {
           path: "/micuenta",
-          element: <MiCuenta/>,
+          element: <MiCuenta isLoggedAdmin={isLoggedAdmin} setIsLoggedAdmin={setIsLoggedAdmin}/>,
         },
        
       ],
@@ -59,7 +58,7 @@ const App = () => {
         children: [
           {
             index: true,
-            element: isLoggedIn ? (
+            element: isLoggedAdmin ? (
        
                 <AdminInicio />
             
@@ -70,7 +69,7 @@ const App = () => {
           },
           {
             path: "/admin/nuevoproducto",
-            element: isLoggedIn ? (
+            element: isLoggedAdmin ? (
        
                 <AdminNuevoProducto />
                 
@@ -81,9 +80,9 @@ const App = () => {
           },
           {
             path: "/admin/editarproducto/:productoId",
-            element: isLoggedIn ? (
+            element: isLoggedAdmin ? (
        
-                <AdminNuevoProducto />
+                <AdminEditarProducto />
                 
             ) : (
               // Si el usuario no está logueado, redirige a la página de inicio
