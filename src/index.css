@@ -8,7 +8,7 @@
 }
 
 .bars__menu span {
-  @apply block w-full h-[2px] bg-indigo-700 mt-[6px] origin-bottom-left  transition-all duration-500;
+  @apply block w-full h-[2px] bg-blanco mt-[6px] origin-bottom-left  transition-all duration-500;
 }
 .bars__menu .line1__bars-menu {
   @apply rotate-45 translate-x-[-2px] translate-y-[-3px];
@@ -26,14 +26,46 @@
   text-2xl  h-12 w-12  cursor-pointer  ease-in duration-300 hover:bg-purple-400 hover:text-white hover:shadow-gray-400;
 }
 
-:root {
-  --color-azul: #00171F;
-  --color-blanco: #FDFFFC;
-  --color-dorado: #735CDD;
-  --color-violeta: #F7B32B;
+/* Efecto hover en los enlaces del navbar*/
+
+.navegacion .link{
+  @apply text-blanco inline-block p-2 relative text-lg
+}
+.navegacion .link:hover{
+  @apply text-secundario duration-300
+}
+
+.navegacion .link::after {
+  width: 0;
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #F7B32B;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
 } 
- body{
-  /* background-color: var(--color-azul);
-  color: var(--color-blanco); */
-  
+
+.navegacion .link:hover::after {
+  @apply w-full left-0 
+}
+
+.navegacion .activo {
+  @apply inline-block py-2 px-[10px] relative text-secundario
+}
+
+.navegacion .activo::after {
+  background: none repeat scroll 0 0 transparent;
+  color:#F7B32B;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  background: #F7B32B;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 100%;
 }
