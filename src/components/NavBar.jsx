@@ -18,10 +18,10 @@ export default function Navbar() {
   location.pathname.startsWith("/admin/editarproducto/")
   return (
     <>
-      <div className="flex px-5 md:px-2  justify-between  items-center  shadow">
+      <div className="flex flex-row w-full justify-between items-center  md:p-4 lg:p-[43px]  absolute  h-[92px] left-0 top-0">
         {location.pathname == "/admin" ||
-        location.pathname == "/admin/nuevoproducto" ||
-        location.pathname == "/admin/editarproducto/:productoId" ? (
+          location.pathname == "/admin/nuevoproducto" ||
+          location.pathname == "/admin/editarproducto/:productoId" ? (
           <>
 
             <img
@@ -42,13 +42,14 @@ export default function Navbar() {
                   Nuevo producto</li>
               </Link>
             </ul>
-            <div className="hidden md:flex items-center gap-x-5">
+            <div className="flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10">
               <Link
                 to={"/micuenta"}
                 className="hidden md:flex text-xs font-semibold  "
               >
                 Mi cuenta222
               </Link>
+              <MenuHamburguesa handleNav={handleNav} nav={nav}/>
             </div>
           </>
         ) : (
@@ -124,10 +125,10 @@ export default function Navbar() {
             </div>
           </div>
           <div className="py-4 flex flex-col mt-10 items-start">
-            <ul className="uppercase " onClick={handleNav}>
+            <ul className=" " onClick={handleNav}>
               {location.pathname == "/admin" ||
-              location.pathname == "/admin/nuevoproducto" ||
-              location.pathname == "/admin/editarproducto/:productoId" ? (
+                location.pathname == "/admin/nuevoproducto" ||
+                location.pathname == "/admin/editarproducto/:productoId" ? (
                 <>
                   <Link to={"/admin"}>
                     <li className="py-4">Home Admin</li>
