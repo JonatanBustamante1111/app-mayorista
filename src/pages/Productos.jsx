@@ -39,18 +39,24 @@ export default function Productos() {
   return (
     <main>
      <div className='w-[30%] mx-auto flex justify-center'>
-       <h2 className='  py-8 font-semibold text-slate-800 uppercase '>
+       <h2 className=' mt-20 py-8 font-semibold text-blanco uppercase '>
          {categoriaFiltrada === '' && subCategoriaFiltrada === '' 
        ? 'Todos los productos'
-       : `Filtrar por : ${categoriaFiltrada} / ${subCategoriaFiltrada} 
+       : `Mostrando resultados de: ${categoriaFiltrada} / ${subCategoriaFiltrada} 
        `}
        </h2>
      </div>
       <section className='grid md:grid-cols-[1fr,4fr] gap-x-7'>
         <aside className=''>
-          <h2 className='text-center text-xl font-semibold text-slate-800'>Categorias</h2>
+          <h2 className='pl-5 mb-5 text-xl font-semibold text-blanco'>Buscar</h2>
           <div className='ml-5'>
-            <DropDown  setCategoriaFiltrada={setCategoriaFiltrada} setSubCategoriaFiltrada={setSubCategoriaFiltrada} filtrarPorTodosLosProductos={filtrarPorTodosLosProductos}/>
+            <DropDown
+              categoriaFiltrada={categoriaFiltrada}  
+              setCategoriaFiltrada={setCategoriaFiltrada}
+              subCategoriaFiltrada={subCategoriaFiltrada} 
+              setSubCategoriaFiltrada={setSubCategoriaFiltrada} 
+              filtrarPorTodosLosProductos={filtrarPorTodosLosProductos}
+              />
           </div>
         </aside>
         <article >
