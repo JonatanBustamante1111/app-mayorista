@@ -1,33 +1,46 @@
 import { useState } from "react";
 import { categorias } from "../utils/categorias";
 
-export default function DropDown({ setCategoriaFiltrada, setSubCategoriaFiltrada, filtrarPorTodosLosProductos }) {
+export default function DropDown({
+    categoriaFiltrada, 
+    setCategoriaFiltrada, 
+    subCategoriaFiltrada,
+    setSubCategoriaFiltrada, 
+    filtrarPorTodosLosProductos 
+  }) {
 
   const [open, setOpen] = useState(false);
-  const [rotate, setRotate] = useState(false);
   // Estado para manejar la categoría seleccionada
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
 
   // Función que maneja el evento click en la categoría
   const handleCategoriaClick = (categoria) => {
+      setSubCategoriaFiltrada('')
     // Si la categoría ya está seleccionada, la deselecciona
-    // Si no, la selecciona
     if (categoriaSeleccionada === categoria) {
       setCategoriaSeleccionada(null);
       setOpen(false);
-      setRotate(false); // Agregamos esta línea para desactivar el giro
-    } else {
+    } else { // Si no, la selecciona
       setCategoriaSeleccionada(categoria);
       setOpen(true);
-      setRotate(true); // Agregamos esta línea para activar el giro
     }
   };
 
   return (
     <div className="w-full flex flex-col">
+    <div className=" relative w-full flex flex-col">
+        <input 
+          type="search" 
+          className="bg-transparent font-normal text-xs p-2 border-[1px] border-secundario rounded-lg"
+          placeholder="Buscar"
+        />
+        <div className="absolute text-blanco right-2 top-2">
+          <ion-icon name="search"></ion-icon>
+        </div>
+    </div>
         <h2 
             onClick={filtrarPorTodosLosProductos}
-            className="font-semibold text-slate-700 uppercase py-3 cursor-pointer">
+            className="font-medium text-blanco py-5 cursor-pointer">
             Todos los productos</h2>
       {/* Recorremos las categorías y generamos un bloque para cada una */}
 
@@ -36,31 +49,52 @@ export default function DropDown({ setCategoriaFiltrada, setSubCategoriaFiltrada
           <div className="flex justify-between items-center">
             {/* Agregamos el evento click en la categoría */}
             <p
-              className="block my-2 text-base text-slate-700 font-semibold uppercase text-start cursor-pointer hover:underline"
+              className={`
+              block my-2 text-base text-start cursor-pointer
+              hover:text-secundario duration-300
+              ${categoriaFiltrada === categoria.label 
+                 ? 'text-secundario'
+                 : 'text-blanco'
+                }
+              `}
               onClick={() =>  {setSubCategoriaFiltrada(''),setCategoriaFiltrada(categoria.label)}}
             >
               {categoria.label}
             </p>
             {/* Si la categoría tiene subcategorías, mostramos el botón */}
             {categoria.children.length !== 0 && (
-              <button 
-                className={`${rotate && categoriaSeleccionada === categoria 
-                ? 'duration-300 -rotate-180' 
-                : 'duration-300'}`}
+              <p
+                className={`text-3xl cursor-pointer 
+                ${categoriaSeleccionada === categoria.label && open
+                 ? 'text-secundario'
+                 : 'text-blanco'
+                }`} 
+                onClick={() => handleCategoriaClick(categoria.label)}>
+                  {
+                    categoriaSeleccionada === categoria.label 
+                    ?<ion-icon name="remove"></ion-icon>
+                    :<ion-icon name="add"></ion-icon>
+                  }
+              </p>
 
-                onClick={() => handleCategoriaClick(categoria)}>
-               <ion-icon name="chevron-up-outline"></ion-icon>
-              </button>
             )}
+  
           </div>
           {/* Si la categoría tiene subcategorías y está seleccionada, las mostramos */}
-          {categoria.children.length !== 0 && categoriaSeleccionada === categoria && open && (
-            <div className=''>
+          {categoria.children.length !== 0 && categoriaSeleccionada === categoria.label && open && (
+            <div className='bg-[#002633] px-4 py-2 rounded-xl'>
               {/* Recorremos las subcategorías y generamos un bloque para cada una */}
               {categoria.children.map((subCategoria) => (
                 <p
                   key={subCategoria.id}
-                  className="block my-2 text-lg text-indigo-500 font-normal text-start cursor-pointer hover:underline"
+                  className={`
+                  block my-2 text-sm text-blanco font-medium leading-6 text-start 
+                  cursor-pointer hover:text-secundario duration-300
+                  ${subCategoriaFiltrada === subCategoria.label && open
+                    ? 'text-secundario'
+                    : 'text-blanco'
+                   }
+                  `}
                   onClick={() => {
                     setCategoriaFiltrada(categoria.label)
                     setSubCategoriaFiltrada(subCategoria.label) 
