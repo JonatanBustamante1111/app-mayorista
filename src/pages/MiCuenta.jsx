@@ -2,7 +2,7 @@ import { useState } from "react";
 import Registro from "../components/Registro";
 import Login from "../components/Login";
 
-export default function MiCuenta() {
+export default function MiCuenta({isLoggedAdmin,setIsLoggedAdmin}) {
   const [login, setLogin] = useState(false);
 
   const handleChangeLogin = () => {
@@ -11,7 +11,7 @@ export default function MiCuenta() {
   return (
     <div>
       {!login ? (
-        <Login handleChangeLogin={handleChangeLogin} />
+        <Login handleChangeLogin={handleChangeLogin} isLoggedAdmin={isLoggedAdmin} setIsLoggedAdmin={setIsLoggedAdmin} />
       ) : (
         <Registro handleChangeLogin={handleChangeLogin} />
       )}
