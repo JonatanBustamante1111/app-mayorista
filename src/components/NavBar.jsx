@@ -13,9 +13,7 @@ export default function Navbar() {
   const handleNav = () => {
     setNav(!nav);
   };
-  const isAdminRoute = location.pathname == "/admin" ||
-  location.pathname == "/admin/nuevoproducto" ||
-  location.pathname.startsWith("/admin/editarproducto/")
+
   return (
     <>
       <div className="flex flex-row w-full justify-between items-center  md:p-4 lg:p-[43px]  absolute  h-[92px] left-0 top-0">
@@ -47,7 +45,7 @@ export default function Navbar() {
                 to={"/micuenta"}
                 className="hidden md:flex text-xs font-semibold  "
               >
-                Mi cuenta222
+                Mi cuenta
               </Link>
               <MenuHamburguesa handleNav={handleNav} nav={nav}/>
             </div>
