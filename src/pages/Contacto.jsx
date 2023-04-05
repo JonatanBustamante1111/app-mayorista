@@ -1,15 +1,16 @@
-import ContactoForm from "./ContactoForm";
+import ContactoForm from "../components/ContactoForm";
+
 
 export default function Contacto() {
   return (
     <div className="flex flex-row justify-between">
-        <ContactoForm />
+        <ContactoForm/>
       <div>
-        {/* <img
-          src=":"
+        <img
+          src="../public/imageDesktopContacto.png"
           alt="Mina Facherarda"
-          className='w-full h-full transform scale-x-[-1] scale-y-[1]  '
-        /> */}
+          className='w-full h-full transform scale-x-[-1] scale-y-[1] '
+        />
       </div>
       </div>
   );

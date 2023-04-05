@@ -12,7 +12,7 @@ module.exports = {
         primario:'#00171F',
         secundario:'#F7B32B',
         blanco:'#FDFFFC',
-        violeta:'#735CDD',
+        terciario:'#002633',
       }
     },
   },
