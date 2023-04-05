@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { categorias } from "../utils/categorias";
 
+
 export default function DropDown({
     categoriaFiltrada, 
     setCategoriaFiltrada, 
@@ -8,10 +9,14 @@ export default function DropDown({
     setSubCategoriaFiltrada, 
     filtrarPorTodosLosProductos 
   }) {
-
+  
+  // Estado para manejar el div que se abre mostrando las subcategorias  
   const [open, setOpen] = useState(false);
+
   // Estado para manejar la categoría seleccionada
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+
+  
 
   // Función que maneja el evento click en la categoría
   const handleCategoriaClick = (categoria) => {
@@ -25,19 +30,9 @@ export default function DropDown({
       setOpen(true);
     }
   };
-
   return (
     <div className="w-full flex flex-col">
-    <div className=" relative w-full flex flex-col">
-        <input 
-          type="search" 
-          className="bg-transparent font-normal text-xs p-2 border-[1px] border-secundario rounded-lg"
-          placeholder="Buscar"
-        />
-        <div className="absolute text-blanco right-2 top-2">
-          <ion-icon name="search"></ion-icon>
-        </div>
-    </div>
+   
         <h2 
             onClick={filtrarPorTodosLosProductos}
             className="font-medium text-blanco py-5 cursor-pointer">
