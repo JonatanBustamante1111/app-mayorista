@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword,GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { collection, addDoc,doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../utils/firebaseconfig';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Registro({handleChangeLogin}) {
   const [email, setEmail] = useState('');
@@ -29,6 +29,30 @@ function Registro({handleChangeLogin}) {
     }
     clearState()
   };
+
+
+const handleSignUpWithGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  try {
+    const result = await signInWithPopup(auth, provider);
+    // Se ha iniciado sesión con éxito
+    const user = result.user;
+    const uid = user.uid;
+    const displayName = user.displayName;
+    const email = user.email;
+
+    // Crea un nuevo usuario en Firestore
+    const usuariosRef = collection(db, "usuarios");
+    const usuarioDoc = doc(usuariosRef, uid);
+    await setDoc(usuarioDoc, { displayName, email, uid, rol: "cliente" });
+
+    // Muestra un mensaje de éxito
+    console.log("Se ha registrado el usuario con éxito");
+
+  } catch (error) {
+    console.error(error);
+  }
+};
   const clearState = () => {
     setEmail('')
     setPassword('')
@@ -36,6 +60,7 @@ function Registro({handleChangeLogin}) {
   return (
     <div>
             <h2 className="font-monsterrat text-slate-700 text-center font-bold text-3xl pt-8 ">Registro</h2>
+            <button onClick={handleSignUpWithGoogle}>Registrarse con Google</button>
 
       <div>
         <form onSubmit={handleSubmit}>
