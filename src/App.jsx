@@ -17,6 +17,7 @@ import MiCuenta from "./pages/MiCuenta";
 // Components
 import Layout from "./components/Layout";
 import CartContextProvider from "./context/CartContext";
+import Contacto from "./pages/Contacto";
 
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(false);
@@ -40,6 +41,10 @@ const App = () => {
         {
           path: "/nosotros",
           element: <Nosotros />,
+        },
+        {
+          path: "/contacto",
+          element: <Contacto/> ,
         },
         {
           path: "/carrito",
