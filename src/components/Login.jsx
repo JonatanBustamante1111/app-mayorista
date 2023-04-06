@@ -105,12 +105,19 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
         </div>
       ) : (
         <div className="p-4">
-          <div className=" place-items-center py-[6px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-16">
+          <div className=" place-items-center py-[6px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 ">
             <button onClick={handleSignInWithGoogle}>
               Iniciar sesión con Google
             </button>
           </div>
-          <form onSubmit={handleSubmit}>
+          <div className="flex flex-row  items-center gap-4 justify-center">
+            <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base">
+            </div>
+            <p className="text-blanco font-monsterrat font-medium  text-base ">Ó</p>
+            <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base">
+            </div>
+          </div>
+          <form onSubmit={handleSubmit} className="my-10">
             <label>
               <input
                 type="email"
