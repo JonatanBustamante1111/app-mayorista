@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
     return ( 
-        <div className="flex flex-col md:flex-row md:justify-between py-12 md:px-10 gap-10 text-white bg-terciario">
+        <div className="flex flex-col md:flex-row md:justify-between py-12 md:px-14 gap-10 text-white bg-terciario">
         <div className="flex flex-col items-center md:flex-row gap-12">
             <div>
                 <img src="./public/logo_crv4_footer.png" alt="" />
