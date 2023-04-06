@@ -32,7 +32,8 @@ function ContactoForm() {
           placeholder="Nombre"
           required
           onChange={(e) => setName(e.target.value)}
-          className="bg-inherit"
+          className=' grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit '
+          
         />
         <input 
           type="email"
@@ -40,14 +41,14 @@ function ContactoForm() {
           placeholder="E-mail"
           required
           onChange={(e) => setEmail(e.target.value)}
-          className="bg-inherit"
+          className=' grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit '
         />
         <textarea
           value={comment}
           placeholder="Escribe tu comentario aquí"
           required
           onChange={(e) => setComment(e.target.value)}
-          className="bg-inherit"
+          className=' grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit '
         />
         <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-center w-1/2 gap-2 py-3 px-6">
           <button

@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
 } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -105,49 +104,40 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
           </button>
         </div>
       ) : (
-        <div>
-          <div>
-            <h2 className="font-monsterrat text-slate-700 text-center font-bold text-3xl pt-8">
-              Iniciar Sesion
-            </h2>
-            <div>
-              <button onClick={handleSignInWithGoogle}>
-                Iniciar sesión con Google
-              </button>
-            </div>
-            <form onSubmit={handleSubmit}>
-              <label>
-                Correo electrónico:
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </label>
-              <br />
-              <label>
-                Contraseña:
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </label>
-              <br />
-              <button type="submit" className="btn btn-primary my-4">
-                Iniciar sesión
-              </button>
-            </form>
-            <div>
-              ¿No tienes cuenta?{" "}
-              <button onClick={() => handleChangeLogin()}> Registrate</button>
-            </div>
+        <div className="p-4">
+          <div className=" place-items-center py-[6px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-16">
+            <button onClick={handleSignInWithGoogle}>
+              Iniciar sesión con Google
+            </button>
           </div>
-          <div>
-            <Link to={"/"}>
-              <button>Volver</button>
-            </Link>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <label>
+              <input
+                type="email"
+                value={email}
+                placeholder="E-mail:"
+                className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3  "
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
+            <label>
+              <input
+                type="password"
+                value={password}
+                placeholder="Contraseña:"
+                className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3 my-8 "
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-center w-11/12 gap-2 py-3 px-6 rounded-lg mx-auto mb-20">
+          <button
+            type="submit"
+            className="text-center font-monsterrat font-semibold  "
+          >
+            Iniciar sesión
+          </button>
+        </div>
+          </form>
         </div>
       )}
     </main>

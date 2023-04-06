@@ -38,12 +38,12 @@ export default function AdminInicio() {
       
         const batch = writeBatch(db);   
         productosSnapshot.forEach((doc) => {
-          const producto = doc.data();
-          const precioAnterior = producto.precio;
-          const nuevoPrecio = precioAnterior * (1 + porcentaje / 100);
-          const productoRef = doc.ref;
-          batch.update(productoRef, { precio: nuevoPrecio });
-        });
+            const producto = doc.data();
+            const precioAnterior = producto.precio;
+            const nuevoPrecio = Math.round(precioAnterior * (1 + porcentaje / 100)); // Redondear sin decimales
+            const productoRef = doc.ref;
+            batch.update(productoRef, { precio: nuevoPrecio });
+          });
       
         await batch.commit();
         Swal.fire(
