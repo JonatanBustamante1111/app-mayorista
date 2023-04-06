@@ -7,6 +7,12 @@ module.exports = {
     extend: {
       fontFamily:{
         monsterrat:[ 'Montserrat', 'sans-serif']
+      },
+      colors:{
+        primario:'#00171F',
+        secundario:'#F7B32B',
+        blanco:'#FDFFFC',
+        terciario:'#002633',
       }
     },
   },

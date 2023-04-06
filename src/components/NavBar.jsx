@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Badge } from "@mui/material";
 import { CartContext } from "../context/CartContext";
+import MenuHamburguesa from "./MenuHamburguesa";
 export default function Navbar() {
   const [nav, setNav] = useState(false);
   const location = useLocation();
@@ -15,103 +16,117 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex px-5 md:px-2  justify-between  items-center  shadow">  
+      <div className="flex flex-row w-full justify-between items-center  md:p-4 lg:p-[43px]  absolute  h-[92px] left-0 top-0">
         {location.pathname == "/admin" ||
-        location.pathname == "/admin/nuevoproducto" ||
-        location.pathname == "/admin/editarproducto/:productoId" ? (
+          location.pathname == "/admin/nuevoproducto" ||
+          location.pathname == "/admin/editarproducto/:productoId" ? (
           <>
-            <div className="flex items-center text-indigo-500 text-xl gap-x-2">
-              <ion-icon name="cash-outline"></ion-icon>
-              <p className="font-normal py-3 text-xl lg:text-2xl text-slate-900 uppercase tracking-widest">
-                millionare mind
-              </p>
-            </div>
-            <ul className="hidden md:flex gap-x-7 uppercase font-semibold text-xs">
-              <Link to={"/admin"}>
-                <li className="py-4  ">Home Admin</li>
+
+            <img
+
+              src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
+              alt="logo-crv4-removebg-preview-3"
+            />
+
+            <ul className="navegacion  hidden md:flex gap-x-7  font-normal leading-5 text-[18px]">
+              <Link className="relative" to={"/admin"}>
+                <li className={`link 
+                  ${location.pathname === '/admin' ? 'activo': ''}`}>
+                    Home admin</li>
               </Link>
               <Link to={"/admin/nuevoproducto"}>
-                <li className="py-4">Nuevo Producto</li>
+                <li className={`link 
+                  ${location.pathname === '/admin/nuevoproducto' ? 'activo': ''}`}>
+                  Nuevo producto</li>
               </Link>
             </ul>
-            <div className="hidden md:flex items-center gap-x-5">
+            <div className="flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10">
               <Link
                 to={"/micuenta"}
-                className="text-xs font-semibold hidden md:block uppercase"
+                className="hidden md:flex text-xs font-semibold  "
               >
                 Mi cuenta
               </Link>
+              <MenuHamburguesa handleNav={handleNav} nav={nav}/>
             </div>
           </>
         ) : (
           <>
-         <div className="flex items-center text-indigo-500 text-xl gap-x-2">
-    <ion-icon name="cash-outline"></ion-icon>
-    <p className="font-normal py-3 text-xl lg:text-2xl text-slate-900 uppercase tracking-widest">
-      millionare mind
-    </p>
-  </div>
-  <ul className="hidden md:flex gap-x-7 uppercase font-semibold text-xs">
-  <Link to={'/'}>
-                      <li className='py-4 '>Home</li>
-                    </Link>
-                    <Link to={'/productos'}>
-                      <li className='py-4 '>Productos</li>
-                    </Link>
-                    <Link to={'/nosotros'}>
-                      <li className='py-4 '>Nosotros</li>
-                    </Link>
-  </ul>
-  <div className='hidden md:flex items-center gap-x-5'>
-          <Link className='text-2xl' to={'/carrito'}>
-            <Badge badgeContent={sumaCantidadBadge()} color="secondary" >
-               <ion-icon name="cart-outline"></ion-icon>
-            </Badge>
-          </Link>
-          <Link to={'/micuenta'} className='text-xs font-semibold hidden md:block uppercase'
-          >Mi cuenta</Link> 
-        </div>
+            <img
+
+              src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
+              alt="logo-crv4-removebg-preview-3"
+            />
+            <ul className="hidden md:flex navegacion gap-x-4">
+              <Link className="" to={'/'}>
+                <li 
+                  className={`link 
+                  ${location.pathname === '/' ? 'activo': ''}`}>
+                Home</li>
+              </Link>
+              <Link to={'/productos'}>
+                <li className={`link 
+                  ${location.pathname === '/productos' ? 'activo': ''}`}>
+                  Productos</li>
+              </Link>
+              <Link to={'/nosotros'}>
+                <li className={`link 
+                  ${location.pathname === '/nosotros' ? 'activo': ''}`}>
+                  Nosotros</li>
+              </Link>
+              <Link to={'/contacto'}>
+                <li className={`link 
+                  ${location.pathname === '/contacto' ? 'activo': ''}`}>
+                  Contacto</li>
+              </Link>
+            </ul>
+            <div className='flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10'>
+
+              <Link className='text-3xl mr-20 pb-2' to={'/carrito'}>
+                <Badge badgeContent={sumaCantidadBadge()} color="secondary" >
+                  <ion-icon name="cart"></ion-icon>
+                </Badge>
+              </Link>
+              <div className="hidden md:flex  items-center gap-x-1 text-xl">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <Link to={'/micuenta'} >
+                  Ingresar
+                </Link>
+              </div>
+
+             <MenuHamburguesa handleNav={handleNav} nav={nav}/>
+            </div>
           </>
         )}
 
-        <div className="relative py-5">
-          <div
-            onClick={handleNav}
-            className="bars__menu absolute top-1 right-5 z-50 md:hidden"
-          >
-            <span className={nav ? "line1__bars-menu" : ""}></span>
-            <span className={nav ? "line2__bars-menu" : ""}></span>
-            <span className={nav ? "line3__bars-menu" : ""}></span>
-          </div>
-        </div>
       </div>
       <div
         className={
           nav
-            ? "md:hidden fixed left-0 top-0 w-full h-screen transition-colors duration-300 bg-black/5 z-20"
+            ? "md:hidden fixed left-0 top-0 w-full h-screen transition-colors duration-300 bg-black/5 z-auto"
             : "z-30"
         }
       >
         <div
           className={
             nav
-              ? "fixed left-0 top-0 w-[75%] sm:w-[65%] md:w-[45%] h-screen bg-white shadow-md p-10 ease-in duration-500 z-20"
+              ? "fixed left-0 top-0 w-[75%] sm:w-[65%] md:w-[45%] h-screen bg-white shadow-md p-10 ease-in duration-500 z-30"
               : "fixed left-[-100%] top-0 p-10 ease-in transition-all duration-500 z-20"
           }
         >
           <div>
             <div className="flex items-center text-indigo-500 text-xl gap-x-2 border-b w-full border-gray-300">
               <ion-icon name="cash-outline"></ion-icon>
-              <p className="font-normal py-3 text-xl lg:text-2xl text-slate-900 uppercase tracking-widest">
+              <p className="font-normal py-3 text-xl lg:text-2xl text-slate-900  tracking-widest">
                 millionare mind
               </p>
             </div>
           </div>
           <div className="py-4 flex flex-col mt-10 items-start">
-            <ul className="uppercase " onClick={handleNav}>
+            <ul className=" " onClick={handleNav}>
               {location.pathname == "/admin" ||
-              location.pathname == "/admin/nuevoproducto" ||
-              location.pathname == "/admin/editarproducto/:productoId" ? (
+                location.pathname == "/admin/nuevoproducto" ||
+                location.pathname == "/admin/editarproducto/:productoId" ? (
                 <>
                   <Link to={"/admin"}>
                     <li className="py-4">Home Admin</li>
@@ -135,12 +150,12 @@ export default function Navbar() {
               )}
             </ul>
             <div className="flex flex-col gap-y-3 md:hidden items-start">
-              <Link to={"/micuenta"} className="uppercase">
+              <Link to={"/micuenta"} className="">
                 Mi cuenta
               </Link>
             </div>
             <div className="pt-20">
-              <p className="text-sm sm:text-lg uppercase tracking-widest text-indigo-600">
+              <p className="text-sm sm:text-lg  tracking-widest text-indigo-600">
                 ¡Sigamos conectados!
               </p>
               <div className="flex items-center justify-between my-4 w-full sm:w-[80%]">
@@ -159,5 +174,5 @@ export default function Navbar() {
         </div>
       </div>
     </>
-  );
+  )
 }
