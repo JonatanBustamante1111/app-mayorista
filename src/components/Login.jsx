@@ -112,7 +112,7 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
           </div>
           <div className="flex flex-row  items-center gap-4 justify-center">
             <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base">
-            </div>
+            </div>  
             <p className="text-blanco font-monsterrat font-medium  text-base ">Ó</p>
             <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base">
             </div>

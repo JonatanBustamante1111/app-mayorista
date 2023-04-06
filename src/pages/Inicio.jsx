@@ -6,7 +6,7 @@ export default function Inicio() {
     <main className='gap-y-4 md:gap-0 md:grid md:grid-cols-2 items-center justify-center md:mt-10 lg:mt-0'>
       <section className=' flex flex-col place-items-center md:items-start gap-y-4 md:gap-0 md:pl-10'>
         <h1 className=' 
-          w-[328px] text-center h-[177px] leading-[59px] text-white text-5xl
+          w-[328px] mt-10 text-center h-[177px] leading-[59px] text-white text-5xl
           md:text-start 
           lg:w-[518px] lg:h-[294px] lg:text-[82px] lg:leading-[97px] font-bold  '>
           Accesorios con estilo {''} {''}
@@ -35,7 +35,27 @@ export default function Inicio() {
           className='w-full h-full transform scale-x-[-1] scale-y-[1]  '
         />
       </section>
-      <section className="hidden md:block w-full h-[150px] bg-[#F7B32B] col-span-2"></section>
+      <section className=" flex flex-col p-10 gap-16 md:block w-full bg-blanco col-span-2">
+        <div className='text-center'>
+          <img className='mx-auto' src="./public/local_mall.png" alt="" />
+          <h2 className=' font-bold text-2xl my-2'>500+ productos</h2>
+          <p className=' font-light text-sm my-2'>
+          Al precio más económico y conveniente para tu negocio.
+          </p>
+        </div>
+        <div className='text-center'>
+          <img className='mx-auto my-2' src="./public/local_shipping.png" alt="" />
+          <h2 className=' font-bold text-2xl my-2'>Envío rápido y seguro</h2>
+          <p className=' font-light text-sm my-2'>
+          Dentro de la provincia y por toda la República Argentina.
+          </p>
+        </div>
+      </section>
+      <section className='flex flex-col items-center'>
+        <h2 className=' font-semibold text-2xl text-center text-blanco px-10 pt-20 mt-10'>¿Qué productos ofrecemos?</h2>
+        <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6">
+            </div>
+      </section>
 
     </main>
   )
