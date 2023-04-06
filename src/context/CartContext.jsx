@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createContext } from "react";
 
 // espacio en memoria
 export const CartContext = createContext();
-
 const CartContextProvider = (props) => {
     const [carrito, setCarrito] = useState([]);
     const [loggedIn, setLoggedIn] = useState(false);
     const agregarCarrito = (producto, cantidad) => {
-
       const itemEncontrado = carrito.find(item => item.id === producto.id);
     
       if (itemEncontrado) {
@@ -20,6 +18,7 @@ const CartContextProvider = (props) => {
           }
         });
         setCarrito(carritoActualizado);
+        localStorage.setItem('carrito', JSON.stringify(carritoActualizado)); // Agregar el estado actualizado al localStorage
       } else {
         setCarrito([
           ...carrito,
@@ -31,18 +30,28 @@ const CartContextProvider = (props) => {
             cantidad: cantidad,
           },
         ]);
+        localStorage.setItem('carrito', JSON.stringify([...carrito, {...producto, cantidad}])); // Agregar el nuevo producto al localStorage
       }
     };
+    
+    useEffect(() => {
+      const localStorageValue = localStorage.getItem('carrito');
+      if (localStorageValue) {
+        setCarrito(JSON.parse(localStorageValue));
+      }
+    }, []);
     function eliminarProducto(id){
-        const newArray = carrito.filter(element => element.id !== id )
-        setCarrito(newArray)
-    }  
+      const newArray = carrito.filter(element => element.id !== id );
+      localStorage.setItem('carrito', JSON.stringify(newArray));
+      setCarrito(newArray);
+    }
+    
     const sumaCantidadBadge = () => { 
       let acc = 0;  
-      carrito.forEach(item => acc += item.cantidad);
+      carrito.forEach(item => acc ++);
       return acc;
-  }
-
+    } 
+    
 
       const cart = {
         carrito,
@@ -52,7 +61,7 @@ const CartContextProvider = (props) => {
         setLoggedIn,
         sumaCantidadBadge
       };
-
+      console.log(loggedIn)
     return (
 
         <CartContext.Provider value={{cart}}>

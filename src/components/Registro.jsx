@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../utils/firebaseconfig';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Registro({handleChangeLogin}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,6 +22,8 @@ function Registro({handleChangeLogin}) {
         rol: 'cliente',
       });
       console.log("Usuario registrado con ID: ", userDocRef.id);
+      alert('el usuario ha sido creado con exito')
+      navigate('/micuenta')
     } catch (error) {
       console.log(error);
     }

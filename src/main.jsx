@@ -18,6 +18,7 @@ import MiCuenta from "./pages/MiCuenta";
 // Components
 import Layout from "./components/Layout";
 import CartContextProvider from "./context/CartContext";
+import PasarelaPago from "./components/PasarelaPago";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,10 @@ const router = createBrowserRouter([
         path: "/micuenta",
         element: <MiCuenta/>,
       },
-     
+      {
+        path: '/try-pay',
+        element: <PasarelaPago/>
+      }
     ],
   },
   {
@@ -58,10 +62,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <AdminInicio />,
-      },
-      {
-        path: "/admin/productos",
-        element: <h2>Producto</h2>,
       },
       {
         path: "/admin/nuevoproducto",

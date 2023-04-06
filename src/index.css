@@ -25,3 +25,15 @@
   @apply flex justify-center items-center  rounded-full shadow-lg shadow-purple-500 text-purple-400 
   text-2xl  h-12 w-12  cursor-pointer  ease-in duration-300 hover:bg-purple-400 hover:text-white hover:shadow-gray-400;
 }
+
+:root {
+  --color-azul: #00171F;
+  --color-blanco: #FDFFFC;
+  --color-dorado: #735CDD;
+  --color-violeta: #F7B32B;
+} 
+ body{
+  /* background-color: var(--color-azul);
+  color: var(--color-blanco); */
+  
+}
