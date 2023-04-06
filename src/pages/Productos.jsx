@@ -3,7 +3,6 @@ import { db } from "../utils/firebaseconfig";
 import { getDocs, where, orderBy, collection, query, onSnapshot } from "firebase/firestore";
 import Card from '../components/Card'
 import DropDown from '../components/DropDown'
-import algoliasearch from 'algoliasearch';
 
 export default function Productos() {
 
