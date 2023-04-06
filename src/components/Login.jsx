@@ -1,15 +1,23 @@
-import React, { useContext, useState, useEffect } from "react";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useState, useEffect } from "react";
+
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
+} from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
+
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSignInWithGoogle = async () => {
@@ -75,7 +83,7 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
     }
     clearState();
   };
- 
+
   const clearState = () => {
     setEmail("");
     setPassword("");

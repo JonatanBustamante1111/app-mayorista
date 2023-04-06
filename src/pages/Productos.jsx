@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { db } from "../utils/firebaseconfig";
-import { getDocs, where, orderBy, collection, query, onSnapshot } from "firebase/firestore";
+import { getDocs, collection} from "firebase/firestore";
 import Card from '../components/Card'
 import DropDown from '../components/DropDown'
 
