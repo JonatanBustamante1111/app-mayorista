@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Inicio() {
   return (
+
     <main className="gap-y-4 md:gap-0 md:grid md:grid-cols-2 items-center justify-center md:mt-10 lg:mt-0">
       <section className=" flex flex-col place-items-center md:items-start gap-y-4 md:gap-0 md:pl-10">
         <h1
@@ -19,12 +20,18 @@ export default function Inicio() {
         <p
           className=" 
         h-[136px] w-[328px] leading-[23px] text-center font-montserrat font-normal text-base
+
+
+
+          Somos un mayorista que ofrece una amplia variedad de productos y accesorios de calidad que atraen la buena suerte y la prosperidad, para que puedas hacer crecer tu negocio, alcanzar tus objetivos y que tus clientes luzcan con estilo y elegancia.
+
         md:text-start lg:w-[588px] lg:h-32 lg:leading-8 text-white mb-16"
         >
           Somos un mayorista que ofrece una amplia variedad de productos y
           accesorios de calidad que atraen la buena suerte y la prosperidad,
           para que puedas hacer crecer tu negocio, alcanzar tus objetivos y que
           tus clientes luzcan con estilo y elegancia.
+
         </p>
         <Link
           to="/productos"

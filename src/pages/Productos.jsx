@@ -88,6 +88,7 @@ export default function Productos() {
               <button
                 onClick={() => setFiltradoResponsive(!filtradoResponsive)}
                 className={`
+                  md:hidden
                   text-xl px-1 pb-[1.2px] pt-1 border-[1px] border-secundario rounded-lg duration-300
                   ${filtradoResponsive ? 'bg-secundario text-primario' : 'text-blanco'}
                 `}>
