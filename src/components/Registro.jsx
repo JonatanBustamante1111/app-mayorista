@@ -94,7 +94,7 @@ function Registro({ handleChangeLogin }) {
             type="submit"
             className="text-center font-monsterrat font-semibold  "
           >
-            Iniciar sesión
+            Crear cuenta
           </button>
         </div>
       </form>
