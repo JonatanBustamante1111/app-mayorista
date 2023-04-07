@@ -35,26 +35,28 @@ export default function Inicio() {
           className='w-full h-full transform scale-x-[-1] scale-y-[1]  '
         />
       </section>
-      <section className=" flex flex-col p-10 gap-16 md:block w-full bg-blanco col-span-2">
-        <div className='text-center'>
+      <section className=" flex flex-col p-10 gap-16 w-full bg-blanco col-span-2 md:flex-row justify-between md:w-full">
+        <div className='text-center  md:w-1/2'>
           <img className='mx-auto' src="./public/local_mall.png" alt="" />
-          <h2 className=' font-bold text-2xl my-2'>500+ productos</h2>
+          <h2 className=' font-bold text-3xl my-2 md:my-4'>500+ productos</h2>
           <p className=' font-light text-sm my-2'>
           Al precio más económico y conveniente para tu negocio.
           </p>
         </div>
-        <div className='text-center'>
+        <div className='text-center md:w-1/2'>
           <img className='mx-auto my-2' src="./public/local_shipping.png" alt="" />
-          <h2 className=' font-bold text-2xl my-2'>Envío rápido y seguro</h2>
+          <h2 className=' font-bold text-3xl my-2 md:my-4'>Envío rápido y seguro</h2>
           <p className=' font-light text-sm my-2'>
           Dentro de la provincia y por toda la República Argentina.
           </p>
         </div>
       </section>
-      <section className='flex flex-col items-center'>
-        <h2 className=' font-semibold text-2xl text-center text-blanco px-10 pt-20 mt-10'>¿Qué productos ofrecemos?</h2>
-        <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6">
-            </div>
+      <section className='flex flex-col p-10 gap-16 w-full col-span-2 '>
+        <div className='w-full text-center'>
+          <h2 className=' font-semibold text-3xl text-center text-blanco px-10 pt-20 mt-10 w-full'>¿Qué productos ofrecemos?</h2>
+          <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto">
+              </div>
+        </div>
       </section>
 
     </main>

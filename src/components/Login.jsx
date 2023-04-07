@@ -104,18 +104,18 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
           </button>
         </div>
       ) : (
-        <div className="p-4">
+        <div>
           <div className=" place-items-center py-[6px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 ">
             <button onClick={handleSignInWithGoogle}>
               Iniciar sesión con Google
             </button>
           </div>
           <div className="flex flex-row  items-center gap-4 justify-center">
-            <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base">
-            </div>  
-            <p className="text-blanco font-monsterrat font-medium  text-base ">Ó</p>
-            <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base">
-            </div>
+            <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base"></div>
+            <p className="text-blanco font-monsterrat font-medium  text-base ">
+              Ó
+            </p>
+            <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base"></div>
           </div>
           <form onSubmit={handleSubmit} className="my-10">
             <label>
@@ -123,7 +123,7 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
                 type="email"
                 value={email}
                 placeholder="E-mail:"
-                className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3  "
+                className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3  text-blanco "
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
@@ -132,18 +132,18 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
                 type="password"
                 value={password}
                 placeholder="Contraseña:"
-                className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3 my-8 "
+                className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3 my-8  text-blanco "
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
             <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-center w-11/12 gap-2 py-3 px-6 rounded-lg mx-auto mb-20">
-          <button
-            type="submit"
-            className="text-center font-monsterrat font-semibold  "
-          >
-            Iniciar sesión
-          </button>
-        </div>
+              <button
+                type="submit"
+                className="text-center font-monsterrat font-semibold  "
+              >
+                Iniciar sesión
+              </button>
+            </div>
           </form>
         </div>
       )}
