@@ -6,7 +6,7 @@ export default function Inicio() {
     <main className='w-full h-full grid gap-y-4 md:gap-0 md:grid-cols-2 items-center justify-center md:mt-10 lg:mt-0'>
       <section className=' flex flex-col place-items-center md:items-start gap-y-4 md:gap-0 md:pl-10'>
         <h1 className=' 
-          w-[328px] text-center h-[177px] leading-[59px] text-white text-5xl
+          w-[328px] text-center h-[177px] leading-[59px] text-blanco text-5xl
           md:text-start 
           lg:w-[518px] lg:h-[294px] lg:text-[82px] lg:leading-[97px] font-bold  '>
           Accesorios con estilo {''} {''}
@@ -17,7 +17,7 @@ export default function Inicio() {
         </h1>
         <p className=' 
         h-[136px] w-[328px] leading-[23px] text-center font-montserrat font-normal text-base
-        md:text-start lg:w-[588px] lg:h-32 lg:leading-8 text-white'>
+        md:text-start lg:w-[588px] lg:h-32 lg:leading-8 text-blanco'>
           Somos un mayorista que ofrece una amplia variedad de productos y accesorios de calidad que atraen la buena suerte y la prosperidad, para que puedas hacer crecer tu negocio, alcanzar tus objetivos y que tus clientes luzcan con estilo y elegancia.
         </p>
         <Link

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 export default function ItemCount({ initial = 1, onAdd }) {
     const [count, setCount] = useState(0);
-    console.log(count)
     useEffect(() => {
         setCount(initial);
     }, []);
