@@ -91,9 +91,9 @@ export default function Inicio() {
           </h2>
           <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col md:flex-row md:h-[638px] md:gap-8">
         <div
-            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
+            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:bg-no-repeat md:bg-center md:w-2/6  md:h-full"
             style={{
               backgroundImage: `url('https://i.ibb.co/svpt9rd/unsplash-uf-IDew-I6i-Q.png')`,
             }}
@@ -102,47 +102,50 @@ export default function Inicio() {
               Accesorios de acero
             </h3>
           </div>
-          <div
-            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
-            style={{
-              backgroundImage: `url('https://i.ibb.co/Xy0Bjps/image-15.png')`,
-            }}
-          >
-            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Accesorios de plata
-            </h3>
+          <div className="md:h-full md:flex md:1/4 flex-col md:gap-8">
+            <div
+              className=" bg-cover bg-no-repeat w-full h-72 flex flex-row  rounded-xl mb-10 md:h-1/3 md:mb-0"
+              style={{
+                backgroundImage: `url('https://i.ibb.co/Xy0Bjps/image-15.png')`,
+              }}
+            >
+              <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
+                Accesorios de plata
+              </h3>
+            </div>
+            <div
+              className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:h-2/3 md:mb-0"
+              style={{
+                backgroundImage: `url('https://i.ibb.co/bgCYTg8/unsplash-Foe-IOgzt-CXo.png')`,
+              }}
+            >
+              <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
+                Maquillaje
+              </h3>
+            </div>
           </div>
-          <div
-            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
-            style={{
-              backgroundImage: `url('https://i.ibb.co/bgCYTg8/unsplash-Foe-IOgzt-CXo.png')`,
-            }}
-          >
-            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Maquillaje
-            </h3>
+          <div className="md:h-full md:flex flex-col md:gap-8 md:w-2/4">
+            <div
+              className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:mb-0"
+              style={{
+                backgroundImage: `url('https://i.ibb.co/02wybSL/image-17.png')`,
+              }}
+            >
+              <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
+                Marroquineria
+              </h3>
+            </div>
+            <div
+              className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:mb-0 md:h-96"
+              style={{
+                backgroundImage: `url('https://i.ibb.co/fNHKsDs/unsplash-7c-ERndk-Oy-Dw.png')`,
+              }}
+            >
+              <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
+              Textil
+              </h3>
+            </div>
           </div>
-          <div
-            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
-            style={{
-              backgroundImage: `url('https://i.ibb.co/02wybSL/image-17.png')`,
-            }}
-          >
-            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Marroquineria
-            </h3>
-          </div>
-          <div
-            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
-            style={{
-              backgroundImage: `url('https://i.ibb.co/fNHKsDs/unsplash-7c-ERndk-Oy-Dw.png')`,
-            }}
-          >
-            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-            Textil
-            </h3>
-          </div>
-       
        
         </div>
       </section>
