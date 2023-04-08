@@ -50,24 +50,37 @@ export default function Inicio() {
         />
       </section>
       <section className=" flex flex-col p-10 gap-16 w-full bg-blanco col-span-2 md:flex-row justify-between md:w-full">
-        <div className="text-center  md:w-1/2">
-          <img className="mx-auto" src="./public/local_mall.png" alt="" />
+        <div className="text-center  md:w-1/3">
+          <img className="mx-auto" src="https://i.ibb.co/q7g6syb/local-mall.png" alt="" />
           <h2 className=" font-bold text-3xl my-2 md:my-4">500+ productos</h2>
           <p className=" font-light text-sm my-2">
             Al precio más económico y conveniente para tu negocio.
           </p>
         </div>
-        <div className="text-center md:w-1/2">
+        <div className="text-center md:w-1/3">
           <img
             className="mx-auto my-2"
-            src="./public/local_shipping.png"
+            src="https://i.ibb.co/xFkSzbL/local-shipping.png"
+            alt=""
+          />
+          <h2 className=" font-bold text-3xl  md:my-4">
+            Envío rápido
+          </h2>
+          <p className=" font-light text-sm my-4 ">
+            Dentro de la provincia y por toda la República Argentina, de manera facil.
+          </p>
+        </div>
+        <div className="text-center  md:w-1/3">
+          <img
+            className="mx-auto my-2"
+            src="https://i.ibb.co/xFkSzbL/local-shipping.png"
             alt=""
           />
           <h2 className=" font-bold text-3xl my-2 md:my-4">
-            Envío rápido y seguro
+            Pagos seguros
           </h2>
           <p className=" font-light text-sm my-2">
-            Dentro de la provincia y por toda la República Argentina.
+           Dentro de la plataforma y mediante diversos métodos de pago.
           </p>
         </div>
       </section>

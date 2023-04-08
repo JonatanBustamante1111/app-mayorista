@@ -3,13 +3,13 @@ import ContactoForm from "../components/ContactoForm";
 
 export default function Contacto() {
   return (
-    <main className="grid md:grid-cols-2 md:mt-12 place-items-center">
+    <main className="grid md:grid-cols-2 md:mt-12 place-items-center p-10">
       <ContactoForm />
-      <section>
+      <section className="h-full">
         <img
-          src="../public/imageDesktopContacto.png"
+          src="https://i.ibb.co/K55DMCR/image-Desktop-Contacto.png"
           alt="Mina Facherarda"
-          className='md:w-[450px] md:h-[400px]  lg:w-[550px] lg:h-[489px] xl:w-[771px] xl:h-[724px] transform scale-x-[-1] scale-y-[1] '
+          className='md:w-[450px] h-full xl:w-[771px]  transform scale-x-[-1] scale-y-[1] '
         />
       </section>
     </main>

@@ -8,15 +8,11 @@ import {
 } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
-
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
+function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin,loggedIn,setLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-
   const navigate = useNavigate();
 
   const handleSignInWithGoogle = async () => {
@@ -87,7 +83,6 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin }) {
     setEmail("");
     setPassword("");
   };
-  console.log(isLoggedAdmin);
 
   return (
     <main>

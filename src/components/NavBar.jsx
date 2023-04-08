@@ -18,26 +18,32 @@ export default function Navbar() {
     <>
       <div className="flex flex-row w-full justify-between items-center  md:p-4 lg:p-[43px]  absolute  h-[92px] left-0 top-0">
         {location.pathname == "/admin" ||
-          location.pathname == "/admin/nuevoproducto" ||
-          location.pathname == "/admin/editarproducto/:productoId" ? (
+        location.pathname == "/admin/nuevoproducto" ||
+        location.pathname == "/admin/editarproducto/:productoId" ? (
           <>
-
             <img
-
               src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
               alt="logo-crv4-removebg-preview-3"
             />
 
             <ul className="navegacion  hidden md:flex gap-x-7  font-normal leading-5 text-[18px]">
               <Link className="relative" to={"/admin"}>
-                <li className={`link 
-                  ${location.pathname === '/admin' ? 'activo': ''}`}>
-                    Home admin</li>
+                <li
+                  className={`link 
+                  ${location.pathname === "/admin" ? "activo" : ""}`}
+                >
+                  Home admin
+                </li>
               </Link>
               <Link to={"/admin/nuevoproducto"}>
-                <li className={`link 
-                  ${location.pathname === '/admin/nuevoproducto' ? 'activo': ''}`}>
-                  Nuevo producto</li>
+                <li
+                  className={`link 
+                  ${
+                    location.pathname === "/admin/nuevoproducto" ? "activo" : ""
+                  }`}
+                >
+                  Nuevo producto
+                </li>
               </Link>
             </ul>
             <div className="flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10">
@@ -47,58 +53,65 @@ export default function Navbar() {
               >
                 Mi cuenta
               </Link>
-              <MenuHamburguesa handleNav={handleNav} nav={nav}/>
+              <MenuHamburguesa handleNav={handleNav} nav={nav} />
             </div>
           </>
         ) : (
           <>
             <img
-
               src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
               alt="logo-crv4-removebg-preview-3"
             />
+
             <ul className="hidden md:flex navegacion gap-x-4">
-              <Link className="" to={'/'}>
-                <li 
+              <Link className="" to={"/"}>
+                <li
                   className={`link 
-                  ${location.pathname === '/' ? 'activo': ''}`}>
-                Home</li>
+                  ${location.pathname === "/" ? "activo" : ""}`}
+                >
+                  Home
+                </li>
               </Link>
-              <Link to={'/productos'}>
-                <li className={`link 
-                  ${location.pathname === '/productos' ? 'activo': ''}`}>
-                  Productos</li>
+              <Link to={"/productos"}>
+                <li
+                  className={`link 
+                  ${location.pathname === "/productos" ? "activo" : ""}`}
+                >
+                  Productos
+                </li>
               </Link>
-              <Link to={'/nosotros'}>
-                <li className={`link 
-                  ${location.pathname === '/nosotros' ? 'activo': ''}`}>
-                  Nosotros</li>
+              <Link to={"/nosotros"}>
+                <li
+                  className={`link 
+                  ${location.pathname === "/nosotros" ? "activo" : ""}`}
+                >
+                  Nosotros
+                </li>
               </Link>
-              <Link to={'/contacto'}>
-                <li className={`link 
-                  ${location.pathname === '/contacto' ? 'activo': ''}`}>
-                  Contacto</li>
+              <Link to={"/contacto"}>
+                <li
+                  className={`link 
+                  ${location.pathname === "/contacto" ? "activo" : ""}`}
+                >
+                  Contacto
+                </li>
               </Link>
             </ul>
-            <div className='flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10'>
-
-              <Link className='text-3xl mr-20 pb-2' to={'/carrito'}>
-                <Badge badgeContent={sumaCantidadBadge()} color="secondary" >
+            <div className="flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10">
+              <Link className="text-3xl mr-20 pb-2" to={"/carrito"}>
+                <Badge badgeContent={sumaCantidadBadge()} color="secondary">
                   <ion-icon name="cart"></ion-icon>
                 </Badge>
               </Link>
               <div className="hidden md:flex  items-center gap-x-1 text-xl">
                 <ion-icon name="person-circle-outline"></ion-icon>
-                <Link to={'/micuenta'} >
-                  Ingresar
-                </Link>
+                <Link to={"/micuenta"}>Ingresar</Link>
               </div>
 
-             <MenuHamburguesa handleNav={handleNav} nav={nav}/>
+              <MenuHamburguesa handleNav={handleNav} nav={nav} />
             </div>
           </>
         )}
-
       </div>
       <div
         className={
@@ -125,8 +138,8 @@ export default function Navbar() {
           <div className="py-4 flex flex-col mt-10 items-start">
             <ul className=" " onClick={handleNav}>
               {location.pathname == "/admin" ||
-                location.pathname == "/admin/nuevoproducto" ||
-                location.pathname == "/admin/editarproducto/:productoId" ? (
+              location.pathname == "/admin/nuevoproducto" ||
+              location.pathname == "/admin/editarproducto/:productoId" ? (
                 <>
                   <Link to={"/admin"}>
                     <li className="py-4">Home Admin</li>
@@ -174,5 +187,5 @@ export default function Navbar() {
         </div>
       </div>
     </>
-  )
+  );
 }
