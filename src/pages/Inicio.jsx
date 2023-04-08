@@ -93,11 +93,36 @@ export default function Inicio() {
         </div>
         <div className="flex flex-col">
           <div
-            className=" bg-cover w-full h-72 flex flex-row  rounded-xl"
-            style={{ backgroundImage: `url('unsplash_uf_IDewI6iQ.png')`}}
+            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
+            style={{ backgroundImage: `https://i.ibb.co/svpt9rd/unsplash-uf-IDew-I6i-Q.png')`}}
           >
             <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">Accesorios de acero</h3>
           </div>
+          <div
+            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
+            style={{ backgroundImage: `url('https://i.ibb.co/Xy0Bjps/image-15.png')`}}
+          >
+            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">Accesorios de acero</h3>
+          </div>
+          <div
+            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
+            style={{ backgroundImage: `url('https://i.ibb.co/bgCYTg8/unsplash-Foe-IOgzt-CXo.png')`}}
+          >
+            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">Accesorios de acero</h3>
+          </div>
+          <div
+            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
+            style={{ backgroundImage: `https://i.ibb.co/02wybSL/image-17.png')`}}
+          >
+            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">Accesorios de acero</h3>
+          </div>
+          <div
+            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
+            style={{ backgroundImage: `https://i.ibb.co/fNHKsDs/unsplash-7c-ERndk-Oy-Dw.png')`}}
+          >
+            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">Accesorios de acero</h3>
+          </div>
+          
         </div>
       </section>
     </main>
