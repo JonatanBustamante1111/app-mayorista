@@ -92,10 +92,10 @@ export default function Inicio() {
           <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
         </div>
         <div className="flex flex-col">
-          <div
-            className=" bg-contain bg-no-repeat bg-center  w-full h-72 flex flex-row  rounded-xl mb-10"
+        <div
+            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
             style={{
-              backgroundImage: `https://i.ibb.co/svpt9rd/unsplash-uf-IDew-I6i-Q.png')`,
+              backgroundImage: `url('https://i.ibb.co/svpt9rd/unsplash-uf-IDew-I6i-Q.png')`,
             }}
           >
             <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
@@ -109,7 +109,7 @@ export default function Inicio() {
             }}
           >
             <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Accesorios de acero
+              Accesorios de plata
             </h3>
           </div>
           <div
@@ -119,29 +119,31 @@ export default function Inicio() {
             }}
           >
             <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Accesorios de acero
+              Maquillaje
             </h3>
           </div>
           <div
             className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
             style={{
-              backgroundImage: `https://i.ibb.co/02wybSL/image-17.png')`,
+              backgroundImage: `url('https://i.ibb.co/02wybSL/image-17.png')`,
             }}
           >
             <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Accesorios de acero
+              Marroquineria
             </h3>
           </div>
           <div
             className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10"
             style={{
-              backgroundImage: `https://i.ibb.co/fNHKsDs/unsplash-7c-ERndk-Oy-Dw.png')`,
+              backgroundImage: `url('https://i.ibb.co/fNHKsDs/unsplash-7c-ERndk-Oy-Dw.png')`,
             }}
           >
             <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Accesorios de acero
+            Textil
             </h3>
           </div>
+       
+       
         </div>
       </section>
       <section className="flex flex-col gap-16 w-full col-span-2">
