@@ -31,6 +31,7 @@ export default function Navbar() {
   };
   return (
     <>
+
       
         <div className={`
         flex flex-row w-full justify-between items-center px-4 md:p-4 lg:p-[43px] 
@@ -64,6 +65,7 @@ export default function Navbar() {
         </div>
 
         {/* Navbar responsive */}
+
         <div
           className={
             nav
@@ -71,6 +73,7 @@ export default function Navbar() {
               : "z-30"
           }
         >
+
           <div
             className={
               nav
@@ -90,7 +93,8 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      </>
-    
-  )
+
+      </div>
+    </>
+  );
 }
