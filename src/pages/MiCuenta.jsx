@@ -28,7 +28,7 @@ export default function MiCuenta({ setIsLoggedAdmin }) {
         <div>
           <div className="flex mx-auto rounded-3xl border-secundario border w-80 ">
   <button
-    className={`bg-gradient-to-r text-blanco via-yellow-500 to-yellow-600 ${
+    className={`bg-gradient-to-r text-blanco via-yellow-500 to-yellow-600 w-1/2${
       !login ? " from-yellow-400 font-bold text-primario " : ""
     } from-yellow-0 w-11/12 py-3 px-6 rounded-3xl mx-auto text-center font-monsterrat`}
     onClick={() => handleChangeLogin()}
@@ -36,7 +36,7 @@ export default function MiCuenta({ setIsLoggedAdmin }) {
     Iniciar sesión
   </button>
   <button
-    className={`bg-gradient-to-r text-blanco via-yellow-500 to-yellow-600 ${
+    className={`bg-gradient-to-r text-blanco via-yellow-500 to-yellow-600  w-1/2 ${
       login ? "from-yellow-400 font-bold text-primario" : ""
     } from-yellow-0 via-yellow-500 to-yellow-600 text-center w-11/12 rounded-3xl mx-auto font-monsterrat`}
     onClick={() => handleChangeLogin()}

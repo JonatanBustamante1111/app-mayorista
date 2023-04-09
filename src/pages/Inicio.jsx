@@ -151,15 +151,15 @@ export default function Inicio() {
           <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
         </div>
       </section>
-      <section className="flex flex-col gap-16 w-full col-span-2">
+      <section className="flex flex-col gap-16 w-full col-span-2 ">
         <div className="w-full text-center">
           <h2 className=" font-semibold text-2xl text-center text-blanco  mt-10 w-full px-10">
             Preguntas frecuentes
           </h2>
           <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
         </div>
-        <div className="faq-page flex flex-col mb-40 sm:flex-row  sm:justify-center  ">
-          <div className="sm:w-full sm:mx-14">
+        <div className="faq-page flex flex-col mb-40 sm:flex-row ">
+          <div className=" sm:w-1/2 sm:mx-8 ">
             <FaqDropDown
               question="¿Cual es el monto mínimo?"
               answer="Para crear una cuenta, haz clic en el botón 'Registrarse' en la parte superior derecha de la pantalla y sigue las instrucciones."
@@ -173,7 +173,7 @@ export default function Inicio() {
               answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
             />
           </div>
-          <div className="sm:w-full sm:mx-14">
+          <div className="sm:w-1/2 sm:mx-8 ">
             <FaqDropDown
               question="¿Horario de atención?"
               answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
@@ -195,15 +195,16 @@ export default function Inicio() {
           <p className=" font-light text-sm w-full my-4 mb-14 ">
           ¡Nos encantaría ayudarte en lo que necesites! Si tienes alguna duda o consulta, no dudes en ponerte en contacto con nosotros. Estamos aquí para brindarte el mejor servicio y atención posible, y para responder a todas tus preguntas de manera clara y concisa.
           </p>
+          
           <button
             type="submit"
             className=" w-full sm:w-1/2
             text-center font-semibold py-4 px-6 
             bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
-            rounded-lg
+            rounded-lg transition
             "
           >
-            Contacto
+            <Link to='/contacto'>Contacto</Link>
           </button>
         </div>
         <div className="text-center  md:w-1/2">
