@@ -10,7 +10,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
 import { useNavigate } from "react-router-dom";
 
-function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin,loggedIn,setLoggedIn }) {
+function Login({ setIsLoggedAdmin,setLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -86,19 +86,6 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin,loggedIn,set
 
   return (
     <main>
-      {loggedIn ? (
-        <div>
-          <p>¡Bienvenido! Ya has iniciado sesión.</p>
-          <button
-            onClick={() => {
-              auth.signOut();
-              setIsLoggedAdmin(false);
-            }}
-          >
-            Cerrar sesión
-          </button>
-        </div>
-      ) : (
         <div>
           <div className=" place-items-center py-[6px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 ">
             <button onClick={handleSignInWithGoogle}>
@@ -141,7 +128,6 @@ function Login({ handleChangeLogin, isLoggedAdmin, setIsLoggedAdmin,loggedIn,set
             </div>
           </form>
         </div>
-      )}
     </main>
   );
 }

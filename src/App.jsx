@@ -52,7 +52,7 @@ const App = () => {
         },
         {
           path: "/micuenta",
-          element: <MiCuenta isLoggedAdmin={isLoggedAdmin} setIsLoggedAdmin={setIsLoggedAdmin}/>,
+          element: <MiCuenta  setIsLoggedAdmin={setIsLoggedAdmin}/>,
         },
        
       ],

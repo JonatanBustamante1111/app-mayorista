@@ -193,8 +193,7 @@ export default function Inicio() {
         <div className="text-center mt-10 p-6 sm:w-1/2 sm:text-left sm:px-0 sm:pl-10 md:w-1/2  ">
           <h2 className=" font-bold text-3xl w-full md:my-4 ">¿Aún tenes dudas?</h2>
           <p className=" font-light text-sm w-full my-4 mb-14 ">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint. Velit officia consequat duis enim velit mollit.
+          ¡Nos encantaría ayudarte en lo que necesites! Si tienes alguna duda o consulta, no dudes en ponerte en contacto con nosotros. Estamos aquí para brindarte el mejor servicio y atención posible, y para responder a todas tus preguntas de manera clara y concisa.
           </p>
           <button
             type="submit"
