@@ -26,20 +26,24 @@ export default function MiCuenta({ setIsLoggedAdmin }) {
         </div>
       ) : (
         <div>
-          <div className="flex mx-auto rounded-3xl border-secundario border-2 w-80 ">
-            <button
-              className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 w-11/12 py-3 px-6 rounded-3xl mx-auto text-center font-monsterrat font-bold"
-              onClick={() => handleChangeLogin()}
-            >
-              Iniciar sesión
-            </button>
-            <button
-              className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-center w-11/12  rounded-3xl mx-auto font-monsterrat font-bold"
-              onClick={() => handleChangeLogin()}
-            >
-              Registrarse
-            </button>
-          </div>
+          <div className="flex mx-auto rounded-3xl border-secundario border w-80 ">
+  <button
+    className={`bg-gradient-to-r text-blanco via-yellow-500 to-yellow-600 ${
+      !login ? " from-yellow-400 font-bold text-primario " : ""
+    } from-yellow-0 w-11/12 py-3 px-6 rounded-3xl mx-auto text-center font-monsterrat`}
+    onClick={() => handleChangeLogin()}
+  >
+    Iniciar sesión
+  </button>
+  <button
+    className={`bg-gradient-to-r text-blanco via-yellow-500 to-yellow-600 ${
+      login ? "from-yellow-400 font-bold text-primario" : ""
+    } from-yellow-0 via-yellow-500 to-yellow-600 text-center w-11/12 rounded-3xl mx-auto font-monsterrat`}
+    onClick={() => handleChangeLogin()}
+  >
+    Registrarse
+  </button>
+</div>
           {!login ? (
             <Login
               setIsLoggedAdmin={setIsLoggedAdmin}
