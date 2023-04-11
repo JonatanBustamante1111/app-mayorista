@@ -21,15 +21,14 @@ function ContactoForm() {
            h-[136px] w-[328px] leading-[23px] text-start font-montserrat  text-base
            md:text-start lg:w-[588px] lg:h-32 lg:leading-8 text-gray-300"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae corrupti
-          repellendus quos neque? Eius optio cupiditate
+          ¡Hola! Gracias por visitar nuestra página web. Si tienes alguna pregunta o comentario, por favor completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
         </p>
       </article>
       <form onSubmit={handleSubmit} className="w-[95%] flex flex-col gap-y-5 bg-inherit">
         <input
           type="text"
           value={name}
-          placeholder="Nombre"
+          placeholder="Nombre"  
           required
           onChange={(e) => setName(e.target.value)}
           className=' grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit '

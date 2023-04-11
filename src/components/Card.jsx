@@ -8,9 +8,9 @@ export default function Card({ producto, eliminarProducto }) {
   const { nombre, precio, imagen, categoria, descripcion, id } = producto
   return (
     <Link to={`/producto/${id}`}>
-    <div className='flex  flex-col justify-around w-52 sm:w-60 border-none outline-none bg-transparent rounded-xl transition-all duration-300 shadow-lg '>
-      <img src={imagen} className='h-60 w-full object-cover rounded-xl' alt={`Imagen de ${nombre}`} />
-      <div className='flex flex-col justify-around gap-y-1 items-start py-3'>
+    <div className='flex  flex-row  border-none outline-none bg-transparent rounded-xl transition-all duration-300 shadow-lg gap-20 '>
+      <img src={imagen} className='h-30 w-1/4 object-cover rounded-xl' alt={`Imagen de ${nombre}`} />
+      <div className='flex flex-row items-center gap-10 '>
         <h3 className='font-bold text-secundario text-lg  '>{nombre}</h3>
         <p className='font-semibold text-2xl text-blanco'>${precio}</p>
         {

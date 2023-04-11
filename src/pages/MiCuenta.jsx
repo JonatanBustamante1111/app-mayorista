@@ -17,7 +17,6 @@ export default function MiCuenta({ setIsLoggedAdmin }) {
           <button
             onClick={() => {
               auth.signOut();
-              setIsLoggedAdmin(false);
               setLoggedIn(false); // actualiza loggedIn a false
             }}
           >
