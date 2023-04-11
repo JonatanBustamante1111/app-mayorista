@@ -103,7 +103,7 @@ export default function AdminInicio() {
         </button>
       </div>
       </div>
-      <section className="flex flex-col gap-10 ml-28 h-3/4 overflow-auto">
+      <section className="flex px-4 flex-col gap-10 ml-28 h-3/4 overflow-auto">
   {productosBuscados.length > 0
     ? productosBuscados.map((producto) => (
         <Card
