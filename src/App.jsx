@@ -23,6 +23,7 @@ import Pedidos from "./pages/Pedidos";
 
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -54,14 +55,14 @@ const App = () => {
         },
         {
           path: "/micuenta",
-          element: <MiCuenta  setIsLoggedAdmin={setIsLoggedAdmin}/>,
+          element: <MiCuenta  setIsLoggedAdmin={setIsLoggedAdmin} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>,
         },
        
       ],
     },
     {
         path: "/admin",
-        element: <Dashboard setIsLoggedAdmin={setIsLoggedAdmin}/>,
+        element: <Dashboard setIsLoggedAdmin={setIsLoggedAdmin} setLoggedIn={setLoggedIn}/>,
         children: [
           {
             index: true,

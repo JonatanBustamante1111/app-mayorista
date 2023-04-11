@@ -3,9 +3,8 @@ import Registro from "../components/Registro";
 import Login from "../components/Login";
 import { auth } from "../utils/firebaseconfig";
 
-export default function MiCuenta({ setIsLoggedAdmin }) {
+export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn}) {
   const [login, setLogin] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const handleChangeLogin = () => {
     setLogin(!login);
   };
