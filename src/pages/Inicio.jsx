@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FaqDropDown from "../components/FaqDropDown";
+
+import PreguntasFrecuentes from "../components/PreguntasFrecuentes";
+import ProductosDestacados from "../components/ProductosDestacados";
+import ContactoInicio from "../components/ContactoInicio";
+import GaleriaImgInicio from "../components/GaleriaImgInicio";
 
 export default function Inicio() {
   return (
@@ -78,143 +82,11 @@ export default function Inicio() {
           </p>
         </div>
       </section>
-      <section className="flex flex-col p-10 gap-16 w-full col-span-2 ">
-        <div className="w-full text-center">
-          <h2 className=" font-semibold text-3xl text-center text-blanco px-10 pt-20 mt-10 w-full">
-            ¿Qué productos ofrecemos?
-          </h2>
-          <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
-        </div>
-        <div className="flex flex-col md:flex-row md:h-[638px] md:gap-8">
-        <div
-            className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:bg-no-repeat md:bg-center md:w-2/6  md:h-full"
-            style={{
-              backgroundImage: `url('https://i.ibb.co/svpt9rd/unsplash-uf-IDew-I6i-Q.png')`,
-            }}
-          >
-            <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Accesorios de acero
-            </h3>
-          </div>
-          <div className="md:h-full md:flex md:1/4 flex-col md:gap-8">
-            <div
-              className=" bg-cover bg-no-repeat w-full h-72 flex flex-row  rounded-xl mb-10 md:h-1/3 md:mb-0"
-              style={{
-                backgroundImage: `url('https://i.ibb.co/Xy0Bjps/image-15.png')`,
-              }}
-            >
-              <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-                Accesorios de plata
-              </h3>
-            </div>
-            <div
-              className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:h-2/3 md:mb-0"
-              style={{
-                backgroundImage: `url('https://i.ibb.co/bgCYTg8/unsplash-Foe-IOgzt-CXo.png')`,
-              }}
-            >
-              <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-                Maquillaje
-              </h3>
-            </div>
-          </div>
-          <div className="md:h-full md:flex flex-col md:gap-8 md:w-2/4">
-            <div
-              className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:mb-0"
-              style={{
-                backgroundImage: `url('https://i.ibb.co/02wybSL/image-17.png')`,
-              }}
-            >
-              <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-                Marroquineria
-              </h3>
-            </div>
-            <div
-              className=" bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:mb-0 md:h-96"
-              style={{
-                backgroundImage: `url('https://i.ibb.co/fNHKsDs/unsplash-7c-ERndk-Oy-Dw.png')`,
-              }}
-            >
-              <h3 className="p-6 font-semibold text-2xl text-blanco self-end ">
-              Textil
-              </h3>
-            </div>
-          </div>
-       
-        </div>
-      </section>
-      <section className="flex flex-col gap-16 w-full col-span-2">
-        <div className="w-full text-center">
-          <h2 className=" font-semibold text-2xl text-center text-blanco  mt-10 w-full">
-            ¿Productos destacados?
-          </h2>
-          <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
-        </div>
-      </section>
-      <section className="flex flex-col gap-16 w-full col-span-2">
-        <div className="w-full text-center">
-          <h2 className=" font-semibold text-2xl text-center text-blanco  mt-10 w-full px-10">
-            Preguntas frecuentes
-          </h2>
-          <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
-        </div>
-        <div className="faq-page flex flex-col mb-40 sm:flex-row  sm:justify-center  ">
-          <div className="sm:w-full sm:mx-14">
-            <FaqDropDown
-              question="¿Cual es el monto mínimo?"
-              answer="Para crear una cuenta, haz clic en el botón 'Registrarse' en la parte superior derecha de la pantalla y sigue las instrucciones."
-            />
-            <FaqDropDown
-              question="¿Formas de pago?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
-            />
-            <FaqDropDown
-              question="¿Envíos a otras provincias?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
-            />
-          </div>
-          <div className="sm:w-full sm:mx-14">
-            <FaqDropDown
-              question="¿Horario de atención?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
-            />
-            <FaqDropDown
-              question="¿Tiempo de demora en armar pedido?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
-            />
-            <FaqDropDown
-              question="¿Cantidad de unidades por la compra?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
-            />
-          </div>
-        </div>
-      </section>
-      <section className=" flex flex-col gap-16 w-full bg-blanco col-span-2 sm:flex-row sm:gap-0 sm:w-full md:flex-row md: justify-between md:w-full">
-        <div className="text-center mt-10 p-6 sm:w-1/2 sm:text-left sm:px-0 sm:pl-10 md:w-1/2  ">
-          <h2 className=" font-bold text-3xl w-full md:my-4 ">¿Aún tenes dudas?</h2>
-          <p className=" font-light text-sm w-full my-4 mb-14 ">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint. Velit officia consequat duis enim velit mollit.
-          </p>
-          <button
-            type="submit"
-            className=" w-full sm:w-1/2
-            text-center font-semibold py-4 px-6 
-            bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
-            rounded-lg
-            "
-          >
-            Contacto
-          </button>
-        </div>
-        <div className="text-center  md:w-1/2">
-          <img
-            className="mx-auto h-full"
-            src="https://i.ibb.co/4dWZK9M/image-10.png"
-            alt=""
-          />
-        </div>
-      </section>
+
+      <GaleriaImgInicio/>     
+      <ProductosDestacados/>
+      <PreguntasFrecuentes />
+      <ContactoInicio/>
     </main>
   );
 }
