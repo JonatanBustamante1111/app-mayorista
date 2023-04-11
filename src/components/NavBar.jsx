@@ -4,12 +4,16 @@ import { Badge } from "@mui/material";
 import { CartContext } from "../context/CartContext";
 import MenuHamburguesa from "./MenuHamburguesa";
 import NavbarLinks from "./NavbarLinks";
+
+
 export default function Navbar() {
 
   const [nav, setNav] = useState(false);
   const { cart } = useContext(CartContext);
   const { sumaCantidadBadge } = cart;
   const [scroll, setScroll] = useState(false);
+
+
 
   const handleNav = () => {
     setNav(!nav);
@@ -48,7 +52,7 @@ export default function Navbar() {
          </div>
           <div className='flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10'>
             <Link className='text-3xl mr-20 pb-2' to={'/carrito'}>
-              <Badge badgeContent={sumaCantidadBadge()} color="secondary" >
+              <Badge badgeContent={sumaCantidadBadge()} color="primary" >
                 <ion-icon name="cart"></ion-icon>
               </Badge>
             </Link>
@@ -91,8 +95,8 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
+            </div>
+      </div>
     </>
   );
 }

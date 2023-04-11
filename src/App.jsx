@@ -8,7 +8,6 @@ import Producto from "./pages/Producto";
 import Nosotros from "./pages/Nosotros";
 import Carrito from "./pages/Carrito";
 import AdminInicio from "./pages/AdminInicio";
-import AdminNuevoProducto from "./pages/AdminNuevoProducto";
 import AdminEditarProducto, {
   loader as AdminEditarProductoLoader,
 } from "./pages/AdminEditarProducto";
@@ -18,9 +17,13 @@ import MiCuenta from "./pages/MiCuenta";
 import Layout from "./components/Layout";
 import CartContextProvider from "./context/CartContext";
 import Contacto from "./pages/Contacto";
+import Categorias from "./pages/Categorias";
+import Dashboard from "./components/Dashboard";
+import Pedidos from "./pages/Pedidos";
 
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -52,14 +55,14 @@ const App = () => {
         },
         {
           path: "/micuenta",
-          element: <MiCuenta isLoggedAdmin={isLoggedAdmin} setIsLoggedAdmin={setIsLoggedAdmin}/>,
+          element: <MiCuenta  setIsLoggedAdmin={setIsLoggedAdmin} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>,
         },
        
       ],
     },
     {
         path: "/admin",
-        element: <Layout />,
+        element: <Dashboard setIsLoggedAdmin={setIsLoggedAdmin} setLoggedIn={setLoggedIn}/>,
         children: [
           {
             index: true,
@@ -73,10 +76,21 @@ const App = () => {
             ),
           },
           {
-            path: "/admin/nuevoproducto",
+            path: "/admin/categorias",
             element: isLoggedAdmin ? (
        
-                <AdminNuevoProducto />
+                <Categorias/>
+                
+            ) : (
+              // Si el usuario no está logueado, redirige a la página de inicio
+              console.log('error')
+            ),
+          },
+          {
+            path: "/admin/pedidos",
+            element: isLoggedAdmin ? (
+       
+                <Pedidos/>
                 
             ) : (
               // Si el usuario no está logueado, redirige a la página de inicio

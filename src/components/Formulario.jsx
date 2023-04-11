@@ -21,65 +21,49 @@ export default function Formulario({
     const categoriaFind = categorias.find(cat => cat.label === camposProducto.categoria);
    
     return (
-        <>
+        <div className='bg-terciario'>
             {/*  En el onChange se crea una copia del objeto actual  y se reemplaza el campo seleccionado por el valor nuevo del input*/}
-            <div className="mb-4">
-                <label
-                    className="text-gray-800"
-                    htmlFor="nombre"
-                >Nombre:</label>
+            <div className="mb-8 ">
                 <input
                     id="nombre"
                     type="text"
-                    className="mt-2 block w-full p-3 bg-gray-50"
+                    className=" grid grid-cols-3 place-items-center p-3  border-secundario border rounded-xl text-secundario bg-inherit w-full"
                     placeholder="Nombre del Producto"
                     name="nombre"
                     value={camposProducto.nombre}
                     onChange={(e) => setCamposProducto({ ...camposProducto, nombre: e.target.value })}
                 />
             </div>
-            <div className="mb-4">
-                <label
-                    className="text-gray-800"
-                    htmlFor="precio"
-                >Precio:</label>
+            <div className="mb-8">
                 <input
                     id="precio"
                     type="number"
-                    className="mt-2 block w-full p-3 bg-gray-50"
+                    className=" grid grid-cols-3 place-items-center p-3  border-secundario border rounded-xl  bg-inherit w-full text-secundario"
                     placeholder="Precio del Producto"
                     name="precio"
                     value={camposProducto.precio}
                     onChange={(e) => setCamposProducto({ ...camposProducto, precio: e.target.value })}
                 />
             </div>
-            <div className="mb-4">
-                <label
-                    className="text-gray-800"
-                    htmlFor="descripcion"
-                >Descripcion:</label>
+            <div className="mb-8">
                 <input
                     id="descripcion"
                     type="text"
-                    className="mt-2 block w-full p-3 bg-gray-50"
+                    className=" grid grid-cols-3 place-items-center p-3  border-secundario border rounded-xl  bg-inherit w-full text-secundario"
                     placeholder="Descripcion del Producto"
                     value={camposProducto.descripcion}
                     onChange={(e) => setCamposProducto({ ...camposProducto, descripcion: e.target.value })}
                 />
             </div>
-            <div className="mb-4">
-                <label
-                    className="text-gray-800 "
-                    htmlFor="categoria"
-                >Seleccionar categoria:</label>
+            <div className="mb-8">
                 <select
                     name="categoria"
                     id="categoria"
-                    className='w-full py-3 text-center'
+                    className=" grid grid-cols-3 place-items-center p-3  border-secundario border rounded-xl text-secundario bg-inherit w-full"
                     value={camposProducto.categoria}
                     onChange={handleChangeCategoria}
                 >
-                    <option value="">-- Seleccione la Categoria --</option>
+                    <option value="" >-- Seleccione la Categoria --</option>
                     {
                         categorias.map((categoria, i) => (<option key={i} value={categoria.label}>{categoria.label}</option>))
                     }
@@ -90,9 +74,8 @@ export default function Formulario({
 
                  categoriaFind && categoriaFind.children && categoriaFind.children.length > 0 && (
                     <div className="mb-4">
-                        <label className="text-gray-800" htmlFor="subcategoria">Subcategoría:</label>
                         <select 
-                            className='w-full py-3 text-center' 
+                             className=" grid grid-cols-3 place-items-center p-3  border-secundario text-secundario border rounded-xl  bg-inherit w-full"
                             id="subcategoria"
                             value={camposProducto.subcategoria}
                             onChange={e => {
@@ -134,6 +117,6 @@ export default function Formulario({
                 />
             </div>
 
-        </>
+        </div>
     )
 }

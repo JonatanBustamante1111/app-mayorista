@@ -21,12 +21,13 @@ export default function NavbarLinks({flexDirection}) {
                     location.pathname == "/admin/nuevoproducto" ||
                     location.pathname == "/admin/editarproducto/:productoId"
                     ? (<>
-                        <li className={`link ${location.pathname === '/admin' ? 'activo' : ''}`}>
+                        {/* <li className={`link ${location.pathname === '/admin' ? 'activo' : ''}`}>
                             <Link className="relative " to={"/admin"}>Home admin</Link>
                         </li>
                         <li className={`link ${location.pathname === '/admin/nuevoproducto' ? 'activo' : ''}`}>
                             <Link to={"/admin/nuevoproducto"}>Nuevo producto</Link>
-                        </li>
+                        </li> */}
+                        
                     </>
 
 
