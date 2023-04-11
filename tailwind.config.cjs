@@ -14,7 +14,7 @@ module.exports = {
         terciario:'#002633',
         blanco:'#FDFFFC',
         rojo:'#F24236'
-      }
+      },
     },
   },
   plugins: [],
