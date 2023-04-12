@@ -21,7 +21,7 @@ export default function Navbar() {
           location.pathname == "/admin/nuevoproducto" ||
           location.pathname == "/admin/editarproducto/:productoId" ? (
           <>
-
+            <span>Prueba</span>
             <img
 
               src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
