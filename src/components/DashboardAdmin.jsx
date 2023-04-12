@@ -40,9 +40,10 @@ const DashboardAdmin = ({ setIsLoggedAdmin,setLoggedIn }) => {
           onClick={() => {
             auth.signOut();
             setIsLoggedAdmin(false);
+            localStorage.setItem("isLoggedAdmin", false);
             setLoggedIn(false);
-            navigate("/");
-
+            localStorage.setItem("loggedIn", false);
+            navigate('/micuenta')
           }}
         >
           Cerrar sesión

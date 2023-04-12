@@ -22,8 +22,13 @@ import Dashboard from "./components/Dashboard";
 import Pedidos from "./pages/Pedidos";
 
 const App = () => {
-  const [isLoggedAdmin, setIsLoggedAdmin] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedAdmin, setIsLoggedAdmin] = useState(
+    localStorage.getItem("isLoggedAdmin") === "true" ? true : false
+  );
+    const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem("loggedIn") === "true" ? true : false
+  );
+  
   const router = createBrowserRouter([
     {
       path: "/",
@@ -55,7 +60,7 @@ const App = () => {
         },
         {
           path: "/micuenta",
-          element: <MiCuenta  setIsLoggedAdmin={setIsLoggedAdmin} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>,
+          element: <MiCuenta  setIsLoggedAdmin={setIsLoggedAdmin} setLoggedIn={setLoggedIn} loggedIn={loggedIn} isLoggedAdmin={isLoggedAdmin}/>,
         },
        
       ],
