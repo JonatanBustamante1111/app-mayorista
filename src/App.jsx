@@ -8,9 +8,7 @@ import Producto from "./pages/Producto";
 import Nosotros from "./pages/Nosotros";
 import Carrito from "./pages/Carrito";
 import AdminInicio from "./pages/AdminInicio";
-import AdminEditarProducto, {
-  loader as AdminEditarProductoLoader,
-} from "./pages/AdminEditarProducto";
+import AdminEditarProducto from "./pages/AdminEditarProducto";
 import MiCuenta from "./pages/MiCuenta";
 
 // Components
@@ -107,7 +105,7 @@ const App = () => {
               // Si el usuario no está logueado, redirige a la página de inicio
               console.log('error')
             ),
-            loader: AdminEditarProductoLoader,
+            //loader: AdminEditarProductoLoader,
           },
         ],
       },    

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import AdminEditarProducto from '../pages/AdminEditarProducto'
 
-export default function Card({ producto, eliminarProducto }) {
+export default function Card({ producto, eliminarProducto, setIdProducto }) {
   const location = useLocation();
   const { nombre, precio, imagen, categoria, descripcion, id } = producto;
 
@@ -24,9 +25,9 @@ export default function Card({ producto, eliminarProducto }) {
             >
               <ion-icon name="trash-sharp"></ion-icon>
             </button>
-            <Link to={``} className=" text-cyan-500">
+            <button onClick={() => setIdProducto(id)} className=" text-cyan-500">
               <ion-icon name="pencil-sharp"></ion-icon>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

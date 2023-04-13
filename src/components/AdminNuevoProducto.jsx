@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import Formulario from "../components/Formulario";
-import Modal from "react-modal";
 
 //import Error from '../components/Error'
 
@@ -10,7 +9,7 @@ import { db, storage } from "../utils/firebaseconfig";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-export default function AdminNuevoProducto({ cerrarModal,modalAbierto }) {
+export default function AdminNuevoProducto({ handleModal }) {
   // Hooks del input file
   const [archivoSeleccionado, setArchivoSeleccionado] = useState({});
   const [nombreArchivo, setNombreArchivo] = useState("");
@@ -71,53 +70,38 @@ export default function AdminNuevoProducto({ cerrarModal,modalAbierto }) {
     setNombreArchivo(archivo.name);
   };
   return (
-    <main>
-      <Modal
-        isOpen={modalAbierto}
-        onRequestClose={cerrarModal}
-        className="Modal"
-        overlayClassName="Overlay"
-      >
-      <section>
-        <div className=" w-full">
-          <div className=" font-bold text-3xl text-blanco">
-            Agregar producto
-            </div>  
-          <button
-            className=" text-blanco font-normal text-2xl uppercase"
-            onClick={cerrarModal}
-          >
-            X
-          </button>
-        </div>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <Formulario
-              handleChangeArchivo={handleChangeArchivo}
-              camposProducto={camposProducto}
-              setCamposProducto={setCamposProducto}
-              inputFileRef={inputFileRef}
-              setSubCategoria={setSubCategoria}
-            />
-               <button
+
+    <section className="bg-terciario z-20 w-full absolute left-[20%] top-[49px] sm:w-[75%] md:w-[660px] rounded-xl">
+      <div className=' w-full flex justify-between items-center py-5 px-9'>
+        <h1 className='text-2xl text-blanco font-semibold text-center '>Agregar producto</h1>
+        <button
+          className='text-blanco font-semibold text-3xl '
+          onClick={handleModal}>
+          <ion-icon name="close-sharp"></ion-icon>
+        </button>
+      </div>
+      <div className="shadow rounded-md w-5/6 md:w-full mx-auto  px-5">
+        <form
+          className='flex flex-col'
+          onSubmit={handleSubmit}
+        >
+          <Formulario
+            handleChangeArchivo={handleChangeArchivo}
+            camposProducto={camposProducto}
+            setCamposProducto={setCamposProducto}
+            inputFileRef={inputFileRef}
+            setSubCategoria={setSubCategoria}
+          />
+          <input
             type="submit"
-            className=" w-full 
-            text-center font-semibold py-4 px-6
-            bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
-            rounded-lg
-            "
-            
-          >
-            Agregar producto
-          </button>
-            {
-              //  errores?.length && errores.map(error =><Error>{error}</Error>)
-            }
-          </form>
-        </div>
-      </section>
-      </Modal>
-      
-    </main>
+            className='my-5 mx-auto bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
+              py-4 px-6 rounded-lg font-semibold text-base cursor-pointer'
+            value='Agregar Producto'
+          />
+        </form>
+      </div>
+    </section>
+
+
   );
 }
