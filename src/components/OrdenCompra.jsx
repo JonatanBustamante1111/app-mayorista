@@ -18,7 +18,6 @@ export default function OrdenCompra() {
       total += (parseFloat(carrito[i]['precio']) * parseInt(carrito[i]['cantidad']))
     }
     setTotalAmount(total)
-    console.log(total)
   };
 
   const fillItems = () => {
@@ -35,13 +34,12 @@ export default function OrdenCompra() {
       itemsArray.push(item)
     }
     setItems({items: itemsArray})
-    console.log(items)
-    /* setItems(itemsArray) */
+
   }
 
   useEffect(() => {
     sumTotal();
-    fillItems()
+    fillItems();
   }, [])
 
   const handleCompra = (e) => {
