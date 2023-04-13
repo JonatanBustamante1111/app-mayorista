@@ -14,29 +14,29 @@ export default function PreguntasFrecuentes() {
           <div className="sm:w-full sm:mx-14">
             <FaqDropDown
               question="¿Cual es el monto mínimo?"
-              answer="Para crear una cuenta, haz clic en el botón 'Registrarse' en la parte superior derecha de la pantalla y sigue las instrucciones."
+              answer="Para ingresar como cliente la primera compra es de $8000 de mínimo, ya ingresada el mínimo es de $4500. Esta condición se mantiene siempre y cuando halla una compra dentro de los dos meses"
             />
             <FaqDropDown
               question="¿Formas de pago?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
+              answer="Forma de pago. de contado, deposito y/o transferencia (sujeto a plus si correnponde)."
             />
             <FaqDropDown
               question="¿Envíos a otras provincias?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
+              answer="Realizamos envios a todo el pais por medio de correo Andreani, Correo Argentino, BusPack o a convenir"
             />
           </div>
           <div className="sm:w-full sm:mx-14">
             <FaqDropDown
               question="¿Horario de atención?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
+              answer="Atendemos de lunes a viernes de 9 a 17.30 y los sábados de 10 a 13. Online 24H."
             />
             <FaqDropDown
               question="¿Tiempo de demora en armar pedido?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
+              answer="Demora para realizar los pedidos mínimo 48H. a partir de la acreditación del pago."
             />
             <FaqDropDown
               question="¿Cantidad de unidades por la compra?"
-              answer="Para cambiar tu contraseña, ve a la página de configuración de tu cuenta y haz clic en el enlace 'Cambiar contraseña'."
+              answer="cantidad de unidades...figura en la descripción del producto."
             />
           </div>
         </div>
