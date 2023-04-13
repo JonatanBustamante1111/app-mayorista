@@ -54,6 +54,7 @@ const CartContextProvider = (props) => {
 
       const cart = {
         carrito,
+        setCarrito,
         agregarCarrito,
         eliminarProducto,
         sumaCantidadBadge

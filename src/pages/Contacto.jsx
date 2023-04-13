@@ -3,15 +3,15 @@ import ContactoForm from "../components/ContactoForm";
 
 export default function Contacto() {
   return (
-    <div className="flex flex-row justify-between">
-        <ContactoForm/>
-      <div>
+    <main className="grid md:grid-cols-2 md:mt-12 place-items-center">
+      <ContactoForm />
+      <section className="h-full">
         <img
-          src="../public/imageDesktopContacto.png"
+          src="https://i.ibb.co/K55DMCR/image-Desktop-Contacto.png"
           alt="Mina Facherarda"
-          className='w-full h-full transform scale-x-[-1] scale-y-[1] '
+          className='md:w-[450px] h-full xl:w-[771px]  transform scale-x-[-1] scale-y-[1] '
         />
-      </div>
-      </div>
+      </section>
+    </main>
   );
 }

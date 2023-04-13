@@ -1,44 +1,48 @@
 import { useContext } from "react";
 import OrdenCompra from "../components/OrdenCompra";
-import TablaCarrito from "../components/TablaCarrito";
+import ProductoCarrito from "../components/ProductoCarrito";
 import { CartContext } from "../context/CartContext";
+import Button from "../components/Button";
 
 export default function Carrito() {
   const { cart } = useContext(CartContext);
+  const { carrito } = cart
 
+  let total = 0
+
+
+  carrito.forEach(el => {
+    total += el.precio * el.cantidad
+  })
+  console.log(total)
   return (
-    <>
-      {cart.carrito.length ? (
-        <div>
+    <main>
+      {carrito.length ? (
+        <section>
+          <h1 className="w-[280px] h-[34px] md:w-[400px] md:h-[49px] md:text-4xl ml-10 text-blanco font-bold text-2xl md: md:mt-28">Carrito de compras</h1>
           <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Precio unitario</th>
-              <th>Sub total</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
             {
-              cart.carrito.map(element => console.log(element))
+              carrito.map(element => console.log(element))
             }
-            {cart.carrito.length > 0 &&
-              cart.carrito.map((item) => (
-                <TablaCarrito key={item.id} id={item.id} imagen={item.imagen} nombre={item.nombre} cantidad={item.cantidad} precio={item.precio}/>
-              ))}
-          </tbody>
-        </table>
-        </div>
-        <div>
-          <OrdenCompra/>
-        </div>
-        </div>
+            {carrito.length > 0 &&
+              carrito.map(producto => (
+                <ProductoCarrito key={producto.id} producto={producto} />
+              ))
+            }
+          </div>
+          <div className="w-full">
+            <OrdenCompra total={total} />
+          </div>
+        </section>
       ) : (
-        <div>Tu carrito esta vacio</div>
+        <section className="h-full w-full flex flex-col items-center my-20">
+          <div className="flex flex-col items-center gap-y-8">
+            <img src="https://i.ibb.co/TmN510Q/emojione-shopping-cart.png" alt="imagen carrito vacio" />
+            <h2 className="font-normal text-2xl text-blanco">Aun no has agregado elementos al carrito</h2>
+            <Button link={'/productos'}>Continuar comprando</Button>
+          </div>
+        </section>
       )}
-    </>
+    </main>
   );
 }

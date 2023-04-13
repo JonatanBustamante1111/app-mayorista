@@ -13,52 +13,56 @@ function ContactoForm() {
   };
 
   return (
-    <div className="flex flex-col gap-5">
-      <h1 className="text-4xl text-white font-bold">Contactanos</h1>
-      <p
-        className=" 
-         h-[136px] w-[328px] leading-[23px] text-center font-montserrat  text-base
-         md:text-start lg:w-[588px] lg:h-32 lg:leading-8 text-white"
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae corrupti
-        repellendus quos neque? Eius optio cupiditate architecto doloremque esse
-        ipsa culpa eaque placeat, consectetur eligendi ad nobis deleniti
-        necessitatibus deserunt.
-      </p>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5 bg-inherit">
+    <section className="flex flex-col  ml-10 mt-6">
+      <article className="flex flex-col items-start gap-y-4">
+        <h1 className="text-3xl text-blanco font-bold">Contáctanos</h1>
+        <p
+          className=" 
+           h-[136px] w-[328px] leading-[23px] text-start font-montserrat  text-base
+           md:text-start lg:w-[588px] lg:h-32 lg:leading-8 text-gray-300"
+        >
+          ¡Hola! Gracias por visitar nuestra página web. Si tienes alguna pregunta o comentario, por favor completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
+        </p>
+      </article>
+      <form onSubmit={handleSubmit} className="w-[95%] flex flex-col gap-y-5 bg-inherit">
         <input
           type="text"
           value={name}
-          placeholder="Nombre"
+          placeholder="Nombre"  
           required
           onChange={(e) => setName(e.target.value)}
-          className="bg-inherit"
+          className=' grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit '
         />
-        <input 
+        <input
           type="email"
           value={email}
           placeholder="E-mail"
           required
           onChange={(e) => setEmail(e.target.value)}
-          className="bg-inherit"
+          className=' grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit '
+
         />
         <textarea
           value={comment}
           placeholder="Escribe tu comentario aquí"
           required
           onChange={(e) => setComment(e.target.value)}
-          className="bg-inherit"
+          className=' grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit '
         />
-        <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-center w-1/2 gap-2 py-3 px-6">
           <button
             type="submit"
-            className="text-center font-monsterrat font-semibold   "
+            className=" w-[90%] mx-auto
+            text-center font-semibold py-4 px-6
+            bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
+            rounded-lg
+            "
+            
           >
             Enviar
           </button>
-        </div>
+      
       </form>
-    </div>
+    </section>
   );
 }
 
