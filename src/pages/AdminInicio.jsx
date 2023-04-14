@@ -109,6 +109,7 @@ export default function AdminInicio() {
           </button>
         </div>
       </div>
+
       <section className="flex flex-col gap-10 ml-28 h-3/4 overflow-auto">
         
         {productosBuscados.length > 0
@@ -129,6 +130,7 @@ export default function AdminInicio() {
             />
           ))}
       </section>
+
     </main>
   );
 }

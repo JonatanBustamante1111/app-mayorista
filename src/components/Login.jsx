@@ -11,8 +11,10 @@ import { auth, db } from "../utils/firebaseconfig";
 import { useNavigate } from "react-router-dom";
 
 function Login({ setIsLoggedAdmin,setLoggedIn }) {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   const handleSignInWithGoogle = async () => {
@@ -30,11 +32,13 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoggedIn(true);
+        localStorage.setItem("loggedIn", true);
       } else {
         setLoggedIn(false);
+        localStorage.setItem("loggedIn", false);
       }
     });
-
+   
     // Limpiar el listener al desmontar el componente
     return () => {
       unsubscribe();
@@ -64,15 +68,16 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
       const usuario = querySnapshot.docs[0].data();
       if (usuario.rol === "cliente") {
         console.log("Bienvenido cliente");
-        // redireccionar a la pagina de cliente
         navigate("/carrito");
+        // redireccionar a la pagina de cliente
       } else if (usuario.rol === "admin") {
+        localStorage.setItem("isLoggedAdmin", true);
         console.log("Bienvenido administrador");
-        navigate("/admin");
         setIsLoggedAdmin(true);
+        navigate("/admin");
+      
         // redireccionar a la pagina de administrador
       }
-      setLoggedIn(true);
     } catch (error) {
       console.error(error);
     }

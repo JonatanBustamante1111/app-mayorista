@@ -8,28 +8,28 @@ export default function Card({ producto, eliminarProducto, setIdProducto }) {
 
   if (location.pathname === "/admin") {
     return (
-      <div className=" border-b-2 border-secundario py-2">
-      <div className="flex flex-row outline-none bg-transparent rounded-xl transition-all duration-300 shadow-lg gap-20">
+      <div className=" border-b-2 border-secundario py-2 w-full">
+      <div className="flex flex-row  items-center outline-none bg-transparent rounded-xl transition-all duration-300 shadow-lg gap-20 w-full">
         <img
           src={imagen}
           className="h-30 w-1/4 object-cover rounded-xl"
           alt={`Imagen de ${nombre}`}
         />
-        <div className="flex flex-row items-center gap-10">
-          <h3 className="font-bold text-secundario text-lg">{nombre}</h3>
-          <p className="font-semibold text-2xl text-blanco">${precio}</p>
-          <div className="flex justify-end items-center w-full text-2xl gap-x-7 px-3">
+          <h3 className="font-bold w-1/4 text-secundario text-center text-lg">{nombre}</h3>
+          <p className="font-semibold  w-1/4 text-2xl text-center text-blanco">${precio}</p>
+          <div className="flex justify-end items-center w-1/4  text-center text-2xl gap-x-7 px-3">
             <button
               onClick={() => eliminarProducto(id)}
-              className="text-red-500"
+              className="text-red-500 w-full"
             >
               <ion-icon name="trash-sharp"></ion-icon>
             </button>
+
             <button onClick={() => setIdProducto(id)} className=" text-cyan-500">
+
               <ion-icon name="pencil-sharp"></ion-icon>
             </button>
           </div>
-        </div>
       </div>
       </div>
     );
