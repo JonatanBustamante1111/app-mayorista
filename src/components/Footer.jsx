@@ -22,9 +22,9 @@ function Footer() {
             <p className="font-thin text-base ">
                 Capital - San Juan - Argentina
             </p>
-            <p>
-                Desarrollado por <Link to={''}>Valhalla web</Link>
-            </p>
+            <a href="http://valhallaweb.tech">
+                Desarrollado por Valhalla web
+            </a>
         </div>
         </div>
     );

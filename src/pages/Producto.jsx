@@ -40,7 +40,7 @@ export default function Producto() {
     <main className="
     w-full flex-col mx-auto flex items-start justify-between sm:items-center 
     md:w-[90%] md:mt-36 md:flex-row gap-y-8
-    lg:w-[80%] lg:justify-evenly
+    lg:w-[80%]  lg:justify-evenly 
     ">
       <section>
         <h2 className=" text-sm font-medium text-blanco py-5">{`${categoria} / ${subcategoria} `}{''} / <span className="text-secundario"> {nombre}</span></h2>
