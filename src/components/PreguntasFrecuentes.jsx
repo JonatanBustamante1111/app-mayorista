@@ -36,7 +36,7 @@ export default function PreguntasFrecuentes() {
             />
             <FaqDropDown
               question="¿Cantidad de unidades por la compra?"
-              answer="cantidad de unidades...figura en la descripción del producto."
+              answer="La cantidad de unidades figura siempre en la descripción del producto."
             />
           </div>
         </div>

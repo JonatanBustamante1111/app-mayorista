@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ContactoInicio() {
   return (
@@ -9,8 +10,8 @@ export default function ContactoInicio() {
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
         sint. Velit officia consequat duis enim velit mollit.
       </p>
+      <a href="http://api.whatsapp.com/send?phone=542644823420">
       <button
-        type="submit"
         className=" w-full sm:w-1/2
         text-center font-semibold py-4 px-6 
         bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
@@ -19,6 +20,8 @@ export default function ContactoInicio() {
       >
         Contacto
       </button>
+      </a>
+
     </div>
     <div className="text-center  md:w-1/2">
       <img
