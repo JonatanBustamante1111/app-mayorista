@@ -10,7 +10,7 @@ export default function ContactoInicio() {
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
         sint. Velit officia consequat duis enim velit mollit.
       </p>
-      <a href="http://api.whatsapp.com/send?phone=542644823420">
+      <a href="http://api.whatsapp.com/send?phone=542644823420" target="_blank">
       <button
         className=" w-full sm:w-1/2
         text-center font-semibold py-4 px-6 
