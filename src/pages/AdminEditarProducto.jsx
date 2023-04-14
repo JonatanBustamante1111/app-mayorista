@@ -40,7 +40,6 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
       nombre: datos.nombre,
       precio: datos.precio,
       descripcion: datos.descripcion,
-      provedor:datos.provedor,
       categoria: datos.categoria,
       subcategoria: datos.subcategoria,
       imagen: datos.imagen,
