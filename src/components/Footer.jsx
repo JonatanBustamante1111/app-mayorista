@@ -16,15 +16,15 @@ function Footer() {
         </div>
         <div className="flex flex-col items-center gap-10 ">
             <div className="flex flex-row gap-6">
-                <img src="https://i.ibb.co/YcjTqBw/logoFace.png" alt="" />
-                <img src="https://i.ibb.co/mzN3Rcn/logo-Instagram.png" alt="" />
+                <a href="https://www.facebook.com/crv4.Bijou" target="_blank"><img src="https://i.ibb.co/YcjTqBw/logoFace.png" alt="" /></a>
+                <a href="https://instagram.com/crv4bijou?igshid=MGNiNDI5ZTU=" target="_blank"><img src="https://i.ibb.co/mzN3Rcn/logo-Instagram.png" alt="" /></a>
             </div>
             <p className="font-thin text-base ">
                 Capital - San Juan - Argentina
             </p>
-            <p>
-                Desarrollado por <Link to={''}>Valhalla web</Link>
-            </p>
+            <a  href="http://valhallaweb.tech" target="_blank">
+                Desarrollado por Valhalla web
+            </a>
         </div>
         </div>
     );
