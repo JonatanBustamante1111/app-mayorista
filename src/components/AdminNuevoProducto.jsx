@@ -6,6 +6,7 @@ import Formulario from "../components/Formulario";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
 import { db, storage } from "../utils/firebaseconfig";
+
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -19,6 +20,7 @@ export default function AdminNuevoProducto({ handleModal }) {
     nombre: "",
     precio: "",
     descripcion: "",
+    provedor:"",
     categoria: "",
     imagen: "",
   });
@@ -51,6 +53,7 @@ export default function AdminNuevoProducto({ handleModal }) {
       nombre: "",
       precio: "",
       descripcion: "",
+      provedor:"",
       categoria: "",
       imagen: "",
     });
