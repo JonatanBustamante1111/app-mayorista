@@ -35,42 +35,45 @@ export default function ProductosDestacados() {
         <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
       </article>
       <article className='relative'>
-        <div className='swiper-button-prev swiper-button'></div>
-        <div className='swiper-button-next swiper-button'></div>
-        <Swiper
-          //params={swiperOptions}
-          slidesPerView={1}
-          spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={{
-            prevEl: '.swiper-button-prev',
-            nextEl: '.swiper-button-next',
-          }}
-          modules={[Navigation]}
-          className="mySwiper"
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 25,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 30,
-            },
-          }}
-        >
-          {productos.map(producto =>
-            <SwiperSlide key={producto.id}>
-                <Card producto={producto}/>
-            </SwiperSlide>
-          )}
-        </Swiper>
+       
+         <div className='swiper-button-prev swiper-button'></div>
+         <div className='swiper-button-next swiper-button'></div>
+        <div className='mx-10'>
+          <Swiper
+            //params={swiperOptions}
+            slidesPerView={1}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={{
+              prevEl: '.swiper-button-prev',
+              nextEl: '.swiper-button-next',
+            }}
+            modules={[Navigation]}
+            className="mySwiper"
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+            }}
+          >
+            {productos.map(producto =>
+              <SwiperSlide key={producto.id}>
+                  <Card producto={producto}/>
+              </SwiperSlide>
+            )}
+          </Swiper>
+        </div>
       </article>
     </section>
   )

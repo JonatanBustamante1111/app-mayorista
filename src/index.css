@@ -88,8 +88,13 @@ swiper {
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply absolute z-10 bg-white p-8 rounded-[50%] shadow-md shadow-gray-400 
+  @apply absolute z-10 bg-transparent border-secundario   p-8 rounded-[50%] shadow-md 
 }
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  @apply text-secundario
+}
+
 
 @media screen and (min-width: 480px) {
   .swiper-button-next,
