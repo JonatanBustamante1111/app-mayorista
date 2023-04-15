@@ -72,8 +72,7 @@ const Categorias = () => {
                 {provedor.label}
               </option>
             ))}
-          </select>
-          
+          </select> 
         </div>
         <div className="flex flex-col">
         <label
