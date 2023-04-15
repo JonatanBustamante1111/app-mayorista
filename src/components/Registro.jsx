@@ -8,7 +8,7 @@ import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
 import { useNavigate } from "react-router-dom";
 
-function Registro({ handleChangeLogin }) {
+function Registro() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
