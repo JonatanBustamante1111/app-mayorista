@@ -10,7 +10,9 @@ export default function Producto() {
   const { cart } = useContext(CartContext);
   const [dato, setDato] = useState({});
   const { productoId } = useParams();
-
+  
+  const { descripcion, imagen, nombre, precio, stock, categoria, subcategoria } = dato;
+  
   async function getProducto() {
     const docRef = doc(db, "productos", productoId);
     const result = await getDoc(docRef);
@@ -29,7 +31,6 @@ export default function Producto() {
       .then((result) => setDato(result))
       .catch((err) => console.log(err));
   }, []);
-  const { descripcion, imagen, nombre, precio, categoria, subcategoria } = dato;
 
   function onAdd(cantidad) {
     cart.agregarCarrito(dato, cantidad);
@@ -39,7 +40,7 @@ export default function Producto() {
   return (
     <main className="
     w-full flex-col mx-auto flex items-start justify-between sm:items-center 
-    md:w-[90%] md:mt-36 md:flex-row gap-y-8
+    md:w-[90%] md:my-36 md:flex-row gap-y-8
     lg:w-[80%]  lg:justify-evenly 
     ">
       <section>
@@ -53,21 +54,28 @@ export default function Producto() {
       <section className=" w-[358px] lg:w-[500px] flex flex-col justify-center items-start p-4 gap-y-5 md:mt-10">
         <h2 className="md:text-3xl lg:text-4xl  font-monsterrat text-secundario font-bold">{`${nombre}`}</h2>
         <p className="font-normal text-gray-300">{`${descripcion}`}</p>
-        <p className="font-semibold text-blanco">{`2 Disponible/s`}</p>
+       { stock > 1 
+        ?<p className="font-semibold text-blanco">{`${stock} Disponible/s`}</p> 
+        :<p className="font-semibold text-rojo">Sin stock</p> 
+        }
         <h3 className="text-2xl text-blanco font-bold ">${precio}</h3>
-        {itemCount === 0
-          ? (<ItemCount initial={itemCount} onAdd={onAdd} />)
-          : (
-            <Link
-              to="/carrito"
-              className="lg:w-[300px]
-              bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600
-              py-4 px-6 text-sm text-primario font-bold
-              rounded-lg  "
-            >
-              Ver carrito
-            </Link>
-          )
+        {
+          stock > 0 
+
+          ? itemCount === 0
+              ? (<ItemCount initial={itemCount} stock={+stock} onAdd={onAdd} />)
+              : (
+                <Link
+                  to="/carrito"
+                  className="lg:w-[300px]
+                  bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600
+                  py-4 px-6 text-sm text-primario font-bold
+                  rounded-lg  "
+                >
+                  Ver carrito
+                </Link>
+              )
+        :''
         }
       </section>
     </main>
