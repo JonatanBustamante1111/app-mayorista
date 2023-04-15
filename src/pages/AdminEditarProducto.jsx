@@ -40,6 +40,7 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
       nombre: datos.nombre,
       precio: datos.precio,
       descripcion: datos.descripcion,
+      provedor:datos.provedor,
       categoria: datos.categoria,
       subcategoria: datos.subcategoria,
       imagen: datos.imagen,
@@ -77,6 +78,7 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
       title: 'Cambios guardados'
     }).then((result) => {
       if (result.isConfirmed) {
+
         setIdProducto(null)
       }
     })

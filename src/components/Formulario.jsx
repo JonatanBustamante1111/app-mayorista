@@ -1,4 +1,5 @@
 import { categorias } from '../utils/categorias'
+import { provedores } from "../utils/provedores";
 
 export default function Formulario({
     handleChangeArchivo,
@@ -14,6 +15,14 @@ export default function Formulario({
         setCamposProducto({
             ...camposProducto,
             categoria:e.target.value
+        })
+        console.log(e.target.value)
+    }
+      
+    const handleChangeProvedor = (e) => {
+        setCamposProducto({
+            ...camposProducto,
+            provedor:e.target.value
         })
         console.log(e.target.value)
     }
@@ -57,6 +66,22 @@ export default function Formulario({
                     value={camposProducto.descripcion}
                     onChange={(e) => setCamposProducto({ ...camposProducto, descripcion: e.target.value })}
                 />
+            </div>
+            <div className="mb-8 flex flex-col gap-y-2">
+            <label className='text-blanco font-semibold text-base' htmlFor="categoria">Provedor:</label>
+                <select
+                    name="provedor"
+                    id="provedor"
+                    className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
+                    value={camposProducto.provedor}
+                    onChange={handleChangeProvedor}
+                >
+                    <option value="" >-- Seleccione el provedor --</option>
+                    {
+                        provedores.map((provedor, i) => (<option key={i} value={provedor.label}>{provedor.label}</option>))
+                    }
+                </select>
+
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
             <label className='text-blanco font-semibold text-base' htmlFor="categoria">Categoria:</label>

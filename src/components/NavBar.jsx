@@ -6,7 +6,7 @@ import MenuHamburguesa from "./MenuHamburguesa";
 import NavbarLinks from "./NavbarLinks";
 
 
-export default function Navbar() {
+export default function NavBar() {
 
   const [nav, setNav] = useState(false);
   const { cart } = useContext(CartContext);

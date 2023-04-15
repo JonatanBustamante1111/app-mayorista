@@ -54,6 +54,7 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
         email,
         password
       );
+      console.log(userCredential)
       const user = userCredential.user;
       const uid = user.uid;
       const usuariosRef = collection(db, "usuarios");
