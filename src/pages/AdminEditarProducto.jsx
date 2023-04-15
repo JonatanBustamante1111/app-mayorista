@@ -77,7 +77,8 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
       title: 'Cambios guardados'
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate('/admin')
+
+        setIdProducto(null)
       }
     })
     console.log('Producto Actualizado')
