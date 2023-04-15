@@ -19,9 +19,11 @@ export default function AdminNuevoProducto({ handleModal }) {
   const [camposProducto, setCamposProducto] = useState({
     nombre: "",
     precio: "",
+    stock: "",
     descripcion: "",
     provedor:"",
     categoria: "",
+    destacado: "",
     imagen: "",
   });
   const [subCategoria, setSubCategoria] = useState("");
@@ -52,9 +54,11 @@ export default function AdminNuevoProducto({ handleModal }) {
     setCamposProducto({
       nombre: "",
       precio: "",
+      stock: "",
       descripcion: "",
       provedor:"",
       categoria: "",
+      destacado: "",
       imagen: "",
     });
     setSubCategoria("");
