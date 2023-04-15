@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import Button from './Button';
+import eApi from '../api/api'
+
 export default function OrdenCompra({ total }) {
 
   const [totalAmount, setTotalAmount] = useState(0);
