@@ -17,9 +17,11 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
   const [camposProducto, setCamposProducto] = useState({
     nombre: '',
     precio: '',
+    stock:'',
     descripcion: '',
     categoria: '',
     subcategoria: '',
+    destacado: '',
     imagen: ''
   })
   const [archivoSeleccionado, setArchivoSeleccionado] = useState({})
@@ -39,9 +41,11 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
     setCamposProducto({
       nombre: datos.nombre,
       precio: datos.precio,
+      stock: datos.stock,
       descripcion: datos.descripcion,
       categoria: datos.categoria,
       subcategoria: datos.subcategoria,
+      destacado: datos.destacado,
       imagen: datos.imagen,
     })
   }

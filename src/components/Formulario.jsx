@@ -50,6 +50,18 @@ export default function Formulario({
                 />
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
+            <label className='text-blanco font-semibold text-base' htmlFor="stock">Stock:</label>
+                <input
+                    id="stock"
+                    type="number"
+                    className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
+                    placeholder="Stock del Producto"
+                    name="stock"
+                    value={camposProducto.stock}
+                    onChange={(e) => setCamposProducto({ ...camposProducto, stock: e.target.value })}
+                />
+            </div>
+            <div className="mb-8 flex flex-col gap-y-2">
             <label className='text-blanco font-semibold text-base' htmlFor="descripcion">Descripcion:</label>
                 <input
                     id="descripcion"
@@ -61,7 +73,7 @@ export default function Formulario({
                 />
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
-            <label className='text-blanco font-semibold text-base' htmlFor="categoria">Provedor:</label>
+            <label className='text-blanco font-semibold text-base' htmlFor="provedor">Provedor:</label>
                 <select
                     name="provedor"
                     id="provedor"
@@ -119,6 +131,24 @@ export default function Formulario({
                 )
           
             }
+            <div className="mb-8 flex flex-col gap-y-2">
+            <label className='text-blanco font-semibold text-base' htmlFor="destacado">Destacar producto:</label>
+                <select
+                    name="destacado"
+                    id="destacado"
+                    className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
+                    value={camposProducto.destacado}
+                    onChange={e => setCamposProducto({
+                        ...camposProducto,
+                        destacado:e.target.value
+                    })}
+                >
+                    <option value="" >-- Seleccione una opcion --</option>
+                    <option value="no">No</option>
+                    <option value="si">Si</option>
+                </select>
+
+            </div>
             <div className="mb-4 flex flex-col gap-y-2">
                 {
                     imagenUrl === null &&

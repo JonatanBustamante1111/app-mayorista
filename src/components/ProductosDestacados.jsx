@@ -68,9 +68,12 @@ export default function ProductosDestacados() {
             }}
           >
             {productos.map(producto =>
+              producto.destacado === 'si' 
+              ?
               <SwiperSlide key={producto.id}>
                   <Card producto={producto}/>
               </SwiperSlide>
+              :''
             )}
           </Swiper>
         </div>

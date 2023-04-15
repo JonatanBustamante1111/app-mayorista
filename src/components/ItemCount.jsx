@@ -1,15 +1,17 @@
 import { Add, Remove } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
 
-export default function ItemCount({ initial = 1, onAdd }) {
+export default function ItemCount({ initial = 1, onAdd, stock }) {
     const [count, setCount] = useState(0);
     useEffect(() => {
         setCount(initial);
     }, []);
-
+    console.log(stock)
     const increment = () => {
+        if(stock > count){
         setCount(count + 1);
-
+        }
+       
     }
 
     const decrement = () => {
