@@ -19,13 +19,6 @@ export default function Formulario({
         console.log(e.target.value)
     }
       
-    const handleChangeProvedor = (e) => {
-        setCamposProducto({
-            ...camposProducto,
-            provedor:e.target.value
-        })
-        console.log(e.target.value)
-    }
     // Metodo para acceder al objeto de la categoria seleccionada
     const categoriaFind = categorias.find(cat => cat.label === camposProducto.categoria);
    
@@ -74,7 +67,9 @@ export default function Formulario({
                     id="provedor"
                     className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
                     value={camposProducto.provedor}
-                    onChange={handleChangeProvedor}
+                    onChange={e => {
+                        setCamposProducto({...camposProducto,provedor:e.target.value})
+                    }}
                 >
                     <option value="" >-- Seleccione el provedor --</option>
                     {

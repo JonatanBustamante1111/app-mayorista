@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Card from "../components/Card";
 import { db } from "../utils/firebaseconfig";
 import Swal from "sweetalert2";
-import { categorias } from "../utils/categorias";
+import { provedores } from "../utils/provedores";
 import {
   collection,
   getDocs,
@@ -16,27 +14,19 @@ import {
 import { writeBatch } from "firebase/firestore";
 
 const Categorias = () => {
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
-  const [subCategoriasSeleccionada, setSubCategoriaSeleccionada] = useState("");
   const [porcentaje, setPorcentaje] = useState(0);
+  const [provedorSeleccionado, setProvedorSeleccionado] = useState("");
 
-  const categoriaFind = categorias.find(
-    (cat) => cat.label === categoriaSeleccionada
-  );
 
-  const handleChangeCategoria = (e) => {
-    setCategoriaSeleccionada(e.target.value);
+  const handleChangeProvedor = (e) => {
+    setProvedorSeleccionado(e.target.value);
   };
 
   const actualizarPrecio = async () => {
     const productosRef = collection(db, "productos");
-    const productosQuery = subCategoriasSeleccionada
-      ? query(
-          productosRef,
-          where("categoria", "==", categoriaSeleccionada),
-          where("subcategoria", "==", subCategoriasSeleccionada)
-        )
-      : query(productosRef, where("categoria", "==", categoriaSeleccionada));
+    const productosQuery = provedorSeleccionado
+      ? query(productosRef, where("provedor", "==", provedorSeleccionado))
+      : collection(db, "productos");
     const productosSnapshot = await getDocs(productosQuery);
 
     const batch = writeBatch(db);
@@ -47,7 +37,7 @@ const Categorias = () => {
       const productoRef = doc.ref;
       batch.update(productoRef, { precio: nuevoPrecio });
     });
-
+  
     await batch.commit();
 
     Swal.fire({
@@ -55,70 +45,63 @@ const Categorias = () => {
       text: "Los precios se han actualizado correctamente",
       icon: "success",
     });
+   setPorcentaje('');
   };
 
   return (
     <div className="relative left-2/4">
+         <h2 className="text-blanco font-bold text-lg">Esta funcion permite editar productos por provedor</h2>
       <div className="w-1/4 mt-40 ml-10">
-        <div className="mb-4">
-          <select
-            name="categoria"
-            id="categoria"
-            className="w-full py-3 text-center"
-            value={categoriaSeleccionada}
-            onChange={handleChangeCategoria}
+        <div className="mb-8 flex flex-col gap-y-2">
+          <label
+            className="text-blanco font-semibold text-base"
+            htmlFor="categoria"
           >
-            <option value="">-- Seleccione la Categoria --</option>
-            {categorias.map((categoria, i) => (
-              <option key={i} value={categoria.label}>
-                {categoria.label}
+            Elija el provedor:
+          </label>
+          <select
+            name="provedor"
+            id="provedor"
+            className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
+            value={provedorSeleccionado}
+            onChange={handleChangeProvedor}
+          >
+            <option value="">-- Seleccione el provedor --</option>
+            {provedores.map((provedor, i) => (
+              <option key={i} value={provedor.label}>
+                {provedor.label}
               </option>
             ))}
           </select>
+          
         </div>
-          {categoriaFind &&
-            categoriaFind.children &&
-            categoriaFind.children.length > 0 && (
-              <div className="mb-4">
-                <select
-                  className="w-full py-3 text-center"
-                  id="subcategoria"
-                  value={subCategoriasSeleccionada}
-                  onChange={(e) => {
-                    setSubCategoriaSeleccionada(e.target.value);
-                  }}
-                >
-                  <option value="">Seleccione una subcategoría</option>
-                  {categoriaFind.children.map((subcategoria) => (
-                    <option key={subcategoria.id} value={subcategoria.label}>
-                      {subcategoria.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-          <div className="flex flex-col">
-            <input
-              placeholder="Ingrese el porcentaje"
-              value={porcentaje}
-              type="number"
-              onChange={(e) => setPorcentaje(e.target.value)}
-              className=' grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit mb-5 text-secundario text-center'
-            />
-               <button
-                onClick={actualizarPrecio}
-                className=" w-[90%] mx-auto
+        <div className="flex flex-col">
+        <label
+            className="text-blanco font-semibold text-base"
+            htmlFor="porcentaje"
+          >
+            Elija el porcentaje:
+          </label>
+          <input
+            placeholder="Ingrese el porcentaje"
+            value={porcentaje}
+            type="number"
+            onChange={(e) => setPorcentaje(e.target.value)}
+            className=" grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit mb-5 text-secundario text-center"
+          />
+          <button
+            onClick={actualizarPrecio}
+            className=" w-[90%] mx-auto
                 text-center font-semibold py-4 px-6
                 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
                 rounded-lg
                 "
-          
-              >
-                Aumentar precio
-              </button>
-          </div>
-      </div>
+          >
+            Aumentar precio
+          </button>
         </div>
-    )
-}
-export default Categorias
+      </div>
+    </div>
+  );
+};
+export default Categorias;
