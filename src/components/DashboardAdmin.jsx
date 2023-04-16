@@ -34,13 +34,13 @@ const DashboardAdmin = ({ setIsLoggedAdmin, setLoggedIn }) => {
           </Link>
         </div>
        <div className={`flex items-center w-full justify-center py-3
-          ${activeLink === "categorias" ? "bg-primario text-secundario border-l-4 border-secundario" : "text-blanco"}
+          ${activeLink === "provedores" ? "bg-primario text-secundario border-l-4 border-secundario" : "text-blanco"}
         `}>
          <Link
-           to="/admin/categorias"
-           onClick={() => setActiveLink("categorias")}
+           to="/admin/provedores"
+           onClick={() => setActiveLink("provedores")}
          >
-           <h3 className="font-semibold">Categorias</h3>
+           <h3 className="font-semibold">Provedores</h3>
          </Link>
        </div>
       </div>

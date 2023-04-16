@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { writeBatch } from "firebase/firestore";
 
-const Categorias = () => {
+const Provedores = () => {
   const [porcentaje, setPorcentaje] = useState(0);
   const [provedorSeleccionado, setProvedorSeleccionado] = useState("");
 
@@ -50,7 +50,6 @@ const Categorias = () => {
 
   return (
     <div className="relative left-2/4">
-         <h2 className="text-blanco font-bold text-lg">Esta funcion permite editar productos por provedor</h2>
       <div className="w-1/4 mt-40 ml-10">
         <div className="mb-8 flex flex-col gap-y-2">
           <label
@@ -103,4 +102,4 @@ const Categorias = () => {
     </div>
   );
 };
-export default Categorias;
+export default Provedores;
