@@ -28,6 +28,7 @@ export default function Formulario({
             <div className="mb-8 flex flex-col gap-y-2">
                 <label className='text-blanco font-semibold text-base' htmlFor="nombre">Nombre:</label>
                 <input
+                   required
                     id="nombre"
                     type="text"
                     className="p-3 border-secundario border rounded-xl text-blanco font-normal bg-inherit w-full focus:outline-none"
@@ -40,6 +41,7 @@ export default function Formulario({
             <div className="mb-8 flex flex-col gap-y-2">
             <label className='text-blanco font-semibold text-base' htmlFor="precio">Precio:</label>
                 <input
+                   required
                     id="precio"
                     type="number"
                     className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
@@ -52,6 +54,7 @@ export default function Formulario({
             <div className="mb-8 flex flex-col gap-y-2">
             <label className='text-blanco font-semibold text-base' htmlFor="stock">Stock:</label>
                 <input
+                   required
                     id="stock"
                     type="number"
                     className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
@@ -64,6 +67,7 @@ export default function Formulario({
             <div className="mb-8 flex flex-col gap-y-2">
             <label className='text-blanco font-semibold text-base' htmlFor="descripcion">Descripcion:</label>
                 <input
+                   required
                     id="descripcion"
                     type="text"
                     className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
@@ -75,6 +79,7 @@ export default function Formulario({
             <div className="mb-8 flex flex-col gap-y-2">
             <label className='text-blanco font-semibold text-base' htmlFor="provedor">Provedor:</label>
                 <select
+                    required
                     name="provedor"
                     id="provedor"
                     className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
@@ -134,6 +139,7 @@ export default function Formulario({
             <div className="mb-8 flex flex-col gap-y-2">
             <label className='text-blanco font-semibold text-base' htmlFor="destacado">Destacar producto:</label>
                 <select
+                   required
                     name="destacado"
                     id="destacado"
                     className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
