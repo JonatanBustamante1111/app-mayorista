@@ -28,14 +28,14 @@ export default function AdminInicio() {
   const eliminarProducto = (id) => {
     const documento_A_Eliminar = doc(db, "productos", id);
     Swal.fire({
-      title: "Estas seguro?",
-      text: "No podras revertir el cambio!",
+      title: "Eliminar producto",
+      text: "¿Estás seguro de eliminar el producto del sistema? Una vez realizada esta acción, no podrá revertirse.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "red",
+      cancelButtonColor: "002633",
       cancelButtonText: "Cancelar",
-      confirmButtonText: "Si, Eliminar!",
+      confirmButtonText: "Eliminar",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteDoc(documento_A_Eliminar)

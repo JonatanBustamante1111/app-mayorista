@@ -38,7 +38,7 @@ export default function Carrito() {
         <section className="h-full w-full flex flex-col items-center my-20">
           <div className="flex flex-col items-center gap-y-8">
             <img src="https://i.ibb.co/TmN510Q/emojione-shopping-cart.png" alt="imagen carrito vacio" />
-            <h2 className="font-normal text-2xl text-blanco">Aun no has agregado elementos al carrito</h2>
+            <h2 className="font-normal text-center text-2xl text-blanco">Aun no has agregado elementos al carrito</h2>
             <Button link={'/productos'}>Continuar comprando</Button>
           </div>
         </section>

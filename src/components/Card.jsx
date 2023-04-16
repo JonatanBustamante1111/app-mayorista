@@ -5,12 +5,10 @@ export default function Card({ producto, eliminarProducto, setIdProducto }) {
 
   const location = useLocation();
 
-  const { nombre, precio, imagen, id } = producto;
+  const { nombre, precio, imagen, id , stock } = producto;
 
   if (location.pathname === "/admin") {
     return (
-
-      
       <article className=" border-b last:border-none border-blanco w-[90%] mx-auto py-5">
         <div className="grid grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-x-4 rounded-xl place-items-center ">
           <img
@@ -19,7 +17,7 @@ export default function Card({ producto, eliminarProducto, setIdProducto }) {
             alt={`Imagen de ${nombre}`}
           />
             <h3 className="font-bold  text-blanco text-center text-lg">{nombre}</h3>
-            <p className="font-medium text-xl text-center text-blanco">50</p>
+            <p className="font-medium text-xl text-center text-blanco">{stock}</p>
             <p className="font-semibold  text-2xl text-center text-blanco">${precio}</p>
             <div className="flex justify-end items-center  text-center text-2xl gap-x-7 px-3">
               <button

@@ -39,19 +39,16 @@ export default function Producto() {
 
   return (
     <main className="
-    w-full flex-col mx-auto flex items-start justify-between sm:items-center 
-    md:w-[90%] md:my-36 md:flex-row gap-y-8
-    lg:w-[80%]  lg:justify-evenly 
-    ">
-      <section>
-        <h2 className=" text-sm font-medium text-blanco py-5">{`${categoria} / ${subcategoria} `}{''} / <span className="text-secundario"> {nombre}</span></h2>
+     flex-col w-full items-center justify-center md:flex md:flex-row md:p-4 md:gap-10">
+      <section className=" md:mt-24 md:w-1/2">
+        <h2 className="pl-4 w-4/5  text-sm font-medium text-blanco py-5">{`${categoria} / ${subcategoria} `}{''} / <span className="text-secundario"> {nombre}</span></h2>
         <img
           src={imagen}
-          className="h-[262px] w-[360px] lg:w-[588px] lg:h-[400px] lg:rounded-xl object-cover "
+          className=" w-full h-[262px] md:w-full md:p-2 lg:w-[588px] lg:h-[400px] lg:rounded-xl object-cover "
           alt={`Imagen de ${nombre}`}
         />
       </section>
-      <section className=" w-[358px] lg:w-[500px] flex flex-col justify-center items-start p-4 gap-y-5 md:mt-10">
+      <section className=" flex flex-col justify-center items-start p-4 gap-y-5 md:w-1/2  mt-24">
         <h2 className="md:text-3xl lg:text-4xl  font-monsterrat text-secundario font-bold">{`${nombre}`}</h2>
         <p className="font-normal text-gray-300">{`${descripcion}`}</p>
        { stock > 1 
