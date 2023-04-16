@@ -2,7 +2,7 @@ const CerrarSesion = ({ sesionCerrada, setModal }) => {
   return (
     <div className="bg-terciario z-20 w-full absolute left-[120%] top-[15%] sm:w-[75%] md:w-[660px] rounded-xl flex flex-col gap-12 py-10">
       <div className="flex flex-col items-center justify-center gap-8">
-        <img src={"./public/logout.png"} alt="" />
+        <img src={"https://i.ibb.co/FhMJk06/logout.png"} alt="" />
         <h3 className=" font-bold text-2xl text-blanco">Cerrar sesión</h3>
         <p className="font-light text-xl text-blanco text-center">
           ¿Estás seguro de cerrar la sesión? Una vez realizada esta acción,
