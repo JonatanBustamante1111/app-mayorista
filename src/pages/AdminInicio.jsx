@@ -15,7 +15,7 @@ export default function AdminInicio() {
 
   const [modal, setModal] = useState(false)
   const [idProducto, setIdProducto] = useState(null)
-
+  // Read Products
   const consultarProductos = async () => {
     const data = await getDocs(collection(db, "productos"));
     setProductos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -24,7 +24,7 @@ export default function AdminInicio() {
     consultarProductos();
   }, []);
 
-
+  // Delete product
   const eliminarProducto = (id) => {
     const documento_A_Eliminar = doc(db, "productos", id);
     Swal.fire({

@@ -30,6 +30,8 @@ export default function AdminNuevoProducto({ handleModal }) {
 
   const navigate = useNavigate();
 
+
+  // Create Product
   const handleSubmit = async (e) => {
     e.preventDefault();
 
