@@ -30,7 +30,7 @@ const CerrarSesion = ({ sesionCerrada, setModal }) => {
             sesionCerrada();
           }}
         >
-          Cerrar sesión
+          Eliminar
         </button>
       </div>
     </div>

@@ -24,35 +24,12 @@ export default function AdminInicio() {
     consultarProductos();
   }, []);
 
-
   const eliminarProducto = (id) => {
     const documento_A_Eliminar = doc(db, "productos", id);
-    Swal.fire({
-      title: "Eliminar producto",
-      text: "¿Estás seguro de eliminar el producto del sistema? Una vez realizada esta acción, no podrá revertirse.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "red",
-      cancelButtonColor: "002633",
-      cancelButtonText: "Cancelar",
-      confirmButtonText: "Eliminar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteDoc(documento_A_Eliminar)
-          .then(() => {
-            consultarProductos();
-            Swal.fire(
-              "Eliminado!",
-              "El producto fue eliminado correctamente.",
-              "success"
-            );
-          })
-          .catch((error) => {
-            console.error("Error eliminando el documento: ", error);
-          });
-      }
-    });
+    deleteDoc(documento_A_Eliminar)
+    consultarProductos();
   };
+
   const buscarProductos = (e) => {
     e.preventDefault()
     const buscar = productos.filter(prod => prod.nombre.toLowerCase().includes(busqueda.toLowerCase()));
@@ -118,6 +95,7 @@ export default function AdminInicio() {
               key={producto.id}
               setIdProducto={setIdProducto}
               producto={producto}
+              setModal={setModal}
               eliminarProducto={eliminarProducto}
             />
           ))
@@ -126,6 +104,7 @@ export default function AdminInicio() {
               key={producto.id}
               setIdProducto={setIdProducto}
               producto={producto}
+              setModal={setModal}
               eliminarProducto={eliminarProducto}
             />
           ))}
