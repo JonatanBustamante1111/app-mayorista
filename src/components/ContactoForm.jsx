@@ -51,12 +51,9 @@ function ContactoForm() {
         />
           <button
             type="submit"
-            className=" w-[90%] mx-auto
-            text-center font-semibold py-4 px-6
-            bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
-            rounded-lg
-            "
-            
+            className="
+            bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
+            py-4 px-6 rounded-lg font-semibold text-base mb-10"    
           >
             Enviar
           </button>
