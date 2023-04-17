@@ -23,8 +23,8 @@ export default function ItemCount({ initial = 1, onAdd, stock }) {
     return (
 
 
-        <div className='flex w-full  justify-between'>
-            <div className='w-36 grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg'>
+        <div className='flex  gap-10'>
+            <div className='w-1/3 grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg'>
                 <button className='border-none text-2xl font-bold text-secundario px-[3px] pb-[6px] rounded' variant="text" onClick={decrement}><Remove /></button>
                 <div className='text-xl text-blanco'>{count}</div>
                 <button className='border-none text-2xl font-bold text-secundario px-[3px] pb-[6px] rounded' variant="text " onClick={increment}><Add /></button>
@@ -32,10 +32,10 @@ export default function ItemCount({ initial = 1, onAdd, stock }) {
 
             <button
                 onClick={() => onAdd(count)}
-                className=' lg:w-[300px]
+                className=' w-[320px]
                 bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600
                 py-4 px-6 text-sm text-primario font-bold
-                rounded-lg  '
+                rounded-lg '
             >
                 Agregar al carrito 
             </button>

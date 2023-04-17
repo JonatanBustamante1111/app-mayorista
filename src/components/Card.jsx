@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import BorrarProducto from "./BorrarProducto";
 
-export default function Card({ producto, eliminarProducto, setIdProducto }) {
-
+export default function Card( {eliminarProducto,producto, setIdProducto }) {
+  const [modal, setModal] = useState(false)
+  
   const location = useLocation();
 
-  const { nombre, precio, imagen, id } = producto;
+  const { nombre, precio, imagen, id , stock } = producto;
 
   if (location.pathname === "/admin") {
     return (
-
-      
       <article className=" border-b last:border-none border-blanco w-[90%] mx-auto py-5">
+        {modal && <BorrarProducto eliminarProducto={eliminarProducto} setModal={setModal} id={id}/>}
         <div className="grid grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-x-4 rounded-xl place-items-center ">
           <img
             src={imagen}
@@ -19,11 +20,11 @@ export default function Card({ producto, eliminarProducto, setIdProducto }) {
             alt={`Imagen de ${nombre}`}
           />
             <h3 className="font-bold  text-blanco text-center text-lg">{nombre}</h3>
-            <p className="font-medium text-xl text-center text-blanco">50</p>
+            <p className="font-medium text-xl text-center text-blanco">{stock}</p>
             <p className="font-semibold  text-2xl text-center text-blanco">${precio}</p>
             <div className="flex justify-end items-center  text-center text-2xl gap-x-7 px-3">
               <button
-                onClick={() => eliminarProducto(id)}
+                onClick={ () => setModal(true) }
                 className="text-rojo w-full"
               >
                 <ion-icon name="trash-sharp"></ion-icon>
