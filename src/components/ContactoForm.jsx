@@ -31,7 +31,7 @@ function ContactoForm() {
           placeholder="Nombre"  
           required
           onChange={(e) => setName(e.target.value)}
-          className=' grid grid-cols-3 place-items-center py-[6px] text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
+          className='pl-4 grid grid-cols-3 place-items-center py-[6px] text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
         />
         <input
           type="email"
@@ -39,7 +39,7 @@ function ContactoForm() {
           placeholder="E-mail"
           required
           onChange={(e) => setEmail(e.target.value)}
-          className=' grid grid-cols-3 place-items-center py-[6px]  text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
+          className='pl-4 grid grid-cols-3 place-items-center py-[6px]  text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
 
         />
         <textarea
@@ -47,7 +47,7 @@ function ContactoForm() {
           placeholder="Escribe tu comentario aquí"
           required
           onChange={(e) => setComment(e.target.value)}
-          className=' grid grid-cols-3 place-items-center py-[6px]  text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
+          className='pl-4 grid grid-cols-3 place-items-center py-[6px]  text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
         />
           <button
             type="submit"
