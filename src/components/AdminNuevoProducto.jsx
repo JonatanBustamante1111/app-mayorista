@@ -28,6 +28,8 @@ export default function AdminNuevoProducto({ handleModal }) {
   const [subCategoria, setSubCategoria] = useState("");
 
 
+
+  // Create Product
   const handleSubmit = async (e) => {
     e.preventDefault();
 

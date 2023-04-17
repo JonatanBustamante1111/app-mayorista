@@ -61,6 +61,8 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
     setImagenUrl(!imagenUrl)
   }
 
+
+    // Update product
   const handleUpdate = async e => {
     e.preventDefault()
     // documento a acualizar
