@@ -16,6 +16,7 @@ export default function Productos() {
 
   const [filtradoResponsive, setFiltradoResponsive] = useState(false)
 
+  // Read Products
   useEffect(() => {
     const consultarProductos = async () => {
       const data = await getDocs(collection(db, "productos"));

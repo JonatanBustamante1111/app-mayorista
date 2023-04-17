@@ -13,6 +13,7 @@ export default function Producto() {
   
   const { descripcion, imagen, nombre, precio, stock, categoria, subcategoria } = dato;
   
+  // Read Product
   async function getProducto() {
     const docRef = doc(db, "productos", productoId);
     const result = await getDoc(docRef);
