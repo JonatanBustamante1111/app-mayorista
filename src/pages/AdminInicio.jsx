@@ -26,7 +26,11 @@ export default function AdminInicio() {
 
 
   // Delete product
-
+  const eliminarProducto = (id) => {
+    const documento_A_Eliminar = doc(db, "productos", id);
+    deleteDoc(documento_A_Eliminar)
+    consultarProductos();
+  };
 
   const buscarProductos = (e) => {
     e.preventDefault()

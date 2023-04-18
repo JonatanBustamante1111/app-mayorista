@@ -106,13 +106,13 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
             </p>
             <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base"></div>
           </div>
-          <form onSubmit={handleSubmit} className="my-10">
+          <form onSubmit={handleSubmit} className="my-10 flex flex-col ">
             <label>
               <input
                 type="email"
                 value={email}
                 placeholder="E-mail:"
-                className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-4 pr-3  text-blanco "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco "
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
@@ -125,11 +125,11 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
-            <div className=" bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
-            py-4 px-6 rounded-lg font-semibold text-base mb-10">
+            <div className="w-full flex justify-center">
               <button
                 type="submit"
-                className="text-center font-monsterrat font-semibold  "
+                className=" font-monsterrat bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
+                py-4 px-6 rounded-lg font-semibold text-base mb-10 "
               >
                 Iniciar sesión
               </button>

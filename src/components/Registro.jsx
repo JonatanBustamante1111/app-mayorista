@@ -64,7 +64,7 @@ function Registro() {
     setPassword("");
   };
   return (
-    <div >
+    <div>
       <div className=" place-items-center py-[6px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 ">
         <button onClick={handleSignUpWithGoogle}>Registrarse con Google</button>
       </div>
@@ -89,12 +89,13 @@ function Registro() {
           onChange={(e) => setPassword(e.target.value)}
           className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3 my-8  text-blanco "
         />
-        <div className=" bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px] py-4 px-6 rounded-lg font-semibold text-base mb-10">
+        <div className=" w-full flex justify-center">
           <button
             type="submit"
-            className="text-center font-monsterrat font-semibold  "
+            className=" font-monsterrat bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
+                py-4 px-6 rounded-lg font-semibold text-base mb-10 "
           >
-            Crear cuenta
+            Iniciar sesión
           </button>
         </div>
       </form>
