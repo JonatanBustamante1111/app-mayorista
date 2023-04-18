@@ -76,6 +76,7 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
         console.log("Bienvenido administrador");
         setIsLoggedAdmin(true);
         navigate("/admin");
+        navigate("/admin")
       
         // redireccionar a la pagina de administrador
       }

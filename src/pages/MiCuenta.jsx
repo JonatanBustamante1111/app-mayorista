@@ -1,8 +1,8 @@
-import { useState } from "react";
+import {useState } from "react";
 import Registro from "../components/Registro";
 import Login from "../components/Login";
-import { auth } from "../utils/firebaseconfig";
-
+import {auth } from "../utils/firebaseconfig";
+// import UsuarioActualizarDatos from "../components/UsuarioActualizarDatos";
 
 export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLoggedAdmin}) {
   const [login, setLogin] = useState(false);
@@ -11,10 +11,6 @@ export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLogge
     setLogin(!login);
   };
 
-
-  {
-    loggedIn ? console.log('usuario logueado') : console.log('usuario deslogueado')
-  }
   return (
     <div className="px-4 my-20 md:my-40 md:w-1/2 md:mx-auto">
       {loggedIn ? (
@@ -55,7 +51,7 @@ export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLogge
               setLoggedIn={setLoggedIn}
             />
           ) : (
-            <Registro handleChangeLogin={handleChangeLogin} />
+            <Registro />
           )}
         </div>
       )}

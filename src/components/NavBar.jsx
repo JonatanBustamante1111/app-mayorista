@@ -39,11 +39,13 @@ export default function NavBar() {
         fixed z-[20]   top-0 transition-colors duration-300 ease-out
         ${scroll ? 'bg-terciario duration-300' : ''}  
          `}>
+          <Link to="./">
       <img
         src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
         alt="logo-crv4-removebg-preview-3"
         className="z-10"
       />
+          </Link>
       <div className="hidden md:flex">
         <NavbarLinks flexDirection={'flex-row'} />
       </div>

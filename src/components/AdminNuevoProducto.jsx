@@ -8,7 +8,6 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, storage } from "../utils/firebaseconfig";
 
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 export default function AdminNuevoProducto({ handleModal }) {
   // Hooks del input file
@@ -28,7 +27,6 @@ export default function AdminNuevoProducto({ handleModal }) {
   });
   const [subCategoria, setSubCategoria] = useState("");
 
-  const navigate = useNavigate();
 
 
   // Create Product

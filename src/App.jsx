@@ -15,9 +15,9 @@ import MiCuenta from "./pages/MiCuenta";
 import Layout from "./components/Layout";
 import CartContextProvider from "./context/CartContext";
 import Contacto from "./pages/Contacto";
-import Categorias from "./pages/Categorias";
 import Dashboard from "./components/Dashboard";
 import Pedidos from "./pages/Pedidos";
+import Provedores from "./pages/Provedores";
 
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(
@@ -79,10 +79,10 @@ const App = () => {
             ),
           },
           {
-            path: "/admin/categorias",
+            path: "/admin/provedores",
             element: isLoggedAdmin ? (
        
-                <Categorias/>
+                <Provedores/>
                 
             ) : (
               // Si el usuario no está logueado, redirige a la página de inicio
