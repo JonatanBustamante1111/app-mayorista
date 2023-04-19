@@ -1,5 +1,4 @@
 import { categorias } from '../utils/categorias'
-import { provedores } from "../utils/provedores";
 
 export default function Formulario({
     handleChangeArchivo,
@@ -7,10 +6,11 @@ export default function Formulario({
     setCamposProducto,
     inputFileRef,
     imagenUrl,
-    setSubCategoria
+    setSubCategoria,
+    proveedores
 }) {
 
-    
+    console.log(proveedores)
     const handleChangeCategoria = (e) => {
         setCamposProducto({
             ...camposProducto,
@@ -83,15 +83,17 @@ export default function Formulario({
                     name="provedor"
                     id="provedor"
                     className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
-                    value={camposProducto.provedor}
+                    value={camposProducto.proveedor}
                     onChange={e => {
-                        setCamposProducto({...camposProducto,provedor:e.target.value})
+                        setCamposProducto({...camposProducto,proveedor:e.target.value})
                     }}
                 >
-                    <option value="" >-- Seleccione el provedor --</option>
-                    {
-                        provedores.map((provedor, i) => (<option key={i} value={provedor.label}>{provedor.label}</option>))
-                    }
+                    <option value="" >-- Seleccione el proveedor --</option>
+                    {proveedores.map((proveedor, i) => (
+                    <option key={i} value={proveedor.nombre}>
+              {proveedor.nombre}
+            </option>
+          ))}
                 </select>
 
             </div>

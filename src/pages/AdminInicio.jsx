@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import { db } from "../utils/firebaseconfig";
-import Swal from "sweetalert2";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import AdminNuevoProducto from "../components/AdminNuevoProducto";
 import AdminEditarProducto from "./AdminEditarProducto";
+import AumentarPrecioPorProvedores from "../components/AumentarPrecioPorProveedor";
 
 export default function AdminInicio() {
-
+  const [proveedores,setProveedores] = useState([])
   const [productos, setProductos] = useState([]);
   // Estados para manejar las busquedas de los productos
   const [busqueda, setBusqueda] = useState('')
   const [productosBuscados, setProductosBuscados] = useState([])
 
   const [modal, setModal] = useState(false)
+  const [modalTwo,setModalTwo] = useState(false)
   const [idProducto, setIdProducto] = useState(null)
   // Read Products
   const consultarProductos = async () => {
@@ -24,6 +25,16 @@ export default function AdminInicio() {
     consultarProductos();
   }, []);
 
+  const consultarProveedor = async () => {
+    const producto = collection(db, "proveedores")
+    const querySnapshot = await getDocs(producto)
+    const datos = querySnapshot.docs.map(doc => doc.data().nombre)
+    setProveedores(datos)
+  }
+  
+  useEffect(() => {
+    consultarProveedor()
+  }, [])
 
   // Delete product
   const eliminarProducto = (id) => {
@@ -45,10 +56,13 @@ export default function AdminInicio() {
   return (
     <main className="h-full absolute flex flex-col left-1/4">
       {
-        idProducto !== null && <AdminEditarProducto idProducto={idProducto} setIdProducto={setIdProducto} />
+        idProducto !== null && <AdminEditarProducto idProducto={idProducto} setIdProducto={setIdProducto} proveedores={proveedores} setProveedores={setProveedores}/>
       }
       {
-        modal && <AdminNuevoProducto handleModal={handleModal} />
+        modal && <AdminNuevoProducto handleModal={handleModal} proveedores={proveedores} setProveedores={setProveedores} />
+      }
+      {
+        modalTwo && <AumentarPrecioPorProvedores setModalTwo={setModalTwo} proveedores={proveedores} setProveedores={setProveedores}/>
       }
       <section className='grid grid-rows-2'>
         <article className="flex items-center justify-between  m-8 ">
@@ -72,9 +86,19 @@ export default function AdminInicio() {
               </button>
             </div>
           </form>
+          <div className=" flex  items-center gap-x-1 text-blanco text-xl font-medium ">
+          <ion-icon name="add-sharp"></ion-icon>
+            <button onClick={ () => {
+              setModalTwo(true)
+             }}>
+              Precio proveedor
+            </button>
+          </div>
           <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium ">
           <ion-icon name="add-sharp"></ion-icon>
-            <button onClick={handleModal}>
+            <button onClick={()=>{
+              handleModal()
+            }}>
               Nuevo Producto
             </button>
           </div>

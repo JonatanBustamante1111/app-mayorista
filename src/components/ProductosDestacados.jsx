@@ -24,8 +24,6 @@ export default function ProductosDestacados() {
     consultarProductos()
   }, [])
 
-  console.log(productos)
-
   return (
     <section className="flex flex-col gap-16 w-full col-span-2">
       <article className="w-full text-center">
