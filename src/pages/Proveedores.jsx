@@ -15,6 +15,7 @@ import {
 
 import AgregarProveedor from "../components/AgregarProveedor";
 import BorrarProveedor from "../components/BorrarProveedor";
+import { useNavigate } from "react-router-dom";
 
 const Proveedores = () => {
   const [busqueda, setBusqueda] = useState("");
@@ -24,6 +25,7 @@ const Proveedores = () => {
   const [modal2, setModal2] = useState(false);
   const [id, setId] = useState("");
 
+  const navigate = useNavigate();
   // // trae los proveedores de la base de datos
   const consultarProveedor = async () => {
     const data = await getDocs(collection(db, "proveedores"));
@@ -46,14 +48,23 @@ const Proveedores = () => {
   const eliminarProveedor = (id) => {
     const documento_A_Eliminar = doc(db, "proveedores", id);
     deleteDoc(documento_A_Eliminar);
-    consultarProveedor();
+  
+    Swal.fire({
+      icon: 'success',
+      title: 'Proveedor borrado'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        consultarProveedor();
+        navigate("/admin/proveedores");
+      }
+    })
   };
 
   return (
     <main class="h-full absolute flex flex-col left-1/4">
       {/* permite abrir y cerrar el modal para agregar proveedores */}
       {modal && (
-        <AgregarProveedor setModal={setModal} proveedores={proveedores} />
+        <AgregarProveedor setModal={setModal} proveedores={proveedores} consultarProveedor={consultarProveedor} />
       )}
       <section className="grid grid-rows-2">
         <article className="flex items-center justify-between  my-8 mx-4">

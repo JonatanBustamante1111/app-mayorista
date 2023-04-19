@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../utils/firebaseconfig";
 import Swal from "sweetalert2";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection,  getDocs, } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
-const AgregarProveedor = ({ setModal, proveedores }) => {
+const AgregarProveedor = ({ setModal, proveedores,consultarProveedor }) => {
   const [id, setId] = useState(0);
   const [fecha, setFecha] = useState("");
   const [nombre, setNombre] = useState("");
+  const navigate = useNavigate();
 
   // se encarga de generar un ID unico segun la cantidad de objetos
   const cantId = proveedores.length;
@@ -14,6 +16,10 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
     setId(cantId + 1);
   }, [cantId]);
 
+
+    useEffect(() => {
+      consultarProveedor();
+    }, []);
   // genera la fecha actual del dia
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -23,7 +29,7 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
       const anio = fecha.getFullYear();
       const diaFormateado = dia < 10 ? `0${dia}` : dia;
       const mesFormateado = mes < 10 ? `0${mes}` : mes;
-      const fechaActualFormateada = `${anio}-${mesFormateado}-${diaFormateado}`;
+      const fechaActualFormateada = `${diaFormateado}-${mesFormateado}-${anio}`;
       setFecha(fechaActualFormateada);
     });
     return () => {
@@ -49,14 +55,20 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
     };
 
     clearState();
+      // cierra el modal
+      setModal(false);
 
     // muestra un mensaje si la carga es correcta
     Swal.fire({
       icon: "success",
       title: "¡Proveedor agregado correctamente!",
-    });
-    // cierra el modal
-    setModal(false);
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/admin/proveedores");
+        consultarProveedor()
+      }
+    })
+
   };
 
   return (
@@ -123,7 +135,7 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
           type="submit"
           className="my-5 mx-auto bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
               py-4 px-6 rounded-lg font-semibold text-base cursor-pointer"
-        >
+         >
           Agregar proveedor
         </button>
       </form>
