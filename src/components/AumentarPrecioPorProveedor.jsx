@@ -48,19 +48,19 @@ const AumentarPrecioPorProvedores = ({setModalTwo}) => {
   };
 
   return (
-    <section className="bg-terciario z-20 w-full absolute left-[20%] top-[16%] sm:w-[75%] md:w-[660px] rounded-xl p-4">
-           <div className="w-full flex justify-between items-center py-5 ">
+    <section className="bg-terciario z-20 w-full absolute left-[20%] top-[16%] sm:w-[75%] md:w-[660px] rounded-xl p-8">
+           <div className="w-full flex justify-between items-center py-5  ">
         <h1 className="text-2xl text-blanco font-semibold  text-left  ">
           Aumentar precio productos
         </h1>
-        <button className="text-blanco font-semibold text-3xl " onClick={ () => setModalTwo(false)}>
+        <button className="text-blanco font-semibold text-3xl  " onClick={ () => setModalTwo(false)}>
           <ion-icon name="close-sharp"></ion-icon>
         </button>
       </div>
-      <div className="mb-8 flex flex-col gap-y-2">
+      <div className="mb-8 flex flex-col gap-y-2 ">
         <label
           required  
-          className="text-blanco font-semibold text-base"
+          className="text-blanco font-semibold text-base mb-4"
           htmlFor="categoria"
         >
           Elija el proveedor:
@@ -69,7 +69,7 @@ const AumentarPrecioPorProvedores = ({setModalTwo}) => {
           required
           name="provedor"
           id="provedor"
-          className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
+          className="mb-5 p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
           value={proveedorSeleccionado}
           onChange={ (e) => setProveedorSeleccionado(e.target.value)}
         >
@@ -81,9 +81,9 @@ const AumentarPrecioPorProvedores = ({setModalTwo}) => {
           ))}
         </select>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col mb-4">
         <label
-          className="text-blanco font-semibold text-base"
+          className="text-blanco font-semibold text-base mb-6"
           htmlFor="porcentaje"
         >
           Elija el porcentaje:
@@ -93,12 +93,12 @@ const AumentarPrecioPorProvedores = ({setModalTwo}) => {
           value={porcentaje}
           type="number"
           onChange={(e) => setPorcentaje(e.target.value)}
-          className=" grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit mb-5 text-secundario text-center"
+          className="  mb-12 py-3 grid grid-cols-3 place-items-center  border-secundario border-[1px] rounded-lg  bg-inherit  text-secundario text-center"
         />
         <button
           onClick={ actualizarPrecio}
           className=" w-[90%] mx-auto
-                text-center font-semibold py-4 px-6
+                text-center font-semibold py-4 px-6 mb-6
                 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
                 rounded-lg
                 "
