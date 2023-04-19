@@ -17,7 +17,7 @@ import CartContextProvider from "./context/CartContext";
 import Contacto from "./pages/Contacto";
 import Dashboard from "./components/Dashboard";
 import Pedidos from "./pages/Pedidos";
-import Provedores from "./pages/Provedores";
+import Proveedores from "./pages/Proveedores";
 
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(
@@ -79,10 +79,10 @@ const App = () => {
             ),
           },
           {
-            path: "/admin/provedores",
+            path: "/admin/proveedores",
             element: isLoggedAdmin ? (
        
-                <Provedores/>
+                <Proveedores/>
                 
             ) : (
               // Si el usuario no está logueado, redirige a la página de inicio

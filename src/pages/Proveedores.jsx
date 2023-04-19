@@ -15,7 +15,7 @@ import {
 
 import AgregarProveedor from "../components/AgregarProveedor";
 
-const Provedores = () => {
+const Proveedores = () => {
   const [busqueda, setBusqueda] = useState("");
 
   const [proveedores, setProveedores] = useState([]);
@@ -95,4 +95,4 @@ const Provedores = () => {
     </main>
   );
 };
-export default Provedores;
+export default Proveedores;

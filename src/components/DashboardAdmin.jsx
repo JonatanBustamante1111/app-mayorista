@@ -48,13 +48,13 @@ const DashboardAdmin = ({ setIsLoggedAdmin, setLoggedIn }) => {
           </Link>
         </div>
        <div className={`flex items-center w-full justify-center py-3
-          ${activeLink === "provedores" ? "bg-primario text-secundario border-l-4 border-secundario" : "text-blanco"}
+          ${activeLink === "proveedores" ? "bg-primario text-secundario border-l-4 border-secundario" : "text-blanco"}
         `}>
          <Link
-           to="/admin/provedores"
-           onClick={() => setActiveLink("provedores")}
+           to="/admin/proveedores"
+           onClick={() => setActiveLink("proveedores")}
          >
-           <h3 className="font-semibold">Provedores</h3>
+           <h3 className="font-semibold">Proveedores</h3>
          </Link>
        </div>
       </div>
