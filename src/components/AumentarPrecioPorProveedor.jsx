@@ -4,10 +4,21 @@ import Swal from "sweetalert2";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { writeBatch } from "firebase/firestore";
 
-const AumentarPrecioPorProvedores = ({setModalTwo,proveedores,setProveedores}) => {
+const AumentarPrecioPorProvedores = ({setModalTwo}) => {
   const [proveedorSeleccionado, setProveedorSeleccionado] = useState("");
   const [porcentaje, setPorcentaje] = useState('');
-
+  const [proveedores, setProveedores] = useState([]);
+  
+  const consultarProveedor = async () => {
+    const producto = collection(db, "proveedores")
+    const querySnapshot = await getDocs(producto)
+    const datos = querySnapshot.docs.map(doc => doc.data().nombre)
+    setProveedores(datos)
+  }
+  
+  useEffect(() => {
+    consultarProveedor()
+  }, [])
   // actualiza precios por proveedores
   const actualizarPrecio = async () => {
     const productosRef = collection(db, "productos");

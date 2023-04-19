@@ -62,7 +62,7 @@ export default function AdminInicio() {
         modal && <AdminNuevoProducto handleModal={handleModal} proveedores={proveedores} setProveedores={setProveedores} />
       }
       {
-        modalTwo && <AumentarPrecioPorProvedores setModalTwo={setModalTwo} proveedores={proveedores} setProveedores={setProveedores}/>
+        modalTwo && <AumentarPrecioPorProvedores setModalTwo={setModalTwo} />
       }
       <section className='grid grid-rows-2'>
         <article className="flex items-center justify-between  m-8 ">
