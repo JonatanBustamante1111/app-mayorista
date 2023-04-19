@@ -25,6 +25,7 @@ export default function AdminInicio() {
     consultarProductos();
   }, []);
 
+// trae los proveedores de la base de datows
   const consultarProveedor = async () => {
     const producto = collection(db, "proveedores")
     const querySnapshot = await getDocs(producto)
@@ -36,18 +37,20 @@ export default function AdminInicio() {
     consultarProveedor()
   }, [])
 
-  // Delete product
+  // Borra productos de la base de datos
   const eliminarProducto = (id) => {
     const documento_A_Eliminar = doc(db, "productos", id);
     deleteDoc(documento_A_Eliminar)
     consultarProductos();
   };
 
+//Busca productos en la base de datos 
   const buscarProductos = (e) => {
     e.preventDefault()
     const buscar = productos.filter(prod => prod.nombre.toLowerCase().includes(busqueda.toLowerCase()));
     setProductosBuscados(buscar)
   }
+  // abre y cierra el modal
   const handleModal = () => {
     setIdProducto(null)
     setModal(!modal)
@@ -76,7 +79,7 @@ export default function AdminInicio() {
                     bg-transparent font-normal text-xs p-2 border-[1px] border-secundario 
                     rounded-lg text-blanco focus:outline-none
                   "
-              placeholder="Buscar"
+              placeholder="Buscar por nombre"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
             />
