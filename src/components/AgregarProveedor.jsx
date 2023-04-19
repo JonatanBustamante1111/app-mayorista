@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../utils/firebaseconfig";
 import Swal from "sweetalert2";
-import {
-  addDoc,
-  collection,
-} from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 const AgregarProveedor = ({ setModal, proveedores }) => {
   const [id, setId] = useState(0);
@@ -17,7 +14,7 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
     setId(cantId + 1);
   }, [cantId]);
 
-// genera la fecha actual del dia
+  // genera la fecha actual del dia
   useEffect(() => {
     const intervalId = setInterval(() => {
       const fecha = new Date();
@@ -37,30 +34,30 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
   // crea un arreglo con la informacion del formulario
   const newProveedor = { id: id, fecha: fecha, nombre: nombre };
 
-    // Create proveedor
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+  // Create proveedor
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      // Agregar documento a la collecion
-      await addDoc(collection(db, "proveedores"), newProveedor);
-  
-      // Restablece los campos a vacio del formulario
-      const clearState = () => {
-        setId(0);
-        setFecha("");
-        setNombre("");
-      };
+    // Agregar documento a la collecion
+    await addDoc(collection(db, "proveedores"), newProveedor);
 
-      clearState();
-  
-      // muestra un mensaje si la carga es correcta
-      Swal.fire({
-        icon: "success",
-        title: "¡Proveedor agregado correctamente!",
-      });
-      // cierra el modal
-      setModal(false)
+    // Restablece los campos a vacio del formulario
+    const clearState = () => {
+      setId(0);
+      setFecha("");
+      setNombre("");
     };
+
+    clearState();
+
+    // muestra un mensaje si la carga es correcta
+    Swal.fire({
+      icon: "success",
+      title: "¡Proveedor agregado correctamente!",
+    });
+    // cierra el modal
+    setModal(false);
+  };
 
   return (
     <section className="bg-terciario z-20 w-full absolute left-[20%] top-[16%] sm:w-[75%] md:w-[660px] rounded-xl p-4">
@@ -68,7 +65,10 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
         <h1 className="text-2xl text-blanco font-semibold  text-left  ">
           Agregar proveedor
         </h1>
-        <button className="text-blanco font-semibold text-3xl " onClick={ () => setModal(false)}>
+        <button
+          className="text-blanco font-semibold text-3xl "
+          onClick={() => setModal(false)}
+        >
           <ion-icon name="close-sharp"></ion-icon>
         </button>
       </div>
@@ -84,11 +84,15 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
             className="p-3 border-secundario border rounded-xl bg-inherit w-full text-blanco focus:outline-none"
             placeholder="Id del proveedor"
             name="id"
-            value={id} readOnly
+            value={id}
+            readOnly
           />
         </div>
         <div className="mb-8 flex flex-col gap-y-2">
-          <label className="text-blanco font-semibold text-base" htmlFor="nombre">
+          <label
+            className="text-blanco font-semibold text-base"
+            htmlFor="nombre"
+          >
             Nombre:
           </label>
           <input
@@ -111,14 +115,14 @@ const AgregarProveedor = ({ setModal, proveedores }) => {
             type="text"
             placeholder="nombre del propietario"
             className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
-            value={fecha} readOnly
+            value={fecha}
+            readOnly
           />
         </div>
         <button
           type="submit"
-          className="
-            bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
-            py-4 px-6 rounded-lg font-semibold text-base mb-10"
+          className="my-5 mx-auto bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
+              py-4 px-6 rounded-lg font-semibold text-base cursor-pointer"
         >
           Agregar proveedor
         </button>
