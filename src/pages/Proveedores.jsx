@@ -16,6 +16,7 @@ import {
 import AgregarProveedor from "../components/AgregarProveedor";
 import BorrarProveedor from "../components/BorrarProveedor";
 import { useNavigate } from "react-router-dom";
+import CardProveedor from "../components/CardProveedor";
 
 const Proveedores = () => {
   const [busqueda, setBusqueda] = useState("");
@@ -48,23 +49,27 @@ const Proveedores = () => {
   const eliminarProveedor = (id) => {
     const documento_A_Eliminar = doc(db, "proveedores", id);
     deleteDoc(documento_A_Eliminar);
-  
+
     Swal.fire({
-      icon: 'success',
-      title: 'Proveedor borrado'
+      icon: "success",
+      title: "Proveedor borrado",
     }).then((result) => {
       if (result.isConfirmed) {
         consultarProveedor();
         navigate("/admin/proveedores");
       }
-    })
+    });
   };
 
   return (
     <main class="h-full absolute flex flex-col left-1/4">
       {/* permite abrir y cerrar el modal para agregar proveedores */}
       {modal && (
-        <AgregarProveedor setModal={setModal} proveedores={proveedores} consultarProveedor={consultarProveedor} />
+        <AgregarProveedor
+          setModal={setModal}
+          proveedores={proveedores}
+          consultarProveedor={consultarProveedor}
+        />
       )}
       <section className="grid grid-rows-2">
         <article className="flex items-center justify-between  my-8 mx-4">
@@ -112,57 +117,24 @@ const Proveedores = () => {
           )}
 
           {/* renderiza los proveedores */}
-          {
-            proveedoresBuscados.length > 0
+          {proveedoresBuscados.length > 0
             ? proveedoresBuscados.map((proveedor) => (
-              <div className="grid grid-cols-[2fr,4fr,4fr,1fr] gap-x-4 border-b-2 mb-6">
-                <h3 className="font-bold  text-blanco  text-lg ">
-                  {proveedor.id.substring(0, 5)}
-                </h3>
-                <p className="font-medium text-xl  text-blanco mb-4">
-                  {proveedor.nombre}
-                </p>
-                <p className="font-medium text-xl  text-blanco">
-                  {proveedor.fecha}
-                </p>
-                <div className="flex justify-end items-center text-2xl gap-x-7 px-3">
-                  <button
-                    onClick={() => {
-                      setId(proveedor.id);
-                      setModal2(true);
-                    }}
-                    className="text-rojo w-full"
-                  >
-                    <ion-icon name="trash-sharp"></ion-icon>
-                  </button>
-                </div>
-              </div>
-            ))
-            : (proveedores.map((proveedor) => (
-            <div className="grid grid-cols-[2fr,4fr,4fr,1fr] gap-x-4 border-b-2 mb-6">
-              <h3 className="font-bold  text-blanco  text-lg ">
-                {proveedor.id.substring(0, 5)}
-              </h3>
-              <p className="font-medium text-xl  text-blanco mb-4">
-                {proveedor.nombre}
-              </p>
-              <p className="font-medium text-xl  text-blanco">
-                {proveedor.fecha}
-              </p>
-              <div className="flex justify-end items-center text-2xl gap-x-7 px-3">
-                <button
-                  onClick={() => {
-                    setId(proveedor.id);
-                    setModal2(true);
-                  }}
-                  className="text-rojo w-full"
-                >
-                  <ion-icon name="trash-sharp"></ion-icon>
-                </button>
-              </div>
-            </div>
-          )))
-          }
+                <CardProveedor
+                  key={proveedor.id}
+                  setId={setId}
+                  setModal2={setModal2}
+                  proveedor={proveedor}
+                />
+              ))
+            : proveedores.map((proveedor) => (
+                <CardProveedor
+                  key={proveedor.id}
+                  setId={setId}
+                  setModal2={setModal2}
+                  proveedor={proveedor}
+                />
+              ))
+            }
         </article>
       </section>
     </main>
