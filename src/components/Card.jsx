@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import BorrarProducto from "./BorrarProducto";
+import { CartContext } from "../context/CartContext";
 
 export default function Card({ eliminarProducto, producto, setIdProducto }) {
   const [modal, setModal] = useState(false);
+  const { cart } = useContext(CartContext);
+  const { nombre, precio, imagen, id, stock } = producto;
 
   const location = useLocation();
-
-  const { nombre, precio, imagen, id, stock } = producto;
+  const cantidad = 1;
+  // funcion que guarda los productos en el carrito
+  function onAdd() {
+    cart.agregarCarrito(producto, cantidad);
+    console.log('funciona')
+  }
 
   if (location.pathname === "/admin") {
     return (
@@ -44,7 +51,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
       </article>
     );
   } else {
-    return (
+    return stock > "0" ? (
       <article className="flex flex-col transition-all duration-300">
         <Link
           to={`/producto/${id}`}
@@ -62,13 +69,47 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
             <p className="font-semibold text-2xl text-blanco">${precio}</p>
           </div>
           <div>
-            <div className=" w-[72px] h-[81px] bg-secundario flex flex-row items-center  justify-center ">
+            <Link to={"/carrito"}>
+              <div className=" w-[72px] h-[81px] bg-secundario flex flex-row items-center  justify-center ">
+                <img
+                  onClick={() => onAdd()}
+                  className="w-[30px] h-[30px] rounded-xl"
+                  src={"https://i.ibb.co/Y3GJLVy/shopping-cart.png"}
+                  alt=""
+                />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </article>
+    ) : (
+      <article className="flex flex-col transition-all duration-300 ">
+        <div className="w-[92px] h-[41px] bg-terciario flex flex-row items-center justify-center absolute rounded-md">
+            <h3 className=" text-sm font-light  font-monsterrat text-blanco">Agotado</h3>
+        </div>
+        <Link
+          to={`/producto/${id}`}
+          className="mt-5 w-full flex flex-col items-center uppercase font-bold text-white text-lg  cursor-pointer"
+        >
+          <img
+            src={imagen}
+            className="h-40 w-full object-cover  rounded-t-xl  "
+            alt={`Imagen de ${nombre}`}
+          />
+        </Link>
+        <div className=" flex flex-row items-center justify-between  bg-terciario rounded-b-xl ">
+          <div className="ml-4 rounded-xl">
+            <h3 className="font-bold text-secundario text-lg">{nombre}</h3>
+            <p className="font-semibold text-2xl text-blanco">${precio}</p>
+          </div>
+          <div>
+              <div className=" w-[72px] h-[81px] bg-secundario flex flex-row items-center  justify-center ">
                 <img
                   className="w-[30px] h-[30px] rounded-xl"
                   src={"https://i.ibb.co/Y3GJLVy/shopping-cart.png"}
                   alt=""
                 />
-            </div>
+              </div>
           </div>
         </div>
       </article>

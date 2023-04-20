@@ -50,7 +50,6 @@ export default function Productos() {
     setProductosBuscados(buscar)
   }
 
-  
 
   return (
     <main>
