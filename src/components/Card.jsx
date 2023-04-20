@@ -13,7 +13,6 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
   // funcion que guarda los productos en el carrito
   function onAdd() {
     cart.agregarCarrito(producto, cantidad);
-    console.log('funciona')
   }
 
   if (location.pathname === "/admin") {
