@@ -6,7 +6,6 @@ export default function ItemCount({ initial = 1, onAdd, stock }) {
     useEffect(() => {
         setCount(initial);
     }, []);
-    console.log(stock)
     const increment = () => {
         if(stock > count){
         setCount(count + 1);
@@ -21,8 +20,6 @@ export default function ItemCount({ initial = 1, onAdd, stock }) {
         setCount(count + 1)
     }
     return (
-
-
         <div className='flex  gap-10'>
             <div className='w-1/3 grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg'>
                 <button className='border-none text-2xl font-bold text-secundario px-[3px] pb-[6px] rounded' variant="text" onClick={decrement}><Remove /></button>

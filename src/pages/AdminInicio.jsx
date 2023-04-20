@@ -115,7 +115,7 @@ export default function AdminInicio() {
           </article>
       </section>
 
-      <section className="flex flex-col  h-3/4 overflow-auto">
+      <section className="flex flex-col  h-3/4  overflow-auto  ">
 
 
         {productosBuscados.length > 0

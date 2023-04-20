@@ -1,5 +1,4 @@
 const CardProveedor = ({setId,setModal2,proveedor}) => {
-
   return (
     <div className="grid grid-cols-[2fr,4fr,4fr,1fr] gap-x-4 border-b-2 mb-6">
       <h3 className="font-bold  text-blanco  text-lg ">
