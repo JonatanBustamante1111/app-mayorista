@@ -26,7 +26,7 @@ export default function ContactoInicio() {
     <div className="text-center  md:w-1/2">
       <img
         className="mx-auto h-full"
-        src="https://i.ibb.co/4dWZK9M/image-10.png"
+        src="https://i.ibb.co/tD3S1jj/image-14-min.png"
         alt=""
       />
     </div>

@@ -41,7 +41,7 @@ export default function Inicio() {
       </section>
       <section className="w-full h-[428px]  md:h-[705px] xl:h-[768px] -z-10">
         <img
-          src="https://i.ibb.co/4THzyVG/image-3-1.png"
+          src="https://i.ibb.co/dGMGY1N/image-3-1-min.png"
           alt="Mina Facherarda"
           className="w-full h-full transform scale-x-[-1] scale-y-[1]  "
         />

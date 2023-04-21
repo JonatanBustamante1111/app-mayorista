@@ -8,12 +8,12 @@ import { Navigation } from "swiper";
 export default function SliderNosotros() {
 
   const imagenes = [
-    "https://i.ibb.co/2yYt629/Whats-App-Image-2023-04-17-at-15-16-1-1.png",
-    "https://i.ibb.co/4Jq5WK8/Whats-App-Image-2023-04-17-at-16-20-1.png",
-    "https://i.ibb.co/SRCH6gx/Whats-App-Image-2023-04-17-at-16-20-2x.png",
-    "https://i.ibb.co/dGQD950/Whats-App-Image-2023-04-17-at-16-21.png",
-    "https://i.ibb.co/R7WmcrQ/Whats-App-Image-2023-04-17-at-16-20.png",
-    "https://i.ibb.co/HX7qm5v/Whats-App-Image-2023-04-17-at-16-20-2.png"
+    "https://i.ibb.co/yB4WDyv/Whats-App-Image-2023-04-17-at-15-16-1-min.jpg",
+    "https://i.ibb.co/d4KGYqS/Whats-App-Image-2023-04-17-at-16-21-min.jpg",
+    "https://i.ibb.co/ZJQTWRS/Whats-App-Image-2023-04-17-at-16-20-2-min.jpg",
+    "https://i.ibb.co/6RKfvZg/Whats-App-Image-2023-04-17-at-16-20-min.jpg",
+    "https://i.ibb.co/sHNsR7Y/Whats-App-Image-2023-04-17-at-16-20-1-min.jpg",
+    "https://i.ibb.co/rkKzBPd/Whats-App-Image-2023-04-17-at-16-20-3-min.jpg"
   ];
   
   return (

@@ -44,7 +44,7 @@ export default function NavBar() {
          `}>
           <Link to="./">
           <img
-            src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
+            src="https://i.ibb.co/q0P6HdF/logo-crv4-removebg-preview-3.png"
             alt="logo-crv4-removebg-preview-3"
             className="z-10"
           />

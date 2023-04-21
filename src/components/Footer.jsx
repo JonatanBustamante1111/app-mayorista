@@ -5,7 +5,7 @@ function Footer() {
         <div className="flex flex-col md:flex-row md:justify-between py-12 md:px-10 gap-10 text-white bg-terciario">
         <div className="flex flex-col items-center md:flex-row gap-12">
             <div>
-                <img src="https://i.ibb.co/1ZWw5fK/logo-crv4-footer.png" alt="" />
+                <img src="https://i.ibb.co/0VHwxgR/logo-crv4-removebg-preview-5.png" alt="" />
             </div>
             <ul className="flex flex-col text-white font-monsterrat gap-3">
                     <Link to={'./'}>Inicio</Link>
