@@ -28,11 +28,12 @@ export default function ItemCount({ initial = 1, onAdd, stock }) {
         {(location.pathname.includes('productos') || location.pathname === '/') 
         
         ?  
-        <div className='flex gap-2 items-center'>
-            <div className='w-1/2 grid grid-cols-3 place-items-center  border-secundario border-[1px] rounded-lg h-1/2'>
-                <button className='border-none text-2xl font-bold text-secundario rounded  mb-[6px]' variant="text" onClick={decrement}><Remove /></button>
-                <div className='text-xl text-blanco'>{count}</div>
-                <button className='border-none text-2xl font-bold text-secundario  rounded mb-[6px]' variant="text " onClick={increment}><Add /></button>
+        <div className='flex gap-2 items-center '>
+            <div className='grid grid-rows-3 place-items-center  border-secundario border-[1px] rounded-lg h-20'>
+               
+                <button className='border-none text-2xl font-bold text-secundario  rounded ' variant="text " onClick={increment}><Add /></button>
+                <div className='text-xl text-blanco mt-2'>{count}</div>
+                <button className='border-none text-2xl font-bold text-secundario rounded  ' variant="text" onClick={decrement}><Remove /></button>
             </div>
             <Link to={"/carrito"}>
               <div className=" w-[72px] h-[81px] bg-secundario flex flex-row items-center  justify-center ">
