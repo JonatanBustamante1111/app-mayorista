@@ -41,7 +41,7 @@ export default function Producto() {
   return (
     <main className="
      flex-col w-full items-center justify-center md:flex md:flex-row md:p-4 md:gap-10">
-      <section className=" md:mt-24 md:w-1/2">
+      <section className=" md:mt-24 md:w-1/2 md:px-4">
         <h2 className="pl-4 w-4/5  text-sm font-medium text-blanco py-5 lg:mx-0">{`${categoria} / ${subcategoria} `}{''} / <span className="text-secundario"> {nombre}</span></h2>
         <img
           src={imagen}
@@ -52,7 +52,7 @@ export default function Producto() {
       <section className=" flex flex-col justify-center items-start p-4 gap-y-5 md:w-1/2  mt-24">
         <h2 className="md:text-3xl lg:text-4xl  font-monsterrat text-secundario font-bold">{`${nombre}`}</h2>
         <p className="font-normal text-gray-300">{`${descripcion}`}</p>
-       { stock > 1 
+       { stock >= 1
         ?<p className="font-semibold text-blanco">{`${stock} Disponible/s`}</p> 
         :<p className="font-semibold text-rojo">Sin stock</p> 
         }
