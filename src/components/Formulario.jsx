@@ -10,7 +10,7 @@ export default function Formulario({
     proveedores
 }) {
 
-    console.log(proveedores)
+
     const handleChangeCategoria = (e) => {
         setCamposProducto({
             ...camposProducto,

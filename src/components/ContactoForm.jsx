@@ -24,14 +24,14 @@ function ContactoForm() {
           ¡Hola! Gracias por visitar nuestra página web. Si tienes alguna pregunta o comentario, por favor completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
         </p>
       </article>
-      <form onSubmit={handleSubmit} className="w-[95%] flex flex-col gap-y-5 bg-inherit">
+      <form onSubmit={handleSubmit} className="w-[95%] flex flex-col gap-y-5 bg-inherit items-center sm:items-start">
         <input
           type="text"
           value={name}
           placeholder="Nombre"  
           required
           onChange={(e) => setName(e.target.value)}
-          className='pl-4 grid grid-cols-3 place-items-center py-[6px] text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
+          className=' w-full pl-4 grid grid-cols-3 place-items-center py-[6px] text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
         />
         <input
           type="email"
@@ -39,7 +39,7 @@ function ContactoForm() {
           placeholder="E-mail"
           required
           onChange={(e) => setEmail(e.target.value)}
-          className='pl-4 grid grid-cols-3 place-items-center py-[6px]  text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
+          className='w-full pl-4 place-items-center py-[6px]  text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
 
         />
         <textarea
@@ -47,11 +47,11 @@ function ContactoForm() {
           placeholder="Escribe tu comentario aquí"
           required
           onChange={(e) => setComment(e.target.value)}
-          className='pl-4 grid grid-cols-3 place-items-center py-[6px]  text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
+          className='w-full pl-4 grid grid-cols-3 place-items-center pb-20 pt-3   text-blanco border-secundario border-[1px] rounded-lg  bg-inherit '
         />
           <button
             type="submit"
-            className="
+            className=" 
             bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
             py-4 px-6 rounded-lg font-semibold text-base mb-10"    
           >

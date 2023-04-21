@@ -2,18 +2,19 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import BorrarProducto from "./BorrarProducto";
 import { CartContext } from "../context/CartContext";
+import ItemCount from "./ItemCount";
 
 export default function Card({ eliminarProducto, producto, setIdProducto }) {
+  const [itemCount, setItemCount] = useState(0);
   const [modal, setModal] = useState(false);
   const { cart } = useContext(CartContext);
-  const { nombre, precio, imagen, id, stock } = producto;
-
+  const { nombre, precio, imagen, id, stock} = producto;
   const location = useLocation();
-  const cantidad = 1;
+ 
   // funcion que guarda los productos en el carrito
-  function onAdd() {
+   function onAdd(cantidad) {
     cart.agregarCarrito(producto, cantidad);
-    console.log('funciona')
+    setItemCount(producto, cantidad)
   }
 
   if (location.pathname === "/admin") {
@@ -68,18 +69,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
             <h3 className="font-bold text-secundario text-lg">{nombre}</h3>
             <p className="font-semibold text-2xl text-blanco">${precio}</p>
           </div>
-          <div>
-            <Link to={"/carrito"}>
-              <div className=" w-[72px] h-[81px] bg-secundario flex flex-row items-center  justify-center ">
-                <img
-                  onClick={() => onAdd()}
-                  className="w-[30px] h-[30px] rounded-xl"
-                  src={"https://i.ibb.co/Y3GJLVy/shopping-cart.png"}
-                  alt=""
-                />
-              </div>
-            </Link>
-          </div>
+          <ItemCount initial={itemCount} stock={+stock} onAdd={onAdd} />
         </div>
       </article>
     ) : (
