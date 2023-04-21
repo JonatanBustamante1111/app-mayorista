@@ -51,17 +51,25 @@ export default function ProductosDestacados() {
             modules={[Navigation]}
             className="mySwiper"
             breakpoints={{
+              400: {
+                slidesPerView: 1,
+                spaceBetween: 50,
+              },
               640: {
                 slidesPerView: 2,
                 spaceBetween: 30,
               },
               768: {
-                slidesPerView: 3,
-                spaceBetween: 30,
+                slidesPerView: 2,
+                spaceBetween: 80,
               },
               1024: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+              1200: {
                 slidesPerView: 4,
-                spaceBetween: 30,
+                spaceBetween: 20,
               },
             }}
           >

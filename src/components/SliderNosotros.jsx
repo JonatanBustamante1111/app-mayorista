@@ -15,15 +15,12 @@ export default function SliderNosotros() {
     "https://i.ibb.co/R7WmcrQ/Whats-App-Image-2023-04-17-at-16-20.png",
     "https://i.ibb.co/HX7qm5v/Whats-App-Image-2023-04-17-at-16-20-2.png"
   ];
-
-  const prevRef = React.useRef(null);
-  const nextRef = React.useRef(null);
-
+  
   return (
       <article className='relative'>
        
-         <div className='swiper-button-prev swiper-button' ref={prevRef}></div>
-         <div className='swiper-button-next swiper-button' ref={nextRef}></div>
+         <div className='swiper-button-prev swiper-button' ></div>
+         <div className='swiper-button-next swiper-button' ></div>
         <div className='mx-10'>
           <Swiper
             slidesPerView={1}
@@ -32,8 +29,8 @@ export default function SliderNosotros() {
               clickable: true,
             }}
             navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
+              prevEl: '.swiper-button-prev',
+              nextEl: '.swiper-button-next',
             }}
             modules={[Navigation]}
             className="mySwiper"
@@ -54,7 +51,7 @@ export default function SliderNosotros() {
           >
             {imagenes.map(imagen =>
               <SwiperSlide>
-                  <img className='w-full  h-[200px] sm:h-[400px]  md:h-[674px] p-2' src={imagen} alt="" />
+                  <img className='w-full  h-[200px] sm:h-[400px]  md:h-[674px] ' src={imagen} alt="" />
               </SwiperSlide>
             )}
           </Swiper>
