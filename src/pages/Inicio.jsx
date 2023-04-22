@@ -23,7 +23,7 @@ export default function Inicio() {
         </h1>
         <p
           className=" h-[136px] w-[328px] leading-[23px] text-center font-montserrat font-normal text-base       
-        md:text-start lg:w-[588px] lg:h-32 lg:leading-8 text-white mb-16"
+        md:text-start lg:w-[520px] lg:h-32 lg:leading-8 text-white mb-16"
         >
           Somos un mayorista que ofrece una amplia variedad de productos y
           accesorios de calidad que atraen la buena suerte y la prosperidad,
@@ -43,7 +43,7 @@ export default function Inicio() {
         <img
           src="https://i.ibb.co/dGMGY1N/image-3-1-min.png"
           alt="Mina Facherarda"
-          className="w-full h-full transform scale-x-[-1] scale-y-[1]  "
+          className="w-full h-full transform  scale-y-[1]  "
         />
       </section>
       <section className=" flex flex-col p-10 gap-16 w-full bg-blanco col-span-2 md:flex-row justify-between md:w-full">

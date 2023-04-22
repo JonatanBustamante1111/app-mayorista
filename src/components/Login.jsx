@@ -94,7 +94,8 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
   return (
     <main>
         <div>
-          <div className=" place-items-center py-[6px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 ">
+          <div className=" place-items-center py-[8px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 flex flex-row items-center justify-center gap-2 font-semibold ">
+            <img className="w-[24px] " src={"https://i.ibb.co/S7kKGdz/1486146475-google-plus-79440.png"} alt="" />
             <button onClick={handleSignInWithGoogle}>
               Iniciar sesión con Google
             </button>

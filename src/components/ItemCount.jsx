@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 export default function ItemCount({ initial = 1, onAdd, stock }) {
     const [count, setCount] = useState(0);
     const location = useLocation();
+    
     useEffect(() => {
         setCount(initial);
     }, []);

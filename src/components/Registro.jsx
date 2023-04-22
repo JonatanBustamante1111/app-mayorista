@@ -65,9 +65,12 @@ function Registro() {
   };
   return (
     <div>
-      <div className=" place-items-center py-[6px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 ">
-        <button onClick={handleSignUpWithGoogle}>Registrarse con Google</button>
-      </div>
+        <div className=" place-items-center py-[8px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 flex flex-row items-center justify-center gap-2 font-semibold ">
+            <img className="w-[24px] " src={"https://i.ibb.co/S7kKGdz/1486146475-google-plus-79440.png"} alt="" />
+            <button onClick={handleSignUpWithGoogle}>
+              Iniciar sesión con Google
+            </button>
+          </div>
       <div className="flex flex-row  items-center gap-4 justify-center">
         <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base"></div>
         <p className="text-blanco font-monsterrat font-medium  text-base ">Ó</p>
