@@ -7,11 +7,8 @@ export default function ContactoNosotros() {
         <h2 className=" font-bold text-3xl w-full  ">
           ¿Querés conocer más de nosotros?
         </h2>
-        <p className=" font-light text-sm w-full my-4 mb-6 md:mb-10 ">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas
-          possimus esse eum maxime fugit, odio amet vero recusandae quaerat
-          expedita! Quis ipsam obcaecati suscipit? Natus ipsam quos reiciendis
-          quod ex.
+        <p className=" font-light text-md w-full my-4 mb-6 md:mb-10 ">
+        ¡Nos encanta que quieras saber más sobre nosotros! Si deseas obtener más información acerca de nuestra empresa y los servicios que ofrecemos, no dudes en ponerte en contacto con nosotros.
         </p>
       </div>
       <a
