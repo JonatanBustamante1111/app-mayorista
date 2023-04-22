@@ -30,7 +30,7 @@ export default function ItemCount({ initial = 1, onAdd, stock }) {
         
         ?  
         <div className='flex gap-2 items-center '>
-            <div className='grid grid-rows-3 place-items-center  border-secundario border-[1px] rounded-lg h-20'>
+            <div className='grid grid-rows-3 place-items-center  border-secundario  rounded-lg h-20'>
                
                 <button className='border-none text-2xl font-bold text-secundario  rounded ' variant="text " onClick={increment}><Add /></button>
                 <div className='text-xl text-blanco mt-2'>{count}</div>
