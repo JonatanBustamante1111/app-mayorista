@@ -1,42 +1,71 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  query,
+  where,
+  deleteDoc,
+  getDoc,
+  limit,
+  orderBy
+} from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 import ItemCount from "../components/ItemCount";
-
+import ProductosRelacionados from "../components/ProductosRelacionados";
 export default function Producto() {
   const [itemCount, setItemCount] = useState(0);
   const { cart } = useContext(CartContext);
   const [dato, setDato] = useState({});
+  const [productos, setProductos] = useState([]);
   const { productoId } = useParams();
-  
-  const { descripcion, imagen, nombre, precio, stock, categoria, subcategoria } = dato;
-  
-  // Read Product
+
+  const { descripcion, imagen, nombre, precio, stock, categoria,subcategoria} = dato;
+
   async function getProducto() {
     const docRef = doc(db, "productos", productoId);
     const result = await getDoc(docRef);
-
     if (result.exists()) {
-      return {
-        id: productoId,
-        ...result.data(),
-      };
+      const productoData = { id: productoId, ...result.data() };
+      setDato(productoData);
+      if (productoData.subcategoria && productoData.categoria) {
+        getRelatedProducts(productoData.subcategoria, productoData.categoria);
+      }
     } else {
       console.log("no such document");
     }
   }
-  useEffect(() => {
-    getProducto()
-      .then((result) => setDato(result))
-      .catch((err) => console.log(err));
-  }, []);
-
+  
+  async function getRelatedProducts(subcategoria, categoria) {
+    if (!subcategoria || !categoria || !productoId) {
+      return;
+    }
+  const q = query(
+  collection(db, "productos"),
+  orderBy('subcateogira'),
+  limit(15)
+);
+    const querySnapshot = await getDocs(q);
+    
+    const relatedProducts = [];
+    querySnapshot.forEach((doc) => {
+      relatedProducts.push({ id: doc.id, ...doc.data() });
+    });
+    setProductos(relatedProducts);
+  }
+  
   function onAdd(cantidad) {
     cart.agregarCarrito(dato, cantidad);
-    setItemCount(dato, cantidad)
+    setItemCount(cantidad);
   }
+
+  useEffect(() => {
+    getProducto();
+
+  }, []);
 
   return (
     <main className="
@@ -76,6 +105,8 @@ export default function Producto() {
         :''
         }
       </section>
+      {/* <ProductosRelacionados productos={productos} /> */}
     </main>
   );
+  
 }

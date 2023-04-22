@@ -6,9 +6,8 @@ export default function ContactoInicio() {
     <section className=" flex flex-col gap-16 w-full bg-blanco col-span-2 sm:flex-row sm:gap-0 sm:w-full md:flex-row md: justify-between md:w-full">
     <div className="text-center mt-10 p-6 sm:w-1/2 sm:text-left sm:px-0 sm:pl-10 md:w-1/2  ">
       <h2 className=" font-bold text-3xl w-full md:my-4 ">¿Aún tenes dudas?</h2>
-      <p className=" font-light text-sm w-full my-4 mb-14 ">
-        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-        sint. Velit officia consequat duis enim velit mollit.
+      <p className=" font-light text-md w-full my-4 mb-14 ">
+      Estamos aquí para ayudarte en todo lo que necesites. Si tienes alguna duda o consulta, no dudes en contactarnos y uno de nuestros representantes te brindará la información necesaria de manera clara y concisa. 
       </p>
       <a href="http://api.whatsapp.com/send?phone=542644823420" target="_blank">
       <button
