@@ -19,7 +19,7 @@ const DashboardAdmin = ({ setIsLoggedAdmin, setLoggedIn }) => {
   }
 
   return (
-    <div className=" h-full  w-1/4 absolute top-0 bg-terciario flex flex-col gap-20 py-10 items-center">
+    <div className=" h-full  w-1/4 fixed top-0 bg-terciario flex flex-col gap-20 py-10 items-center">
       {
         modal && <CerrarSesion sesionCerrada={sesionCerrada} setModal={setModal}/>
       }
@@ -48,6 +48,19 @@ const DashboardAdmin = ({ setIsLoggedAdmin, setLoggedIn }) => {
           </Link>
         </div>
        <div className={`flex items-center w-full justify-center py-3
+          ${activeLink === "categorias" ? "bg-primario text-secundario border-l-4 border-secundario" : "text-blanco"}
+        `}>
+         <div className="pt-1">
+           <ion-icon name="bag-handle"></ion-icon>
+         </div>
+         <Link
+           to="/admin/categorias"
+           onClick={() => setActiveLink("categorias")}
+         >
+           <h3 className="font-semibold">Categorias</h3>
+         </Link>
+       </div>
+       <div className={`flex items-center w-full justify-center py-3
           ${activeLink === "provedores" ? "bg-primario text-secundario border-l-4 border-secundario" : "text-blanco"}
         `}>
          <Link
@@ -58,6 +71,7 @@ const DashboardAdmin = ({ setIsLoggedAdmin, setLoggedIn }) => {
          </Link>
        </div>
       </div>
+
       <div className="flex items-center text-gray-300 font-normal text-sm gap-x-1  ">
       <ion-icon name="log-out-outline"></ion-icon>
         <h3
@@ -67,6 +81,7 @@ const DashboardAdmin = ({ setIsLoggedAdmin, setLoggedIn }) => {
           Cerrar sesión
         </h3>
       </div>
+
     </div>
   );
 };

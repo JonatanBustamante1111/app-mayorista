@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 // Pages
 import Inicio from "./pages/Inicio";
 import Productos from "./pages/Productos";
@@ -10,15 +11,17 @@ import Carrito from "./pages/Carrito";
 import AdminInicio from "./pages/AdminInicio";
 import AdminEditarProducto from "./pages/AdminEditarProducto";
 import MiCuenta from "./pages/MiCuenta";
+import Contacto from "./pages/Contacto"; 
+import Pedidos from "./pages/Pedidos";
+import Categorias from "./pages/Categorias";
 
 // Components
 import Layout from "./components/Layout";
-import CartContextProvider from "./context/CartContext";
-import Contacto from "./pages/Contacto";
 import Dashboard from "./components/Dashboard";
-import Pedidos from "./pages/Pedidos";
 import Provedores from "./pages/Provedores";
 
+// Context
+import CartContextProvider from "./context/CartContext";
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(
     localStorage.getItem("isLoggedAdmin") === "true" ? true : false
@@ -99,6 +102,13 @@ const App = () => {
               // Si el usuario no está logueado, redirige a la página de inicio
               console.log('error')
             ),
+          },
+          {
+            path: "/admin/categorias",
+            element: 
+            isLoggedAdmin 
+              ? <Categorias/>                
+              : console.log('error, no se puedo acceder a categorias')
           },
           {
             path: "/admin/editarproducto/:productoId",

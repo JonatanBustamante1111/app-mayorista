@@ -2,17 +2,42 @@ export const categorias = [
     {
       id: 1,
       label: "Acero blanco",
-      children: [
-        { id: 11, label: "Abridores" },
-        { id: 12, label: "Anillos" },
-        { id: 13, label: "Aros" },
-        { id: 14, label: "Cadenas" },
-        { id: 15, label: "Dijes" },
-        { id: 16, label: "Esclavas" },
-        { id: 17, label: "Pulseras" },
-        { id: 18, label: "Rosarios" },
+      subcategorias: [
+        { 
+          id: 11,
+          label: "Abridores" 
+        },
+        { 
+          id: 12, 
+          label: "Anillos" 
+        },
+        { 
+          id: 13,
+          label: "Aros" 
+        },
+        { 
+          id: 14, 
+          label: "Cadenas" 
+        },
+        { 
+          id: 15, 
+          label: "Dijes" 
+        },
+        { 
+          id: 16, 
+          label: "Esclavas" 
+        },
+        { 
+          id: 17, 
+          label: "Pulseras" 
+        },
+        { 
+          id: 18, 
+          label: "Rosarios" 
+        },
         ],
     },
+  
     {
       id: 2,
       label: "Acero quirurjico",
@@ -97,5 +122,4 @@ export const categorias = [
       label: "Otros",
       children: [],
     },
-
   ]

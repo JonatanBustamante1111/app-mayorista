@@ -26,7 +26,11 @@ export default function AdminInicio() {
 
 
   // Delete product
-
+  const eliminarProducto = (id) => {
+    const documento_A_Eliminar = doc(db, "productos", id);
+    deleteDoc(documento_A_Eliminar)
+    consultarProductos();
+  };
 
   const buscarProductos = (e) => {
     e.preventDefault()
@@ -69,19 +73,19 @@ export default function AdminInicio() {
             </div>
           </form>
           <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium ">
-          <ion-icon name="add-sharp"></ion-icon>
+            <ion-icon name="add-sharp"></ion-icon>
             <button onClick={handleModal}>
               Nuevo Producto
             </button>
           </div>
         </article>
-          <article className="w-[90%] mx-auto grid grid-cols-[2fr,2fr,1fr,1fr,1fr] gap-x-10 place-items-start self-center">
-            <p className="text-lg font-medium text-blanco">Imagen</p>
-            <p className="text-lg font-medium text-blanco">Nombre</p>
-            <p className="text-lg font-medium text-blanco">Stock</p>
-            <p className="text-lg font-medium text-blanco">Precio</p>
-            <p className="text-lg font-medium text-blanco">Acciones</p>
-          </article>
+        <article className="w-[90%] mx-auto grid grid-cols-[2fr,2fr,1fr,1fr,1fr] gap-x-10 place-items-start self-center">
+          <p className="text-lg font-medium text-blanco">Imagen</p>
+          <p className="text-lg font-medium text-blanco">Nombre</p>
+          <p className="text-lg font-medium text-blanco">Stock</p>
+          <p className="text-lg font-medium text-blanco">Precio</p>
+          <p className="text-lg font-medium text-blanco">Acciones</p>
+        </article>
       </section>
 
       <section className="flex flex-col  h-3/4 overflow-auto">

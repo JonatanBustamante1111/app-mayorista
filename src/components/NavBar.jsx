@@ -34,39 +34,43 @@ export default function NavBar() {
     }
   };
   return (
-    <nav className={`
+    <>
+      <nav className={`
         flex flex-row w-full justify-between items-center px-4 md:p-4 lg:p-[43px] 
-        fixed z-[20]   top-0 transition-colors duration-300 ease-out
+        fixed z-[20]  h-[72px] top-0 transition-colors duration-300 ease-out
         ${scroll ? 'bg-terciario duration-300' : ''}  
-         `}>
-          <Link to="./">
-      <img
-        src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
-        alt="logo-crv4-removebg-preview-3"
-        className="z-10"
-      />
-          </Link>
-      <div className="hidden md:flex">
-        <NavbarLinks flexDirection={'flex-row'} />
-      </div>
-      <div className='flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10'>
-        <Link className='text-3xl mr-20 pb-2' to={'/carrito'}>
-          <Badge badgeContent={sumaCantidadBadge()} color="primary" >
-            <ion-icon name="cart"></ion-icon>
-          </Badge>
+          `}>
+        <Link to="./">
+          <img
+            src="https://i.ibb.co/G9ptDww/logo-crv4-removebg-preview-3.png"
+            alt="logo-crv4-removebg-preview-3"
+            className="z-10"
+          />
         </Link>
-        <div className="hidden md:flex  items-center gap-x-1 text-xl">
-          <ion-icon name="person-circle-outline"></ion-icon>
-          <Link to={'/micuenta'} >
-            Ingresar
+        <div className="hidden md:flex">
+          <NavbarLinks flexDirection={'flex-row'} />
+        </div>
+        <div className='flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10'>
+          <Link className='text-3xl mr-20 pb-2' to={'/carrito'}>
+            <Badge badgeContent={sumaCantidadBadge()} color="primary" >
+              <ion-icon name="cart"></ion-icon>
+            </Badge>
           </Link>
+          <div className="hidden md:flex  items-center gap-x-1 text-xl">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <Link to={'/micuenta'} >
+              Ingresar
+            </Link>
+          </div>
+
+          <MenuHamburguesa handleNav={handleNav} nav={nav} />
         </div>
 
-        <MenuHamburguesa handleNav={handleNav} nav={nav} />
-      </div>
 
+        {/* Navbar responsive */}
 
-      {/* Navbar responsive */}
+      </nav>
+
       <div
         className={
           nav
@@ -94,9 +98,7 @@ export default function NavBar() {
           </div>
         </div>
       </div>
-
-    </nav>
-
+    </>
 
 
   );
