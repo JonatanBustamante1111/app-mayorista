@@ -8,7 +8,7 @@ import NuevaSubcategoria from '../components/admin/NuevaSubcategoria';
 
 export default function Categorias() {
     const [categorias, setCategorias] = useState([]);
-    // Estados para manejar las busquedas de los categorias
+    //  Estados para manejar las busquedas de los categorias
     const [busqueda, setBusqueda] = useState('')
     const [categoriasBuscadas, setCategoriasBuscadas] = useState([])
 
