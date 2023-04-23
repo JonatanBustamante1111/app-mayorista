@@ -23,6 +23,7 @@ export default function Categorias() {
     const [modal, setModal] = useState(false)
     // Estado para las subcategorias
     const [modalSubcategoria, setModalSubcategoria] = useState(false)
+    
     // Read Products
     useEffect(() => {
         // const docRef = dod(db,"proveedores")
