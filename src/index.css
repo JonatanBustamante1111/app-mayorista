@@ -88,7 +88,7 @@ swiper {
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply absolute z-10 bg-transparent border-secundario   p-8 rounded-[50%] shadow-md 
+  @apply absolute -z-20 bg-transparent border-secundario   p-8 rounded-[50%] shadow-md 
 }
 .swiper-button-prev::after,
 .swiper-button-next::after {
