@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Modal from '../Modal'
 import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
+import { format } from 'date-fns';
 
 export default function NuevaSubcategoria({ setModalSubcategoria, categoriaId }) {
 
@@ -11,6 +12,8 @@ export default function NuevaSubcategoria({ setModalSubcategoria, categoriaId })
     })
 
     // Funcion Para agregarle una categoria al documento
+    const fechaActual = new Date();
+    const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -33,7 +36,11 @@ export default function NuevaSubcategoria({ setModalSubcategoria, categoriaId })
             return
         }
 
-        nuevaCategorias[categoriaIndex].subcategorias.push({ id: camposCategorias.id, nombre: camposCategorias.descripcion })
+        nuevaCategorias[categoriaIndex].subcategorias.push({ 
+            id: camposCategorias.id, 
+            nombre: camposCategorias.descripcion, 
+            fecha:fechaFormateada
+        })
 
         await updateDoc(docRef, { categorias: nuevaCategorias })
 

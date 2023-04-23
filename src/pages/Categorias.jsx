@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { updateDoc, getDoc, doc } from 'firebase/firestore'
+import { updateDoc, getDoc, doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../utils/firebaseconfig';
 import NuevaCategoria from '../components/admin/NuevaCategoria';
 import EditarCategoria from '../components/admin/EditarCategoria';
@@ -24,16 +24,16 @@ export default function Categorias() {
     // Estado para las subcategorias
     const [modalSubcategoria, setModalSubcategoria] = useState(false)
     // Read Products
-    const consultarCategorias = async () => {
-        const docref = doc(db, "utilidades", "categorias")
-        const categorias = await getDoc(docref)
-        setCategorias(categorias.data().categorias)
-        //setCategorias(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    console.log(categoriaAEditar)
     useEffect(() => {
-        consultarCategorias();
-    }, []);
+        const docRef = doc(db, "utilidades", "categorias");
+        // Escuchar cambios en tiempo real en el documento
+        const unsubscribe = onSnapshot(docRef, (doc) => {
+          setCategorias(doc.data().categorias);
+        });
+    
+        // Limpiar el listener cuando se desmonta el componente
+        return () => unsubscribe();
+      }, []);
 
 
     // Delete 
