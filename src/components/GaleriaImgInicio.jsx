@@ -19,7 +19,7 @@ export default function GaleriaImgInicio() {
                     
                         <img
                             className="absolute top-0 left-0 w-full h-full  transition-transform duration-300 transform origin-center hover:scale-110"
-                            src="https://i.ibb.co/9tn6yn8/unsplash-uf-IDew-I6i-Q.png"
+                            src="https://i.ibb.co/J2ZBnGy/unsplash-uf-IDew-I6i-Q-min.jpg"
                             alt="Accesorios de Acero"
                         />
                         <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end ">
@@ -30,7 +30,7 @@ export default function GaleriaImgInicio() {
                         <div className="relative overflow-hidden w-full h-72 flex  rounded-xl mb-10 md:h-1/3 md:mb-0">
                             <img
                                 className="absolute top-0 left-0 w-full h-full transition-transform duration-300 transform origin-center hover:scale-110"
-                                src="https://i.ibb.co/Xy0Bjps/image-15.png"
+                                src="https://i.ibb.co/59VRZPh/image-15-min.jpg"
                                 alt="Accesorios de Plata"
                             />
                             <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end ">
@@ -40,7 +40,7 @@ export default function GaleriaImgInicio() {
                         <div className="relative overflow-hidden  bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:h-2/3 md:mb-0">
                             <img
                                 className="absolute top-0 left-0 w-full h-full transition-transform duration-300 transform origin-center hover:scale-110"
-                                src="https://i.ibb.co/V2LtxS9/unsplash-Foe-IOgzt-CXo.png"
+                                src="https://i.ibb.co/pdVP5C3/unsplash-Foe-IOgzt-CXo-min.jpg"
                                 alt="Maquillaje"
                             />
                             <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end ">
@@ -55,7 +55,7 @@ export default function GaleriaImgInicio() {
                         >
                             <img
                                 className="absolute top-0 left-0 w-full h-full transition-transform duration-300 transform origin-center hover:scale-110"
-                                src="https://i.ibb.co/N7MTCQX/image-17.png"
+                                src="https://i.ibb.co/sH11x34/image-17-min.jpg"
                                 alt="Marroquineria"
                             />
                             <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end">
@@ -67,7 +67,7 @@ export default function GaleriaImgInicio() {
                             className=" w-full h-72 flex flex-row rounded-xl mb-10 md:mb-0 md:h-96 relative overflow-hidden"  >
                             <img
                                 className="absolute top-0 left-0 w-full h-full transition-transform duration-300 transform origin-center hover:scale-110"
-                                src="https://i.ibb.co/fNHKsDs/unsplash-7c-ERndk-Oy-Dw.png"
+                                src="https://i.ibb.co/LppTftS/unsplash-7c-ERndk-Oy-Dw-min.jpg"
                                 alt="Textil"
                             />
                             <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end">

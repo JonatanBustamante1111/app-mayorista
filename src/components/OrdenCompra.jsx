@@ -51,13 +51,6 @@ export default function OrdenCompra({ total }) {
         window.open(res.data)
       }
     )
-    /*  if (loggedIn) {
-       console.log("Compra realizada");
-     } else {
-       // Redirigir al usuario al formulario de inicio de sesión
-       console.log("Debe iniciar sesión para hacer la compra");
-       navigate('/micuenta');
-     } */
   };
   return (
     <>

@@ -18,7 +18,10 @@ import Categorias from "./pages/Categorias";
 // Components
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
-import Provedores from "./pages/Provedores";
+
+import Pedidos from "./pages/Pedidos";
+import Proveedores from "./pages/Proveedores";
+
 
 // Context
 import CartContextProvider from "./context/CartContext";
@@ -82,10 +85,10 @@ const App = () => {
             ),
           },
           {
-            path: "/admin/provedores",
+            path: "/admin/proveedores",
             element: isLoggedAdmin ? (
        
-                <Provedores/>
+                <Proveedores/>
                 
             ) : (
               // Si el usuario no está logueado, redirige a la página de inicio

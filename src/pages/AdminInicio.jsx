@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import { db } from "../utils/firebaseconfig";
-import Swal from "sweetalert2";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import AdminNuevoProducto from "../components/AdminNuevoProducto";
 import AdminEditarProducto from "./AdminEditarProducto";
+import AumentarPrecioPorProvedores from "../components/AumentarPrecioPorProveedor";
 
 export default function AdminInicio() {
-
+  const [proveedores,setProveedores] = useState([])
   const [productos, setProductos] = useState([]);
   // Estados para manejar las busquedas de los productos
   const [busqueda, setBusqueda] = useState('')
   const [productosBuscados, setProductosBuscados] = useState([])
 
   const [modal, setModal] = useState(false)
+  const [modalTwo,setModalTwo] = useState(false)
   const [idProducto, setIdProducto] = useState(null)
   // Read Products
   const consultarProductos = async () => {
@@ -24,19 +25,34 @@ export default function AdminInicio() {
     consultarProductos();
   }, []);
 
+// trae los proveedores de la base de datows
+  const consultarProveedor = async () => {
+    const producto = collection(db, "proveedores")
+    const querySnapshot = await getDocs(producto)
+    const datos = querySnapshot.docs.map(doc => doc.data().nombre)
+    setProveedores(datos)
+  }
+  
+  useEffect(() => {
+    consultarProveedor()
+  }, [])
 
-  // Delete product
+
+  // Borra productos de la base de datos
+
   const eliminarProducto = (id) => {
     const documento_A_Eliminar = doc(db, "productos", id);
     deleteDoc(documento_A_Eliminar)
     consultarProductos();
   };
 
+//Busca productos en la base de datos 
   const buscarProductos = (e) => {
     e.preventDefault()
     const buscar = productos.filter(prod => prod.nombre.toLowerCase().includes(busqueda.toLowerCase()));
     setProductosBuscados(buscar)
   }
+  // abre y cierra el modal
   const handleModal = () => {
     setIdProducto(null)
     setModal(!modal)
@@ -45,10 +61,13 @@ export default function AdminInicio() {
   return (
     <main className="h-full absolute flex flex-col left-1/4">
       {
-        idProducto !== null && <AdminEditarProducto idProducto={idProducto} setIdProducto={setIdProducto} />
+        idProducto !== null && <AdminEditarProducto idProducto={idProducto} setIdProducto={setIdProducto} proveedores={proveedores} setProveedores={setProveedores}/>
       }
       {
-        modal && <AdminNuevoProducto handleModal={handleModal} />
+        modal && <AdminNuevoProducto handleModal={handleModal} proveedores={proveedores} setProveedores={setProveedores} />
+      }
+      {
+        modalTwo && <AumentarPrecioPorProvedores setModalTwo={setModalTwo} />
       }
       <section className='grid grid-rows-2'>
         <article className="flex items-center justify-between  m-8 ">
@@ -62,7 +81,7 @@ export default function AdminInicio() {
                     bg-transparent font-normal text-xs p-2 border-[1px] border-secundario 
                     rounded-lg text-blanco focus:outline-none
                   "
-              placeholder="Buscar"
+              placeholder="Buscar por nombre"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
             />
@@ -72,9 +91,19 @@ export default function AdminInicio() {
               </button>
             </div>
           </form>
+          <div className=" flex  items-center gap-x-1 text-blanco text-xl font-medium ">
+          <ion-icon name="add-sharp"></ion-icon>
+            <button onClick={ () => {
+              setModalTwo(true)
+             }}>
+              Precio proveedor
+            </button>
+          </div>
           <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium ">
+
             <ion-icon name="add-sharp"></ion-icon>
             <button onClick={handleModal}>
+
               Nuevo Producto
             </button>
           </div>
@@ -88,7 +117,7 @@ export default function AdminInicio() {
         </article>
       </section>
 
-      <section className="flex flex-col  h-3/4 overflow-auto">
+      <section className="flex flex-col  h-3/4  overflow-auto  ">
 
 
         {productosBuscados.length > 0
