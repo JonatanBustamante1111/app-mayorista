@@ -25,6 +25,8 @@ export default function Categorias() {
     const [modalSubcategoria, setModalSubcategoria] = useState(false)
     // Read Products
     useEffect(() => {
+        // const docRef = dod(db,"proveedores")
+        // const proveedores  = await getDocs(docRef)
         const docRef = doc(db, "utilidades", "categorias");
         // Escuchar cambios en tiempo real en el documento
         const unsubscribe = onSnapshot(docRef, (doc) => {

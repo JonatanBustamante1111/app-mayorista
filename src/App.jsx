@@ -18,8 +18,6 @@ import Categorias from "./pages/Categorias";
 // Components
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
-
-import Pedidos from "./pages/Pedidos";
 import Proveedores from "./pages/Proveedores";
 
 
