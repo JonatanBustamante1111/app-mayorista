@@ -12,7 +12,7 @@ export default function ContactoInicio() {
       </p>
       <a href="http://api.whatsapp.com/send?phone=542644823420" target="_blank">
       <button
-        className=" w-full sm:w-1/2
+        className=" w-full sm:w-1/2 md:w-[282px]
         text-center font-semibold py-4 px-6 
         bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
         rounded-lg
@@ -26,7 +26,7 @@ export default function ContactoInicio() {
     <div className="text-center  md:w-1/2">
       <img
         className="mx-auto h-full"
-        src="https://i.ibb.co/4dWZK9M/image-10.png"
+        src="https://i.ibb.co/tD3S1jj/image-14-min.png"
         alt=""
       />
     </div>

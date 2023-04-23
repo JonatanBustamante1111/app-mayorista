@@ -14,16 +14,12 @@ export default function Carrito() {
   carrito.forEach(el => {
     total += el.precio * el.cantidad
   })
-  console.log(total)
   return (
     <main>
       {carrito.length ? (
         <section>
           <h1 className="w-[280px] h-[34px] md:w-[400px] md:h-[49px] md:text-4xl ml-10 text-blanco font-bold text-2xl md: md:mt-28">Carrito de compras</h1>
           <div>
-            {
-              carrito.map(element => console.log(element))
-            }
             {carrito.length > 0 &&
               carrito.map(producto => (
                 <ProductoCarrito key={producto.id} producto={producto} />

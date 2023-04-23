@@ -5,6 +5,7 @@ import { createContext } from "react";
 export const CartContext = createContext();
 const CartContextProvider = (props) => {
     const [carrito, setCarrito] = useState([]);
+    
     const agregarCarrito = (producto, cantidad) => {
       const itemEncontrado = carrito.find(item => item.id === producto.id);
     

@@ -1,24 +1,20 @@
 import { useEffect, useState } from 'react'
-import { useLoaderData, useNavigate } from 'react-router-dom'
 import { db, storage } from '../utils/firebaseconfig'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import Formulario from '../components/Formulario'
-
+import { collection,getDocs } from "firebase/firestore";
 import Swal from 'sweetalert2'
 
 
-export default function AdminEditarProducto({ idProducto, setIdProducto }) {
-
-  //const producto = useLoaderData()
-  const navigate = useNavigate()
-  console.log(idProducto)
+export default function AdminEditarProducto({ idProducto, setIdProducto,proveedores,setProveedores }) {
 
   const [camposProducto, setCamposProducto] = useState({
     nombre: '',
     precio: '',
     stock:'',
     descripcion: '',
+    proveedor: '',
     categoria: '',
     subcategoria: '',
     destacado: '',
@@ -32,7 +28,16 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
   // Para Identificar si viene una imagen de firebase, en caso de ser asi la imagen se muestra en el formulario
   const [imagenUrl, setImagenUrl] = useState(null)
 
-
+  const consultarProveedor = async () => {
+    const producto = collection(db, "proveedores")
+    const querySnapshot = await getDocs(producto)
+    const datos = querySnapshot.docs.map(doc => doc.data())
+    setProveedores(datos)
+  }
+  
+  useEffect(() => {
+    consultarProveedor()
+  }, [])
   const consultarProducto = async () => {
     const docref = doc(db, 'productos', idProducto)
     const producto = await getDoc(docref)
@@ -43,6 +48,7 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
       precio: datos.precio,
       stock: datos.stock,
       descripcion: datos.descripcion,
+      proveedor:datos.proveedor,
       categoria: datos.categoria,
       subcategoria: datos.subcategoria,
       destacado: datos.destacado,
@@ -87,8 +93,6 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
         setIdProducto(null)
       }
     })
-    console.log('Producto Actualizado')
-
   }
   return (
 
@@ -112,6 +116,7 @@ export default function AdminEditarProducto({ idProducto, setIdProducto }) {
             setCamposProducto={setCamposProducto}
             imagenUrl={imagenUrl}
             setSubCategoria={setSubCategoria}
+            proveedores={proveedores}
           />
           <input
             type="submit"

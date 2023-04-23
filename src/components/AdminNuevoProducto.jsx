@@ -9,7 +9,7 @@ import { db, storage } from "../utils/firebaseconfig";
 
 import Swal from "sweetalert2";
 
-export default function AdminNuevoProducto({ handleModal }) {
+export default function AdminNuevoProducto({ handleModal, proveedores, setProveedores }) {
   // Hooks del input file
   const [archivoSeleccionado, setArchivoSeleccionado] = useState({});
   const [nombreArchivo, setNombreArchivo] = useState("");
@@ -20,7 +20,7 @@ export default function AdminNuevoProducto({ handleModal }) {
     precio: "",
     stock: "",
     descripcion: "",
-    provedor:"",
+    proveedor:"",
     categoria: "",
     destacado: "",
     imagen: "",
@@ -56,7 +56,7 @@ export default function AdminNuevoProducto({ handleModal }) {
       precio: "",
       stock: "",
       descripcion: "",
-      provedor:"",
+      proveedor:"",
       categoria: "",
       destacado: "",
       imagen: "",
@@ -98,6 +98,7 @@ export default function AdminNuevoProducto({ handleModal }) {
             setCamposProducto={setCamposProducto}
             inputFileRef={inputFileRef}
             setSubCategoria={setSubCategoria}
+            proveedores={proveedores}
           />
           <input
             type="submit"
