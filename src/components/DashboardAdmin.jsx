@@ -19,7 +19,7 @@ const DashboardAdmin = ({ setIsLoggedAdmin, setLoggedIn }) => {
   }
 
   return (
-    <div className=" h-full  w-1/4 fixed top-0 bg-terciario flex flex-col gap-20 py-10 items-center">
+    <div className=" h-full  w-1/4 absolute top-0 bg-terciario flex flex-col gap-20 py-10 items-center">
       {
         modal && <CerrarSesion sesionCerrada={sesionCerrada} setModal={setModal}/>
       }
