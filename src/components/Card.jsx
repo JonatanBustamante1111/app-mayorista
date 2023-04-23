@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import BorrarProducto from "./BorrarProducto";
 import { CartContext } from "../context/CartContext";
-import ItemCount from "./ItemCount";
+import ItemCountProductos from "./ItemCountProductos";
 
 export default function Card({ eliminarProducto, producto, setIdProducto }) {
   const [itemCount, setItemCount] = useState(0);
@@ -69,7 +69,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
             <h3 className="font-bold text-secundario text-lg">{nombre}</h3>
             <p className="font-semibold text-2xl text-blanco">${precio}</p>
           </div>
-          <ItemCount initial={itemCount} stock={+stock} onAdd={onAdd} />
+          <ItemCountProductos initial={itemCount} stock={+stock} onAdd={onAdd} />
         </div>
       </article>
     ) : (

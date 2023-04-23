@@ -7,7 +7,7 @@ import { Navigation } from "swiper";
 
 import Card from './Card'
 
-export default function ProductosRelacionados({prodcutos}) {
+export default function ProductosRelacionados({productos}) {
   return (
     <section className="flex flex-col gap-16 w-full col-span-2">
       <article className="w-full text-center">
@@ -58,12 +58,9 @@ export default function ProductosRelacionados({prodcutos}) {
             }}
           >
             {productos.map(producto =>
-              producto.destacado === 'si' 
-              ?
               <SwiperSlide key={producto.id}>
                   <Card producto={producto}/>
               </SwiperSlide>
-              :''
             )}
           </Swiper>
         </div>
