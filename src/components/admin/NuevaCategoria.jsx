@@ -4,6 +4,7 @@ import { getDoc, doc, arrayUnion, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { useState } from 'react'
 import { format } from 'date-fns';
+import Swal from 'sweetalert2'
 
 const fechaActual = new Date();
 const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
@@ -33,8 +34,10 @@ export default function NuevaCategoria({ handleModal }) {
                 categorias: arrayUnion(nuevaCategoria)
             });
         }
-
-        console.log('categoria Agregada')
+        Swal.fire({
+            icon: "success",
+            title: "¡Categoria agregada correctamente!",
+          });
     }
 
     return (

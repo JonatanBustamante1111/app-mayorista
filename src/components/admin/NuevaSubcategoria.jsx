@@ -3,6 +3,7 @@ import Modal from '../Modal'
 import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { format } from 'date-fns';
+import Swal from 'sweetalert2';
 
 export default function NuevaSubcategoria({ setModalSubcategoria, categoriaId }) {
 
@@ -43,8 +44,10 @@ export default function NuevaSubcategoria({ setModalSubcategoria, categoriaId })
         })
 
         await updateDoc(docRef, { categorias: nuevaCategorias })
-
-        console.log('subcategoria Agregada')
+        Swal.fire({
+            icon: "success",
+            title: "¡Sub categoria agregada correctamente!",
+          });
         setModalSubcategoria(false)
     }
 
