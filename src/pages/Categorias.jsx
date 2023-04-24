@@ -149,7 +149,7 @@ export default function Categorias() {
               </button>
             </div>
           </form>
-          <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium ">
+          <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium mr-10">
             <ion-icon name="add-sharp"></ion-icon>
             <button onClick={handleModal}>Nueva Categoria</button>
           </div>
