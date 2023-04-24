@@ -52,7 +52,7 @@ export default function Productos() {
 
 
   return (
-    <main class="h-full absolute flex flex-col left-1/4">
+    <main>
       <div className='hidden md:flex w-full px-10 mx-auto justify-center'>
         <h2 className=' mt-20 py-8 font-semibold text-blanco uppercase '>
           {categoriaFiltrada === '' && subCategoriaFiltrada === ''
