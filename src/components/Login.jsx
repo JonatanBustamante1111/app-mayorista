@@ -16,7 +16,7 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-
+ 
   const handleSignInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
