@@ -28,23 +28,6 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
     }
   };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setLoggedIn(true);
-        localStorage.setItem("loggedIn", true);
-      } else {
-        setLoggedIn(false);
-        localStorage.setItem("loggedIn", false);
-      }
-    });
-   
-    // Limpiar el listener al desmontar el componente
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -68,8 +51,11 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
       // Verifica el rol del usuario y redirige a la página correspondiente
       const usuario = querySnapshot.docs[0].data();
       if (usuario.rol === "cliente") {
+        setLoggedIn(true);
+        localStorage.setItem("loggedIn", true);
         console.log("Bienvenido cliente");
         navigate("/carrito");
+       
         // redireccionar a la pagina de cliente
       } else if (usuario.rol === "admin") {
         localStorage.setItem("isLoggedAdmin", true);
