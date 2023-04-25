@@ -9,9 +9,10 @@ import {
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
 import { useNavigate } from "react-router-dom";
+import Error from "./Error";
 
 function Login({ setIsLoggedAdmin,setLoggedIn }) {
-
+  const [err , setErr] = useState(false)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,7 +27,7 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
     } catch (error) {
       console.error(error);
     }
-  };
+  }; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +36,8 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
+        setErr(true)
       );
       console.log(userCredential)
       const user = userCredential.user;
@@ -45,6 +47,7 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
         console.log("Usuario no encontrado");
+        setErr(true)
         return;
       }
 
@@ -93,9 +96,11 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
             </p>
             <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base"></div>
           </div>
+          {err && <Error children={"El usuario no existe"} />}
           <form onSubmit={handleSubmit} className="my-10 flex flex-col ">
             <label>
               <input
+                required
                 type="email"
                 value={email}
                 placeholder="E-mail:"
@@ -105,6 +110,7 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
             </label>
             <label>
               <input
+                required
                 type="password"
                 value={password}
                 placeholder="Contraseña:"

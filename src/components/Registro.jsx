@@ -7,6 +7,7 @@ import {
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../utils/firebaseconfig";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Registro() {
   const [email, setEmail] = useState("");
@@ -30,7 +31,11 @@ function Registro() {
         rol: "cliente",
       });
       console.log("Usuario registrado con ID: ", userDocRef.id);
-      alert("el usuario ha sido creado con exito");
+      Swal.fire({
+        icon: "success",
+        title: "¡El usuario ha sido creado con exito!",
+      });
+
       navigate("/micuenta");
     } catch (error) {
       console.log(error);
@@ -78,6 +83,7 @@ function Registro() {
       </div>
       <form onSubmit={handleSubmit} className="my-10">
         <input
+        required
           type="email"
           value={email}
           placeholder="E-mail:"
@@ -86,6 +92,7 @@ function Registro() {
         />
 
         <input
+        required
           type="password"
           value={password}
           placeholder="Contraseña:"
@@ -98,7 +105,7 @@ function Registro() {
             className=" font-monsterrat bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
                 py-4 px-6 rounded-lg font-semibold text-base mb-10 "
           >
-            Iniciar sesión
+            Registrarse
           </button>
         </div>
       </form>
