@@ -1,5 +1,5 @@
 import React from 'react'
-import FaqDropDown from "../components/FaqDropDown";
+import FaqDropDown from "./FaqDropDown";
 
 export default function PreguntasFrecuentes() {
   return (

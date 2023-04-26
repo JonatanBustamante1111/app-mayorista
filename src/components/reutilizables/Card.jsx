@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import BorrarProducto from "./BorrarProducto";
-import { CartContext } from "../context/CartContext";
-import ItemCountProductos from "./ItemCountProductos";
+import BorrarProducto from "../BorrarProducto";
+import { CartContext } from "../../context/CartContext";
+import ItemCountProductos from "../productos/ItemCountProductos";
 
 export default function Card({ eliminarProducto, producto, setIdProducto }) {
   const [itemCount, setItemCount] = useState(0);

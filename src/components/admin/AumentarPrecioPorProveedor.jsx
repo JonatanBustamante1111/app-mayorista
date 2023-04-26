@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../utils/firebaseconfig";
+import { db } from "../../utils/firebaseconfig";
 import Swal from "sweetalert2";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { writeBatch } from "firebase/firestore";

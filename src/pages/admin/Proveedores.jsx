@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../utils/firebaseconfig";
+import { db } from "../../utils/firebaseconfig";
 import Swal from "sweetalert2";
 
 import {
@@ -13,10 +13,10 @@ import {
   getDoc,
 } from "firebase/firestore";
 
-import AgregarProveedor from "../components/AgregarProveedor";
-import BorrarProveedor from "../components/BorrarProveedor";
+import AgregarProveedor from "../../components/admin/AgregarProveedor";
+import BorrarProveedor from "../../components/admin/BorrarProveedor";
 import { useNavigate } from "react-router-dom";
-import CardProveedor from "../components/CardProveedor";
+import CardProveedor from "../../components/admin/CardProveedor";
 
 const Proveedores = () => {
   const [busqueda, setBusqueda] = useState("");

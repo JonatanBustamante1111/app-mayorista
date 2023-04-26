@@ -1,5 +1,5 @@
-import ContactoNosotros from "../components/ContactoNosotros";
-import SliderNosotros from "../components/SliderNosotros";
+import ContactoNosotros from "../../components/nosotros/ContactoNosotros";
+import SliderNosotros from "../../components/nosotros/SliderNosotros";
 
 export default function Nosotros() {
   return (

@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 import { Add, Remove } from '@mui/icons-material';
 
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Modal from '../Modal'
+import Modal from './Modal'
 import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { format } from 'date-fns';

@@ -1,4 +1,4 @@
-import Modal from "../Modal"
+import Modal from "./Modal"
 import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { useState } from 'react'

@@ -1,5 +1,5 @@
 import React from 'react'
-import Modal from '../Modal'
+import Modal from './Modal'
 import { getDoc, doc, arrayUnion, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { useState } from 'react'

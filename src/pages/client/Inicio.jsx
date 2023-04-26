@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import PreguntasFrecuentes from "../components/PreguntasFrecuentes";
-import ProductosDestacados from "../components/ProductosDestacados";
-import ContactoInicio from "../components/ContactoInicio";
-import GaleriaImgInicio from "../components/GaleriaImgInicio";
+import PreguntasFrecuentes from "../../components/inicio/PreguntasFrecuentes";
+import ProductosDestacados from "../../components/inicio/ProductosDestacados";
+import ContactoInicio from "../../components/inicio/ContactoInicio";
+import GaleriaImgInicio from "../../components/inicio/GaleriaImgInicio";
 
 export default function Inicio() {
   return (

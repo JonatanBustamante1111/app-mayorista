@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { db, storage } from '../utils/firebaseconfig'
+import { db, storage } from '../../utils/firebaseconfig'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
-import Formulario from '../components/Formulario'
+import Formulario from '../../components/admin/Formulario'
 import { collection,getDocs } from "firebase/firestore";
 import Swal from 'sweetalert2'
 

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { updateDoc, getDoc, doc, onSnapshot } from 'firebase/firestore'
-import { db } from '../utils/firebaseconfig';
-import NuevaCategoria from '../components/admin/NuevaCategoria';
-import EditarCategoria from '../components/admin/EditarCategoria';
-import EditarSubcategoria from '../components/admin/EditarSubcategoria';
-import NuevaSubcategoria from '../components/admin/NuevaSubcategoria';
+import { db } from '../../utils/firebaseconfig';
+import NuevaCategoria from '../../components/admin/NuevaCategoria';
+import EditarCategoria from '../../components/admin/EditarCategoria';
+import EditarSubcategoria from '../../components/admin/EditarSubcategoria';
+import NuevaSubcategoria from '../../components/admin/NuevaSubcategoria';
 
 export default function Categorias() {
     const [categorias, setCategorias] = useState([]);

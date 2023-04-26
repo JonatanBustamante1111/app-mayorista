@@ -1,6 +1,6 @@
 import {useState } from "react";
-import Registro from "../components/Registro";
-import Login from "../components/Login";
+import Registro from "../components/cuenta/Registro";
+import Login from "../components/cuenta/Login";
 import {auth } from "../utils/firebaseconfig";
 // import UsuarioActualizarDatos from "../components/UsuarioActualizarDatos";
 
