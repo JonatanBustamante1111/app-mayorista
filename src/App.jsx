@@ -24,6 +24,7 @@ import Proveedores from "./pages/admin/Proveedores";
 
 // Context
 import CartContextProvider from "./context/CartContext";
+import CheckOut from "./pages/CheckOut";
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(
     localStorage.getItem("isLoggedAdmin") === "true" ? true : false
@@ -35,7 +36,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: <Layout loggedIn={loggedIn} />,
       children: [
         {
           index: true,
@@ -59,7 +60,11 @@ const App = () => {
         },
         {
           path: "/carrito",
-          element: <Carrito />,
+          element: <Carrito loggedIn={loggedIn} />,
+        },
+        {
+          path: "/checkout",
+          element: <CheckOut  />,
         },
         {
           path: "/micuenta",

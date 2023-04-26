@@ -7,6 +7,7 @@ import {
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../utils/firebaseconfig";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Registro() {
   const [email, setEmail] = useState("");
@@ -30,7 +31,11 @@ function Registro() {
         rol: "cliente",
       });
       console.log("Usuario registrado con ID: ", userDocRef.id);
-      alert("el usuario ha sido creado con exito");
+      Swal.fire({
+        icon: "success",
+        title: "¡El usuario ha sido creado con exito!",
+      });
+
       navigate("/micuenta");
     } catch (error) {
       console.log(error);
@@ -68,7 +73,7 @@ function Registro() {
         <div className=" place-items-center py-[8px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 flex flex-row items-center justify-center gap-2 font-semibold ">
             <img className="w-[24px] " src={"https://i.ibb.co/S7kKGdz/1486146475-google-plus-79440.png"} alt="" />
             <button onClick={handleSignUpWithGoogle}>
-              Iniciar sesión con Google
+            Registrarse con Google
             </button>
           </div>
       <div className="flex flex-row  items-center gap-4 justify-center">
@@ -78,19 +83,21 @@ function Registro() {
       </div>
       <form onSubmit={handleSubmit} className="my-10">
         <input
+        required
           type="email"
           value={email}
           placeholder="E-mail:"
           onChange={(e) => setEmail(e.target.value)}
-          className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3 my-8  text-blanco "
+          className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-4 pr-3 my-8  text-blanco "
         />
 
         <input
+        required
           type="password"
           value={password}
           placeholder="Contraseña:"
           onChange={(e) => setPassword(e.target.value)}
-          className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3 my-8  text-blanco "
+          className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-4 pr-3 my-8  text-blanco "
         />
         <div className=" w-full flex justify-center">
           <button
@@ -98,7 +105,7 @@ function Registro() {
             className=" font-monsterrat bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600 w-[282px]
                 py-4 px-6 rounded-lg font-semibold text-base mb-10 "
           >
-            Iniciar sesión
+            Registrarse
           </button>
         </div>
       </form>
