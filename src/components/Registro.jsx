@@ -73,7 +73,7 @@ function Registro() {
         <div className=" place-items-center py-[8px]  border-blanco border-[1px] rounded-lg  bg-inherit text-blanco focus:outline-none text-center my-10 flex flex-row items-center justify-center gap-2 font-semibold ">
             <img className="w-[24px] " src={"https://i.ibb.co/S7kKGdz/1486146475-google-plus-79440.png"} alt="" />
             <button onClick={handleSignUpWithGoogle}>
-              Iniciar sesión con Google
+            Registrarse con Google
             </button>
           </div>
       <div className="flex flex-row  items-center gap-4 justify-center">
@@ -88,7 +88,7 @@ function Registro() {
           value={email}
           placeholder="E-mail:"
           onChange={(e) => setEmail(e.target.value)}
-          className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3 my-8  text-blanco "
+          className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-4 pr-3 my-8  text-blanco "
         />
 
         <input
@@ -97,7 +97,7 @@ function Registro() {
           value={password}
           placeholder="Contraseña:"
           onChange={(e) => setPassword(e.target.value)}
-          className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-3 pr-3 my-8  text-blanco "
+          className="grid grid-cols-3 place-items-center py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit w-full  pl-4 pr-3 my-8  text-blanco "
         />
         <div className=" w-full flex justify-center">
           <button
