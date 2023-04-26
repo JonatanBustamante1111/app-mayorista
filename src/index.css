@@ -69,3 +69,53 @@
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 100%;
 }
+
+
+
+/*  Slider productos destacados  */ 
+
+swiper {
+  @apply w-full h-full
+}
+
+.swiper-slide {
+  @apply text-center text-lg bg-transparent flex justify-center items-center
+}
+
+.swiper-slide img {
+  @apply block w-full object-cover
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply absolute -z-20 bg-transparent border-secundario   p-8 rounded-[50%] shadow-md 
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  @apply text-secundario
+}
+
+
+@media screen and (min-width: 480px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 780px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    padding: 1.5rem;
+  }
+}
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-button-prev {
+  left: 10px;
+
+}
+
+
