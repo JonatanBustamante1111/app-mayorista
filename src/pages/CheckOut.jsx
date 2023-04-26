@@ -4,6 +4,9 @@ import { CartContext } from "../context/CartContext";
 import eApi from '../api/api'
 import CardCheckOut from "../components/CardCheckOut";
 import Swal from "sweetalert2";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../utils/firebaseconfig";
+import { v4 as uuidv4 } from 'uuid';
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
@@ -17,6 +20,20 @@ const CheckOut = () => {
   const [localidad, setLocalidad] = useState("");
   const [codigoPostal, setCodigoPostal] = useState("");
 
+  const id = uuidv4();
+  console.log(id)
+  setDatos({
+    nombre,
+    apellido,
+    numero,
+    email,
+    direccion,
+    piso,
+    provinciaSeleccionada,
+    localidad,
+    codigoPostal,
+    id
+  })
   const [items, setItems] = useState({});
   const [datos, setDatos] = useState({});
 
@@ -54,10 +71,9 @@ const CheckOut = () => {
         quantity: parseInt(carrito[i]['cantidad']),
         currency_id: "ARS"
       }
-
       itemsArray.push(item)
     }
-    setItems({items: itemsArray})
+    setItems({items: itemsArray,id})
 
   }
 
@@ -65,7 +81,7 @@ const CheckOut = () => {
     fillItems();
   }, [])
 
-  const handleCompra = () => {
+  const handleCompra = async ()   => {
     // Validación de campos obligatorios
     if (!nombre || !direccion || !email || !apellido || !numero || !piso || !localidad|| !provinciaSeleccionada || !codigoPostal) {
         Swal.fire({
@@ -74,7 +90,9 @@ const CheckOut = () => {
           });
       return;
     }
-    
+      // Agregar documento a la collecion
+    await addDoc(collection(db, "pedidosCliente"), datos)
+
     eApi.post('pagar', items)
       .then(res => {
         window.open(res.data);
