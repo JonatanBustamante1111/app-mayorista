@@ -23,6 +23,7 @@ import Proveedores from "./pages/Proveedores";
 
 // Context
 import CartContextProvider from "./context/CartContext";
+import CheckOut from "./pages/CheckOut";
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(
     localStorage.getItem("isLoggedAdmin") === "true" ? true : false
@@ -58,7 +59,11 @@ const App = () => {
         },
         {
           path: "/carrito",
-          element: <Carrito />,
+          element: <Carrito loggedIn={loggedIn} />,
+        },
+        {
+          path: "/checkout",
+          element: <CheckOut  />,
         },
         {
           path: "/micuenta",
