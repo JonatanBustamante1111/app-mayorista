@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import {useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
-import Button from './Button';
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext';
+import Button from '../reutilizables/Button';
 
 
 export default function OrdenCompra({ total,loggedIn }) { 

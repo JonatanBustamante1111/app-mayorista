@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../utils/firebaseconfig";
+import { auth } from "../../utils/firebaseconfig";
 import { useState } from "react";
 import CerrarSesion from "./CerrarSesion";
 

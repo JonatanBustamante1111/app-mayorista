@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../utils/firebaseconfig";
+import { db } from "../../utils/firebaseconfig";
 import Swal from "sweetalert2";
 import { addDoc, collection,  getDocs, } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";

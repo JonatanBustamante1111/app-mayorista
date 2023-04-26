@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
-import Formulario from "../components/Formulario";
+import Formulario from "./Formulario";
 
 //import Error from '../components/Error'
 
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
-import { db, storage } from "../utils/firebaseconfig";
+import { db, storage } from "../../utils/firebaseconfig";
 
 import Swal from "sweetalert2";
 

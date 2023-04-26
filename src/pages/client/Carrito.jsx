@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import OrdenCompra from "../components/OrdenCompra";
-import ProductoCarrito from "../components/ProductoCarrito";
-import { CartContext } from "../context/CartContext";
-import Button from "../components/Button";
+import OrdenCompra from "../../components/carrito/OrdenCompra";
+import ProductoCarrito from "../../components/carrito/ProductoCarrito";
+import { CartContext } from "../../context/CartContext";
+import Button from "../../components/reutilizables/Button";
 
 export default function Carrito({loggedIn}) {
   const { cart } = useContext(CartContext);

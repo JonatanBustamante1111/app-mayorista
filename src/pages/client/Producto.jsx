@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 import {
   collection,
   getDocs,
@@ -14,9 +14,9 @@ import {
   orderBy,
   QuerySnapshot
 } from "firebase/firestore";
-import { db } from "../utils/firebaseconfig";
-import ItemCount from "../components/ItemCount";
-import ProductosRelacionados from "../components/ProductosRelacionados";
+import { db } from "../../utils/firebaseconfig";
+import ItemCount from "../../components/productos/ItemCount";
+import ProductosRelacionados from "../../components/productos/ProductosRelacionados";
 
 
 export default function Producto() {

@@ -1,4 +1,4 @@
-import { categorias } from '../utils/categorias'
+import { categorias } from '../../utils/categorias'
 
 export default function Formulario({
     handleChangeArchivo,

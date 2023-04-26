@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Card from "../components/Card";
-import { db } from "../utils/firebaseconfig";
+import Card from "../../components/reutilizables/Card";
+import { db } from "../../utils/firebaseconfig";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
-import AdminNuevoProducto from "../components/AdminNuevoProducto";
+import AdminNuevoProducto from "../../components/admin/AdminNuevoProducto";
 import AdminEditarProducto from "./AdminEditarProducto";
-import AumentarPrecioPorProvedores from "../components/AumentarPrecioPorProveedor";
+import AumentarPrecioPorProvedores from "../../components/admin/AumentarPrecioPorProveedor";
 
 export default function AdminInicio() {
   const [proveedores,setProveedores] = useState([])

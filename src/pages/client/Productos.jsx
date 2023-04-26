@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { db } from "../utils/firebaseconfig";
+import { db } from "../../utils/firebaseconfig";
 import { getDocs, collection} from "firebase/firestore";
-import Card from '../components/Card'
-import DropDown from '../components/DropDown'
+import Card from '../../components/reutilizables/Card'
+import DropDown from '../../components/productos/DropDown'
 
 export default function Productos() {
 

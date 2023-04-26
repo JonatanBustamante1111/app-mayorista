@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 
-import Card from './Card'
+import Card from '../reutilizables/Card'
 
 export default function ProductosRelacionados({productos}) {
   return (

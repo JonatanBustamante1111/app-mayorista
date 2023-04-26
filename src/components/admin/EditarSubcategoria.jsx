@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../utils/firebaseconfig';
-import Modal from '../Modal';
+import Modal from './Modal';
 
 export default function EditarSubcategoria({ subCategoriaAEditar, setSubCategoriaAEditar, handleModal }) {
 

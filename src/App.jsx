@@ -3,22 +3,23 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Pages
-import Inicio from "./pages/Inicio";
-import Productos from "./pages/Productos";
-import Producto from "./pages/Producto";
-import Nosotros from "./pages/Nosotros";
-import Carrito from "./pages/Carrito";
-import AdminInicio from "./pages/AdminInicio";
-import AdminEditarProducto from "./pages/AdminEditarProducto";
+import Inicio from "./pages/client/Inicio";
+import Productos from "./pages/client/Productos";
+import Producto from "./pages/client/Producto";
+import Nosotros from "./pages/client/Nosotros";
+import Carrito from "./pages/client/Carrito";
+import AdminInicio from "./pages/admin/AdminInicio";
+import AdminEditarProducto from "./pages/admin/AdminEditarProducto";
 import MiCuenta from "./pages/MiCuenta";
-import Contacto from "./pages/Contacto"; 
-import Pedidos from "./pages/Pedidos";
-import Categorias from "./pages/Categorias";
+import Contacto from "./pages/client/Contacto"; 
+import Pedidos from "./pages/admin/Pedidos";
+import Categorias from "./pages/admin/Categorias";
 
 // Components
 import Layout from "./components/Layout";
-import Dashboard from "./components/Dashboard";
-import Proveedores from "./pages/Proveedores";
+import Dashboard from "./components/admin/Dashboard";
+
+import Proveedores from "./pages/admin/Proveedores";
 
 
 // Context
