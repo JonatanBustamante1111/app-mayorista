@@ -22,13 +22,14 @@ const CheckOut = () => {
   const [items, setItems] = useState({});
   const [id,setId] = useState('')
   const [datos, setDatos] = useState({});
+
   const { cart } = useContext(CartContext);
   const { carrito } = cart;
-  
- function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
+
+  let total = 0;
+
+  carrito.forEach((el) => {
+    total += el.precio * el.cantidad;
   });
 }
 setId(uuidv4())
@@ -67,25 +68,26 @@ setDatos({
 })
 
 //   se utiliza para mercado pago
+  const fillItems = () => {
+    const carrito = cart.carrito
+    let itemsArray = [] 
+    for (let i = 0; i < carrito.length; i++) {
+      const item = {
+        title: carrito[i]['nombre'],
+        unit_price: parseFloat(carrito[i]['precio']),
+        quantity: parseInt(carrito[i]['cantidad']),
+        currency_id: "ARS"
+      }
 
-const fillItems = () => {
-  const carrito = cart.carrito
-  let itemsArray = [] 
-  for (let i = 0; i < carrito.length; i++) {
-    const item = {
-      title: carrito[i]['nombre'],
-      unit_price: parseFloat(carrito[i]['precio']),
-      quantity: parseInt(carrito[i]['cantidad']),
-      currency_id: "ARS"
+      itemsArray.push(item)
     }
-    itemsArray.push(item)
-  }
-  setItems({items: itemsArray,notifyId:id})
-}
+    setItems({items: itemsArray})
 
-useEffect(() => {
-  fillItems();
-}, [cart])
+  }
+
+  useEffect(() => {
+    fillItems();
+  }, [])
 
   const handleCompra = async (e)   => {
     e.preventDefault()
@@ -111,6 +113,7 @@ useEffect(() => {
       });
 
   }
+  
     
   return (
     <main className="mt-20 font-monsterrat p-4 md:flex md:flex-row md:mt-5 ">
