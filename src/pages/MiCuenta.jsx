@@ -2,25 +2,34 @@ import {useState } from "react";
 import Registro from "../components/cuenta/Registro";
 import Login from "../components/cuenta/Login";
 import {auth } from "../utils/firebaseconfig";
-// import UsuarioActualizarDatos from "../components/UsuarioActualizarDatos";
+import CerrarSesion from "../components/CerrarSesion";
+
 
 export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLoggedAdmin}) {
   const [login, setLogin] = useState(false);
+  const [modal,setModal] = useState(false);
 
   const handleChangeLogin = () => {
     setLogin(!login);
   };
-
+  
+  const sesionCerrada = () =>{
+    auth.signOut();
+    setLoggedIn(false); // actualiza loggedIn a false
+    localStorage.setItem("loggedIn", false);
+    console.log('no funciona')
+  }
   return (
     <div className="px-4 my-20 md:my-40 md:w-1/2 md:mx-auto">
+      {
+        modal && <CerrarSesion sesionCerrada={sesionCerrada} setModal={setModal}/>
+      }
       {loggedIn ? (
         <div className="text-blanco text-center">
           <p>¡Bienvenido! Ya has iniciado sesión.</p>
           <button
-            onClick={() => {
-              auth.signOut();
-              setLoggedIn(false); // actualiza loggedIn a false
-            }}
+          className=" mb-96"
+            onClick={() => setModal(true)}
           >
             Cerrar sesión
           </button>

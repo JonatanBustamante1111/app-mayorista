@@ -2,7 +2,7 @@ export const categorias = [
     {
       id: 1,
       label: "Acero blanco",
-      subcategorias: [
+      children: [
         { 
           id: 11,
           label: "Abridores" 

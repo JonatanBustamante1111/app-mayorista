@@ -11,6 +11,7 @@ import {
   where,
   deleteDoc,
   getDoc,
+  onSnapshot
 } from "firebase/firestore";
 
 import AgregarProveedor from "../../components/admin/AgregarProveedor";
@@ -27,16 +28,18 @@ const Proveedores = () => {
   const [id, setId] = useState("");
 
   const navigate = useNavigate();
-  // // trae los proveedores de la base de datos
-  const consultarProveedor = async () => {
-    const data = await getDocs(collection(db, "proveedores"));
-    setProveedores(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
+
+  const consultarProveedor = () => {
+    return onSnapshot(collection(db, "proveedores"), (data) => {
+      setProveedores(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  }
+  
   useEffect(() => {
-    consultarProveedor();
+    const unsubscribe = consultarProveedor();
+    return () => unsubscribe();
   }, []);
 
-  //Busca proovedores en la base de datos
   const buscarProveedores = (e) => {
     e.preventDefault();
     const buscar = proveedores.filter((proveedor) =>
@@ -45,10 +48,9 @@ const Proveedores = () => {
     setProveedoresBuscados(buscar);
   };
 
-  // Borrar proveedor
-  const eliminarProveedor = (id) => {
+  const eliminarProveedor = async (id) => {
     const documento_A_Eliminar = doc(db, "proveedores", id);
-    deleteDoc(documento_A_Eliminar);
+    await deleteDoc(documento_A_Eliminar);
 
     Swal.fire({
       icon: "success",
@@ -60,7 +62,6 @@ const Proveedores = () => {
       }
     });
   };
-
   return (
     <main class="h-full absolute flex flex-col left-1/4">
       {/* permite abrir y cerrar el modal para agregar proveedores */}

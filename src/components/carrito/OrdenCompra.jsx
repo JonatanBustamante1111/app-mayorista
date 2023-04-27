@@ -4,13 +4,12 @@ import { CartContext } from '../../context/CartContext';
 import Button from '../reutilizables/Button';
 import eApi from '../../api/api'
 
-export default function OrdenCompra({ total }) {
 
+export default function OrdenCompra({ total,loggedIn }) { 
   const [totalAmount, setTotalAmount] = useState(0);
-  const [items, setItems] = useState({});
-
+  
   const { cart } = useContext(CartContext);
-  const { loggedIn } = cart;
+
   const navigate = useNavigate();
 
   const sumTotal = () => {
@@ -22,35 +21,18 @@ export default function OrdenCompra({ total }) {
     setTotalAmount(total)
   };
 
-  const fillItems = () => {
-    const carrito = cart.carrito
-    let itemsArray = [] 
-    for (let i = 0; i < carrito.length; i++) {
-      const item = {
-        title: carrito[i]['nombre'],
-        unit_price: parseFloat(carrito[i]['precio']),
-        quantity: parseInt(carrito[i]['cantidad']),
-        currency_id: "ARS"
-      }
-
-      itemsArray.push(item)
-    }
-    setItems({items: itemsArray})
-
-  }
 
   useEffect(() => {
     sumTotal();
-    fillItems();
   }, [])
 
-  const handleCompra = (e) => {
+  const handleCheckOut = (e) => {
     e.preventDefault()
-    eApi.post('pagar', items).then(
-      res => {
-        window.open(res.data)
-      }
-    )
+    if(loggedIn){
+      navigate('/checkout')
+    }else{
+      navigate('/micuenta')
+    }
   };
   return (
     <>
@@ -58,13 +40,12 @@ export default function OrdenCompra({ total }) {
         <div className='
         flex flex-col w-[90%] mx-auto md:mx-8 md:w-auto justify-center  md:justify-items-end
         gap-y-3 border-t-[1px] border-gray-400 py-7'
-        
         >
          <div className='flex justify-between'>
            <p className='text-3xl font-bold text-white '>Total:</p>
            <p className='text-3xl font-bold text-white '>${total}</p>
          </div>
-          <Button onClick={handleCompra}>Ir al checkout</Button>
+          <Button onClick={handleCheckOut}>Ir al checkout</Button>
         </div>
       </div>
     </>

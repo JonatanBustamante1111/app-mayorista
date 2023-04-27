@@ -6,7 +6,7 @@ import MenuHamburguesa from "./MenuHamburguesa";
 import NavbarLinks from "./NavbarLinks";
 
 
-export default function NavBar() {
+export default function NavBar({loggedIn}) {
 
   const [nav, setNav] = useState(false);
   const { cart } = useContext(CartContext);
@@ -33,6 +33,7 @@ export default function NavBar() {
       setScroll(false);
     }
   };
+  console.log(loggedIn)
   return (
     <>
       <nav className={`
@@ -59,7 +60,9 @@ export default function NavBar() {
           <div className="hidden md:flex  items-center gap-x-1 text-xl">
             <ion-icon name="person-circle-outline"></ion-icon>
             <Link to={'/micuenta'} >
-              Ingresar
+             {
+              loggedIn ? "Bienvenido" : "Ingresar"
+             } 
             </Link>
           </div>
 
