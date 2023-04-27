@@ -19,9 +19,16 @@ const CheckOut = () => {
 
   const [items, setItems] = useState({});
   const [datos, setDatos] = useState({});
-
+  const [id,setId] = useState('');
   const { cart } = useContext(CartContext);
   const { carrito } = cart;
+
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 
   let total = 0;
 
@@ -57,12 +64,27 @@ const CheckOut = () => {
 
       itemsArray.push(item)
     }
-    setItems({items: itemsArray})
-
+    setId(uuidv4())
+    setDatos(objeto)
+    setItems({items: itemsArray,notifyId:id}) 
+    console.log(datos)
+  }
+  const objeto = {
+    nombre,
+    apellido,
+    numero,
+    email,
+    direccion,
+    piso,
+    provinciaSeleccionada,
+    localidad,
+    codigoPostal,
+    id
   }
 
   useEffect(() => {
     fillItems();
+   
   }, [])
 
   const handleCompra = () => {
@@ -86,6 +108,7 @@ const CheckOut = () => {
       });
 
   }
+  
     
   return (
     <main className="mt-20 font-monsterrat p-4 md:flex md:flex-row md:mt-5 ">
