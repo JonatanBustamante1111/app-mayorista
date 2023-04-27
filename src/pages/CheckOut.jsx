@@ -1,4 +1,3 @@
-import Button from "../components/Button";
 import React, { useState, useEffect, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import eApi from '../api/api'
@@ -6,7 +5,7 @@ import CardCheckOut from "../components/CardCheckOut";
 import Swal from "sweetalert2";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
-import { v4 as uuidv4 } from 'uuid';
+import  Button from '../components/reutilizables/Button'
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
@@ -20,35 +19,22 @@ const CheckOut = () => {
   const [localidad, setLocalidad] = useState("");
   const [codigoPostal, setCodigoPostal] = useState("");
 
-  const id = uuidv4();
-  console.log(id)
-  setDatos({
-    nombre,
-    apellido,
-    numero,
-    email,
-    direccion,
-    piso,
-    provinciaSeleccionada,
-    localidad,
-    codigoPostal,
-    id
-  })
   const [items, setItems] = useState({});
+  const [id,setId] = useState('')
   const [datos, setDatos] = useState({});
-
   const { cart } = useContext(CartContext);
   const { carrito } = cart;
-
-  let total = 0;
-
-  carrito.forEach((el) => {
-    total += el.precio * el.cantidad;
+  
+ function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
   });
-
-//   trae toda la informacion de la api de provincias
+}
+setId(uuidv4())
+// traer las provincias
   useEffect(() => {
-    fetch("https://apis.datos.gob.ar/georef/api/provincias")
+    fetch('https://apis.datos.gob.ar/georef/api/provincias')
       .then((response) => response.json())
       .then((data) => {
         setProvincias(data.provincias);
@@ -56,32 +42,53 @@ const CheckOut = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const handleChange = (event) => {
-    setProvinciaSeleccionada(event.target.value);
-  };
+  let total = 0;
+
+  carrito.forEach((el) => {
+    total += el.precio * el.cantidad;
+  });
+
+// funcion para cambiar las provincias
+const handleChange = (event) => {
+  setProvinciaSeleccionada(event.target.value);
+};
+
+setDatos({
+  nombre,
+  apellido,
+  numero,
+  email,
+  direccion,
+  piso,
+  provinciaSeleccionada,
+  localidad,
+  codigoPostal,
+  id
+})
 
 //   se utiliza para mercado pago
-  const fillItems = () => {
-    const carrito = cart.carrito
-    let itemsArray = [] 
-    for (let i = 0; i < carrito.length; i++) {
-      const item = {
-        title: carrito[i]['nombre'],
-        unit_price: parseFloat(carrito[i]['precio']),
-        quantity: parseInt(carrito[i]['cantidad']),
-        currency_id: "ARS"
-      }
-      itemsArray.push(item)
+
+const fillItems = () => {
+  const carrito = cart.carrito
+  let itemsArray = [] 
+  for (let i = 0; i < carrito.length; i++) {
+    const item = {
+      title: carrito[i]['nombre'],
+      unit_price: parseFloat(carrito[i]['precio']),
+      quantity: parseInt(carrito[i]['cantidad']),
+      currency_id: "ARS"
     }
-    setItems({items: itemsArray,id})
-
+    itemsArray.push(item)
   }
+  setItems({items: itemsArray,notifyId:id})
+}
 
-  useEffect(() => {
-    fillItems();
-  }, [])
+useEffect(() => {
+  fillItems();
+}, [cart])
 
-  const handleCompra = async ()   => {
+  const handleCompra = async (e)   => {
+    e.preventDefault()
     // Validación de campos obligatorios
     if (!nombre || !direccion || !email || !apellido || !numero || !piso || !localidad|| !provinciaSeleccionada || !codigoPostal) {
         Swal.fire({
@@ -245,4 +252,5 @@ const CheckOut = () => {
     </main>
   );
 };
+
 export default CheckOut;
