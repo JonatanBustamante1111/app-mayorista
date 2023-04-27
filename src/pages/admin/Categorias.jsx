@@ -12,6 +12,7 @@ export default function Categorias() {
     const [busqueda, setBusqueda] = useState('')
     const [categoriasBuscadas, setCategoriasBuscadas] = useState([])
 
+<<<<<<< HEAD
     const [categoriaAEditar, setCategoriaAEditar] = useState(null)
     const [subCategoriaAEditar, setSubCategoriaAEditar] = useState(null)
     const [ categoriaId, setCategoriaId ] = useState(null)
@@ -34,6 +35,20 @@ export default function Categorias() {
         // Limpiar el listener cuando se desmonta el componente
         return () => unsubscribe();
       }, []);
+=======
+  const [categoriaAEditar, setCategoriaAEditar] = useState(null);
+  const [subCategoriaAEditar, setSubCategoriaAEditar] = useState(null);
+  const [categoriaId, setCategoriaId] = useState(null);
+  // estados para las categorias renderizadas
+  const [subcategoriasDesplegables, setSubCategoriasDesplegables] =
+    useState(null);
+ 
+  const [open, setOpen] = useState(false);
+  // Estado para las categorias
+  const [modal, setModal] = useState(false);
+  // Estado para las subcategorias
+  const [modalSubcategoria, setModalSubcategoria] = useState(false);
+>>>>>>> b9146544891b7a0ac805bbc8ed93e99c88610b30
 
 
     // Delete 

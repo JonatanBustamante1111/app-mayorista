@@ -9,7 +9,7 @@ export default function DropDown({
   subCategoriaFiltrada,
   setSubCategoriaFiltrada,
   filtrarPorTodosLosProductos
-}) {
+})  {
 
   const [categorias, setCategorias] = useState([])
 

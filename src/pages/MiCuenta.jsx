@@ -4,7 +4,6 @@ import Login from "../components/cuenta/Login";
 import {auth } from "../utils/firebaseconfig";
 import CerrarSesion from "../components/admin/CerrarSesion";
 
-
 export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLoggedAdmin}) {
   const [login, setLogin] = useState(false);
   const [modal,setModal] = useState(false);

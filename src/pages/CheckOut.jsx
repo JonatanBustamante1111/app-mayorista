@@ -4,6 +4,10 @@ import { CartContext } from "../context/CartContext";
 import eApi from '../api/api'
 import CardCheckOut from "../components/CardCheckOut";
 import Swal from "sweetalert2";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../utils/firebaseconfig";
+import  Button from '../components/reutilizables/Button'
+import { v4 as uuidv4 } from 'uuid';
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
@@ -18,20 +22,20 @@ const CheckOut = () => {
   const [codigoPostal, setCodigoPostal] = useState("");
 
   const [items, setItems] = useState({});
+  const [id,setId] = useState('')
   const [datos, setDatos] = useState({});
 
   const { cart } = useContext(CartContext);
   const { carrito } = cart;
-
+ 
   let total = 0;
-
   carrito.forEach((el) => {
     total += el.precio * el.cantidad;
   });
 
-//   trae toda la informacion de la api de provincias
+// traer las provincias
   useEffect(() => {
-    fetch("https://apis.datos.gob.ar/georef/api/provincias")
+    fetch('https://apis.datos.gob.ar/georef/api/provincias')
       .then((response) => response.json())
       .then((data) => {
         setProvincias(data.provincias);
@@ -39,9 +43,12 @@ const CheckOut = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const handleChange = (event) => {
-    setProvinciaSeleccionada(event.target.value);
-  };
+ 
+// funcion para cambiar las provincias
+const handleChange = (event) => {
+  setProvinciaSeleccionada(event.target.value);
+};
+
 
 //   se utiliza para mercado pago
   const fillItems = () => {
@@ -57,15 +64,29 @@ const CheckOut = () => {
 
       itemsArray.push(item)
     }
-    setItems({items: itemsArray})
-
+    setDatos(objeto)
+    setId(uuidv4())
+    setItems({items: itemsArray,notifyId:id})
   }
-
+  const objeto = {
+    nombre,
+    apellido,
+    numero,
+    email,
+    direccion,
+    piso,
+    provinciaSeleccionada,
+    localidad,
+    codigoPostal,
+    id
+  }
+    
   useEffect(() => {
     fillItems();
   }, [])
 
-  const handleCompra = () => {
+  const handleCompra = async (e)   => {
+    e.preventDefault()
     // Validación de campos obligatorios
     if (!nombre || !direccion || !email || !apellido || !numero || !piso || !localidad|| !provinciaSeleccionada || !codigoPostal) {
         Swal.fire({
@@ -74,7 +95,9 @@ const CheckOut = () => {
           });
       return;
     }
-    
+      // Agregar documento a la collecion
+    await addDoc(collection(db, "pedidosCliente"), datos)
+
     eApi.post('pagar', items)
       .then(res => {
         window.open(res.data);
@@ -86,6 +109,7 @@ const CheckOut = () => {
       });
 
   }
+  
     
   return (
     <main className="mt-20 font-monsterrat p-4 md:flex md:flex-row md:mt-5 ">
@@ -227,4 +251,5 @@ const CheckOut = () => {
     </main>
   );
 };
+
 export default CheckOut;
