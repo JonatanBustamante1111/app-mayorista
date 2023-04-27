@@ -35,7 +35,7 @@ export default function OrdenCompra({ total }) {
 
       itemsArray.push(item)
     }
-    setItems({items: itemsArray})
+    setItems({items: itemsArray,notifyId:'5'})
 
   }
 
