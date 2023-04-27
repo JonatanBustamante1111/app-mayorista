@@ -22,7 +22,8 @@ const CheckOut = () => {
 
   const [items, setItems] = useState({});
   const [id, setId] = useState("");
-  const [datos, setDatos] = useState({});
+  const [datos, setDatos] = useState([]);
+
   const { cart } = useContext(CartContext);
   const { carrito } = cart;
 
@@ -30,6 +31,19 @@ const CheckOut = () => {
   carrito.forEach((el) => {
     total += el.precio * el.cantidad;
   });
+  useEffect(() => {
+    const data = [];
+    // construir el array temporal con los objetos del carrito
+    carrito.map((producto) => {
+      data.push({
+        nombre: producto.nombre,
+        precio: producto.precio,
+        cantidad: producto.cantidad
+      });
+    });
+    setDatos(data);
+  }, [carrito]);
+
 
   // traer las provincias
   useEffect(() => {
@@ -57,7 +71,8 @@ const CheckOut = () => {
     provinciaSeleccionada,
     localidad,
     codigoPostal,
-    id:uuidv4()
+    id:uuidv4(),
+    datos
   };
 
   const handleCompra = async (e) => {
@@ -81,6 +96,7 @@ const CheckOut = () => {
       return;
     }
 
+
     // genera un nuevo ID para el documento
     const userRef = doc(collection(db, "pedidosCliente"));
     objeto.id = userRef.id;
@@ -88,8 +104,7 @@ const CheckOut = () => {
     setId(objeto.id)
     // Crea una referencia al documento en Firestore utilizando el valor de `id` como ID del documento
     const docRef = doc(db, "pedidosCliente", objeto.id);
-
-    setDatos(objeto)  
+  
 
     // Agrega el objeto a Firestore en la referencia creada
     await setDoc(docRef, objeto);
