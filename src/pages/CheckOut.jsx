@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 import  Button from '../components/reutilizables/Button'
+import { v4 as uuidv4 } from 'uuid';
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
@@ -25,14 +26,12 @@ const CheckOut = () => {
 
   const { cart } = useContext(CartContext);
   const { carrito } = cart;
-
+ 
   let total = 0;
-
   carrito.forEach((el) => {
     total += el.precio * el.cantidad;
   });
-}
-setId(uuidv4())
+
 // traer las provincias
   useEffect(() => {
     fetch('https://apis.datos.gob.ar/georef/api/provincias')
@@ -43,29 +42,12 @@ setId(uuidv4())
       .catch((error) => console.log(error));
   }, []);
 
-  let total = 0;
-
-  carrito.forEach((el) => {
-    total += el.precio * el.cantidad;
-  });
-
+ 
 // funcion para cambiar las provincias
 const handleChange = (event) => {
   setProvinciaSeleccionada(event.target.value);
 };
 
-setDatos({
-  nombre,
-  apellido,
-  numero,
-  email,
-  direccion,
-  piso,
-  provinciaSeleccionada,
-  localidad,
-  codigoPostal,
-  id
-})
 
 //   se utiliza para mercado pago
   const fillItems = () => {
@@ -81,10 +63,23 @@ setDatos({
 
       itemsArray.push(item)
     }
-    setItems({items: itemsArray})
-
+    setDatos(objeto)
+    setId(uuidv4())
+    setItems({items: itemsArray,notifyId:id})
   }
-
+  const objeto = {
+    nombre,
+    apellido,
+    numero,
+    email,
+    direccion,
+    piso,
+    provinciaSeleccionada,
+    localidad,
+    codigoPostal,
+    id
+  }
+    
   useEffect(() => {
     fillItems();
   }, [])
