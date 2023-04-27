@@ -2,7 +2,7 @@ import {useState } from "react";
 import Registro from "../components/cuenta/Registro";
 import Login from "../components/cuenta/Login";
 import {auth } from "../utils/firebaseconfig";
-import CerrarSesion from "../components/CerrarSesion";
+import CerrarSesion from "../components/admin/CerrarSesion";
 
 
 export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLoggedAdmin}) {

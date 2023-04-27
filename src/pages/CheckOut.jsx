@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import Button from "../components/reutilizables/Button";
 import React, { useState, useEffect, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import eApi from '../api/api'
