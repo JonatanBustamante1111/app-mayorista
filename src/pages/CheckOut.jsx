@@ -121,7 +121,7 @@ const CheckOut = () => {
         quantity: parseInt(carrito[i]["cantidad"]),
         currency_id: "ARS",
       };
-      setItems({ items: [...itemsArray, item], notifyId: id })
+      setItems({items: itemsArray,notifyId:id})
     }
   };
     fillItems()

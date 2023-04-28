@@ -33,7 +33,7 @@ export default function NavBar({loggedIn}) {
       setScroll(false);
     }
   };
-  console.log(loggedIn)
+  
   return (
     <>
       <nav className={`
