@@ -121,14 +121,18 @@ const CheckOut = () => {
         quantity: parseInt(carrito[i]["cantidad"]),
         currency_id: "ARS",
       };
-      setItems({ items: [...itemsArray, item], notifyId: id })
+      itemsArray.push(item)
     }
+    console.log(id)
+    setItems({items: itemsArray,notifyId:id})
   };
     fillItems()
+   
     eApi
       .post("pagar", items)
       .then((res) => {
         window.open(res.data);
+        console.log(items)
       })
       .catch((err) => {
         console.error(err);
