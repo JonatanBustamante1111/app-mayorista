@@ -144,7 +144,6 @@ useEffect(() => {
       .post("pagar", items)
       .then((res) => {
         window.open(res.data);
-        console.log(item);
       })
       .catch((err) => {
         console.error(err);
