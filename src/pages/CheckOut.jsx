@@ -52,6 +52,7 @@ const CheckOut = () => {
     codigoPostal,
     datos,
   };
+
   // guarda los productos actuales del carrito en un array
   useEffect(() => {
     const data = [];
@@ -66,10 +67,12 @@ const CheckOut = () => {
     setDatos(data);
   }, [carrito]);
 
+  // genera un id para los pedidos & para la base de datos
   useEffect(() => {
     setId(generarIdUnico());
   }, []);
 
+  // aca creamos un objeto con la informacion para Mpago.
   useEffect(() => {
     setItems({
       items: fillItems(),
@@ -141,6 +144,7 @@ const CheckOut = () => {
     const docRef = doc(db, "pedidosCliente", pedido.id);
     await setDoc(docRef, pedido);
 
+    // enviamos el objeto por la api de Mpago
     eApi
       .post("pagar", items)
       .then((res) => {
