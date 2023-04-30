@@ -9,7 +9,7 @@ import {
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../../utils/firebaseconfig";
 import { useNavigate } from "react-router-dom";
-import Error from "./Error";
+import Error from "../reutilizables/Error";
 
 function Login({ setIsLoggedAdmin,setLoggedIn }) {
   const [err , setErr] = useState(false)
