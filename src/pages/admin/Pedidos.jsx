@@ -17,7 +17,7 @@ const Pedidos = () => {
     return (
         <main className='w-[75%] ml-[25%]'>
             <section>
-                <h2 className="text-blanco text-xl font-semibold text-center ">Aca van a ir los pedidos</h2>
+                
                 <article className="w-[90%] mt-20 mb-5 mx-auto grid grid-cols-[2fr,2fr,1fr,1fr,1fr] gap-x-10 place-items-start self-center">
                     <p className="text-lg font-medium text-blanco">Numero de pedido</p>
                     <p className="text-lg font-medium text-blanco">Nombre</p>

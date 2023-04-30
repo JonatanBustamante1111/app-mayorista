@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteDoc, doc, getDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig';
-import Card from "../../components/reutilizables/Card";
 import Button from '../../components/reutilizables/Button';
 
 
@@ -10,10 +9,28 @@ import Button from '../../components/reutilizables/Button';
 export default function PedidoInfo() {
 
     const [dato, setDato] = useState({})
-
-    const { nombre, apellido, email, direccion, localidad, codigoPostal, provincia, piso, datos, id } = dato;
     const { pedidoId } = useParams();
     const navigate = useNavigate()
+    const [estadoDelPedido, setEstadoDelPedido] = useState('');
+
+    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, date } = dato;
+
+
+    let fondoDelSelect = 'bg-secundario'
+
+    switch (estadoDelPedido) {
+        case 'En proceso':
+            fondoDelSelect = 'bg-secundario';
+            break;
+        case 'Enviado':
+            fondoDelSelect = 'bg-[#34A853]';
+            break;
+        case 'Cancelado':
+            fondoDelSelect = 'bg-[#F24236]';
+            break;
+        default:
+            fondoDelSelect = 'bg-secundario';
+    }
 
     console.log(id)
     const getProducto = async () => {
@@ -41,7 +58,35 @@ export default function PedidoInfo() {
     return (
         <main className='w-[75%] ml-[25%]'>
             <section>
-                <h2 className="text-blanco text-xl font-semibold text-center ">Aca van a ir los pedidos</h2>
+                <article className='w-full flex flex-start p-8'>
+                    <div
+                        onClick={() => navigate(-1)}
+                        className='text-secundario font-medium text-xl flex items-center gap-x-2 cursor-pointer'>
+                        <ion-icon name="arrow-back"></ion-icon>
+                        <p>Volver</p>
+                    </div>
+                </article>
+                <article className='w-full flex justify-between px-8 '>
+                    <div className=' flex flex-col gap-y-4'>
+                        <p className='text-3xl font-medium text-blanco'>N° de pedido:{''} <span className='font-bold'> 0000003 </span></p>
+                        <p className='text-xl font-medium text-blanco'>Fecha: <span className='font-bold'> 30/04/23 </span></p>
+                    </div>
+                    <div>
+                        <select
+                            onChange={(e) => setEstadoDelPedido(e.target.value)}
+                            className={`py-3 rounded-xl px-2 text-blanco font-medium ${fondoDelSelect} bg-opacity-70`}
+                            name=""
+                            id=""
+                            value={estadoDelPedido}
+                        >
+                            <option value="En proceso">En proceso</option>
+                            <option value="Enviado">Enviado</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                </article>
+            </section>
+            <section>
                 <article className="w-[90%] mt-20 mb-5 mx-auto grid grid-cols-[2fr,2fr,1fr,1fr,1fr] gap-x-10 place-items-start self-center">
                     <p className="text-lg font-medium text-blanco">Imagen</p>
                     <p className="text-lg font-medium text-blanco">Nombre</p>
@@ -105,7 +150,7 @@ export default function PedidoInfo() {
                             <p className='text-gray-400 font-normal text-lg '>{direccion ?? '-'}</p>
                             <p className='text-gray-400 font-normal text-lg '>{piso ?? '-'}</p>
                             <p className='text-gray-400 font-normal text-lg '>{localidad ?? '-'}</p>
-                            <p className='text-gray-400 font-normal text-lg '>{provincia ?? '-'}</p>
+                            <p className='text-gray-400 font-normal text-lg '>{provinciaSeleccionada ?? '-'}</p>
                             <p className='text-gray-400 font-normal text-lg '>{codigoPostal ?? '-'}</p>
                         </div>
                     </div>
