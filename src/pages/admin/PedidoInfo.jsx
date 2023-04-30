@@ -123,13 +123,13 @@ export default function PedidoInfo() {
             <section className='grid grid-cols-3 mt-10'>
                 <article className='flex flex-col px-10'>
                     <h3 className='text-2xl text-blanco font-semibold'>Datos del comprador</h3>
-                    <div className='grid grid-cols-2 gap-x-2'>
+                    <div className='grid grid-cols-[1fr,2fr] gap-x-2  '>
                         <div className='flex flex-col gap-y-5 py-5'>
                             <p className='font-medium text-lg text-blanco'>Nombre</p>
                             <p className='font-medium text-lg text-blanco'>Apellido</p>
                             <p className='font-medium text-lg text-blanco'>Email</p>
                         </div>
-                        <div className='flex flex-col gap-y-5 py-5'>
+                        <div className='flex flex-col gap-y-5 py-5 '>
                             <p className='text-gray-400 font-normal text-lg'>{nombre ?? '-'}</p>
                             <p className='text-gray-400 font-normal text-lg'>{apellido ?? '-'}</p>
                             <p className='text-gray-400 font-normal text-lg'>{email ?? '-'}</p>
@@ -138,7 +138,7 @@ export default function PedidoInfo() {
                 </article>
                 <article className='flex flex-col px-10'>
                     <h3 className='text-2xl text-blanco font-semibold'>Datos de envio</h3>
-                    <div className='grid grid-cols-2 gap-x-2'>
+                    <div className='grid  grid-cols-[1fr,2fr] gap-x-2 '>
                         <div className='flex flex-col gap-y-5 py-5'>
                             <p className='font-medium text-lg text-blanco'>Direccion</p>
                             <p className='font-medium text-lg text-blanco'>Piso</p>
