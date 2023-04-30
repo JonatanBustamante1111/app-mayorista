@@ -3,12 +3,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { deleteDoc, doc, getDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig';
 import Button from '../../components/reutilizables/Button';
+import BorrarProducto from '../../components/BorrarProducto';
 
 
 
 export default function PedidoInfo() {
 
     const [dato, setDato] = useState({})
+    const [ modalEliminar, setModalEliminar ] = useState(false)
+
     const { pedidoId } = useParams();
     const navigate = useNavigate()
     const [estadoDelPedido, setEstadoDelPedido] = useState('');
@@ -56,7 +59,17 @@ export default function PedidoInfo() {
     }, []);
 
     return (
-        <main className='w-[75%] ml-[25%]'>
+        <main className='w-[75%] ml-[25%] relative'>
+            {
+                modalEliminar && 
+                <BorrarProducto
+                    setModal={setModalEliminar} 
+                    titulo={'Eliminar pedido'}
+                    sustantivo={'el pedido'} 
+                    eliminarProducto={() => eliminarPedido(id)}
+                    nombre={'00000012'} 
+                />
+            }
             <section>
                 <article className='w-full flex flex-start p-8'>
                     <div
@@ -156,7 +169,7 @@ export default function PedidoInfo() {
                     </div>
                 </article>
                 <article className='flex flex-col flex-end justify-end h-96'>
-                    <Button onClick={() => eliminarPedido(id)}>Eliminar pedido</Button>
+                    <Button onClick={() => setModalEliminar(!modalEliminar)}>Eliminar pedido</Button>
                 </article>
             </section>
         </main>
