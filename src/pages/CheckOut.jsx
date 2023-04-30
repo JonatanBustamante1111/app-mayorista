@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 import Button from "../components/reutilizables/Button";
-import { v4 as uuidv4 } from 'uuid';
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
@@ -19,18 +18,41 @@ const CheckOut = () => {
   const [piso, setPiso] = useState("");
   const [localidad, setLocalidad] = useState("");
   const [codigoPostal, setCodigoPostal] = useState("");
+  const [numClicks, setNumClicks] = useState(0);
 
-  const [items, setItems] = useState({});
-  const [id, setId] = useState("");
+  const [id, setId] = useState(null)
+  const [items, setItems]=useState({})
   const [datos, setDatos] = useState([]);
 
   const { cart } = useContext(CartContext);
   const { carrito } = cart;
 
+  // muestra el total a pagar
   let total = 0;
   carrito.forEach((el) => {
     total += el.precio * el.cantidad;
   });
+
+  function generarIdUnico() {
+    const fechaActual = new Date().getTime();
+    const numeroAleatorio = Math.floor(Math.random() * 1000000);
+    return `${fechaActual}_${numeroAleatorio}`;
+  }
+
+  // objeto que guarda la informacion del pedido
+  const pedido = {
+    nombre,
+    apellido,
+    numero,
+    email,
+    direccion,
+    piso,
+    provinciaSeleccionada,
+    localidad,
+    codigoPostal,
+    datos,
+  };
+  // guarda los productos actuales del carrito en un array
   useEffect(() => {
     const data = [];
     // construir el array temporal con los objetos del carrito
@@ -38,12 +60,23 @@ const CheckOut = () => {
       data.push({
         nombre: producto.nombre,
         precio: producto.precio,
-        cantidad: producto.cantidad
+        cantidad: producto.cantidad,
       });
     });
     setDatos(data);
   }, [carrito]);
 
+  useEffect(() => {
+    setId(generarIdUnico());
+   }, []);
+
+useEffect(() => {
+  setItems({
+    items: fillItems(),
+    notifyId:id
+  })
+  console.log(items)
+ }, [carrito]);
 
   // traer las provincias
   useEffect(() => {
@@ -60,24 +93,27 @@ const CheckOut = () => {
     setProvinciaSeleccionada(event.target.value);
   };
 
-  // objeto que guarda la informacion del pedido
-  const objeto = {
-    nombre,
-    apellido,
-    numero,
-    email,
-    direccion,
-    piso,
-    provinciaSeleccionada,
-    localidad,
-    codigoPostal,
-    id:uuidv4(),
-    datos
+  // sirve para crear un objeto que se envia a Mpago
+  const fillItems = () => {
+    const carrito = cart.carrito;
+    let itemsArray = [];
+    for (let i = 0; i < carrito.length; i++) {
+      const item = {
+        title: carrito[i]["nombre"],
+        unit_price: parseFloat(carrito[i]["precio"]),
+        quantity: parseInt(carrito[i]["cantidad"]),
+        currency_id: "ARS",
+      };
+      itemsArray.push(item);
+    }
+   return(itemsArray);
   };
 
   const handleCompra = async (e) => {
     e.preventDefault();
-    // Validación de campos obligatorios de los datos del
+    setNumClicks(numClicks + 1);
+
+    // Valida que los campos obligatorios del form se llenen.
     if (
       !nombre ||
       !direccion ||
@@ -95,44 +131,20 @@ const CheckOut = () => {
       });
       return;
     }
-
-
-    // genera un nuevo ID para el documento
-    const userRef = doc(collection(db, "pedidosCliente"));
-    objeto.id = userRef.id;
-
-    setId(objeto.id)
-    // Crea una referencia al documento en Firestore utilizando el valor de `id` como ID del documento
-    const docRef = doc(db, "pedidosCliente", objeto.id);
+    // si clickea mas de 2 veces, inabilita el boton pagar
+    if (numClicks > 2) {
+      return;
+    }
+    pedido.id = id;
+    const docRef = doc(db, "pedidosCliente", pedido.id);
+    await setDoc(docRef, pedido);
   
 
-    // Agrega el objeto a Firestore en la referencia creada
-    await setDoc(docRef, objeto);
-
-    
-      //   se utiliza para mercado pago
-    const fillItems = () => {
-    const carrito = cart.carrito;
-    let itemsArray = [];
-    for (let i = 0; i < carrito.length; i++) {
-      const item = {
-        title: carrito[i]["nombre"],
-        unit_price: parseFloat(carrito[i]["precio"]),
-        quantity: parseInt(carrito[i]["cantidad"]),
-        currency_id: "ARS",
-      };
-      itemsArray.push(item)
-    }
-    console.log(id)
-    setItems({items: itemsArray,notifyId:id})
-  };
-    fillItems()
-   
     eApi
       .post("pagar", items)
       .then((res) => {
         window.open(res.data);
-        console.log(items)
+        console.log(item);
       })
       .catch((err) => {
         console.error(err);
@@ -275,7 +287,13 @@ const CheckOut = () => {
               <p className="text-3xl font-bold text-white mb-10 ">Total:</p>
               <p className="text-3xl font-bold text-white ">${total}</p>
             </div>
-            <Button className="text-black" onClick={handleCompra}>
+            <Button
+              className="text-black"
+              onClick={(e) => {
+                handleCompra(e);
+                handleSubmit(e);
+              }}
+            >
               Pagar
             </Button>
           </div>
