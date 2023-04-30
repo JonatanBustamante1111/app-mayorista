@@ -3,7 +3,7 @@ import { CartContext } from "../context/CartContext";
 import eApi from "../api/api";
 import CardCheckOut from "../components/CardCheckOut";
 import Swal from "sweetalert2";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 import Button from "../components/reutilizables/Button";
 
@@ -20,8 +20,8 @@ const CheckOut = () => {
   const [codigoPostal, setCodigoPostal] = useState("");
   const [numClicks, setNumClicks] = useState(0);
 
-  const [id, setId] = useState(null)
-  const [items, setItems]=useState({})
+  const [id, setId] = useState(null);
+  const [items, setItems] = useState({});
   const [datos, setDatos] = useState([]);
 
   const { cart } = useContext(CartContext);
@@ -68,15 +68,14 @@ const CheckOut = () => {
 
   useEffect(() => {
     setId(generarIdUnico());
-   }, []);
+  }, []);
 
-useEffect(() => {
-  setItems({
-    items: fillItems(),
-    notifyId:id
-  })
-  console.log(items)
- }, [carrito]);
+  useEffect(() => {
+    setItems({
+      items: fillItems(),
+      notifyId: id,
+    });
+  }, [carrito]);
 
   // traer las provincias
   useEffect(() => {
@@ -106,7 +105,7 @@ useEffect(() => {
       };
       itemsArray.push(item);
     }
-   return(itemsArray);
+    return itemsArray;
   };
 
   const handleCompra = async (e) => {
@@ -135,10 +134,12 @@ useEffect(() => {
     if (numClicks > 2) {
       return;
     }
+    // asigna el id generado al pedido del cliente
     pedido.id = id;
+    // crea un document en la database y guarda un pedido,
+    // el id documento y el id pedido son los mismos en la database.
     const docRef = doc(db, "pedidosCliente", pedido.id);
     await setDoc(docRef, pedido);
-  
 
     eApi
       .post("pagar", items)
