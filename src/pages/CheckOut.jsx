@@ -6,8 +6,7 @@ import CardCheckOut from "../components/CardCheckOut";
 import Swal from "sweetalert2";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
-import  Button from '../components/reutilizables/Button'
-import { v4 as uuidv4 } from 'uuid';
+//mport { v4 as uuidv4 } from 'uuid';
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
@@ -65,7 +64,7 @@ const handleChange = (event) => {
       itemsArray.push(item)
     }
     setDatos(objeto)
-    setId(uuidv4())
+    //setId(uuidv4())
     setItems({items: itemsArray,notifyId:id})
   }
   const objeto = {
