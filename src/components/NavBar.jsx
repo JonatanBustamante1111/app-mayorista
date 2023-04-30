@@ -33,12 +33,12 @@ export default function NavBar({loggedIn}) {
       setScroll(false);
     }
   };
-  console.log(loggedIn)
+  
   return (
     <>
       <nav className={`
         flex flex-row w-full justify-between items-center px-4 md:p-4 lg:p-[43px] 
-        fixed z-[20]  h-[72px] top-0 transition-colors duration-300 ease-out
+        fixed z-[20]  h-[72px]   top-0 transition-colors duration-300 ease-out
         ${scroll ? 'bg-terciario duration-300' : ''}  
           `}>
         <Link to="./">
