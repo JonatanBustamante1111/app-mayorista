@@ -25,6 +25,7 @@ import Proveedores from "./pages/admin/Proveedores";
 // Context
 import CartContextProvider from "./context/CartContext";
 import CheckOut from "./pages/CheckOut";
+import PedidoInfo from "./pages/admin/PedidoInfo";
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(
     localStorage.getItem("isLoggedAdmin") === "true" ? true : false
@@ -109,6 +110,12 @@ const App = () => {
               // Si el usuario no está logueado, redirige a la página de inicio
               console.log('error')
             ),
+          },
+          {
+            path: "/admin/pedidos/pedido/:pedidoId",
+            element: isLoggedAdmin 
+              ? <PedidoInfo/>
+              :  console.log('error')
           },
           {
             path: "/admin/categorias",

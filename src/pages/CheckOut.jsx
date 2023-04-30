@@ -1,3 +1,4 @@
+import Button from "../components/reutilizables/Button";
 import React, { useState, useEffect, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import eApi from "../api/api";
@@ -5,8 +6,8 @@ import CardCheckOut from "../components/CardCheckOut";
 import Swal from "sweetalert2";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
+
 import Button from "../components/reutilizables/Button";
-import { v4 as uuidv4 } from 'uuid';
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
@@ -60,7 +61,14 @@ const CheckOut = () => {
     setProvinciaSeleccionada(event.target.value);
   };
 
-  // objeto que guarda la informacion del pedido
+
+      itemsArray.push(item)
+    }
+    setDatos(objeto)
+    //setId(uuidv4())
+    setItems({items: itemsArray,notifyId:id})
+  }
+
   const objeto = {
     nombre,
     apellido,
