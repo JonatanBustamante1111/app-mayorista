@@ -8,11 +8,7 @@ import {
   updateDoc,
   query,
   where,
-  deleteDoc,
   getDoc,
-  limit,
-  orderBy,
-  QuerySnapshot
 } from "firebase/firestore";
 import { db } from "../../utils/firebaseconfig";
 import ItemCount from "../../components/productos/ItemCount";
