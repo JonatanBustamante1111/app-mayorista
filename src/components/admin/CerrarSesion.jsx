@@ -8,7 +8,6 @@ const CerrarSesion = ({ sesionCerrada, setModal }) => {
   location.pathname == "/admin/proveedores" ||
   location.pathname == "/admin/categorias" ||
   location.pathname == "/admin/pedidos" 
-  console.log(esAdmin)
 
   return (
     esAdmin 
