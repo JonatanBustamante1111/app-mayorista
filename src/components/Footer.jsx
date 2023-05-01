@@ -23,7 +23,7 @@ function Footer() {
                 Capital - San Juan - Argentina
             </p>
             <a  href="http://valhallaweb.tech" target="_blank">
-                Desarrollado por <b className="  text-center text-secundario from-yellow-400 via-yellow-500 to-yellow-600 rounded-md">Valhalla web</b>
+                Desarrollado por <b className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">Valhalla web</b>
             </a>
         </div>
         </div>
