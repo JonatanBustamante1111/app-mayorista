@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 import Button from "../components/reutilizables/Button";
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
@@ -25,7 +26,9 @@ const CheckOut = () => {
   const [datos, setDatos] = useState([]);
 
   const { cart } = useContext(CartContext);
-  const { carrito } = cart;
+  const { carrito,setCarrito } = cart;
+
+  const navigate = useNavigate();
 
   // muestra el total a pagar
   let total = 0;
@@ -78,7 +81,7 @@ const CheckOut = () => {
       items: fillItems(),
       notifyId: id,
     });
-  }, [carrito]);
+  }, [id]);
 
   // traer las provincias
   useEffect(() => {
@@ -133,28 +136,58 @@ const CheckOut = () => {
       });
       return;
     }
-    // si clickea mas de 2 veces, inabilita el boton pagar
-    if (numClicks > 2) {
+    // si clickea mas de 1 veces, inabilita el boton pagar
+    if (numClicks > 1) {
       return;
     }
     // asigna el id generado al pedido del cliente
     pedido.id = id;
-    // crea un document en la database y guarda un pedido,
-    // el id documento y el id pedido son los mismos en la database.
-    const docRef = doc(db, "pedidosCliente", pedido.id);
-    await setDoc(docRef, pedido);
+ 
 
-    // enviamos el objeto por la api de Mpago
+    // enviamos el pedido del cliente por la api de Mpago
     eApi
       .post("pagar", items)
       .then((res) => {
         window.open(res.data);
+      //  cargamos el pedido a la base de datos
+        pedidoBd();
+      // vaciamos toda la infomacion a cero
+        VaciarInfoCliente();
+      //  mandamos una alerta de exito
+        Swal.fire({
+          icon: "success",
+          title: "¡En 24/48 hs habiles, despacharemos tu pedido!",
+        });  
+        navigate('/')
       })
       .catch((err) => {
         console.error(err);
         alert("Ha ocurrido un error al procesar la compra");
       });
   };
+  
+  const pedidoBd = async () => {
+    // crea un document en la database y guarda un pedido,
+    // el id documento y el id pedido son los mismos en la database.
+    const docRef = doc(db, "pedidosCliente", pedido.id);
+    await setDoc(docRef, pedido);
+   }
+  const VaciarInfoCliente = () => {
+    // vacio los datos del carrito
+    setCarrito([])
+    // vacio los datos del pedido
+      setNombre('')
+      setApellido('')
+      setNumero('')
+      setEmail('')
+      setDireccion('')
+      setPiso('')
+      setProvinciaSeleccionada('')
+      setLocalidad('')
+      setCodigoPostal('')
+      setDatos([])
+  }
+  
 
   return (
     <main className="mt-20 font-monsterrat p-4 md:flex md:flex-row md:mt-5 ">
@@ -295,7 +328,6 @@ const CheckOut = () => {
               className="text-black"
               onClick={(e) => {
                 handleCompra(e);
-                handleSubmit(e);
               }}
             >
               Pagar
