@@ -8,14 +8,18 @@ import { collection, addDoc, doc, setDoc, query, where, getDocs } from "firebase
 import { auth, db } from "../../utils/firebaseconfig";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Error from "../reutilizables/Error";
 
 function Registro({setLoggedIn}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [err,setErr] = useState(false);
   const navigate = useNavigate();
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      let verificarEmail = false;
       // Crea un nuevo usuario con el rol "cliente"
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -30,13 +34,12 @@ function Registro({setLoggedIn}) {
         password,
         rol: "cliente",
       });
-      console.log("Usuario registrado con ID: ", userDocRef.id);
       Swal.fire({
         icon: "success",
         title: "¡El usuario ha sido creado con exito!",
       });
-
-      navigate("/micuenta");
+      console.log(user)
+      console.log(user.emailVerified)
     } catch (error) {
       console.log(error);
     }
@@ -55,6 +58,7 @@ function Registro({setLoggedIn}) {
       const usuariosRef = collection(db, "usuarios");
       const q = query(usuariosRef, where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
+     
       if (querySnapshot.empty) {
         verificarEmail = false;
       } else {
@@ -68,16 +72,19 @@ function Registro({setLoggedIn}) {
         const displayName = user.displayName;
         await setDoc(usuarioDoc, { displayName, email, uid, rol: "cliente" }).then(
           res => {
-            setLoggedIn(true);
+            // guarda el token 
+            // guarda el estado logueo
             localStorage.setItem("loggedIn", true);
             localStorage.setItem("token", result.user.accessToken);
+            setLoggedIn(true);
+            setErr(false)
             navigate("/carrito");
           }
         );
+      }else{
+        setErr(true)
       }
 
-      // Muestra un mensaje de éxito
-      console.log("Se ha registrado el usuario con éxito");
     } catch (error) {
       console.error(error);
     }
@@ -100,7 +107,8 @@ function Registro({setLoggedIn}) {
         <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base"></div>
         <p className="text-blanco font-monsterrat font-medium  text-base ">Ó</p>
         <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base"></div>
-      </div>
+      </div> 
+      {err && <Error children={"El usuario ya existe"} />}
       <form onSubmit={handleSubmit} className="my-10">
         <input
           required
