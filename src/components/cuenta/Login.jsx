@@ -17,13 +17,30 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
- 
   const handleSignInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
+      let verificarEmail = false;
       const result = await signInWithPopup(auth, provider);
       // Se ha iniciado sesión con éxito
-      console.log(result.user);
+      const user = result.user.email;
+      const uid = result.user.uid
+      console.log(user)
+      const usuariosRef = collection(db, "usuarios");
+      const q = query(usuariosRef, where("uid", "==", uid));
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        verificarEmail = false
+      }else{
+        verificarEmail = true
+      }
+
+      if(result.user.emailVerified && verificarEmail){
+      setLoggedIn(true)
+      localStorage.setItem("loggedIn", true);
+      localStorage.setItem("token",result.user.accessToken);
+      navigate('/carrito')
+      }
     } catch (error) {
       console.error(error);
     }
@@ -45,6 +62,7 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
       const usuariosRef = collection(db, "usuarios");
       const q = query(usuariosRef, where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
+
       if (querySnapshot.empty) {
         console.log("Usuario no encontrado");
         setErr(true)

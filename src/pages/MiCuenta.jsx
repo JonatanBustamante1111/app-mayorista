@@ -61,7 +61,7 @@ export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLogge
               setLoggedIn={setLoggedIn}
             />
           ) : (
-            <Registro />
+            <Registro  setLoggedIn={setLoggedIn} />
           )}
         </div>
       )}
