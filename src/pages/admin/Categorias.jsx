@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import { updateDoc, getDoc, doc, onSnapshot } from 'firebase/firestore'
+import { updateDoc, getDoc, doc, onSnapshot, collection, deleteDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig';
 import NuevaCategoria from '../../components/admin/NuevaCategoria';
 import EditarCategoria from '../../components/admin/EditarCategoria';
 import EditarSubcategoria from '../../components/admin/EditarSubcategoria';
 import NuevaSubcategoria from '../../components/admin/NuevaSubcategoria';
+import BorrarProducto from '../../components/BorrarProducto'
 
 export default function Categorias() {
     const [categorias, setCategorias] = useState([]);
@@ -12,39 +13,47 @@ export default function Categorias() {
     const [busqueda, setBusqueda] = useState('')
     const [categoriasBuscadas, setCategoriasBuscadas] = useState([])
 
-    const [categoriaAEditar, setCategoriaAEditar] = useState(null)
-    const [subCategoriaAEditar, setSubCategoriaAEditar] = useState(null)
-    const [ categoriaId, setCategoriaId ] = useState(null)
     // estados para las categorias renderizadas
     const [subcategoriasDesplegables, setSubCategoriasDesplegables] = useState(null)
-
+    // Estado para el dropdown de las subcategorias
     const [open, setOpen] = useState(false)
     // Estado para las categorias
     const [modal, setModal] = useState(false)
-    // Estado para las subcategorias
-    const [modalSubcategoria, setModalSubcategoria] = useState(false)
+    const [categoria, setCategoria] = useState({
+        nueva: false,
+        editar: {},
+        nuevaSubcategoria: '',
+        editarSubcategoria: {}
+    });
+    // estado para editar la subcategoria
+    const [subCategoriaAEditar, setSubCategoriaAEditar] = useState({})
+
+    // Eliminar categorias y subcategorias
+    const [idCategoriaAELiminar, setIdCategoriaAEliminar] = useState(null)
+    const [idSubCategoriaAELiminar, setIdSubCategoriaAEliminar] = useState(null)
     // Read Products
     useEffect(() => {
-        const docRef = doc(db, "utilidades", "categorias");
+        const docRef = collection(db, "categorias");
         // Escuchar cambios en tiempo real en el documento
-        const unsubscribe = onSnapshot(docRef, (doc) => {
-          setCategorias(doc.data().categorias);
+        const unsubscribe = onSnapshot(docRef, (snapshot) => {
+            const categorias = snapshot.docs.map((doc) => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                };
+            });
+            setCategorias(categorias);
+            console.log(categorias)
         });
-    
-        // Limpiar el listener cuando se desmonta el componente
         return () => unsubscribe();
-      }, []);
+    }, []);
 
 
     // Delete 
-    const eliminarCategoria = async (id) => {
-        const docref = doc(db, "utilidades", "categorias");
-        const categorias = await getDoc(docref);
-        const categoriasActualizadas = categorias.data().categorias.filter(categoria => categoria.id !== id);
-        await updateDoc(docref, { categorias: categoriasActualizadas });
-        consultarCategorias();
+    const eliminarCategoria = (id) => {
+        const documento_A_Eliminar = doc(db, "categorias", id);
+        deleteDoc(documento_A_Eliminar)
     };
-
     const buscarCategorias = (e) => {
         e.preventDefault()
         const buscar = categorias.filter(cat => cat.nombre.toLowerCase().includes(busqueda.toLowerCase()));
@@ -53,52 +62,36 @@ export default function Categorias() {
     const handleModal = () => {
         setModal(!modal)
     }
-    const eliminarSubcategoria = async ( categoriaId , subcategoriaId) => {
-        
-        const docRef = doc(db, 'utilidades', 'categorias')
-        const docSnapshot = await getDoc(docRef)
-
-        if (!docSnapshot.exists()) {
-            console.log('No se encontró el documento de categorías')
-            return
-        }
-
-        const categoriasData = docSnapshot.data()
-
-        const categorias = [...categoriasData.categorias]
-
-        const categoriaIndex = categorias.findIndex(categoria => categoria.id === categoriaId)
-
-        if (categoriaIndex === -1) {
-            console.log('No se encontró la categoría')
-            return
-        }
-
-        categorias[categoriaIndex].subcategorias = categorias[categoriaIndex].subcategorias.filter(
-            (sub) => sub.id !== subcategoriaId
-        );
-    
-
-        await updateDoc(docRef, { categorias })
-
-        console.log('subcategoria eliminada')
+    const eliminarSubcategoria = async (id) => {
+        const docref = doc(db, "categorias", id);
+        const categoria = await getDoc(docref);
+        const categoriasActualizadas = categoria.data().subcategoria.filter(subcategoria => subcategoria.id !== id);
+        await updateDoc(docref, { subcategorias: categoriasActualizadas });
     }
+    const mostrarModal = () => {
+        switch (true) {
+            case categoria.nueva:
+                return <NuevaCategoria handleModal={() => setCategoria({ nueva: false })} />;
+
+            case categoria.editar && Object.keys(categoria.editar).length !== 0:
+                return <EditarCategoria categoriaAEditar={categoria.editar} setCategoriaAEditar={setCategoria} handleModal={handleModal} />;
+
+            case categoria.nuevaSubcategoria !== '' && categoria.nuevaSubcategoria !== null:
+                return <NuevaSubcategoria setCategoria={setCategoria} categoriaId={categoria.nuevaSubcategoria} />;
+
+            case categoria.editarSubcategoria && Object.keys(categoria.editarSubcategoria).length !== 0:
+                return <EditarSubcategoria categoria={categoria.editarSubcategoria} setCategoria={setCategoria} subCategoriaAEditar={subCategoriaAEditar} handleModal={handleModal} />;
+
+            default:
+                return null;
+        }
+    }
+
     return (
         <main className='w-[65%] absolute flex flex-col left-1/4 '>
 
-            { // Nueva categoria
-                modal && <NuevaCategoria handleModal={handleModal} />
-            }
-            
-            { // Editar categoria
-                categoriaAEditar !== null && <EditarCategoria categoriaAEditar={categoriaAEditar} setCategoriaAEditar={setCategoriaAEditar} handleModal={handleModal} />
-            }
-            { // Nueva subcategoria
-                modalSubcategoria && <NuevaSubcategoria setModalSubcategoria={setModalSubcategoria} categoriaId={categoriaId} handleModal={handleModal} /> 
-            }
-            { // Editar subcategoria
-                subCategoriaAEditar !== null && <EditarSubcategoria subCategoriaAEditar={subCategoriaAEditar} setSubCategoriaAEditar={setSubCategoriaAEditar} handleModal={handleModal}/>
-            }
+            {mostrarModal()}
+
             <section className='grid grid-rows-2'>
                 <article className="flex w-full items-center justify-between m-8 ">
                     <form
@@ -123,7 +116,7 @@ export default function Categorias() {
                     </form>
                     <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium ">
                         <ion-icon name="add-sharp"></ion-icon>
-                        <button onClick={handleModal}>
+                        <button onClick={() => setCategoria({ nueva: true })}>
                             Nueva Categoria
                         </button>
                     </div>
@@ -144,7 +137,7 @@ export default function Categorias() {
                                     <button onClick={() => eliminarCategoria(categoria.id)} className="text-rojo w-full">
                                         <ion-icon name="trash-sharp"></ion-icon>
                                     </button>
-                                    <button onClick={() => setCategoriaAEditar(categoria)} className=" text-blanco">
+                                    <button onClick={() => setCategoria({ editar: categoria })} className=" text-blanco">
                                         <ion-icon name="pencil-sharp"></ion-icon>
                                     </button>
                                 </div>
@@ -173,7 +166,7 @@ export default function Categorias() {
                                         <p className='text-sm text-blanco font-semibold'>Fecha</p>
                                         <p className='text-sm text-blanco font-semibold pl-32'>Acciones</p>
                                     </div>
-                                    {categoria.subcategorias.map((subcategoria) => (
+                                    {categoria.subcategorias?.map((subcategoria) => (
                                         <div
                                             key={subcategoria.id}
                                             className='grid grid-cols-4 w-[95%] mx-auto py-3 border-b last:border-none border-blanco '
@@ -183,12 +176,15 @@ export default function Categorias() {
                                             <p className='font-normal text-base text-blanco'>{subcategoria.fecha}</p>
                                             <div className="flex justify-end items-center  text-center text-xl  gap-x-7 ">
                                                 <button
-                                                    onClick={() => eliminarSubcategoria(categoria.id,subcategoria.id)}
+                                                    //onClick={() => setCategoria({editarSubcategoria:categoria})}
                                                     className="text-rojo"
                                                 >
                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                 </button>
-                                                <button onClick={() => setSubCategoriaAEditar(subcategoria)} className=" text-blanco">
+                                                <button onClick={() => {
+                                                    setCategoria({nuevaSubcategoria:'', editarSubcategoria: categoria })
+                                                    setSubCategoriaAEditar(subcategoria)
+                                                }} className=" text-blanco">
                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                 </button>
                                             </div>
@@ -196,7 +192,7 @@ export default function Categorias() {
                                     ))}
                                     <div className=" flex w-full p-5  justify-start items-center text-secundario text-lg font-medium ">
                                         <ion-icon name="add-sharp"></ion-icon>
-                                        <button onClick={() =>{ setModalSubcategoria(true), setCategoriaId(categoria.id)}}>
+                                        <button onClick={() => setCategoria({ nuevaSubcategoria: categoria.id })}>
                                             Nueva Subcategoria
                                         </button>
                                     </div>
@@ -206,6 +202,15 @@ export default function Categorias() {
                         </article>
                     )
                 })}
+                {idSubCategoriaAELiminar !== null &&
+                    <BorrarProducto
+                        eliminarProducto={() => eliminarSubcategoria(idCategoriaAELiminar, idSubCategoriaAELiminar)}
+                        setModal={() => setIdSubCategoriaAEliminar(null)}
+                        titulo={'Eliminar Subcategoria'}
+                        sustantivo={'la subcategoria'}
+                        nombre={subcategoria.nombre}
+                    />
+                }
 
             </section>
         </main>

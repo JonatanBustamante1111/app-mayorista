@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import Modal from './Modal'
-import { getDoc, doc, updateDoc } from 'firebase/firestore'
+import { getDoc, doc, updateDoc, arrayUnion } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { format } from 'date-fns';
 import Swal from 'sweetalert2';
 
-export default function NuevaSubcategoria({ setModalSubcategoria, categoriaId }) {
+export default function NuevaSubcategoria({ setCategoria, categoriaId }) {
+    // Funcion Para agregarle una categoria al documento
+    const fechaActual = new Date();
+    const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
 
     const [camposCategorias, setCamposCategorias] = useState({
         id: '',
@@ -13,49 +16,34 @@ export default function NuevaSubcategoria({ setModalSubcategoria, categoriaId })
     })
 
     // Funcion Para agregarle una categoria al documento
-    const fechaActual = new Date();
-    const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const docRef = doc(db, 'utilidades', 'categorias')
-        const docSnapshot = await getDoc(docRef)
-
-        if (!docSnapshot.exists()) {
-            console.log('No se encontró el documento de categorías')
-            return
+        const docref = doc(db, 'categorias', categoriaId)
+        const docCategorias = await getDoc(docref)
+        const nuevaSubcategoria = {
+            id: camposCategorias.id,
+            nombre: camposCategorias.descripcion,
+            fecha: fechaFormateada
         }
 
-        const categoriasData = docSnapshot.data()
-
-        const nuevaCategorias = [...categoriasData.categorias]
-
-        const categoriaIndex = nuevaCategorias.findIndex(categoria => categoria.id === categoriaId)
-
-        if (categoriaIndex === -1) {
-            console.log('No se encontró la categoría')
-            return
+        if (docCategorias.exists()) {
+            await updateDoc(docref, {
+                subcategorias: arrayUnion(nuevaSubcategoria)
+            });
         }
-
-        nuevaCategorias[categoriaIndex].subcategorias.push({ 
-            id: camposCategorias.id, 
-            nombre: camposCategorias.descripcion, 
-            fecha:fechaFormateada
-        })
-
-        await updateDoc(docRef, { categorias: nuevaCategorias })
         Swal.fire({
             icon: "success",
-            title: "¡Sub categoria agregada correctamente!",
-          });
-        setModalSubcategoria(false)
-    }
+            title: "¡Subcategoria agregada correctamente!",
+        });
 
+        console.log('Subcategoria Agregada')
+    }
     return (
         <Modal
             camposCategorias={camposCategorias}
             setCamposCategorias={setCamposCategorias}
-            handleModal={()=> setModalSubcategoria(false)}
+            handleModal={() => setCategoria({nuevaSubcategoria:''})}
             onSubmit={handleSubmit}
 
             title={'Nueva Subcategoria'}
