@@ -89,7 +89,7 @@ export default function Categorias() {
     }
 
     return (
-        <main className='w-[65%] absolute flex flex-col left-1/4 '>
+        <main className='w-[75%] ml-[25%] '>
 
 
             {mostrarModal()}
