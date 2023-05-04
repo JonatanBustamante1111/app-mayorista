@@ -1,6 +1,6 @@
 const BorrarProveedor = ({ eliminarProveedor, setModal2,id }) => {
     return (
-      <div className="bg-terciario z-20 w-full absolute left-[40%] top-[20%] sm:w-[75%] md:w-[660px] rounded-xl flex flex-col gap-12 py-10">
+      <div className="bg-terciario z-20 w-full fixed left-[40%] top-[20%] sm:w-[75%] md:w-[660px] rounded-xl flex flex-col gap-12 py-10">
         <div className="flex flex-col items-center justify-center gap-8">
           <img src={"https://i.ibb.co/mB3dP2x/delete.png"} alt="" />
           <h3 className=" font-bold text-2xl text-blanco">Eliminar proveedor</h3>
