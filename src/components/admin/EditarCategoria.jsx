@@ -2,6 +2,7 @@ import Modal from "./Modal"
 import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { useState } from 'react'
+import { format } from 'date-fns';
 
 export default function EditarCategoria({ categoriaAEditar, setCategoriaAEditar }) {
 
@@ -9,46 +10,36 @@ export default function EditarCategoria({ categoriaAEditar, setCategoriaAEditar 
         id: categoriaAEditar.id,
         descripcion: categoriaAEditar.nombre
     })
+    const fechaActual = new Date();
+    const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const docref = doc(db, 'utilidades', 'categorias')
-        const docCategorias = await getDoc(docref)
+        const docref = doc(db, 'categorias', categoriaAEditar.id)
 
-        if (docCategorias.exists()) {
-            const categorias = docCategorias.data().categorias
-            const categoriasActualizadas = categorias.map(categoria => {
-                if (categoria.id === camposCategorias.id) {
-                    return {
-                        ...categoria,
-                        nombre: camposCategorias.descripcion,
-                        id: camposCategorias.id
-                    }
-                } else {
-                    return categoria
-                }
-            })
+        await updateDoc(docref, { 
+            id: camposCategorias.id,
+            nombre: camposCategorias.descripcion,
+            fecha:fechaFormateada
+        });
 
-            await updateDoc(docref, {
-                categorias: categoriasActualizadas
-            });
-
-            console.log('categoria Actualizada')
-            setCategoriaAEditar(null)
-        }
+        console.log('categoria Actualizada')
+        // Resetear estado para cerrar el modal que se abre si el objeto tiene algo
+        setCategoriaAEditar({ editar: {} })
     }
 
-    return (
-        <Modal
-            camposCategorias={camposCategorias}
-            setCamposCategorias={setCamposCategorias}
-            handleModal={()=> setCategoriaAEditar(null)}
-            onSubmit={handleSubmit}
 
-            title={'Editar Categoria'}
-            campoId={'categoria'}
-            campoDescripcion={'categoria'}
-            buttonText={'Guardar Cambios'}
-        />
-    )
+return (
+    <Modal
+        camposCategorias={camposCategorias}
+        setCamposCategorias={setCamposCategorias}
+        handleModal={() => setCategoriaAEditar({ editar: {} })}
+        onSubmit={handleSubmit}
+
+        title={'Editar Categoria'}
+        campoId={'categoria'}
+        campoDescripcion={'categoria'}
+        buttonText={'Guardar Cambios'}
+    />
+)
 }

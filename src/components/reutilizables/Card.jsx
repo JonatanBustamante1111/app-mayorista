@@ -22,9 +22,11 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
       <article className=" border-b last:border-none border-blanco w-[90%] mx-auto py-5">
         {modal && (
           <BorrarProducto
-            eliminarProducto={eliminarProducto}
+            eliminarProducto={() => eliminarProducto(id)}
             setModal={setModal}
-            id={id}
+            titulo={'Eliminar Producto'}
+            sustantivo={'el producto'}
+            nombre={nombre}
           />
         )}
         <div className="grid grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-x-4 rounded-xl place-items-center ">
