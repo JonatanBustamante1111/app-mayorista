@@ -17,15 +17,36 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
- 
   const handleSignInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
+      let verificarEmail = false;
       const result = await signInWithPopup(auth, provider);
       // Se ha iniciado sesión con éxito
-      console.log(result.user);
+      const user = result.user.email;
+      const uid = result.user.uid
+      const usuariosRef = collection(db, "usuarios");
+      const q = query(usuariosRef, where("uid", "==", uid));
+      const querySnapshot = await getDocs(q);
+      // verifica si el email no existe en la base de datos
+      if (querySnapshot.empty) {
+        verificarEmail = false
+      }else{
+        // si existe en la base de datos, setea la variable
+        verificarEmail = true
+      }
+
+      if(result.user.emailVerified && verificarEmail){
+      setLoggedIn(true)
+      localStorage.setItem("loggedIn", true);
+      localStorage.setItem("token",result.user.accessToken);
+      navigate('/carrito')
+      setErr(false)
+      }else{
+        setErr(true)
+      }
     } catch (error) {
-      console.error(error);
+      console.log(error)
     }
   }; 
 
@@ -37,14 +58,14 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
         auth,
         email,
         password,
-        setErr(true)
       );
-      console.log(userCredential)
+
       const user = userCredential.user;
       const uid = user.uid;
       const usuariosRef = collection(db, "usuarios");
       const q = query(usuariosRef, where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
+
       if (querySnapshot.empty) {
         console.log("Usuario no encontrado");
         setErr(true)
@@ -56,21 +77,16 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
       if (usuario.rol === "cliente") {
         setLoggedIn(true);
         localStorage.setItem("loggedIn", true);
-        console.log("Bienvenido cliente");
-        navigate("/carrito");
-       
         // redireccionar a la pagina de cliente
+        navigate("/carrito");
       } else if (usuario.rol === "admin") {
         localStorage.setItem("isLoggedAdmin", true);
-        console.log("Bienvenido administrador");
-        setIsLoggedAdmin(true);
-        navigate("/admin");
-        navigate("/admin")
-      
+        setIsLoggedAdmin(true);      
         // redireccionar a la pagina de administrador
+        navigate("/admin");
       }
     } catch (error) {
-      console.error(error);
+      setErr(true)
     }
     clearState();
   };
@@ -96,7 +112,7 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
             </p>
             <div className="w-8 border h-0 text-blanco font-monsterrat font-medium  text-base"></div>
           </div>
-          {err && <Error children={"El usuario no existe"} />}
+          {err && <Error cla children={"El usuario no existe"} />}
           <form onSubmit={handleSubmit} className="my-10 flex flex-col ">
             <label>
               <input

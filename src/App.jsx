@@ -26,6 +26,7 @@ import Proveedores from "./pages/admin/Proveedores";
 import CartContextProvider from "./context/CartContext";
 import CheckOut from "./pages/CheckOut";
 import PedidoInfo from "./pages/admin/PedidoInfo";
+
 const App = () => {
   const [isLoggedAdmin, setIsLoggedAdmin] = useState(
     localStorage.getItem("isLoggedAdmin") === "true" ? true : false
@@ -146,5 +147,5 @@ const App = () => {
       </CartContextProvider>
     </React.StrictMode>
   );
-};
-    export default App;
+}
+export default App;

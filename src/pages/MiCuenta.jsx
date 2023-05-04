@@ -25,13 +25,15 @@ export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLogge
       }
       {loggedIn ? (
         <div className="text-blanco text-center">
-          <p>¡Bienvenido! Ya has iniciado sesión.</p>
+          <p className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent font-bold text-3xl sm:text-4xl md:text-5xl   mb-24">¡Bienvenido! Ya has iniciado sesión.</p>
+          <div className="flex items-center justify-center text-gray-300 font-normal text-xl gap-x-1 ">
+          <ion-icon name="log-out-outline"></ion-icon>
           <button
-          className=" mb-96"
             onClick={() => setModal(true)}
           >
             Cerrar sesión
           </button>
+          </div>
         </div>
       ) : (
         <div>
@@ -59,7 +61,7 @@ export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLogge
               setLoggedIn={setLoggedIn}
             />
           ) : (
-            <Registro />
+            <Registro  setLoggedIn={setLoggedIn} />
           )}
         </div>
       )}
