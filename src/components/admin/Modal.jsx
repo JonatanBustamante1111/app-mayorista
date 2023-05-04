@@ -13,7 +13,7 @@ export default function Modal({
     return (
         <form
             onSubmit={onSubmit}
-            className='bg-terciario flex flex-col px-5 z-20 w-full absolute left-[20%] top-[49px] sm:w-[75%] md:w-[660px] rounded-xl'>
+            className='bg-terciario flex flex-col  z-20 w-full absolute left-[40%] top-[10%] sm:w-[75%] md:w-[660px] rounded-xl p-8'>
 
             <div className=' w-full flex justify-between items-center py-5 '>
                 <h1 className='text-2xl text-blanco font-semibold text-center '>{title}</h1>
