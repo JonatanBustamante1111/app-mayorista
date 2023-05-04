@@ -6,6 +6,7 @@ import EditarCategoria from '../../components/admin/EditarCategoria';
 import EditarSubcategoria from '../../components/admin/EditarSubcategoria';
 import NuevaSubcategoria from '../../components/admin/NuevaSubcategoria';
 import BorrarProducto from '../../components/BorrarProducto'
+import Subcategoria from '../../components/admin/Subcategoria';
 
 export default function Categorias() {
     const [categorias, setCategorias] = useState([]);
@@ -167,28 +168,13 @@ export default function Categorias() {
                                         <p className='text-sm text-blanco font-semibold pl-32'>Acciones</p>
                                     </div>
                                     {categoria.subcategorias?.map((subcategoria) => (
-                                        <div
-                                            key={subcategoria.id}
-                                            className='grid grid-cols-4 w-[95%] mx-auto py-3 border-b last:border-none border-blanco '
-                                        >
-                                            <p className='font-normal text-base text-blanco'>{subcategoria.id}</p>
-                                            <p className='font-medium text-base text-blanco'>{subcategoria.nombre}</p>
-                                            <p className='font-normal text-base text-blanco'>{subcategoria.fecha}</p>
-                                            <div className="flex justify-end items-center  text-center text-xl  gap-x-7 ">
-                                                <button
-                                                    onClick={() => eliminarSubcategoria(categoria.id, subcategoria.id)}
-                                                    className="text-rojo"
-                                                >
-                                                    <ion-icon name="trash-sharp"></ion-icon>
-                                                </button>
-                                                <button onClick={() => {
-                                                    setCategoria({nuevaSubcategoria:'', editarSubcategoria: categoria })
-                                                    setSubCategoriaAEditar(subcategoria)
-                                                }} className=" text-blanco">
-                                                    <ion-icon name="pencil-sharp"></ion-icon>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <Subcategoria 
+                                            key={subcategoria.id} 
+                                            categoria={categoria}
+                                            subcategoria={subcategoria}
+                                            setSubCategoriaAEditar={setSubCategoriaAEditar}
+                                            eliminarSubcategoria={eliminarSubcategoria}
+                                        />
                                     ))}
                                     <div className=" flex w-full p-5  justify-start items-center text-secundario text-lg font-medium ">
                                         <ion-icon name="add-sharp"></ion-icon>
