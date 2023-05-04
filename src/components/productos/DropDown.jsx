@@ -41,7 +41,7 @@ export default function DropDown({
       setCategoriaSeleccionada(categoria);
       setOpen(true);
     }
-  };
+  }; 
   return (
     <div className="w-full flex flex-col">
 
