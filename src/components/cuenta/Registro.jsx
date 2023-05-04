@@ -38,10 +38,13 @@ function Registro({setLoggedIn}) {
         icon: "success",
         title: "¡El usuario ha sido creado con exito!",
       });
-      console.log(user)
-      console.log(user.emailVerified)
+      // guarda el estado logueo
+      setLoggedIn(true)
+      localStorage.setItem("loggedIn", true);
+      setErr(false)
+      navigate("/carrito");
     } catch (error) {
-      console.log(error);
+      setErr(true)
     }
     clearState();
   };
