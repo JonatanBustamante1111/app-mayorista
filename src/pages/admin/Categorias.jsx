@@ -95,22 +95,22 @@ export default function Categorias() {
             {mostrarModal()}
 
             <section className='grid grid-rows-2'>
-                <article className="flex w-full items-center justify-between m-8 ">
+                <article className="flex items-center justify-between  my-8 mx-4">
                     <form
-                        className="w-[532px]  relative flex flex-col"
+                        className="relative w-1/4 flex flex-col"
                         onSubmit={buscarCategorias}
                     >
                         <input
                             type="search"
                             className="
-                                bg-transparent font-normal text-xs py-2 px-3 border-[1px] border-secundario 
-                                rounded-lg text-blanco focus:outline-none
-                                "
+                            bg-transparent font-normal text-xs p-2 border-[1px] border-secundario 
+                    rounded-lg text-blanco focus:outline-none
+                          "
                             placeholder="Buscar categorias por nombre"
                             value={busqueda}
                             onChange={(e) => setBusqueda(e.target.value)}
                         />
-                        <div className="absolute text-blanco right-4 top-2">
+                        <div className="absolute text-blanco right-2 top-2">
                             <button type="submit">
                                 <ion-icon name="search"></ion-icon>
                             </button>
