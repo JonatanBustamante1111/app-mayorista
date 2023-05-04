@@ -62,11 +62,11 @@ export default function Categorias() {
     const handleModal = () => {
         setModal(!modal)
     }
-    const eliminarSubcategoria = async (id) => {
-        const docref = doc(db, "categorias", id);
+    const eliminarSubcategoria = async (categoriaId, subcategoriaId) => {
+        const docref = doc(db, "categorias", categoriaId);
         const categoria = await getDoc(docref);
-        const categoriasActualizadas = categoria.data().subcategoria.filter(subcategoria => subcategoria.id !== id);
-        await updateDoc(docref, { subcategorias: categoriasActualizadas });
+        const subCategoriasActualizadas = categoria?.data()?.subcategorias?.filter(subcategoria => subcategoria.id !== subcategoriaId);
+        await updateDoc(docref, { subcategorias: subCategoriasActualizadas });
     }
     const mostrarModal = () => {
         switch (true) {
@@ -176,7 +176,7 @@ export default function Categorias() {
                                             <p className='font-normal text-base text-blanco'>{subcategoria.fecha}</p>
                                             <div className="flex justify-end items-center  text-center text-xl  gap-x-7 ">
                                                 <button
-                                                    //onClick={() => setCategoria({editarSubcategoria:categoria})}
+                                                    onClick={() => eliminarSubcategoria(categoria.id, subcategoria.id)}
                                                     className="text-rojo"
                                                 >
                                                     <ion-icon name="trash-sharp"></ion-icon>
