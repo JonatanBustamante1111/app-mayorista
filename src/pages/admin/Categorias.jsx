@@ -72,7 +72,7 @@ export default function Categorias() {
     const mostrarModal = () => {
         switch (true) {
             case categoria.nueva:
-                return <NuevaCategoria handleModal={() => setCategoria({ nueva: false })} />;
+                return <NuevaCategoria handleModal={ () => setCategoria({ nueva: false, nuevaSubcategoria:'' }) } />;
 
             case categoria.editar && Object.keys(categoria.editar).length !== 0:
                 return <EditarCategoria categoriaAEditar={categoria.editar} setCategoriaAEditar={setCategoria} handleModal={handleModal} />;
