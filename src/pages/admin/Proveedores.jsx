@@ -18,6 +18,7 @@ import AgregarProveedor from "../../components/admin/AgregarProveedor";
 import BorrarProveedor from "../../components/admin/BorrarProveedor";
 import { useNavigate } from "react-router-dom";
 import CardProveedor from "../../components/admin/CardProveedor";
+import AumentarPrecioPorProvedores from "../../components/admin/AumentarPrecioPorProveedor";
 
 const Proveedores = () => {
   const [busqueda, setBusqueda] = useState("");
@@ -26,7 +27,7 @@ const Proveedores = () => {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [id, setId] = useState("");
-
+  const [modalTwo,setModalTwo] = useState(false)
   const navigate = useNavigate();
 
   const consultarProveedor = () => {
@@ -72,6 +73,9 @@ const Proveedores = () => {
           consultarProveedor={consultarProveedor}
         />
       )}
+        {
+        modalTwo && <AumentarPrecioPorProvedores setModalTwo={setModalTwo} />
+      }
       <section className="grid grid-rows-2">
         <article className="flex items-center justify-between  my-8 mx-4">
           <form
@@ -94,6 +98,14 @@ const Proveedores = () => {
               </button>
             </div>
           </form>
+          <div className=" flex  items-center gap-x-1 text-blanco text-xl font-medium ">
+            <img className="mx-2" src={'https://i.ibb.co/2NnBDwM/price-change.png'} alt="" />
+            <button onClick={ () => {
+              setModalTwo(true)
+             }}>
+             Aumentar precio
+            </button>
+          </div>
           <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium ">
             <ion-icon name="add-sharp"></ion-icon>
             <button onClick={() => setModal(true)}>Nuevo proveedor</button>
