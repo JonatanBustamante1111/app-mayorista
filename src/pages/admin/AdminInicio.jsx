@@ -4,7 +4,6 @@ import { db } from "../../utils/firebaseconfig";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import AdminNuevoProducto from "../../components/admin/AdminNuevoProducto";
 import AdminEditarProducto from "./AdminEditarProducto";
-import AumentarPrecioPorProvedores from "../../components/admin/AumentarPrecioPorProveedor";
 
 export default function AdminInicio() {
   const [proveedores,setProveedores] = useState([])
@@ -66,9 +65,6 @@ export default function AdminInicio() {
       {
         modal && <AdminNuevoProducto handleModal={handleModal} proveedores={proveedores} setProveedores={setProveedores} />
       }
-      {
-        modalTwo && <AumentarPrecioPorProvedores setModalTwo={setModalTwo} />
-      }
       <section className='grid grid-rows-2'>
         <article className="flex items-center justify-between  m-8 ">
           <form
@@ -91,14 +87,6 @@ export default function AdminInicio() {
               </button>
             </div>
           </form>
-          <div className=" flex  items-center gap-x-1 text-blanco text-xl font-medium ">
-          <ion-icon name="add-sharp"></ion-icon>
-            <button onClick={ () => {
-              setModalTwo(true)
-             }}>
-              Precio proveedor
-            </button>
-          </div>
           <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium ">
 
             <ion-icon name="add-sharp"></ion-icon>

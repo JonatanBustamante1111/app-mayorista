@@ -23,8 +23,7 @@ const AumentarPrecioPorProvedores = ({setModalTwo}) => {
   const actualizarPrecio = async () => {
     const productosRef = collection(db, "productos");
     const productosQuery = proveedorSeleccionado
-      ? query(productosRef, where("proveedor", "==", proveedorSeleccionado))
-      : collection(db, "productos");
+      && query(productosRef, where("proveedor", "==", proveedorSeleccionado))
     const productosSnapshot = await getDocs(productosQuery);
 
     const batch = writeBatch(db);
@@ -48,10 +47,10 @@ const AumentarPrecioPorProvedores = ({setModalTwo}) => {
   };
 
   return (
-    <section className="bg-terciario z-20 w-full absolute left-[20%] top-[16%] sm:w-[75%] md:w-[660px] rounded-xl p-8">
+    <section className="bg-terciario z-20 w-full absolute left-[40%] top-[10%] sm:w-[75%] md:w-[660px] rounded-xl p-8">
            <div className="w-full flex justify-between items-center py-5  ">
         <h1 className="text-2xl text-blanco font-semibold  text-left  ">
-          Aumentar precio productos
+        Aumentar precio
         </h1>
         <button className="text-blanco font-semibold text-3xl  " onClick={ () => setModalTwo(false)}>
           <ion-icon name="close-sharp"></ion-icon>

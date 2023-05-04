@@ -78,7 +78,7 @@ export default function AdminNuevoProducto({ handleModal, proveedores, setProvee
   };
   return (
 
-    <section className="bg-terciario z-20 w-full absolute left-[20%] top-[49px] sm:w-[75%] md:w-[660px] rounded-xl">
+    <section className="bg-terciario z-20 w-full absolute left-[40%] top-[10%] sm:w-[75%] md:w-[660px] rounded-xl">
       <div className=' w-full flex justify-between items-center py-5 px-9'>
         <h1 className='text-2xl text-blanco font-semibold text-center '>Agregar producto</h1>
         <button
