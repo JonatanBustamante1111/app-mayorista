@@ -65,6 +65,8 @@ const CheckOut = () => {
         nombre: producto.nombre,
         precio: producto.precio,
         cantidad: producto.cantidad,
+        imagen: producto.imagen,
+        estado: 'En proceso',
       });
     });
     setDatos(data);
