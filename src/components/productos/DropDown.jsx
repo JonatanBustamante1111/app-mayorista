@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc ,getDocs, collection } from "firebase/firestore";
 import { db } from "../../utils/firebaseconfig";
 
 
@@ -22,9 +22,10 @@ export default function DropDown({
 
   useEffect(() => {
     const consultarCategorias = async () => {
-      const docref = doc(db, 'utilidades', 'categorias')
-      const categoriaDoc = await getDoc(docref)
-      setCategorias(categoriaDoc.data().categorias)
+      const data = await getDocs(collection(db,'categorias'))
+      setCategorias(
+        data.docs.map( doc => ({ ...doc.data(), id:doc.id }) )
+      )
     }
     consultarCategorias()
   }, [])
