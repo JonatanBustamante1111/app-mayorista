@@ -11,7 +11,7 @@ const CerrarSesion = ({ sesionCerrada, setModal }) => {
 
   return (
     esAdmin 
-      ? <div className="bg-terciario z-20 w-full absolute left-[40%] top-[20%] sm:left-[10%] sm:w-[80%]  md:left-[15%] md:w-[660px] lg:left-[140%] xl:left[180%] rounded-xl py-10 px-4">
+      ? <div className="bg-terciario z-20 w-full left-[40%] top-[20%] sm:left-[10%] sm:w-[80%]  md:left-[15%] md:w-[660px] lg:left-[140%] xl:left[180%] rounded-xl py-10 px-4">
       <div className="flex flex-col items-center justify-center gap-8">
         <img src={"https://i.ibb.co/FhMJk06/logout.png"} alt="" />
         <h3 className=" font-bold text-2xl text-blanco">Cerrar sesión</h3>

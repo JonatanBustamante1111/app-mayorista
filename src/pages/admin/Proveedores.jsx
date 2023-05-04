@@ -63,7 +63,7 @@ const Proveedores = () => {
     });
   };
   return (
-    <main class="h-full absolute flex flex-col left-1/4">
+    <main className='w-[75%] ml-[25%]'>
       {/* permite abrir y cerrar el modal para agregar proveedores */}
       {modal && (
         <AgregarProveedor
@@ -106,38 +106,35 @@ const Proveedores = () => {
           <p className="text-lg font-medium text-blanco">Acciones</p>
         </article>
       </section>
-      <section className="flex flex-col  h-3/4 overflow-auto">
-        <article className=" border-b last:border-none border-blanco w-[90%] mx-auto py-5">
-          {modal2 && (
-            <BorrarProveedor
-              key={id}
-              eliminarProveedor={eliminarProveedor}
-              setModal2={setModal2}
-              id={id}
-            />
-          )}
-
-          {/* renderiza los proveedores */}
-          {proveedoresBuscados.length > 0
-            ? proveedoresBuscados.map((proveedor) => (
-                <CardProveedor
-                  key={proveedor.id}
-                  setId={setId}
-                  setModal2={setModal2}
-                  proveedor={proveedor}
-                />
-              ))
-            : proveedores.map((proveedor) => (
-                <CardProveedor
-                  key={proveedor.id}
-                  setId={setId}
-                  setModal2={setModal2}
-                  proveedor={proveedor}
-                />
-              ))
-            }
-        </article>
-      </section>
+          <article className="flex flex-col   border-b last:border-none border-blanco w-[90%] mx-auto py-5 h-3/4 overflow-auto">
+            {modal2 && (
+              <BorrarProveedor
+                key={id}
+                eliminarProveedor={eliminarProveedor}
+                setModal2={setModal2}
+                id={id}
+              />
+            )}
+            {/* renderiza los proveedores */}
+            {proveedoresBuscados.length > 0
+              ? proveedoresBuscados.map((proveedor) => (
+                  <CardProveedor
+                    key={proveedor.id}
+                    setId={setId}
+                    setModal2={setModal2}
+                    proveedor={proveedor}
+                  />
+                ))
+              : proveedores.map((proveedor) => (
+                  <CardProveedor
+                    key={proveedor.id}
+                    setId={setId}
+                    setModal2={setModal2}
+                    proveedor={proveedor}
+                  />
+                ))
+              }
+          </article>
     </main>
   );
 };

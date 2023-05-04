@@ -16,7 +16,6 @@ export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLogge
     auth.signOut();
     setLoggedIn(false); // actualiza loggedIn a false
     localStorage.setItem("loggedIn", false);
-    console.log('no funciona')
   }
   return (
     <div className="px-4 my-20 md:my-40 md:w-1/2 md:mx-auto">

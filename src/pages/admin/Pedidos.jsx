@@ -9,7 +9,6 @@ const Pedidos = () => {
     const consultarPedidos = async () => {
         const data = await getDocs(collection(db, "pedidosCliente"));
         setPedidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        console.log(pedidos)
     }
     useEffect(() => {
         consultarPedidos()

@@ -59,7 +59,7 @@ export default function AdminInicio() {
   }
 
   return (
-    <main className="h-full absolute flex flex-col left-1/4">
+    <main className="w-[75%] ml-[25%]">
       {
         idProducto !== null && <AdminEditarProducto idProducto={idProducto} setIdProducto={setIdProducto} proveedores={proveedores} setProveedores={setProveedores}/>
       }
