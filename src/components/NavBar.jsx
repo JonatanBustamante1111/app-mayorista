@@ -5,14 +5,12 @@ import { CartContext } from "../context/CartContext";
 import MenuHamburguesa from "./MenuHamburguesa";
 import NavbarLinks from "./NavbarLinks";
 
-
 export default function NavBar({loggedIn}) {
 
   const [nav, setNav] = useState(false);
   const { cart } = useContext(CartContext);
   const { sumaCantidadBadge } = cart;
   const [scroll, setScroll] = useState(false);
-
 
 
   const handleNav = () => {
@@ -53,7 +51,7 @@ export default function NavBar({loggedIn}) {
         </div>
         <div className='flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10'>
           <Link className='text-3xl mr-20 pb-2' to={'/carrito'}>
-            <Badge badgeContent={sumaCantidadBadge()} color="primary" >
+            <Badge badgeContent={sumaCantidadBadge()} color="warning"  >
               <ion-icon name="cart"></ion-icon>
             </Badge>
           </Link>
