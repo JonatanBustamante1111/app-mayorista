@@ -91,6 +91,7 @@ export default function Categorias() {
     return (
         <main className='w-[65%] absolute flex flex-col left-1/4 '>
 
+
             {mostrarModal()}
 
             <section className='grid grid-rows-2'>
@@ -122,8 +123,12 @@ export default function Categorias() {
                         </button>
                     </div>
                 </article>
-                <article>
-
+                <article className="w-[90%] pl-4  mb-5 mx-auto grid grid-cols-5 gap-x-10 place-items-start self-center">
+                    <p className="text-lg font-medium text-blanco">Id</p>
+                    <p className="text-lg font-medium text-blanco">Descripcion</p>
+                    <p className="text-lg font-medium text-blanco">Registro</p>
+                    <p className="text-lg font-medium text-blanco pl-4">Acciones</p>
+                    <p className="text-lg font-medium text-blanco pl-8">Mas</p>
                 </article>
             </section>
             <section className='flex flex-col  h-3/4  '>
@@ -168,8 +173,8 @@ export default function Categorias() {
                                         <p className='text-sm text-blanco font-semibold pl-32'>Acciones</p>
                                     </div>
                                     {categoria.subcategorias?.map((subcategoria) => (
-                                        <Subcategoria 
-                                            key={subcategoria.id} 
+                                        <Subcategoria
+                                            key={subcategoria.id}
                                             categoria={categoria}
                                             subcategoria={subcategoria}
                                             setSubCategoriaAEditar={setSubCategoriaAEditar}
