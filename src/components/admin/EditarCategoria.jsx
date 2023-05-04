@@ -25,7 +25,7 @@ export default function EditarCategoria({ categoriaAEditar, setCategoriaAEditar 
 
         console.log('categoria Actualizada')
         // Resetear estado para cerrar el modal que se abre si el objeto tiene algo
-        setCategoriaAEditar({ editar: {} })
+        setCategoriaAEditar({ editar: {}, nuevaSubcategoria:''})
     }
 
 
@@ -33,7 +33,7 @@ return (
     <Modal
         camposCategorias={camposCategorias}
         setCamposCategorias={setCamposCategorias}
-        handleModal={() => setCategoriaAEditar({ editar: {} })}
+        handleModal={() => setCategoriaAEditar({ editar: {}, nuevaSubcategoria:'' })}
         onSubmit={handleSubmit}
 
         title={'Editar Categoria'}
