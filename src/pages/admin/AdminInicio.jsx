@@ -13,7 +13,6 @@ export default function AdminInicio() {
   const [productosBuscados, setProductosBuscados] = useState([])
 
   const [modal, setModal] = useState(false)
-  const [modalTwo,setModalTwo] = useState(false)
   const [idProducto, setIdProducto] = useState(null)
   // Read Products
   const consultarProductos = async () => {
@@ -31,7 +30,7 @@ export default function AdminInicio() {
     const datos = querySnapshot.docs.map(doc => doc.data().nombre)
     setProveedores(datos)
   }
-  
+  console.log(proveedores)
   useEffect(() => {
     consultarProveedor()
   }, [])

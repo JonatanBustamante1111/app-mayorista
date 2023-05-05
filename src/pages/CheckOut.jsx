@@ -7,6 +7,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 import Button from "../components/reutilizables/Button";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
