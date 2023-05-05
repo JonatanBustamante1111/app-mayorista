@@ -26,10 +26,10 @@ export default function Pedido({ pedido }) {
             <h3 className=" text-blanco text-center ">
                 {nombre} {apellido}
             </h3>
-            <p className="font-medium text-xl text-center text-blanco">{fecha}</p>
+            <p className="text-center text-blanco">{fecha}</p>
             <select
                 onChange={(e) => setEstadoDelPedido(e.target.value)}
-                className={`py-3 rounded-xl px-2 text-blanco font-medium ${fondoDelSelect} bg-opacity-70`}
+                className={`py-3 rounded-xl px-2 text-blanco ${fondoDelSelect} bg-opacity-70`}
                 name=""
                 id=""
                 value={estado}
