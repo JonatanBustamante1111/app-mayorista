@@ -80,7 +80,7 @@ export default function Categorias() {
             case categoria.nuevaSubcategoria !== '' && categoria.nuevaSubcategoria !== null:
                 return <NuevaSubcategoria setCategoria={setCategoria} categoriaId={categoria.nuevaSubcategoria} />;
 
-            case categoria.editarSubcategoria && Object.keys(categoria.editarSubcategoria).length !== 0:
+            case Object.keys(subCategoriaAEditar).length !== 0:
                 return <EditarSubcategoria categoria={categoria.editarSubcategoria} setCategoria={setCategoria} subCategoriaAEditar={subCategoriaAEditar} handleModal={handleModal} />;
 
             default:

@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Pedido({ pedido }) {
-    const { nombre, apellido, id } = pedido
+    const { nombre, apellido, id, fecha, estado } = pedido
     const [estadoDelPedido, setEstadoDelPedido] = useState('');
     let fondoDelSelect = 'bg-secundario'
+
+    console.log(pedido)
 
     switch (estadoDelPedido) {
         case 'En proceso':
@@ -26,13 +28,13 @@ export default function Pedido({ pedido }) {
             <h3 className="font-bold  text-blanco text-center text-lg">
                 {nombre} {apellido}
             </h3>
-            <p className="font-medium text-xl text-center text-blanco">fecha</p>
+            <p className="font-medium text-xl text-center text-blanco">{fecha}</p>
             <select
                 onChange={(e) => setEstadoDelPedido(e.target.value)}
                 className={`py-3 rounded-xl px-2 text-blanco font-medium ${fondoDelSelect} bg-opacity-70`}
                 name=""
                 id=""
-                value={estadoDelPedido}
+                value={estado}
             >
                 <option value="En proceso">En proceso</option>
                 <option value="Enviado">Enviado</option>
