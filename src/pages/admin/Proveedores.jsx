@@ -27,8 +27,10 @@ const Proveedores = () => {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [id, setId] = useState("");
+  const [cant, setCant] = useState([]);
   const [modalTwo,setModalTwo] = useState(false)
   const navigate = useNavigate();
+
 
   const consultarProveedor = () => {
     return onSnapshot(collection(db, "proveedores"), (data) => {
@@ -40,6 +42,14 @@ const Proveedores = () => {
     const unsubscribe = consultarProveedor();
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+
+    if (cant.length < proveedores.length) {
+      // Agrega el siguiente número consecutivo a `cant`
+      setCant([...cant, cant.length]);
+    }
+  }, [cant,proveedores.length]);
 
   const buscarProveedores = (e) => {
     e.preventDefault();
@@ -129,20 +139,22 @@ const Proveedores = () => {
             )}
             {/* renderiza los proveedores */}
             {proveedoresBuscados.length > 0
-              ? proveedoresBuscados.map((proveedor) => (
+              ? proveedoresBuscados.map((proveedor,i) => (
                   <CardProveedor
                     key={proveedor.id}
                     setId={setId}
                     setModal2={setModal2}
                     proveedor={proveedor}
+                    cant={cant[i]+1}
                   />
                 ))
-              : proveedores.map((proveedor) => (
+              : proveedores.map((proveedor,i) => (
                   <CardProveedor
                     key={proveedor.id}
                     setId={setId}
                     setModal2={setModal2}
                     proveedor={proveedor}
+                    cant={cant[i]+1}
                   />
                 ))
               }

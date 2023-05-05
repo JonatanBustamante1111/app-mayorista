@@ -1,8 +1,11 @@
-const CardProveedor = ({setId,setModal2,proveedor}) => {
+import { useEffect } from "react";
+
+const CardProveedor = ({setId,setModal2,proveedor,cant}) => {
+
   return (
     <div className="grid grid-cols-[2fr,4fr,4fr,1fr] gap-x-4 border-b-2 mb-6">
       <h3 className=" text-blanco  ">
-        {proveedor.id.substring(0, 5)}
+        {cant}
       </h3>
       <p className=" text-xl  text-blanco mb-4">
         {proveedor.nombre}

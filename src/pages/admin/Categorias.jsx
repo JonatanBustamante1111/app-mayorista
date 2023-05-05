@@ -14,6 +14,8 @@ import EditarSubcategoria from "../../components/admin/EditarSubcategoria";
 import NuevaSubcategoria from "../../components/admin/NuevaSubcategoria";
 import BorrarProducto from "../../components/BorrarProducto";
 import Subcategoria from "../../components/admin/Subcategoria";
+import Swal from "sweetalert2";
+import BorrarCategoria from "../../components/admin/BorrarCategoria";
 
 export default function Categorias() {
   const [categorias, setCategorias] = useState([]);
@@ -28,6 +30,10 @@ export default function Categorias() {
   const [open, setOpen] = useState(false);
   // Estado para las categorias
   const [modal, setModal] = useState(false);
+  const [modal2,setModal2] = useState(false);
+  const [id,setId] = useState('');
+  const[idSubcategoria,setIdSubcategoria] = useState('');
+  
   const [categoria, setCategoria] = useState({
     nueva: false,
     editar: {},
@@ -60,6 +66,11 @@ export default function Categorias() {
   const eliminarCategoria = (id) => {
     const documento_A_Eliminar = doc(db, "categorias", id);
     deleteDoc(documento_A_Eliminar);
+
+    Swal.fire({
+        icon: "success",
+        title: "Proveedor borrado",
+      })
   };
   const buscarCategorias = (e) => {
     e.preventDefault();
@@ -128,7 +139,14 @@ export default function Categorias() {
   return (
     <main className="w-[75%] ml-[25%] ">
       {mostrarModal()}
-
+      {modal2 && (
+              <BorrarCategoria
+                key={id}
+                eliminarCategoria={eliminarCategoria}
+                setModal2={setModal2}
+                id={id}
+              />
+            )}  
       <section className="grid grid-rows-2">
         <article className="flex items-center justify-between  my-8 mx-4">
           <form
@@ -181,7 +199,10 @@ export default function Categorias() {
                 <p className="text-blanco">{categoria.fecha}</p>
                 <div className="flex justify-end items-center  text-center  gap-x-7 px-3">
                   <button
-                    onClick={() => eliminarCategoria(categoria.id)}
+                    onClick={() => {
+                        setId(categoria.id)
+                        setModal2(true)
+                    }}
                     className="text-rojo w-full"
                   >
                     <ion-icon name="trash-sharp"></ion-icon>
