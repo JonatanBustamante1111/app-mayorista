@@ -3,7 +3,7 @@ import Formulario from "./Formulario";
 
 //import Error from '../components/Error'
 
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, connectStorageEmulator } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
 import { db, storage } from "../../utils/firebaseconfig";
 
@@ -14,7 +14,8 @@ export default function AdminNuevoProducto({ handleModal, proveedores, setProvee
   const [archivoSeleccionado, setArchivoSeleccionado] = useState({});
   const [nombreArchivo, setNombreArchivo] = useState("");
   const inputFileRef = useRef(null);
-
+  
+console.log(proveedores)
   const [camposProducto, setCamposProducto] = useState({
     nombre: "",
     precio: "",

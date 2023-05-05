@@ -10,9 +10,19 @@ export default function Formulario({
     imagenUrl,
     setSubCategoria,
     proveedores
+
 }) {
-
-
+    // const [proveedores,setProveedores] = useState([])
+    // const consultarProveedor = async () => {
+    //     const producto = collection(db, "proveedores")
+    //     const querySnapshot = await getDocs(producto)
+    //     const datos = querySnapshot.docs.map(doc => doc.data().nombre)
+    //     setProveedores(datos)
+    //   }
+      
+    //   useEffect(() => {
+    //     consultarProveedor()
+    //   }, [])
     const [categorias, setCategorias] = useState([])
 
     useEffect(() => {
@@ -25,7 +35,13 @@ export default function Formulario({
         consultarCategorias()
     }, [])
 
-
+    const handleChangeProveedor = (e) =>{
+        setCamposProducto({
+            ...camposProducto,
+            proveedor: e.target.value
+        })
+        console.log(e.target.value)
+    }
     const handleChangeCategoria = (e) => {
         setCamposProducto({
             ...camposProducto,
@@ -98,10 +114,8 @@ export default function Formulario({
                     name="provedor"
                     id="provedor"
                     className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
-                    value={camposProducto.proveedor}
-                    onChange={e => {
-                        setCamposProducto({ ...camposProducto, proveedor: e.target.value })
-                    }}
+                    value={camposProducto.proveedores}
+                    onChange={handleChangeProveedor}
                 >
                     <option value="" >-- Seleccione el proveedor --</option>
                     {proveedores.map((proveedor, i) => (
