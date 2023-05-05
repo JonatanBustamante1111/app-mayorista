@@ -174,12 +174,12 @@ export default function Categorias() {
               className="border-b last:border-none border-blanco w-[90%] mx-auto py-5"
             >
               <div className="grid grid-cols-5 w-full  rounded-xl place-items-center">
-                <p className="font-semibold text-base text-blanco pr-32">
+                <p className=" e text-blanco pr-32">
                   {categoria.id}
                 </p>
                 <p className="text-blanco">{categoria.nombre}</p>
                 <p className="text-blanco">{categoria.fecha}</p>
-                <div className="flex justify-end items-center  text-center text-2xl gap-x-7 px-3">
+                <div className="flex justify-end items-center  text-center  gap-x-7 px-3">
                   <button
                     onClick={() => eliminarCategoria(categoria.id)}
                     className="text-rojo w-full"

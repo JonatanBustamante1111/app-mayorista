@@ -35,7 +35,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
             className="object-cover rounded-xl"
             alt={`Imagen de ${nombre}`}
           />
-          <h3 className=" text-blanco text-center text-lg">
+          <h3 className=" text-blanco text-center ">
             {nombre}
           </h3>
           <p className="  text-center text-blanco">{stock}</p>
@@ -58,7 +58,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
       <article className="flex flex-col transition-all duration-300">
         <Link
           to={`/producto/${id}`}
-          className="mt-5 w-full flex flex-col items-center uppercase font-bold text-white text-lg  cursor-pointer"
+          className="mt-5 w-full flex flex-col items-center uppercase font-bold text-white text-xl  cursor-pointer"
         >
           <img
             src={imagen}
