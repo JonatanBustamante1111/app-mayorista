@@ -5,7 +5,7 @@ import { CartContext } from "../context/CartContext";
 import MenuHamburguesa from "./MenuHamburguesa";
 import NavbarLinks from "./NavbarLinks";
 
-export default function NavBar({loggedIn}) {
+export default function NavBar({loggedIn,isLoggedAdmin}) {
 
   const [nav, setNav] = useState(false);
   const { cart } = useContext(CartContext);
@@ -59,7 +59,7 @@ export default function NavBar({loggedIn}) {
             <ion-icon name="person-circle-outline"></ion-icon>
             <Link to={'/micuenta'} >
              {
-              loggedIn ? "Bienvenido" : "Ingresar"
+              loggedIn || isLoggedAdmin ? "Bienvenido" : "Ingresar"
              } 
             </Link>
           </div>

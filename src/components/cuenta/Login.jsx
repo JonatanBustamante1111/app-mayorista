@@ -71,7 +71,6 @@ function Login({ setIsLoggedAdmin,setLoggedIn }) {
         setErr(true)
         return;
       }
-
       // Verifica el rol del usuario y redirige a la página correspondiente
       const usuario = querySnapshot.docs[0].data();
       if (usuario.rol === "cliente") {

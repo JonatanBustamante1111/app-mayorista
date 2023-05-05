@@ -9,6 +9,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
   const [modal, setModal] = useState(false);
   const { cart } = useContext(CartContext);
   const { nombre, precio, imagen, id, stock} = producto;
+  
   const location = useLocation();
  
   // funcion que guarda los productos en el carrito

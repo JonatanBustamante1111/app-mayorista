@@ -16,18 +16,20 @@ export default function MiCuenta({ setIsLoggedAdmin,setLoggedIn,loggedIn,isLogge
     auth.signOut();
     setLoggedIn(false); // actualiza loggedIn a false
     localStorage.setItem("loggedIn", false);
+    setIsLoggedAdmin(false)
+    localStorage.setItem("isLoggedAdmin", false);
   }
   return (
     <div className="px-4 my-20 md:my-40 md:w-1/2 md:mx-auto">
       {
         modal && <CerrarSesion sesionCerrada={sesionCerrada} setModal={setModal}/>
       }
-      {loggedIn ? (
+      {loggedIn || isLoggedAdmin ? (
         <div className="text-blanco text-center">
-          <p className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent font-bold text-3xl sm:text-4xl md:text-5xl   mb-24">¡Bienvenido! Ya has iniciado sesión.</p>
-          <div className="flex items-center justify-center text-gray-300 font-normal text-xl gap-x-1 ">
+          <p className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent font-bold text-3xl sm:text-4xl md:text-5xl mb-24">¡Bienvenido! Ya has iniciado sesión.</p>
+          <div className="flex items-center justify-center text-gray-300 font-normal text-xl gap-x-1">
           <ion-icon name="log-out-outline"></ion-icon>
-          <button
+          <button 
             onClick={() => setModal(true)}
           >
             Cerrar sesión

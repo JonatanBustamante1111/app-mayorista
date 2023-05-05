@@ -103,10 +103,7 @@ export default function AdminInicio() {
           <p className="text-lg font-medium text-blanco">Acciones</p>
         </article>
       </section>
-
-      <section className="flex flex-col  h-3/4  overflow-auto  ">
-
-
+      <section className="flex flex-col  h-3/4  overflow-auto ">
         {productosBuscados.length > 0
           ? productosBuscados.map((producto) => (
             <Card

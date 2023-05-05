@@ -38,7 +38,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout loggedIn={loggedIn} />,
+      element: <Layout loggedIn={loggedIn} isLoggedAdmin={isLoggedAdmin} />,
       children: [
         {
           index: true,
