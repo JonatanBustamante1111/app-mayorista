@@ -13,7 +13,6 @@ export default function AdminInicio() {
   const [productosBuscados, setProductosBuscados] = useState([])
 
   const [modal, setModal] = useState(false)
-  const [modalTwo,setModalTwo] = useState(false)
   const [idProducto, setIdProducto] = useState(null)
   // Read Products
   const consultarProductos = async () => {
