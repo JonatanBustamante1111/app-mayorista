@@ -1,4 +1,6 @@
-import { categorias } from '../../utils/categorias'
+import { useState, useEffect } from "react"
+import { getDocs, collection } from 'firebase/firestore'
+import { db } from "../../utils/firebaseconfig"
 
 export default function Formulario({
     handleChangeArchivo,
@@ -11,24 +13,37 @@ export default function Formulario({
 }) {
 
 
+    const [categorias, setCategorias] = useState([])
+
+    useEffect(() => {
+        const consultarCategorias = async () => {
+            const data = await getDocs(collection(db, 'categorias'))
+            setCategorias(
+                data.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+            )
+        }
+        consultarCategorias()
+    }, [])
+
+
     const handleChangeCategoria = (e) => {
         setCamposProducto({
             ...camposProducto,
-            categoria:e.target.value
+            categoria: e.target.value
         })
         console.log(e.target.value)
     }
-      
+
     // Metodo para acceder al objeto de la categoria seleccionada
-    const categoriaFind = categorias.find(cat => cat.label === camposProducto.categoria);
-   
+    const categoriaFind = categorias.find(cat => cat.nombre === camposProducto.categoria);
+
     return (
         <div className='bg-terciario max-h-[448px] overflow-y-scroll px-3'>
             {/*  En el onChange se crea una copia del objeto actual  y se reemplaza el campo seleccionado por el valor nuevo del input*/}
             <div className="mb-8 flex flex-col gap-y-2">
                 <label className='text-blanco font-semibold text-base' htmlFor="nombre">Nombre:</label>
                 <input
-                   required
+                    required
                     id="nombre"
                     type="text"
                     className="p-3 border-secundario border rounded-xl text-blanco font-normal bg-inherit w-full focus:outline-none"
@@ -39,9 +54,9 @@ export default function Formulario({
                 />
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
-            <label className='text-blanco font-semibold text-base' htmlFor="precio">Precio:</label>
+                <label className='text-blanco font-semibold text-base' htmlFor="precio">Precio:</label>
                 <input
-                   required
+                    required
                     id="precio"
                     type="number"
                     className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
@@ -52,9 +67,9 @@ export default function Formulario({
                 />
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
-            <label className='text-blanco font-semibold text-base' htmlFor="stock">Stock:</label>
+                <label className='text-blanco font-semibold text-base' htmlFor="stock">Stock:</label>
                 <input
-                   required
+                    required
                     id="stock"
                     type="number"
                     className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
@@ -65,9 +80,9 @@ export default function Formulario({
                 />
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
-            <label className='text-blanco font-semibold text-base' htmlFor="descripcion">Descripcion:</label>
+                <label className='text-blanco font-semibold text-base' htmlFor="descripcion">Descripcion:</label>
                 <input
-                   required
+                    required
                     id="descripcion"
                     type="text"
                     className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
@@ -77,7 +92,7 @@ export default function Formulario({
                 />
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
-            <label className='text-blanco font-semibold text-base' htmlFor="provedor">Provedor:</label>
+                <label className='text-blanco font-semibold text-base' htmlFor="provedor">Provedor:</label>
                 <select
                     required
                     name="provedor"
@@ -85,20 +100,20 @@ export default function Formulario({
                     className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
                     value={camposProducto.proveedor}
                     onChange={e => {
-                        setCamposProducto({...camposProducto,proveedor:e.target.value})
+                        setCamposProducto({ ...camposProducto, proveedor: e.target.value })
                     }}
                 >
                     <option value="" >-- Seleccione el proveedor --</option>
                     {proveedores.map((proveedor, i) => (
-                    <option key={i} value={proveedor.nombre}>
-              {proveedor.nombre}
-            </option>
-          ))}
+                        <option key={i} value={proveedor.nombre}>
+                            {proveedor.nombre}
+                        </option>
+                    ))}
                 </select>
 
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
-            <label className='text-blanco font-semibold text-base' htmlFor="categoria">Categoria:</label>
+                <label className='text-blanco font-semibold text-base' htmlFor="categoria">Categoria:</label>
                 <select
                     name="categoria"
                     id="categoria"
@@ -108,47 +123,47 @@ export default function Formulario({
                 >
                     <option value="" >-- Seleccione la Categoria --</option>
                     {
-                        categorias.map((categoria, i) => (<option key={i} value={categoria.label}>{categoria.label}</option>))
+                        categorias.map((categoria) => (<option key={categoria.id} value={categoria.nombre}>{categoria.nombre}</option>))
                     }
                 </select>
 
             </div>
             {
 
-                 categoriaFind && categoriaFind.children && categoriaFind.children.length > 0 && (
+                categoriaFind && categoriaFind.subcategorias && categoriaFind.subcategorias.length > 0 && (
                     <div className="mb-4 flex flex-col gap-y-2">
                         <label className='text-blanco font-semibold text-base' htmlFor="subcategoria">Subcategoria:</label>
-                        <select 
-                             className="p-3 bg-terciario text-center border-secundario text-blanco border rounded-xl focus:outline-none bg-inherit w-full"
+                        <select
+                            className="p-3 bg-terciario text-center border-secundario text-blanco border rounded-xl focus:outline-none bg-inherit w-full"
                             id="subcategoria"
                             value={camposProducto.subcategoria}
                             onChange={e => {
-                                setSubCategoria(e.target.value) 
-                                setCamposProducto({...camposProducto, subcategoria:e.target.value})
+                                setSubCategoria(e.target.value)
+                                setCamposProducto({ ...camposProducto, subcategoria: e.target.value })
                             }}
-                            >
+                        >
                             <option value="">Seleccione una subcategoría</option>
-                            {categoriaFind.children.map(subcategoria => (
-                                <option key={subcategoria.id} value={subcategoria.label}>
-                                    {subcategoria.label}
+                            {categoriaFind.subcategorias.map(subcategoria => (
+                                <option key={subcategoria.id} value={subcategoria.nombre}>
+                                    {subcategoria.nombre}
                                 </option>
                             ))}
                         </select>
                     </div>
                 )
-          
+
             }
             <div className="mb-8 flex flex-col gap-y-2">
-            <label className='text-blanco font-semibold text-base' htmlFor="destacado">Destacar producto:</label>
+                <label className='text-blanco font-semibold text-base' htmlFor="destacado">Destacar producto:</label>
                 <select
-                   required
+                    required
                     name="destacado"
                     id="destacado"
                     className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
                     value={camposProducto.destacado}
                     onChange={e => setCamposProducto({
                         ...camposProducto,
-                        destacado:e.target.value
+                        destacado: e.target.value
                     })}
                 >
                     <option value="" >-- Seleccione una opcion --</option>
