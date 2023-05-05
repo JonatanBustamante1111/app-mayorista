@@ -12,17 +12,7 @@ export default function Formulario({
     proveedores
 
 }) {
-    // const [proveedores,setProveedores] = useState([])
-    // const consultarProveedor = async () => {
-    //     const producto = collection(db, "proveedores")
-    //     const querySnapshot = await getDocs(producto)
-    //     const datos = querySnapshot.docs.map(doc => doc.data().nombre)
-    //     setProveedores(datos)
-    //   }
-      
-    //   useEffect(() => {
-    //     consultarProveedor()
-    //   }, [])
+
     const [categorias, setCategorias] = useState([])
 
     useEffect(() => {
@@ -40,14 +30,12 @@ export default function Formulario({
             ...camposProducto,
             proveedor: e.target.value
         })
-        console.log(e.target.value)
     }
     const handleChangeCategoria = (e) => {
         setCamposProducto({
             ...camposProducto,
             categoria: e.target.value
         })
-        console.log(e.target.value)
     }
 
     // Metodo para acceder al objeto de la categoria seleccionada
