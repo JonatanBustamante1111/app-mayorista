@@ -26,7 +26,7 @@ const CheckOut = () => {
   const [datos, setDatos] = useState([]);
 
   const { cart } = useContext(CartContext);
-  const { carrito,setCarrito } = cart;
+  const { carrito, setCarrito } = cart;
 
   const navigate = useNavigate();
 
@@ -35,6 +35,9 @@ const CheckOut = () => {
   carrito.forEach((el) => {
     total += el.precio * el.cantidad;
   });
+
+  const fechaActual = new Date();
+  const fecha = format(fechaActual, 'dd/MM/yyyy');
 
   function generarIdUnico() {
     const fechaActual = new Date().getTime();
@@ -54,6 +57,8 @@ const CheckOut = () => {
     localidad,
     codigoPostal,
     datos,
+    fecha,
+    estado: 'En proceso'
   };
 
   // guarda los productos actuales del carrito en un array
@@ -66,7 +71,7 @@ const CheckOut = () => {
         precio: producto.precio,
         cantidad: producto.cantidad,
         imagen: producto.imagen,
-        estado: 'En proceso',
+        proveedor: producto.proveedor,
       });
     });
     setDatos(data);
@@ -144,22 +149,22 @@ const CheckOut = () => {
     }
     // asigna el id generado al pedido del cliente
     pedido.id = id;
- 
+
 
     // enviamos el pedido del cliente por la api de Mpago
     eApi
       .post("pagar", items)
       .then((res) => {
         window.open(res.data);
-      //  cargamos el pedido a la base de datos
+        //  cargamos el pedido a la base de datos
         pedidoBd();
-      // vaciamos toda la infomacion a cero
+        // vaciamos toda la infomacion a cero
         VaciarInfoCliente();
-      //  mandamos una alerta de exito
+        //  mandamos una alerta de exito
         Swal.fire({
           icon: "success",
           title: "¡En 24/48 hs habiles, despacharemos tu pedido!",
-        });  
+        });
         navigate('/')
       })
       .catch((err) => {
@@ -167,29 +172,29 @@ const CheckOut = () => {
         alert("Ha ocurrido un error al procesar la compra");
       });
   };
-  
+
   const pedidoBd = async () => {
     // crea un document en la database y guarda un pedido,
     // el id documento y el id pedido son los mismos en la database.
     const docRef = doc(db, "pedidosCliente", pedido.id);
     await setDoc(docRef, pedido);
-   }
+  }
   const VaciarInfoCliente = () => {
     // vacio los datos del carrito
     setCarrito([])
     // vacio los datos del pedido
-      setNombre('')
-      setApellido('')
-      setNumero('')
-      setEmail('')
-      setDireccion('')
-      setPiso('')
-      setProvinciaSeleccionada('')
-      setLocalidad('')
-      setCodigoPostal('')
-      setDatos([])
+    setNombre('')
+    setApellido('')
+    setNumero('')
+    setEmail('')
+    setDireccion('')
+    setPiso('')
+    setProvinciaSeleccionada('')
+    setLocalidad('')
+    setCodigoPostal('')
+    setDatos([])
   }
-  
+
 
   return (
     <main className="mt-20 font-monsterrat p-4 md:flex md:flex-row md:mt-5 ">
