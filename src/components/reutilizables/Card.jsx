@@ -35,14 +35,14 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
             className="object-cover rounded-xl"
             alt={`Imagen de ${nombre}`}
           />
-          <h3 className="font-bold  text-blanco text-center text-lg">
+          <h3 className=" text-blanco text-center text-lg">
             {nombre}
           </h3>
-          <p className="font-medium text-xl text-center text-blanco">{stock}</p>
-          <p className="font-semibold  text-2xl text-center text-blanco">
+          <p className="  text-center text-blanco">{stock}</p>
+          <p className="   text-center text-blanco">
             ${precio}
           </p>
-          <div className="flex justify-end items-center  text-center text-2xl gap-x-7 px-3">
+          <div className="flex justify-end items-center  text-center gap-x-7 px-3">
             <button onClick={() => setModal(true)} className="text-rojo w-full">
               <ion-icon name="trash-sharp"></ion-icon>
             </button>

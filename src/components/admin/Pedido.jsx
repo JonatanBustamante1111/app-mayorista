@@ -6,8 +6,6 @@ export default function Pedido({ pedido }) {
     const [estadoDelPedido, setEstadoDelPedido] = useState('');
     let fondoDelSelect = 'bg-secundario'
 
-    console.log(pedido)
-
     switch (estadoDelPedido) {
         case 'En proceso':
             fondoDelSelect = 'bg-secundario';
@@ -24,8 +22,8 @@ export default function Pedido({ pedido }) {
 
     return (
         <article className="py-3 mx-auto w-[95%]  grid grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-x-4  place-items-center  last:border-none border-b border-gray-200">
-            <p className="font-medium text-xl text-center text-blanco">000000</p>
-            <h3 className="font-bold  text-blanco text-center text-lg">
+            <p className="text-center text-blanco">000000</p>
+            <h3 className=" text-blanco text-center ">
                 {nombre} {apellido}
             </h3>
             <p className="font-medium text-xl text-center text-blanco">{fecha}</p>
@@ -40,7 +38,7 @@ export default function Pedido({ pedido }) {
                 <option value="Enviado">Enviado</option>
                 <option value="Cancelado">Cancelado</option>
             </select>
-            <div className="flex justify-end items-center  text-center text-blanco text-2xl gap-x-7 px-3">
+            <div className="flex justify-end items-center  text-center text-blanco text-xl gap-x-7 px-3">
                 <Link to={`/admin/pedidos/pedido/${id}`}>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </Link>
