@@ -4,7 +4,7 @@ import { db } from "../../utils/firebaseconfig";
 import Swal from 'sweetalert2'
 
 export default function Pedido({ pedido }) {
-    const { nombre, apellido, id, fecha, estado } = pedido
+    const { nombre, apellido, id, fecha, estado,total_amount } = pedido
     let fondoDelSelect = 'bg-secundario'
 
     switch (estado) {
@@ -32,11 +32,9 @@ export default function Pedido({ pedido }) {
           })
     }
 
-    console.log(id)
-
     return (
         <article className="py-3 mx-auto w-[95%]  grid grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-x-4  place-items-center  last:border-none border-b border-gray-200">
-            <p className="text-center text-blanco">000000</p>
+            <p className="text-center text-blanco">$ {total_amount}</p>
             <h3 className=" text-blanco text-center ">
                 {nombre} {apellido}
             </h3>

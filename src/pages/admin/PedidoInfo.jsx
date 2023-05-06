@@ -16,7 +16,7 @@ export default function PedidoInfo() {
     const { pedidoId } = useParams();
     const navigate = useNavigate()
 
-    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, estado } = dato;
+    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, estado,numero,fecha } = dato;
 
 
     let fondoDelSelect = 'bg-secundario'
@@ -45,7 +45,6 @@ export default function PedidoInfo() {
           })
     }
 
-    console.log(id)
     useEffect(() => {
         const docRef = doc(db, "pedidosCliente", pedidoId);
         const unsubscribe = onSnapshot(docRef, (doc) => {
@@ -89,7 +88,7 @@ export default function PedidoInfo() {
                 <article className='w-full flex justify-between px-8 '>
                     <div className=' flex flex-col gap-y-4'>
                         <p className='text-3xl font-medium text-blanco'>N° de pedido:{''} <span className='font-bold'> 0000003 </span></p>
-                        <p className='text-xl font-medium text-blanco'>Fecha: <span className='font-bold'> 30/04/23 </span></p>
+                        <p className='text-xl font-medium text-blanco'>Fecha: <span className='font-bold'> {fecha} </span></p>
                     </div>
                     <div>
                         <select
@@ -112,7 +111,6 @@ export default function PedidoInfo() {
                     <p className="text-lg font-medium text-blanco">Nombre</p>
                     <p className="text-lg font-medium text-blanco">Cant.</p>
                     <p className="text-lg font-medium text-blanco">Precio</p>
-                    <p className="text-lg font-medium text-blanco">Proveedores</p>
                 </article>
             </section>
 
@@ -148,11 +146,13 @@ export default function PedidoInfo() {
                             <p className='font-medium text-lg text-blanco'>Nombre</p>
                             <p className='font-medium text-lg text-blanco'>Apellido</p>
                             <p className='font-medium text-lg text-blanco'>Email</p>
+                            <p className='font-medium text-lg text-blanco'>Numero</p>
                         </div>
                         <div className='flex flex-col gap-y-5 py-5 '>
                             <p className='text-gray-400 font-normal text-lg'>{nombre ?? '-'}</p>
                             <p className='text-gray-400 font-normal text-lg'>{apellido ?? '-'}</p>
                             <p className='text-gray-400 font-normal text-lg'>{email ?? '-'}</p>
+                            <p className='text-gray-400 font-normal text-lg'>{numero ?? '-'}</p>
                         </div>
                     </div>
                 </article>

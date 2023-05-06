@@ -26,11 +26,11 @@ const Pedidos = () => {
             <section>
 
                 <article className="w-[90%] mt-20 mb-5 mx-auto grid grid-cols-[2fr,2fr,1fr,1fr,1fr] gap-x-10 place-items-start self-center">
-                    <p className="text-lg font-medium text-blanco">Numero de pedido</p>
-                    <p className="text-lg font-medium text-blanco">Nombre</p>
-                    <p className="text-lg font-medium text-blanco">fecha</p>
+                    <p className="text-lg font-medium text-blanco">Total del pedido</p>
+                    <p className="text-lg font-medium text-blanco">Nombre / Apellido</p>
+                    <p className="text-lg font-medium text-blanco">Fecha</p>
                     <p className="text-lg font-medium text-blanco">Estado</p>
-                    <p className="text-lg font-medium text-blanco">ver pedido</p>
+                    <p className="text-lg font-medium text-blanco">Ver pedido</p>
                 </article>
             </section>
             <section className="flex flex-col  h-3/4  overflow-auto ">
