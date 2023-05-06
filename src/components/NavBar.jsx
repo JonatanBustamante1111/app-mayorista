@@ -93,7 +93,9 @@ export default function NavBar({loggedIn,isLoggedAdmin}) {
             <div className="md:hidden flex text-blanco items-center gap-x-1 mt-5 text-xl">
               <ion-icon name="person-circle-outline"></ion-icon>
               <Link to={'/micuenta'} >
-                Ingresar
+              {
+              loggedIn || isLoggedAdmin ? "Bienvenido" : "Ingresar"
+               } 
               </Link>
             </div>
           </div>
