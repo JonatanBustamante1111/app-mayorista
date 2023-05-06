@@ -3,6 +3,7 @@ import { db } from "../../utils/firebaseconfig";
 import Swal from "sweetalert2";
 import { addDoc, collection,  getDocs, } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { format } from 'date-fns';
 
 const AgregarProveedor = ({ setModal, proveedores,consultarProveedor }) => {
   const [id, setId] = useState(0);
@@ -20,22 +21,13 @@ const AgregarProveedor = ({ setModal, proveedores,consultarProveedor }) => {
     useEffect(() => {
       consultarProveedor();
     }, []);
-  // genera la fecha actual del dia
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const fecha = new Date();
-      const dia = fecha.getDate();
-      const mes = fecha.getMonth() + 1;
-      const anio = fecha.getFullYear();
-      const diaFormateado = dia < 10 ? `0${dia}` : dia;
-      const mesFormateado = mes < 10 ? `0${mes}` : mes;
-      const fechaActualFormateada = `${diaFormateado}-${mesFormateado}-${anio}`;
-      setFecha(fechaActualFormateada);
-    });
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+
+    useEffect(() => {
+      // genera la fecha actual del dia
+      const fechaActual = new Date();
+      const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
+      setFecha(fechaFormateada)
+    }, []);
 
   // crea un arreglo con la informacion del formulario
   const newProveedor = { id: id, fecha: fecha, nombre: nombre };

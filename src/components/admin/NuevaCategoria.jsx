@@ -16,6 +16,7 @@ export default function NuevaCategoria({ handleModal }) {
     })
     const fechaActual = new Date();
     const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
+    
     // Funcion Para agregarle una categoria al documento
 
     const handleSubmit = async (e) => {
