@@ -3,7 +3,7 @@ import React from 'react'
 export default function GaleriaImgInicio() {
     return (
         <>
-            <section className="flex flex-col p-10  w-full col-span-2 ">
+            <section className="flex flex-col   w-full col-span-2 ">
                 <div className="w-full text-center">
                     <h2 className=" font-semibold text-3xl text-center text-blanco px-10 pt-20 mt-10 w-full">
                         ¿Qué productos ofrecemos?
@@ -14,7 +14,7 @@ export default function GaleriaImgInicio() {
 
 
 
-                <article className="flex flex-col md:flex-row md:h-[638px] md:gap-8 mx-10">
+                <article className="flex flex-col mx-4  md:flex-row md:h-[638px] md:gap-8 md:mx-10">
                     <div className="relative overflow-hidden w-full h-72 md:h-full flex rounded-xl md:w-1/3 mb-10">
                     
                         <img
