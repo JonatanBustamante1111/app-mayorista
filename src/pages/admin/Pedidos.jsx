@@ -1,18 +1,26 @@
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, onSnapshot } from 'firebase/firestore'
 import Pedido from '../../components/admin/Pedido'
 import { db } from '../../utils/firebaseconfig'
 import { useEffect, useState } from 'react'
 
 
+
 const Pedidos = () => {
     const [pedidos, setPedidos] = useState([])
-    const consultarPedidos = async () => {
-        const data = await getDocs(collection(db, "pedidosCliente"));
-        setPedidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }
+
     useEffect(() => {
-        consultarPedidos()
-    }, [])
+        const docRef = collection(db, "pedidosCliente");
+        const unsubscribe = onSnapshot(docRef, (snapshot) => {
+          const pedidos = snapshot.docs.map( doc => {
+            return {
+              id: doc.id,
+              ...doc.data(),
+            };
+          });
+          setPedidos(pedidos);
+        });
+        return () => unsubscribe();
+      }, []);
     return (
         <main className='w-[75%] ml-[25%]'>
             <section>

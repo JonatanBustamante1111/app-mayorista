@@ -1,12 +1,13 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { updateDoc, doc, getDoc } from "firebase/firestore";
+import { db } from "../../utils/firebaseconfig";
+import Swal from 'sweetalert2'
 
 export default function Pedido({ pedido }) {
     const { nombre, apellido, id, fecha, estado } = pedido
-    const [estadoDelPedido, setEstadoDelPedido] = useState('');
     let fondoDelSelect = 'bg-secundario'
 
-    switch (estadoDelPedido) {
+    switch (estado) {
         case 'En proceso':
             fondoDelSelect = 'bg-secundario';
             break;
@@ -20,6 +21,19 @@ export default function Pedido({ pedido }) {
             fondoDelSelect = 'bg-secundario';
     }
 
+    const handleChangeEstadoDelPedido = async (newState) => {
+        const docRef = doc(db, 'pedidosCliente', id)
+        await updateDoc(docRef, {
+            estado: newState
+        })
+        Swal.fire({
+            icon: "success",
+            title: "¡Estado del pedido actualizado!",
+          })
+    }
+
+    console.log(id)
+
     return (
         <article className="py-3 mx-auto w-[95%]  grid grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-x-4  place-items-center  last:border-none border-b border-gray-200">
             <p className="text-center text-blanco">000000</p>
@@ -28,7 +42,7 @@ export default function Pedido({ pedido }) {
             </h3>
             <p className="text-center text-blanco">{fecha}</p>
             <select
-                onChange={(e) => setEstadoDelPedido(e.target.value)}
+                onChange={(e) => handleChangeEstadoDelPedido(e.target.value)}
                 className={`py-3 rounded-xl px-2 text-blanco ${fondoDelSelect} bg-opacity-70`}
                 name=""
                 id=""

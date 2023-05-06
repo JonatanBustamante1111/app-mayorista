@@ -32,7 +32,7 @@ export default function Categorias() {
   const [categoriaAEliminar, setCategoriaAEliminar] = useState(null);
   const [subCategoriaAEliminar, setSubCategoriaAEliminar] = useState(null);
 
-  // Read Products
+  // Read 
   useEffect(() => {
     const docRef = collection(db, "categorias");
     // Escuchar cambios en tiempo real en el documento

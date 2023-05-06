@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { deleteDoc, doc, getDoc } from 'firebase/firestore'
+import { deleteDoc, doc, onSnapshot, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig';
 import Button from '../../components/reutilizables/Button';
 import BorrarProducto from '../../components/BorrarProducto';
+import Swal from 'sweetalert2';
 
 
 
@@ -14,14 +15,13 @@ export default function PedidoInfo() {
 
     const { pedidoId } = useParams();
     const navigate = useNavigate()
-    const [estadoDelPedido, setEstadoDelPedido] = useState('');
 
-    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, date } = dato;
+    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, estado } = dato;
 
 
     let fondoDelSelect = 'bg-secundario'
 
-    switch (estadoDelPedido) {
+    switch (estado) {
         case 'En proceso':
             fondoDelSelect = 'bg-secundario';
             break;
@@ -34,30 +34,37 @@ export default function PedidoInfo() {
         default:
             fondoDelSelect = 'bg-secundario';
     }
-
-    console.log(id)
-    const getProducto = async () => {
-        const docRef = doc(db, "pedidosCliente", pedidoId);
-        const result = await getDoc(docRef);
-
-        if (result.exists()) {
-            const pedidoData = { id: pedidoId, ...result.data() };
-            setDato(pedidoData);
-        } else {
-            console.log("no such document");
-        }
+    const handleChangeEstadoDelPedido = async (newState) => {
+        const docRef = doc(db, 'pedidosCliente', id)
+        await updateDoc(docRef, {
+            estado: newState
+        })
+        Swal.fire({
+            icon: "success",
+            title: "¡Estado del pedido actualizado!",
+          })
     }
 
+    console.log(id)
+    useEffect(() => {
+        const docRef = doc(db, "pedidosCliente", pedidoId);
+        const unsubscribe = onSnapshot(docRef, (doc) => {
+          if (doc.exists()) {
+            const pedidoData = { id: pedidoId, ...doc.data() };
+            setDato(pedidoData);
+          } else {
+            console.log("no such document");
+          }
+        });
+        return () => unsubscribe();
+      }, []);
+      
+    
     const eliminarPedido = async (id) => {
         const docRef = doc(db, 'pedidosCliente', id)
         await deleteDoc(docRef)
         navigate(-1)
     }
-
-    useEffect(() => {
-        getProducto();
-    }, []);
-
     return (
         <main className='w-[75%] ml-[25%] relative'>
             {
@@ -86,11 +93,11 @@ export default function PedidoInfo() {
                     </div>
                     <div>
                         <select
-                            onChange={(e) => setEstadoDelPedido(e.target.value)}
+                            onChange={(e) => handleChangeEstadoDelPedido(e.target.value)}
                             className={`py-3 rounded-xl px-2 text-blanco font-medium ${fondoDelSelect} bg-opacity-70`}
                             name=""
                             id=""
-                            value={estadoDelPedido}
+                            value={estado}
                         >
                             <option value="En proceso">En proceso</option>
                             <option value="Enviado">Enviado</option>
