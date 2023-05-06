@@ -16,7 +16,7 @@ import BorrarProducto from "../../components/BorrarProducto";
 import Subcategoria from "../../components/admin/Subcategoria";
 import Swal from "sweetalert2";
 import BorrarCategoria from "../../components/admin/BorrarCategoria";
-
+ 
 export default function Categorias() {
   const [categorias, setCategorias] = useState([]);
   //  Estados para manejar las busquedas de los categorias
@@ -108,7 +108,7 @@ export default function Categorias() {
           <EditarCategoria
             categoriaAEditar={categoria.editar}
             setCategoriaAEditar={setCategoria}
-            handleModal={handleModal}
+            setSubCategoriaAEditar={setSubCategoriaAEditar}
           />
         );
 
@@ -127,6 +127,7 @@ export default function Categorias() {
             categoria={categoria.editarSubcategoria}
             setCategoria={setCategoria}
             subCategoriaAEditar={subCategoriaAEditar}
+            setSubCategoriaAEditar={setSubCategoriaAEditar}
             handleModal={handleModal}
           />
         );
@@ -139,14 +140,6 @@ export default function Categorias() {
   return (
     <main className="w-[75%] ml-[25%] ">
       {mostrarModal()}
-      {modal2 && (
-              <BorrarCategoria
-                key={id}
-                eliminarCategoria={eliminarCategoria}
-                setModal2={setModal2}
-                id={id}
-              />
-            )}  
       <section className="grid grid-rows-2">
         <article className="flex items-center justify-between  my-8 mx-4">
           <form
@@ -193,16 +186,13 @@ export default function Categorias() {
             >
               <div className="grid grid-cols-5 w-full  rounded-xl place-items-center">
                 <p className=" e text-blanco pr-32">
-                  {categoria.id}
+                  {categoria.idDoc}
                 </p>
                 <p className="text-blanco">{categoria.nombre}</p>
                 <p className="text-blanco">{categoria.fecha}</p>
                 <div className="flex justify-end items-center  text-center  gap-x-7 px-3">
                   <button
-                    onClick={() => {
-                        setId(categoria.id)
-                        setModal2(true)
-                    }}
+                    onClick={() => eliminarCategoria(categoria.id)}
                     className="text-rojo w-full"
                   >
                     <ion-icon name="trash-sharp"></ion-icon>
@@ -253,6 +243,7 @@ export default function Categorias() {
                   {categoria.subcategorias?.map((subcategoria) => (
                     <Subcategoria
                       key={subcategoria.id}
+                      setCategoria={setCategoria}
                       categoria={categoria}
                       subcategoria={subcategoria}
                       setSubCategoriaAEditar={setSubCategoriaAEditar}

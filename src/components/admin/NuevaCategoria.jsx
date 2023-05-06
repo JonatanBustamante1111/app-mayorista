@@ -22,22 +22,24 @@ export default function NuevaCategoria({ handleModal }) {
         e.preventDefault()
         const newDoc = doc(db, 'categorias', camposCategorias.id)
         await setDoc(newDoc, {
-            id: camposCategorias.id,
+            idDoc: camposCategorias.id,
             nombre: camposCategorias.descripcion,
             fecha: fechaFormateada,
             subcategorias: []
         })
 
+        setCamposCategorias({
+            id: '',
+            descripcion: ''
+        })
 
         Swal.fire({
             icon: "success",
             title: "¡Categoria agregada correctamente!",
         });
 
-        setCamposCategorias({
-            id: '',
-            descripcion: ''
-        })
+        handleModal()
+
     }
 
     return (

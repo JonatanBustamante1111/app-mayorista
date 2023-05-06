@@ -32,6 +32,11 @@ export default function NuevaSubcategoria({ setCategoria, categoriaId }) {
                 subcategorias: arrayUnion(nuevaSubcategoria)
             });
         }
+        setCamposCategorias({
+            id: '',
+            descripcion: ''
+        })
+        setCategoria({ nuevaSubcategoria: '' })
         Swal.fire({
             icon: "success",
             title: "¡Subcategoria agregada correctamente!",
@@ -43,7 +48,7 @@ export default function NuevaSubcategoria({ setCategoria, categoriaId }) {
         <Modal
             camposCategorias={camposCategorias}
             setCamposCategorias={setCamposCategorias}
-            handleModal={() => setCategoria({nuevaSubcategoria:''})}
+            handleModal={() => setCategoria({ nuevaSubcategoria: '' })}
             onSubmit={handleSubmit}
 
             title={'Nueva Subcategoria'}

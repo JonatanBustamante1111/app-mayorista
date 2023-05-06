@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 export default function EditarCategoria({ categoriaAEditar, setCategoriaAEditar }) {
 
     const [camposCategorias, setCamposCategorias] = useState({
-        id: categoriaAEditar.id,
+        id: categoriaAEditar.idDoc,
         descripcion: categoriaAEditar.nombre
     })
     const fechaActual = new Date();
@@ -18,7 +18,7 @@ export default function EditarCategoria({ categoriaAEditar, setCategoriaAEditar 
         const docref = doc(db, 'categorias', categoriaAEditar.id)
 
         await updateDoc(docref, { 
-            id: camposCategorias.id,
+            idDoc: camposCategorias.id,
             nombre: camposCategorias.descripcion,
             fecha:fechaFormateada
         });

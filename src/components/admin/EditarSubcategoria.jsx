@@ -4,7 +4,7 @@ import { db } from '../../utils/firebaseconfig';
 import Modal from './Modal';
 import { format } from 'date-fns';
 
-export default function EditarSubcategoria({ subCategoriaAEditar, categoria, setCategoria, handleModal }) {
+export default function EditarSubcategoria({ subCategoriaAEditar, categoria, setCategoria, setSubCategoriaAEditar }) {
 
     const [camposCategorias, setCamposCategorias] = useState({
         id: subCategoriaAEditar.id,
@@ -42,7 +42,8 @@ export default function EditarSubcategoria({ subCategoriaAEditar, categoria, set
                 await updateDoc(docref, updatedCategoria);
 
                 console.log('Subcategory label updated successfully');
-                setCategoria({nuevaSubcategoria:'', editarSubcategoria:{}})
+                //setCategoria({nuevaSubcategoria:'', editarSubcategoria:{}})
+                setSubCategoriaAEditar({})
             } else {
                 console.log('Subcategory not found');
             }
@@ -55,7 +56,7 @@ export default function EditarSubcategoria({ subCategoriaAEditar, categoria, set
         <Modal
             camposCategorias={camposCategorias}
             setCamposCategorias={setCamposCategorias}
-            handleModal={() => setCategoria({nuevaSubcategoria:'', editarSubcategoria:{}})}
+            handleModal={() =>  setSubCategoriaAEditar({})}
             onSubmit={actualizarSubCategoria}
             title={'Editar Subcategoria'}
             campoId={'subcategoria'}
