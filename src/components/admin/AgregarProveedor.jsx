@@ -17,13 +17,12 @@ const AgregarProveedor = ({ setModal, proveedores,consultarProveedor }) => {
     setId(cantId + 1);
   }, [cantId]);
 
-
     useEffect(() => {
       consultarProveedor();
     }, []);
 
+    // genera la fecha actual para la carga del proveedor
     useEffect(() => {
-      // genera la fecha actual del dia
       const fechaActual = new Date();
       const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
       setFecha(fechaFormateada)
