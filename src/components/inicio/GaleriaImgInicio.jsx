@@ -3,7 +3,7 @@ import React from 'react'
 export default function GaleriaImgInicio() {
     return (
         <>
-            <section className="flex flex-col p-10  w-full col-span-2 ">
+            <section className="flex flex-col   w-full col-span-2 ">
                 <div className="w-full text-center">
                     <h2 className=" font-semibold text-3xl text-center text-blanco px-10 pt-20 mt-10 w-full">
                         ¿Qué productos ofrecemos?
@@ -14,12 +14,12 @@ export default function GaleriaImgInicio() {
 
 
 
-                <article className="flex flex-col md:flex-row md:h-[638px] md:gap-8 mx-10">
+                <article className="flex flex-col mx-4  md:flex-row md:h-[638px] md:gap-8 md:mx-10">
                     <div className="relative overflow-hidden w-full h-72 md:h-full flex rounded-xl md:w-1/3 mb-10">
                     
                         <img
                             className="absolute top-0 left-0 w-full h-full  transition-transform duration-300 transform origin-center hover:scale-110"
-                            src="https://i.ibb.co/J2ZBnGy/unsplash-uf-IDew-I6i-Q-min.jpg"
+                            src="https://i.ibb.co/svpt9rd/unsplash-uf-IDew-I6i-Q.png"
                             alt="Accesorios de Acero"
                         />
                         <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end ">
@@ -30,7 +30,7 @@ export default function GaleriaImgInicio() {
                         <div className="relative overflow-hidden w-full h-72 flex  rounded-xl mb-10 md:h-1/3 md:mb-0">
                             <img
                                 className="absolute top-0 left-0 w-full h-full transition-transform duration-300 transform origin-center hover:scale-110"
-                                src="https://i.ibb.co/59VRZPh/image-15-min.jpg"
+                                src="https://i.ibb.co/Xy0Bjps/image-15.png"
                                 alt="Accesorios de Plata"
                             />
                             <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end ">
@@ -40,7 +40,7 @@ export default function GaleriaImgInicio() {
                         <div className="relative overflow-hidden  bg-cover w-full h-72 flex flex-row  rounded-xl mb-10 md:h-2/3 md:mb-0">
                             <img
                                 className="absolute top-0 left-0 w-full h-full transition-transform duration-300 transform origin-center hover:scale-110"
-                                src="https://i.ibb.co/pdVP5C3/unsplash-Foe-IOgzt-CXo-min.jpg"
+                                src="https://i.ibb.co/bgCYTg8/unsplash-Foe-IOgzt-CXo.png"
                                 alt="Maquillaje"
                             />
                             <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end ">
@@ -55,7 +55,7 @@ export default function GaleriaImgInicio() {
                         >
                             <img
                                 className="absolute top-0 left-0 w-full h-full transition-transform duration-300 transform origin-center hover:scale-110"
-                                src="https://i.ibb.co/sH11x34/image-17-min.jpg"
+                                src="https://i.ibb.co/02wybSL/image-17.png"
                                 alt="Marroquineria"
                             />
                             <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end">
@@ -67,7 +67,7 @@ export default function GaleriaImgInicio() {
                             className=" w-full h-72 flex flex-row rounded-xl mb-10 md:mb-0 md:h-96 relative overflow-hidden"  >
                             <img
                                 className="absolute top-0 left-0 w-full h-full transition-transform duration-300 transform origin-center hover:scale-110"
-                                src="https://i.ibb.co/LppTftS/unsplash-7c-ERndk-Oy-Dw-min.jpg"
+                                src="https://i.ibb.co/fNHKsDs/unsplash-7c-ERndk-Oy-Dw.png"
                                 alt="Textil"
                             />
                             <h3 className="p-6 abslute bottom-2 z-[5] font-semibold text-2xl text-blanco self-end">

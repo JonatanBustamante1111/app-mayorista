@@ -9,18 +9,18 @@ import Card from '../reutilizables/Card'
 
 export default function ProductosRelacionados({productos}) {
   return (
-    <section className="flex flex-col gap-16 w-full col-span-2">
+    <section className="flex flex-col gap-16 w-full col-span-2 mb-16">
       <article className="w-full text-center">
         <h2 className=" font-semibold text-2xl text-center text-blanco  mt-10 w-full">
           Productos relacionados
         </h2>
         <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
       </article>
-      <article className='relative'>
+      <article className='sticky'>
        
          <div className='swiper-button-prev swiper-button'></div>
          <div className='swiper-button-next swiper-button'></div>
-        <div className='mx-10'>
+        <div className='mx-4 md:mx-10'>
           <Swiper
             //params={swiperOptions}
             slidesPerView={1}
@@ -37,9 +37,9 @@ export default function ProductosRelacionados({productos}) {
             breakpoints={{
               400: {
                 slidesPerView: 1,
-                spaceBetween: 50,
+                spaceBetween: 20,
               },
-              640: {
+              560: {
                 slidesPerView: 2,
                 spaceBetween: 30,
               },

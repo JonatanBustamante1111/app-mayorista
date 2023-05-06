@@ -32,7 +32,7 @@ export default function Categorias() {
   const [modal, setModal] = useState(false);
   const [modal2,setModal2] = useState(false);
   const [id,setId] = useState('');
-  const[idSubcategoria,setIdSubcategoria] = useState('');
+
   
   const [categoria, setCategoria] = useState({
     nueva: false,
@@ -267,11 +267,13 @@ export default function Categorias() {
         })}
         {idSubCategoriaAELiminar !== null && (
           <BorrarProducto
-            eliminarProducto={() =>
-              eliminarSubcategoria(
-                idCategoriaAELiminar,
-                idSubCategoriaAELiminar
-              )
+            eliminarProducto={() =>{
+                eliminarSubcategoria(
+                    idCategoriaAELiminar,
+                    idSubCategoriaAELiminar
+                  )
+                
+            }
             }
             setModal={() => setIdSubCategoriaAEliminar(null)}
             titulo={"Eliminar Subcategoria"}

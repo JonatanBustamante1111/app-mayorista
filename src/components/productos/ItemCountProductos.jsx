@@ -32,12 +32,14 @@ export default function ItemCountProductos({ initial = 1, onAdd, stock }) {
         </div>
         <Link to={"/carrito"}>
           <div className=" w-[72px] h-[81px] bg-secundario flex flex-row items-center  justify-center ">
-            <img
-              onClick={() => onAdd(count)}
-              className="w-[30px] h-[30px] rounded-xl"
-              src={"https://i.ibb.co/Y3GJLVy/shopping-cart.png"}
-              alt=""
-            />
+            <div className='w-[30px] h-[30px]'>
+                <img
+                  onClick={() => onAdd(count)}
+                  className=" w-[30px] h-[30px] rounded-xl"
+                  src={"https://i.ibb.co/Y3GJLVy/shopping-cart.png"}
+                  alt=""
+                />
+            </div>
           </div>
         </Link>
     </div>

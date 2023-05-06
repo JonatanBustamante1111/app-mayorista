@@ -34,7 +34,7 @@ export default function ItemCount({ initial = 1, onAdd, stock }) {
         </div>
         <button
             onClick={() => onAdd(count)}
-            className=' w-[320px]
+            className='w-[190px] sm:w-[250px]  md:w-[320px]
             bg-gradient-to-r text-center from-yellow-400 via-yellow-500 to-yellow-600
             py-4 px-6 text-sm text-primario font-bold
             rounded-lg '

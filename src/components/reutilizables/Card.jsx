@@ -9,6 +9,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
   const [modal, setModal] = useState(false);
   const { cart } = useContext(CartContext);
   const { nombre, precio, imagen, id, stock} = producto;
+  
   const location = useLocation();
  
   // funcion que guarda los productos en el carrito
@@ -96,11 +97,13 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
           </div>
           <div>
               <div className=" w-[72px] h-[81px] bg-secundario flex flex-row items-center  justify-center ">
-                <img
-                  className="w-[30px] h-[30px] rounded-xl"
-                  src={"https://i.ibb.co/Y3GJLVy/shopping-cart.png"}
-                  alt=""
-                />
+                <div className="w-[30px] h-[30px]">
+                  <img
+                    className="w-[30px] h-[30px] rounded-xl"
+                    src={"https://i.ibb.co/Y3GJLVy/shopping-cart.png"}
+                    alt=""
+                  />
+                </div>
               </div>
           </div>
         </div>

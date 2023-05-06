@@ -5,7 +5,7 @@ import { CartContext } from "../context/CartContext";
 import MenuHamburguesa from "./MenuHamburguesa";
 import NavbarLinks from "./NavbarLinks";
 
-export default function NavBar({loggedIn}) {
+export default function NavBar({loggedIn,isLoggedAdmin}) {
 
   const [nav, setNav] = useState(false);
   const { cart } = useContext(CartContext);
@@ -49,17 +49,17 @@ export default function NavBar({loggedIn}) {
         <div className="hidden md:flex">
           <NavbarLinks flexDirection={'flex-row'} />
         </div>
-        <div className='flex  items-center  text-blanco font-normal leading-5 text-[18px] z-10'>
+        <div className='flex flex-row items-center  text-blanco font-normal leading-5 text-[18px] z-10  '>
           <Link className='text-3xl mr-20 pb-2' to={'/carrito'}>
             <Badge badgeContent={sumaCantidadBadge()} color="warning"  >
               <ion-icon name="cart"></ion-icon>
             </Badge>
           </Link>
-          <div className="hidden md:flex  items-center gap-x-1 text-xl">
+          <div className="hidden md:flex  items-center gap-x-1 text-xl ">
             <ion-icon name="person-circle-outline"></ion-icon>
             <Link to={'/micuenta'} >
              {
-              loggedIn ? "Bienvenido" : "Ingresar"
+              loggedIn || isLoggedAdmin ? "Bienvenido" : "Ingresar"
              } 
             </Link>
           </div>
@@ -93,7 +93,9 @@ export default function NavBar({loggedIn}) {
             <div className="md:hidden flex text-blanco items-center gap-x-1 mt-5 text-xl">
               <ion-icon name="person-circle-outline"></ion-icon>
               <Link to={'/micuenta'} >
-                Ingresar
+              {
+              loggedIn || isLoggedAdmin ? "Bienvenido" : "Ingresar"
+               } 
               </Link>
             </div>
           </div>
