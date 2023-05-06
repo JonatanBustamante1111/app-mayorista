@@ -1,12 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  updateDoc,
-  getDoc,
-  doc,
-  onSnapshot,
-  collection,
-  deleteDoc,
-} from "firebase/firestore";
+import { updateDoc, getDoc, doc, onSnapshot, collection, deleteDoc,} from "firebase/firestore";
 import { db } from "../../utils/firebaseconfig";
 import NuevaCategoria from "../../components/admin/NuevaCategoria";
 import EditarCategoria from "../../components/admin/EditarCategoria";
@@ -15,7 +8,6 @@ import NuevaSubcategoria from "../../components/admin/NuevaSubcategoria";
 import BorrarProducto from "../../components/BorrarProducto";
 import Subcategoria from "../../components/admin/Subcategoria";
 import Swal from "sweetalert2";
-import BorrarCategoria from "../../components/admin/BorrarCategoria";
  
 export default function Categorias() {
   const [categorias, setCategorias] = useState([]);
@@ -30,9 +22,6 @@ export default function Categorias() {
   const [open, setOpen] = useState(false);
   // Estado para las categorias
   const [modal, setModal] = useState(false);
-  const [modal2,setModal2] = useState(false);
-  const [id,setId] = useState('');
-
   
   const [categoria, setCategoria] = useState({
     nueva: false,
@@ -40,12 +29,14 @@ export default function Categorias() {
     nuevaSubcategoria: "",
     editarSubcategoria: {},
   });
+
   // estado para editar la subcategoria
   const [subCategoriaAEditar, setSubCategoriaAEditar] = useState({});
 
   // Eliminar categorias y subcategorias
-  const [idCategoriaAELiminar, setIdCategoriaAEliminar] = useState(null);
-  const [idSubCategoriaAELiminar, setIdSubCategoriaAEliminar] = useState(null);
+  const [categoriaAEliminar, setCategoriaAEliminar] = useState(null);
+  const [subCategoriaAEliminar, setSubCategoriaAEliminar] = useState(null);
+
   // Read Products
   useEffect(() => {
     const docRef = collection(db, "categorias");
@@ -69,7 +60,7 @@ export default function Categorias() {
 
     Swal.fire({
         icon: "success",
-        title: "Proveedor borrado",
+        title: "Categoria eliminada",
       })
   };
   const buscarCategorias = (e) => {
@@ -91,6 +82,10 @@ export default function Categorias() {
         (subcategoria) => subcategoria.id !== subcategoriaId
       );
     await updateDoc(docref, { subcategorias: subCategoriasActualizadas });
+    Swal.fire({
+      icon: "success",
+      title: "Subcategoria eliminada",
+    })
   };
   const mostrarModal = () => {
     switch (true) {
@@ -192,7 +187,10 @@ export default function Categorias() {
                 <p className="text-blanco">{categoria.fecha}</p>
                 <div className="flex justify-end items-center  text-center  gap-x-7 px-3">
                   <button
-                    onClick={() => eliminarCategoria(categoria.id)}
+                    onClick={() => setCategoriaAEliminar({
+                      idCategoria:categoria.id, 
+                      nombre:categoria.nombre
+                  })}
                     className="text-rojo w-full"
                   >
                     <ion-icon name="trash-sharp"></ion-icon>
@@ -247,7 +245,7 @@ export default function Categorias() {
                       categoria={categoria}
                       subcategoria={subcategoria}
                       setSubCategoriaAEditar={setSubCategoriaAEditar}
-                      eliminarSubcategoria={eliminarSubcategoria}
+                      setSubCategoriaAEliminar={setSubCategoriaAEliminar}
                     />
                   ))}
                   <div className=" flex w-full p-5  justify-start items-center text-secundario text-lg font-medium ">
@@ -265,20 +263,24 @@ export default function Categorias() {
             </article>
           );
         })}
-        {idSubCategoriaAELiminar !== null && (
+
+        {categoriaAEliminar !== null && (
           <BorrarProducto
-            eliminarProducto={() =>{
-                eliminarSubcategoria(
-                    idCategoriaAELiminar,
-                    idSubCategoriaAELiminar
-                  )
-                
-            }
-            }
-            setModal={() => setIdSubCategoriaAEliminar(null)}
+            eliminarProducto={() => eliminarCategoria(categoriaAEliminar?.idCategoria) }
+            setModal={() => setCategoriaAEliminar(null)}
+            titulo={"Eliminar Categoria"}
+            sustantivo={"la categoria"}
+            nombre={categoriaAEliminar?.nombre}
+          />
+        )}
+
+        {subCategoriaAEliminar !== null && (
+          <BorrarProducto
+            eliminarProducto={() => eliminarSubcategoria( subCategoriaAEliminar?.idCategoria, subCategoriaAEliminar?.idSubcategoria)}
+            setModal={() => setSubCategoriaAEliminar(null)}
             titulo={"Eliminar Subcategoria"}
             sustantivo={"la subcategoria"}
-            nombre={subcategoria.nombre}
+            nombre={subCategoriaAEliminar?.nombre}
           />
         )}
       </section>

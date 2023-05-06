@@ -26,7 +26,7 @@ const BorrarProducto = ({ eliminarProducto, setModal, titulo,  nombre, sustantiv
                           "
           onClick={() => {
             setModal(false);
-            eliminarProducto(id);
+            eliminarProducto();
           }}
         >
           Eliminar

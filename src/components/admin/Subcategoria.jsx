@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Subcategoria({ subcategoria, categoria, eliminarSubcategoria, setCategoria, setSubCategoriaAEditar }) {
+export default function Subcategoria({ subcategoria, categoria, setSubCategoriaAEliminar, setCategoria, setSubCategoriaAEditar }) {
     return (
         <div
             className='grid grid-cols-4 w-[95%] mx-auto py-3 border-b last:border-none border-blanco '
@@ -10,7 +10,11 @@ export default function Subcategoria({ subcategoria, categoria, eliminarSubcateg
             <p className=' text-blanco'>{subcategoria.fecha}</p>
             <div className="flex justify-end items-center  text-center text-xl  gap-x-7 ">
                 <button
-                    onClick={() => eliminarSubcategoria(categoria.id, subcategoria.id)}
+                    onClick={() => setSubCategoriaAEliminar({
+                        idCategoria:categoria.id, 
+                        idSubcategoria:subcategoria.id,
+                        nombre:subcategoria.nombre
+                    })}
                     className="text-rojo"
                 >
                     <ion-icon name="trash-sharp"></ion-icon>
