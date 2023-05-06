@@ -83,11 +83,11 @@ export default function NavBar({loggedIn,isLoggedAdmin}) {
         <div
           className={
             nav
-              ? "fixed  top-0 w-screen h-[50%] shadow-md p-10 ease-in duration-300"
+              ? "fixed  top-0 w-screen h-[50%] shadow-md mt-12 ease-in duration-300"
               : "fixed top-[-100%] w-full p-10 ease-out transition-all duration-300"
           }
         >
-          <div className="py-4 flex flex-col items-center mt-10 ">
+          <div className=" bg-primario mt-2 py-4 flex flex-col items-center  ">
             <NavbarLinks flexDirection={'flex-col'} />
 
             <div className="md:hidden flex text-blanco items-center gap-x-1 mt-5 text-xl">
