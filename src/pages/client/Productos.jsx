@@ -64,7 +64,7 @@ export default function Productos() {
       <section className='grid md:grid-cols-[1fr,4fr] gap-x-7'>
         <aside className=''>
           <h2 className='pl-5 mb-5 text-xl font-semibold text-blanco'>Buscar</h2>
-          <article className='ml-5 flex flex-col'>
+          <article className='px-4 flex flex-col'>
             <div className='flex items-center gap-x-4'>
               <form
                 className=" relative w-[85%] flex flex-col"
