@@ -4,7 +4,7 @@ import { db } from '../../utils/firebaseconfig';
 import Modal from './Modal';
 import { format } from 'date-fns';
 
-export default function EditarSubcategoria({ subCategoriaAEditar, categoria, setCategoria, setSubCategoriaAEditar }) {
+export default function EditarSubcategoria({ subCategoriaAEditar, categoriaAcciones,  setSubCategoriaAEditar }) {
 
     const [camposCategorias, setCamposCategorias] = useState({
         id: subCategoriaAEditar.id,
@@ -15,7 +15,7 @@ export default function EditarSubcategoria({ subCategoriaAEditar, categoria, set
 
     const actualizarSubCategoria = async (e) => {
         e.preventDefault();
-        const docref = doc(db, 'categorias', categoria.id);
+        const docref = doc(db, 'categorias', categoriaAcciones.id);
         const categorias = await getDoc(docref);
         try {
             const dataCategorias = categorias.data();
@@ -24,7 +24,6 @@ export default function EditarSubcategoria({ subCategoriaAEditar, categoria, set
             });
 
             if (categoriaIndex !== -1) {
-                const categoria = dataCategorias.subcategorias[categoriaIndex];
                 const subcategorias = dataCategorias.subcategorias.map((subcategoria) => {
                     if (subcategoria.id === subCategoriaAEditar.id) {
                         return {

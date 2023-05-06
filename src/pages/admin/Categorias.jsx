@@ -1,29 +1,24 @@
 import { useState, useEffect } from "react";
-import { updateDoc, getDoc, doc, onSnapshot, collection, deleteDoc,} from "firebase/firestore";
+import { updateDoc, getDoc, doc, onSnapshot, collection, deleteDoc, } from "firebase/firestore";
 import { db } from "../../utils/firebaseconfig";
 import NuevaCategoria from "../../components/admin/NuevaCategoria";
 import EditarCategoria from "../../components/admin/EditarCategoria";
 import EditarSubcategoria from "../../components/admin/EditarSubcategoria";
 import NuevaSubcategoria from "../../components/admin/NuevaSubcategoria";
 import BorrarProducto from "../../components/BorrarProducto";
-import Subcategoria from "../../components/admin/Subcategoria";
 import Swal from "sweetalert2";
- 
+import Categoria from "../../components/admin/Categoria";
+
 export default function Categorias() {
   const [categorias, setCategorias] = useState([]);
   //  Estados para manejar las busquedas de los categorias
   const [busqueda, setBusqueda] = useState("");
   const [categoriasBuscadas, setCategoriasBuscadas] = useState([]);
 
-  // estados para las categorias renderizadas
-  const [subcategoriasDesplegables, setSubCategoriasDesplegables] =
-    useState(null);
-  // Estado para el dropdown de las subcategorias
-  const [open, setOpen] = useState(false);
   // Estado para las categorias
   const [modal, setModal] = useState(false);
-  
-  const [categoria, setCategoria] = useState({
+
+  const [categoriaAcciones, setCategoriaAcciones] = useState({
     nueva: false,
     editar: {},
     nuevaSubcategoria: "",
@@ -59,9 +54,9 @@ export default function Categorias() {
     deleteDoc(documento_A_Eliminar);
 
     Swal.fire({
-        icon: "success",
-        title: "Categoria eliminada",
-      })
+      icon: "success",
+      title: "Categoria eliminada",
+    })
   };
   const buscarCategorias = (e) => {
     e.preventDefault();
@@ -89,38 +84,38 @@ export default function Categorias() {
   };
   const mostrarModal = () => {
     switch (true) {
-      case categoria.nueva:
+      case categoriaAcciones.nueva:
         return (
           <NuevaCategoria
             handleModal={() =>
-              setCategoria({ nueva: false, nuevaSubcategoria: "" })
+              setCategoriaAcciones({ nueva: false, nuevaSubcategoria: "" })
             }
           />
         );
 
-      case categoria.editar && Object.keys(categoria.editar).length !== 0:
+      case categoriaAcciones.editar && Object.keys(categoriaAcciones.editar).length !== 0:
         return (
           <EditarCategoria
-            categoriaAEditar={categoria.editar}
-            setCategoriaAEditar={setCategoria}
+            categoriaAEditar={categoriaAcciones.editar}
+            setCategoriaAEditar={setCategoriaAcciones}
             setSubCategoriaAEditar={setSubCategoriaAEditar}
           />
         );
 
-      case categoria.nuevaSubcategoria !== "" &&
-        categoria.nuevaSubcategoria !== null:
+      case categoriaAcciones.nuevaSubcategoria !== "" &&
+        categoriaAcciones.nuevaSubcategoria !== null:
         return (
           <NuevaSubcategoria
-            setCategoria={setCategoria}
-            categoriaId={categoria.nuevaSubcategoria}
+            setCategoriaAcciones={setCategoriaAcciones}
+            categoriaId={categoriaAcciones.nuevaSubcategoria}
           />
         );
 
       case Object.keys(subCategoriaAEditar).length !== 0:
         return (
           <EditarSubcategoria
-            categoria={categoria.editarSubcategoria}
-            setCategoria={setCategoria}
+            categoriaAcciones={categoriaAcciones.editarSubcategoria}
+            setCategoriaAcciones={setCategoriaAcciones}
             subCategoriaAEditar={subCategoriaAEditar}
             setSubCategoriaAEditar={setSubCategoriaAEditar}
             handleModal={handleModal}
@@ -159,7 +154,7 @@ export default function Categorias() {
           </form>
           <div className=" flex  items-center gap-x-1 text-secundario text-xl font-medium ">
             <ion-icon name="add-sharp"></ion-icon>
-            <button onClick={() => setCategoria({ nueva: true })}>
+            <button onClick={() => setCategoriaAcciones({ nueva: true })}>
               Nueva Categoria
             </button>
           </div>
@@ -173,100 +168,22 @@ export default function Categorias() {
         </article>
       </section>
       <section className="flex flex-col  h-3/4  ">
-        {categorias.map((categoria) => {
-          return (
-            <article
-              key={categoria.id}
-              className="border-b last:border-none border-blanco w-[90%] mx-auto py-5"
-            >
-              <div className="grid grid-cols-5 w-full  rounded-xl place-items-center">
-                <p className=" e text-blanco pr-32">
-                  {categoria.idDoc}
-                </p>
-                <p className="text-blanco">{categoria.nombre}</p>
-                <p className="text-blanco">{categoria.fecha}</p>
-                <div className="flex justify-end items-center  text-center  gap-x-7 px-3">
-                  <button
-                    onClick={() => setCategoriaAEliminar({
-                      idCategoria:categoria.id, 
-                      nombre:categoria.nombre
-                  })}
-                    className="text-rojo w-full"
-                  >
-                    <ion-icon name="trash-sharp"></ion-icon>
-                  </button>
-                  <button
-                    onClick={() => setCategoria({ editar: categoria })}
-                    className=" text-blanco"
-                  >
-                    <ion-icon name="pencil-sharp"></ion-icon>
-                  </button>
-                </div>
+        {categorias.map(categoria => 
+          <Categoria
+            key={categoria.id}
+            categoria={categoria}
+            setCategoriaAEliminar={setCategoriaAEliminar}
+            categoriaAcciones={categoriaAcciones}
+            setCategoriaAcciones={setCategoriaAcciones}
+            setSubCategoriaAEditar={setSubCategoriaAEditar}
+            setSubCategoriaAEliminar={setSubCategoriaAEliminar}
+          />
+        )}
 
-                <button
-                  onClick={() => {
-                    setOpen(!open);
-                    setSubCategoriasDesplegables(categoria);
-                  }}
-                  className={`text-xl text-blanco border-none  duration-300 transform origin-center  
-                                        ${
-                                          open &&
-                                          subcategoriasDesplegables ===
-                                            categoria
-                                            ? "-rotate-180"
-                                            : ""
-                                        }
-                                    `}
-                >
-                  <ion-icon name="caret-up"></ion-icon>
-                </button>
-              </div>
-              {subcategoriasDesplegables?.id === categoria.id && open && (
-                <div className="bg-terciario rounded-xl flex flex-col max-h-[392px] overflow-y-auto">
-                  <div className="flex w-full justify-start p-5">
-                    <h2 className="text-lg font-normal text-blanco">
-                      Subcategorias de {categoria.nombre}
-                    </h2>
-                  </div>
-                  <div className="grid grid-cols-4 my-3 px-4">
-                    <p className="text-sm text-blanco font-semibold">Id</p>
-                    <p className="text-sm text-blanco font-semibold">
-                      Descripcion
-                    </p>
-                    <p className="text-sm text-blanco font-semibold">Fecha</p>
-                    <p className="text-sm text-blanco font-semibold pl-32">
-                      Acciones
-                    </p>
-                  </div>
-                  {categoria.subcategorias?.map((subcategoria) => (
-                    <Subcategoria
-                      key={subcategoria.id}
-                      setCategoria={setCategoria}
-                      categoria={categoria}
-                      subcategoria={subcategoria}
-                      setSubCategoriaAEditar={setSubCategoriaAEditar}
-                      setSubCategoriaAEliminar={setSubCategoriaAEliminar}
-                    />
-                  ))}
-                  <div className=" flex w-full p-5  justify-start items-center text-secundario text-lg font-medium ">
-                    <ion-icon name="add-sharp"></ion-icon>
-                    <button
-                      onClick={() =>
-                        setCategoria({ nuevaSubcategoria: categoria.id })
-                      }
-                    >
-                      Nueva Subcategoria
-                    </button>
-                  </div>
-                </div>
-              )}
-            </article>
-          );
-        })}
-
+        {/**  Alertas para eliminar las categorias & subcategorias */}
         {categoriaAEliminar !== null && (
           <BorrarProducto
-            eliminarProducto={() => eliminarCategoria(categoriaAEliminar?.idCategoria) }
+            eliminarProducto={() => eliminarCategoria(categoriaAEliminar?.idCategoria)}
             setModal={() => setCategoriaAEliminar(null)}
             titulo={"Eliminar Categoria"}
             sustantivo={"la categoria"}
@@ -276,7 +193,7 @@ export default function Categorias() {
 
         {subCategoriaAEliminar !== null && (
           <BorrarProducto
-            eliminarProducto={() => eliminarSubcategoria( subCategoriaAEliminar?.idCategoria, subCategoriaAEliminar?.idSubcategoria)}
+            eliminarProducto={() => eliminarSubcategoria(subCategoriaAEliminar?.idCategoria, subCategoriaAEliminar?.idSubcategoria)}
             setModal={() => setSubCategoriaAEliminar(null)}
             titulo={"Eliminar Subcategoria"}
             sustantivo={"la subcategoria"}

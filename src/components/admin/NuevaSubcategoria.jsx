@@ -5,7 +5,7 @@ import { db } from '../../utils/firebaseconfig'
 import { format } from 'date-fns';
 import Swal from 'sweetalert2';
 
-export default function NuevaSubcategoria({ setCategoria, categoriaId }) {
+export default function NuevaSubcategoria({ setCategoriaAcciones, categoriaId }) {
     // Funcion Para agregarle una categoria al documento
     const fechaActual = new Date();
     const fechaFormateada = format(fechaActual, 'dd/MM/yyyy');
@@ -36,7 +36,7 @@ export default function NuevaSubcategoria({ setCategoria, categoriaId }) {
             id: '',
             descripcion: ''
         })
-        setCategoria({ nuevaSubcategoria: '' })
+        setCategoriaAcciones({ nuevaSubcategoria: '' })
         Swal.fire({
             icon: "success",
             title: "¡Subcategoria agregada correctamente!",
@@ -48,7 +48,7 @@ export default function NuevaSubcategoria({ setCategoria, categoriaId }) {
         <Modal
             camposCategorias={camposCategorias}
             setCamposCategorias={setCamposCategorias}
-            handleModal={() => setCategoria({ nuevaSubcategoria: '' })}
+            handleModal={() => setCategoriaAcciones({ nuevaSubcategoria: '' })}
             onSubmit={handleSubmit}
 
             title={'Nueva Subcategoria'}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Subcategoria({ subcategoria, categoria, setSubCategoriaAEliminar, setCategoria, setSubCategoriaAEditar }) {
+export default function Subcategoria({ subcategoria, categoria, setSubCategoriaAEliminar, setCategoriaAcciones, setSubCategoriaAEditar }) {
     return (
         <div
             className='grid grid-cols-4 w-[95%] mx-auto py-3 border-b last:border-none border-blanco '
@@ -20,7 +20,7 @@ export default function Subcategoria({ subcategoria, categoria, setSubCategoriaA
                     <ion-icon name="trash-sharp"></ion-icon>
                 </button>
                 <button onClick={() => {
-                    setCategoria({ nuevaSubcategoria: '', editarSubcategoria: categoria })
+                    setCategoriaAcciones({ nuevaSubcategoria: '', editarSubcategoria: categoria })
                     setSubCategoriaAEditar(subcategoria)
                 }} className=" text-blanco">
                     <ion-icon name="pencil-sharp"></ion-icon>
