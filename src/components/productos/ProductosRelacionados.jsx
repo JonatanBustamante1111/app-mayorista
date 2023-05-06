@@ -16,7 +16,7 @@ export default function ProductosRelacionados({productos}) {
         </h2>
         <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
       </article>
-      <article className='relative'>
+      <article className='sticky'>
        
          <div className='swiper-button-prev swiper-button'></div>
          <div className='swiper-button-next swiper-button'></div>
