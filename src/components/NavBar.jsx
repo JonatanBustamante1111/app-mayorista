@@ -36,8 +36,8 @@ export default function NavBar({loggedIn,isLoggedAdmin}) {
     <>
       <nav className={`
         flex flex-row w-full justify-between items-center px-4 md:p-4 lg:p-[43px] 
-        fixed z-[20]  h-[72px]   top-0 transition-colors duration-300 ease-out
-        ${scroll ? 'bg-terciario duration-300' : ''}  
+        fixed z-20  h-[72px]   top-0 transition-colors duration-300 ease-out
+        ${scroll ? 'bg-terciario duration-300' : 'bg-primario'}  
           `}>
         <Link to="./">
           <img
@@ -49,7 +49,7 @@ export default function NavBar({loggedIn,isLoggedAdmin}) {
         <div className="hidden md:flex">
           <NavbarLinks flexDirection={'flex-row'} />
         </div>
-        <div className='flex flex-row items-center  text-blanco font-normal leading-5 text-[18px] z-10  '>
+        <div className='flex flex-row items-center  text-blanco font-normal leading-5 text-[18px] z-50 '>
           <Link className='text-3xl mr-20 pb-2' to={'/carrito'}>
             <Badge badgeContent={sumaCantidadBadge()} color="warning"  >
               <ion-icon name="cart"></ion-icon>
@@ -75,7 +75,7 @@ export default function NavBar({loggedIn,isLoggedAdmin}) {
       <div
         className={
           nav
-            ? `md:hidden fixed  top-0 w-full h-screen transition-colors duration-300  `
+            ? `md:hidden fixed  top-0 w-full h-screen transition-colors duration-300 bg-black/50 z-10`
             : ""
         }
       >
@@ -83,11 +83,11 @@ export default function NavBar({loggedIn,isLoggedAdmin}) {
         <div
           className={
             nav
-              ? "fixed  top-0 w-screen h-[50%] shadow-md mt-12 ease-in duration-300"
-              : "fixed top-[-100%] w-full p-10 ease-out transition-all duration-300"
+              ? "fixed  top-0 w-screen h-[50%]  mt-12 ease-out duration-300 z-20"
+              : "fixed top-[-100%] w-full p-10 ease-out transition-all duration-300 "
           }
         >
-          <div className={` mt-6 py-4 flex flex-col items-center ${scroll ? 'bg-terciario duration-300' : 'bg-primario duration-300'}  `}>
+          <div className={` mt-6 py-4 flex flex-col items-center ease-out ${scroll ? 'bg-terciario duration-300' : 'bg-primario duration-300'}  `}>
             <NavbarLinks flexDirection={'flex-col'} />
 
             <div className="md:hidden flex text-blanco items-center gap-x-1 mt-5 text-xl">
