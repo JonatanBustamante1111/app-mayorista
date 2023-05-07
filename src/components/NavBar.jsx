@@ -75,7 +75,7 @@ export default function NavBar({loggedIn,isLoggedAdmin}) {
       <div
         className={
           nav
-            ? "md:hidden fixed  top-0 w-full h-screen transition-colors duration-300"
+            ? `md:hidden fixed  top-0 w-full h-screen transition-colors duration-300  `
             : ""
         }
       >
@@ -87,7 +87,7 @@ export default function NavBar({loggedIn,isLoggedAdmin}) {
               : "fixed top-[-100%] w-full p-10 ease-out transition-all duration-300"
           }
         >
-          <div className=" bg-primario mt-2 py-4 flex flex-col items-center  ">
+          <div className={` mt-6 py-4 flex flex-col items-center ${scroll ? 'bg-terciario duration-300' : 'bg-primario duration-300'}  `}>
             <NavbarLinks flexDirection={'flex-col'} />
 
             <div className="md:hidden flex text-blanco items-center gap-x-1 mt-5 text-xl">
