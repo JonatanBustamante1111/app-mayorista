@@ -1,6 +1,5 @@
 import { Add, Remove } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 export default function ItemCountProductos({ initial = 1, onAdd, stock }) {
     const [count, setCount] = useState(0);
@@ -30,7 +29,7 @@ export default function ItemCountProductos({ initial = 1, onAdd, stock }) {
             <div className='text-xl text-blanco mt-2'>{count}</div>
             <button className='border-none text-2xl font-bold text-secundario rounded  ' variant="text" onClick={decrement}><Remove /></button>
         </div>
-        <Link to={"/carrito"}>
+        <button>
           <div className=" w-[72px] h-[81px] bg-secundario flex flex-row items-center  justify-center ">
             <div className='w-[30px] h-[30px]'>
                 <img
@@ -41,7 +40,7 @@ export default function ItemCountProductos({ initial = 1, onAdd, stock }) {
                 />
             </div>
           </div>
-        </Link>
+          </button>
     </div>
     ) 
 }

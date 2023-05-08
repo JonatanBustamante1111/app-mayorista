@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import BorrarProducto from "../BorrarProducto";
 import { CartContext } from "../../context/CartContext";
 import ItemCountProductos from "../productos/ItemCountProductos";
+import Swal from "sweetalert2";
 
 export default function Card({ eliminarProducto, producto, setIdProducto }) {
   const [itemCount, setItemCount] = useState(0);
@@ -16,6 +17,11 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
    function onAdd(cantidad) {
     cart.agregarCarrito(producto, cantidad);
     setItemCount(producto, cantidad)
+    Swal.fire({
+      icon: "success",
+      title: "¡Producto agregado correctamente!",
+    });
+    
   }
 
   if (location.pathname === "/admin") {
