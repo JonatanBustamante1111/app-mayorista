@@ -45,7 +45,7 @@ export default function OrdenCompra({ total,loggedIn }) {
            <p className='text-3xl font-bold text-white '>Total:</p>
            <p className='text-3xl font-bold text-white '>${total}</p>
          </div>
-          <Button onClick={handleCheckOut}>Ir al checkout</Button>
+          <Button onClick={handleCheckOut}>Orden de compra</Button>
         </div>
       </div>
     </>

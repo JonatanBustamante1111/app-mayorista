@@ -7,6 +7,8 @@ export default function Pedido({ pedido }) {
     const { nombre, apellido, id, fecha, estado,total_amount } = pedido
     let fondoDelSelect = 'bg-secundario'
 
+    
+
     switch (estado) {
         case 'En proceso':
             fondoDelSelect = 'bg-secundario';
