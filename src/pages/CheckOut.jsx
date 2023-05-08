@@ -200,7 +200,7 @@ const CheckOut = () => {
   return (
     <main className="mt-20 font-monsterrat p-4 md:flex md:flex-row md:mt-5 ">
       <div className="flex flex-col gap-4 md:w-1/2 md:px-6 md:mt-20">
-        <h2 className=" font-bold  text-3xl text-blanco">Checkout</h2>
+        <h2 className=" font-bold  text-3xl text-blanco">Orden de compra</h2>
         <p className=" font-light text-base text-blanco mb-5">
           Para completar el proceso de compra, es necesario ingresar toda la
           información de envío para que el producto llegue correctamente al
