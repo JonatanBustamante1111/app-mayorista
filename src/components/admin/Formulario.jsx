@@ -102,13 +102,13 @@ export default function Formulario({
                     name="provedor"
                     id="provedor"
                     className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco  focus:outline-none bg-inherit w-full"
-                    value={camposProducto.proveedores}
+                    value={camposProducto.proveedor}
                     onChange={handleChangeProveedor}
                 >
                     <option value="" >-- Seleccione el proveedor --</option>
                     {proveedores.map((proveedor, i) => (
-                        <option key={i} value={proveedor.nombre}>
-                            {proveedor.nombre}
+                        <option key={i} value={proveedor}>
+                            {proveedor}
                         </option>
                     ))}
                 </select>

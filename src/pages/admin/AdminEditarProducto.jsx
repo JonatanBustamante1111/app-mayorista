@@ -7,7 +7,7 @@ import { collection,getDocs } from "firebase/firestore";
 import Swal from 'sweetalert2'
 
 
-export default function AdminEditarProducto({ idProducto, setIdProducto,proveedores,setProveedores }) {
+export default function AdminEditarProducto({ idProducto, setIdProducto }) {
 
   const [camposProducto, setCamposProducto] = useState({
     nombre: '',
@@ -23,25 +23,23 @@ export default function AdminEditarProducto({ idProducto, setIdProducto,proveedo
   const [archivoSeleccionado, setArchivoSeleccionado] = useState({})
   const [nombreArchivo, setNombreArchivo] = useState('')
   const [subCategoria, setSubCategoria] = useState('')
-
-
+  const [proveedores,setProveedores] = useState([])
   // Para Identificar si viene una imagen de firebase, en caso de ser asi la imagen se muestra en el formulario
   const [imagenUrl, setImagenUrl] = useState(null)
 
-  const consultarProveedor = async () => {
-    const producto = collection(db, "proveedores")
-    const querySnapshot = await getDocs(producto)
-    const datos = querySnapshot.docs.map(doc => doc.data())
-    setProveedores(datos)
-  }
-  
-  useEffect(() => {
-    consultarProveedor()
-  }, [])
+
   const consultarProducto = async () => {
     const docref = doc(db, 'productos', idProducto)
     const producto = await getDoc(docref)
     const datos = producto.data()
+    // trae los proveedores de la base de datows
+    const consultarProveedor = async () => {
+      const producto = collection(db, "proveedores")
+      const querySnapshot = await getDocs(producto)
+      const datos = querySnapshot.docs.map(doc => doc.data().nombre)
+      setProveedores(datos)
+    }
+    consultarProveedor()
 
     setCamposProducto({
       nombre: datos.nombre,
@@ -59,6 +57,7 @@ export default function AdminEditarProducto({ idProducto, setIdProducto,proveedo
   useEffect(() => {
     consultarProducto()
   }, [])
+
 
   const handleChangeArchivo = async (e) => {
     const archivo = await e.target.files[0]

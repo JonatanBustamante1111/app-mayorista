@@ -21,7 +21,7 @@ export default function AdminInicio() {
   };
   useEffect(() => {
     consultarProductos();
-  }, []);
+  }, [productos]);
 
 // trae los proveedores de la base de datows
   const consultarProveedor = async () => {
@@ -30,10 +30,10 @@ export default function AdminInicio() {
     const datos = querySnapshot.docs.map(doc => doc.data().nombre)
     setProveedores(datos)
   }
-  console.log(proveedores)
+
   useEffect(() => {
     consultarProveedor()
-  }, [])
+  }, [proveedores])
 
 
   // Borra productos de la base de datos
@@ -59,7 +59,7 @@ export default function AdminInicio() {
   return (
     <main className="w-[75%] ml-[25%]">
       {
-        idProducto !== null && <AdminEditarProducto idProducto={idProducto} setIdProducto={setIdProducto} proveedores={proveedores} setProveedores={setProveedores}/>
+        idProducto !== null && <AdminEditarProducto idProducto={idProducto} setIdProducto={setIdProducto}/>
       }
       {
         modal && <AdminNuevoProducto handleModal={handleModal} proveedores={proveedores} setProveedores={setProveedores} />

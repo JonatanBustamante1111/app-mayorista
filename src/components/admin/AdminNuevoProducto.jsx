@@ -1,21 +1,19 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Formulario from "./Formulario";
 
 //import Error from '../components/Error'
 
 import { ref, uploadBytes, getDownloadURL, connectStorageEmulator } from "firebase/storage";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db, storage } from "../../utils/firebaseconfig";
 
 import Swal from "sweetalert2";
 
-export default function AdminNuevoProducto({ handleModal, proveedores, setProveedores }) {
+export default function AdminNuevoProducto({ handleModal,proveedores }) {
   // Hooks del input file
   const [archivoSeleccionado, setArchivoSeleccionado] = useState({});
   const [nombreArchivo, setNombreArchivo] = useState("");
   const inputFileRef = useRef(null);
-  
-console.log(proveedores)
   const [camposProducto, setCamposProducto] = useState({
     nombre: "",
     precio: "",
@@ -27,9 +25,6 @@ console.log(proveedores)
     imagen: "",
   });
   const [subCategoria, setSubCategoria] = useState("");
-
-
-
   // Create Product
   const handleSubmit = async (e) => {
     e.preventDefault();
