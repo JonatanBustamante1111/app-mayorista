@@ -69,7 +69,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
         >
           <img
             src={imagen}
-            className="h-40 w-full object-cover  rounded-t-xl  "
+            className="h-42 w-[340px] object-cover  rounded-t-xl  "
             alt={`Imagen de ${nombre}`}
           />
         </Link>
@@ -92,7 +92,7 @@ export default function Card({ eliminarProducto, producto, setIdProducto }) {
         >
           <img
             src={imagen}
-            className="h-40 w-full object-cover  rounded-t-xl  "
+            className="h-42 w-[340px] object-cover  rounded-t-xl  "
             alt={`Imagen de ${nombre}`}
           />
         </Link>

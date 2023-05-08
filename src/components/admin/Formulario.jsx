@@ -101,7 +101,7 @@ export default function Formulario({
                     required
                     name="provedor"
                     id="provedor"
-                    className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco focus:outline-none bg-inherit w-full"
+                    className=" p-3 bg-terciario text-center border-secundario border rounded-xl text-blanco  focus:outline-none bg-inherit w-full"
                     value={camposProducto.proveedores}
                     onChange={handleChangeProveedor}
                 >

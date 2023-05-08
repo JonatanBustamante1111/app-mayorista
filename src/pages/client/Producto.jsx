@@ -76,7 +76,7 @@ export default function Producto() {
           <h2 className="pl-4 w-4/5  text-sm font-medium text-blanco py-5 lg:mx-0 lg:pl-0">{`${categoria} / ${subcategoria} `}{''} / <span className="text-secundario"> {nombre}</span></h2>
           <img
             src={imagen}
-            className=" w-full h-[262px] md:w-full md:p-2 lg:w-[588px] lg:h-[400px] lg:rounded-xl object-cover lg:px-0"
+            className=" w-full h-[400px] md:w-[500px] md:p-2 lg:w-[588px] lg:h-[600px] lg:rounded-xl object-cover lg:px-0"
             alt={`Imagen de ${nombre}`}
           />
         </section>
