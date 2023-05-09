@@ -5,6 +5,7 @@ import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import AdminNuevoProducto from "../../components/admin/AdminNuevoProducto";
 import AdminEditarProducto from "./AdminEditarProducto";
 
+
 export default function AdminInicio() {
   const [proveedores,setProveedores] = useState([])
   const [productos, setProductos] = useState([]);
@@ -14,7 +15,8 @@ export default function AdminInicio() {
 
   const [modal, setModal] = useState(false)
   const [idProducto, setIdProducto] = useState(null)
-  // Read Products
+
+  // Read Products  
   const consultarProductos = async () => {
     const data = await getDocs(collection(db, "productos"));
     setProductos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));

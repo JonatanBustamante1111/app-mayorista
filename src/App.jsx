@@ -18,7 +18,6 @@ import Categorias from "./pages/admin/Categorias";
 // Components
 import Layout from "./components/Layout";
 import Dashboard from "./components/admin/Dashboard";
-
 import Proveedores from "./pages/admin/Proveedores";
 
 
@@ -35,6 +34,7 @@ const App = () => {
     localStorage.getItem("loggedIn") === "true" ? true : false
   );
   
+
   const router = createBrowserRouter([
     {
       path: "/",

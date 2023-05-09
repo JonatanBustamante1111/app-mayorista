@@ -11,15 +11,16 @@ import { format } from "date-fns";
 
 const CheckOut = () => {
   const [provinciaSeleccionada, setProvinciaSeleccionada] = useState("");
-  const [provincias, setProvincias] = useState([]);
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
+  const [dni, setDni] = useState("");
   const [numero, setNumero] = useState("");
   const [email, setEmail] = useState("");
   const [direccion, setDireccion] = useState("");
   const [piso, setPiso] = useState("");
   const [localidad, setLocalidad] = useState("");
   const [codigoPostal, setCodigoPostal] = useState("");
+  const [cliente, setCliente] = useState('');
   const [numClicks, setNumClicks] = useState(0);
 
   const [id, setId] = useState(null);
@@ -38,7 +39,7 @@ const CheckOut = () => {
   });
 
   const fechaActual = new Date();
-  const fecha = format(fechaActual, 'dd/MM/yyyy');
+  const fecha = format(fechaActual, "dd/MM/yyyy");
 
   function generarIdUnico() {
     const fechaActual = new Date().getTime();
@@ -59,7 +60,9 @@ const CheckOut = () => {
     codigoPostal,
     datos,
     fecha,
-    estado: 'En proceso'
+    dni,
+    cliente,
+    estado: "En proceso",
   };
 
   // guarda los productos actuales del carrito en un array
@@ -91,21 +94,6 @@ const CheckOut = () => {
     });
   }, [id]);
 
-  // traer las provincias
-  useEffect(() => {
-    fetch("https://apis.datos.gob.ar/georef/api/provincias")
-      .then((response) => response.json())
-      .then((data) => {
-        setProvincias(data.provincias);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  // funcion para cambiar las provincias
-  const handleChange = (event) => {
-    setProvinciaSeleccionada(event.target.value);
-  };
-
   // sirve para crear un objeto que se envia a Mpago
   const fillItems = () => {
     const carrito = cart.carrito;
@@ -133,10 +121,12 @@ const CheckOut = () => {
       !email ||
       !apellido ||
       !numero ||
+      !dni ||
       !piso ||
       !localidad ||
       !provinciaSeleccionada ||
-      !codigoPostal
+      !codigoPostal ||
+      !cliente
     ) {
       Swal.fire({
         icon: "warning",
@@ -151,7 +141,6 @@ const CheckOut = () => {
     // asigna el id generado al pedido del cliente
     pedido.id = id;
 
-
     // enviamos el pedido del cliente por la api de Mpago
     eApi
       .post("pagar", items)
@@ -164,9 +153,9 @@ const CheckOut = () => {
         //  mandamos una alerta de exito
         Swal.fire({
           icon: "success",
-          title: "¡En 24/48 hs habiles, despacharemos tu pedido!",
+          title: "¡En 48/72 hs habiles, despacharemos tu pedido!",
         });
-        navigate('/')
+        navigate("/");
       })
       .catch((err) => {
         console.error(err);
@@ -179,23 +168,24 @@ const CheckOut = () => {
     // el id documento y el id pedido son los mismos en la database.
     const docRef = doc(db, "pedidosCliente", pedido.id);
     await setDoc(docRef, pedido);
-  }
+  };
   const VaciarInfoCliente = () => {
     // vacio los datos del carrito
-    setCarrito([])
+    setCarrito([]);
     // vacio los datos del pedido
-    setNombre('')
-    setApellido('')
-    setNumero('')
-    setEmail('')
-    setDireccion('')
-    setPiso('')
-    setProvinciaSeleccionada('')
-    setLocalidad('')
-    setCodigoPostal('')
-    setDatos([])
-  }
-
+    setNombre("");
+    setApellido("");
+    setNumero("");
+    setEmail("");
+    setDireccion("");
+    setPiso("");
+    setProvinciaSeleccionada("");
+    setLocalidad("");
+    setCodigoPostal("");
+    setDni("");
+    setCliente("");
+    setDatos([]);
+  };
 
   return (
     <main className="mt-20 font-monsterrat p-4 md:flex md:flex-row md:mt-5 ">
@@ -211,15 +201,15 @@ const CheckOut = () => {
         <h3 className=" font-semibold text-2xl text-blanco">
           Datos del comprador
         </h3>
-        <form onSubmit={""} className="my-10 flex flex-col">
+        <form className="my-10 flex flex-col">
           <div className="md:flex md:gap-6">
             <label className="md:w-1/2">
               <input
                 required
                 type="name"
                 value={nombre}
-                placeholder="Nombre"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
+                placeholder="Nombre (obligatorio)"
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
                 onChange={(e) => setNombre(e.target.value)}
               />
             </label>
@@ -228,8 +218,8 @@ const CheckOut = () => {
                 required
                 type="name"
                 value={apellido}
-                placeholder="Apellido"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
+                placeholder="Apellido (obligatorio) "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
                 onChange={(e) => setApellido(e.target.value)}
               />
             </label>
@@ -239,8 +229,8 @@ const CheckOut = () => {
               required
               type="number"
               value={numero}
-              placeholder="Numero de telefono"
-              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
+              placeholder="Numero de telefono (obligarorio)"
+              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
               onChange={(e) => setNumero(e.target.value)}
             />
           </label>
@@ -249,11 +239,32 @@ const CheckOut = () => {
               required
               type="email"
               value={email}
-              placeholder="E-mail"
-              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-10 "
+              placeholder="E-mail (obligarorio)"
+              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
+          <label>
+            <input
+              required
+              type="name"
+              value={dni}
+              placeholder="Dni / Cuit (obligarorio)"
+              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+              onChange={(e) => setDni(e.target.value)}
+            />
+          </label>
+          <select
+            required
+            className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+            value={cliente}
+            onChange={(e) => setCliente(e.target.value)}
+          >
+            <option value="">Conficion frente al IVA   *obligatorio*</option>
+            <option value="consumidor final">Consumidor Final</option>
+            <option value="responsable inscripto">Responsable inscripto</option>
+            <option value="monotributo">Monotributo</option>
+          </select>
           <h3 className=" font-semibold text-2xl mb-14 text-blanco">
             Datos de envío
           </h3>
@@ -263,42 +274,39 @@ const CheckOut = () => {
                 required
                 type="text"
                 value={direccion}
-                placeholder="Dirección (Nombre y número de calle)"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
+                placeholder="Dirección (obligarorio) "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
                 onChange={(e) => setDireccion(e.target.value)}
               />
             </label>
             <label className="md:w-1/4">
               <input
-                required
                 type="text"
                 value={piso}
-                placeholder="Piso/Depto"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
+                placeholder="Piso"
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
                 onChange={(e) => setPiso(e.target.value)}
               />
             </label>
           </div>
-          <select
-            className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
-            value={provinciaSeleccionada}
-            onChange={handleChange}
-          >
-            <option value="">Selecciona una provincia</option>
-            {provincias.map((provincia) => (
-              <option key={provincia.id} value={provincia.nombre}>
-                {provincia.nombre}
-              </option>
-            ))}
-          </select>
+          <label>
+            <input
+              required
+              type="text"
+              value={provinciaSeleccionada}
+              placeholder="Provincia (obligarorio)"
+              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+              onChange={(e) => setProvinciaSeleccionada(e.target.value)}
+            />
+          </label>
           <div className="md:flex md:flex-row md:gap-6">
             <label className="md:w-1/2">
               <input
                 required
                 type="text"
                 value={localidad}
-                placeholder="Localidad"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
+                placeholder="Localidad (obligarorio)"
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-1  text-blanco mb-5 "
                 onChange={(e) => setLocalidad(e.target.value)}
               />
             </label>
@@ -307,8 +315,8 @@ const CheckOut = () => {
                 required
                 type="text"
                 value={codigoPostal}
-                placeholder="Código postal"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
+                placeholder="Cod Postal (obligarorio)"
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1  text-blanco mb-5 "
                 onChange={(e) => setCodigoPostal(e.target.value)}
               />
             </label>
