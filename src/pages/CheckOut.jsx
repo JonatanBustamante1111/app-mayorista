@@ -209,7 +209,7 @@ const CheckOut = () => {
                 type="name"
                 value={nombre}
                 placeholder="Nombre (obligatorio)"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
                 onChange={(e) => setNombre(e.target.value)}
               />
             </label>
@@ -219,7 +219,7 @@ const CheckOut = () => {
                 type="name"
                 value={apellido}
                 placeholder="Apellido (obligatorio) "
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
                 onChange={(e) => setApellido(e.target.value)}
               />
             </label>
@@ -230,7 +230,7 @@ const CheckOut = () => {
               type="number"
               value={numero}
               placeholder="Numero de telefono (obligarorio)"
-              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
               onChange={(e) => setNumero(e.target.value)}
             />
           </label>
@@ -240,7 +240,7 @@ const CheckOut = () => {
               type="email"
               value={email}
               placeholder="E-mail (obligarorio)"
-              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
@@ -250,13 +250,13 @@ const CheckOut = () => {
               type="name"
               value={dni}
               placeholder="Dni / Cuit (obligarorio)"
-              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
               onChange={(e) => setDni(e.target.value)}
             />
           </label>
           <select
             required
-            className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+            className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
             value={cliente}
             onChange={(e) => setCliente(e.target.value)}
           >
@@ -275,7 +275,7 @@ const CheckOut = () => {
                 type="text"
                 value={direccion}
                 placeholder="Dirección (obligarorio) "
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
                 onChange={(e) => setDireccion(e.target.value)}
               />
             </label>
@@ -284,7 +284,7 @@ const CheckOut = () => {
                 type="text"
                 value={piso}
                 placeholder="Piso"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
                 onChange={(e) => setPiso(e.target.value)}
               />
             </label>
@@ -295,7 +295,7 @@ const CheckOut = () => {
               type="text"
               value={provinciaSeleccionada}
               placeholder="Provincia (obligarorio)"
-              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-3  text-blanco mb-5 "
+              className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
               onChange={(e) => setProvinciaSeleccionada(e.target.value)}
             />
           </label>
@@ -306,7 +306,7 @@ const CheckOut = () => {
                 type="text"
                 value={localidad}
                 placeholder="Localidad (obligarorio)"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1 pr-1  text-blanco mb-5 "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-1  text-blanco mb-5 "
                 onChange={(e) => setLocalidad(e.target.value)}
               />
             </label>
@@ -316,7 +316,7 @@ const CheckOut = () => {
                 type="text"
                 value={codigoPostal}
                 placeholder="Cod Postal (obligarorio)"
-                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-1  text-blanco mb-5 "
+                className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4  text-blanco mb-5 "
                 onChange={(e) => setCodigoPostal(e.target.value)}
               />
             </label>
