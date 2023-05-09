@@ -29,7 +29,7 @@ export default function Carrito({loggedIn}) {
           <div className="md:flex md:flex-row md:items-center">
             <div className="text-base px-4 my-10 text-blanco md:w-full md:px-0 md:ml-8 ">
               <p>
-                <b>Nota:</b> En nuestra tienda en línea, coordinamos el envío una vez que recibimos el pago. Procesamos los pedidos y despachamos el envío dentro de las 24/48 horas hábiles posteriores a la confirmación del pago. Si necesitas ayuda o tienes dudas, contáctanos a través de nuestro sitio web, redes sociales o whatsapp. ¡Gracias por confiar en nosotros!.{" "}
+                <b>Nota:</b> En nuestra tienda en línea, coordinamos el envío una vez que recibimos el pago. Procesamos los pedidos y despachamos el envío dentro de las 48/72 horas hábiles posteriores a la confirmación del pago. Si necesitas ayuda o tienes dudas, contáctanos a través de nuestro sitio web, redes sociales o whatsapp. ¡Gracias por confiar en nosotros!.{" "}
               </p>
             </div>
             <OrdenCompra total={total} loggedIn={loggedIn} />
