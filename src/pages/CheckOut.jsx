@@ -161,8 +161,6 @@ const CheckOut = () => {
 
     // asigna el numero de pedido generado al pedido del cliente
     pedido.numeroCliente = numeroPedido
-    console.log(numeroPedido)
-    console.log(pedido.numeroCliente)
     // enviamos el pedido del cliente por la api de Mpago
     eApi
       .post("pagar", items)
@@ -182,7 +180,6 @@ const CheckOut = () => {
           confirmButtonText: "Aceptar"
         }).then((result) => {
           if (result.isConfirmed) {
-            console.log(numeroPedido)
             // Redirigir a WhatsApp
             window.location.href = `https://api.whatsapp.com/send/?phone=5492644823420&text=Hola%20acabo%20de%20realizar%20un%20pedido%20a%20nombre%20de%20${nombrePedido}%20con%20el%20numero%20de%20pedido%20:%20${numeroPedido}`;
             setNombrePedido('')

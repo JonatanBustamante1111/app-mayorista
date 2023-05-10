@@ -16,7 +16,7 @@ export default function PedidoInfo() {
     const { pedidoId } = useParams();
     const navigate = useNavigate()
 
-    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, estado,numero,fecha,cliente, dni,pedido } = dato;
+    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, estado,numero,fecha,cliente, dni,numeroCliente } = dato;
 
 
     let fondoDelSelect = 'bg-secundario'
@@ -87,7 +87,7 @@ export default function PedidoInfo() {
                 </article>
                 <article className='w-full flex justify-between px-8 '>
                     <div className=' flex flex-col gap-y-4'>
-                        <p className='text-3xl font-medium text-blanco'>N° de pedido:{''} <span className='font-bold'> {pedido} </span></p>
+                        <p className='text-3xl font-medium text-blanco'>N° de pedido:{''} <span className='font-bold'> {numeroCliente} </span></p>
                         <p className='text-xl font-medium text-blanco'>Fecha: <span className='font-bold'> {fecha} </span></p>
                     </div>
                     <div>
@@ -118,7 +118,6 @@ export default function PedidoInfo() {
                 {
                     datos?.map(producto => {
                         const { nombre, imagen, cantidad, proveedor, precio } = producto
-                        console.log(producto)
                         return (
                             <article className=" border-b last:border-none border-blanco w-[90%] mx-auto py-5">
                                 <div className="grid grid-cols-[1fr,2fr,1fr,1fr,1fr] gap-x-4 rounded-xl place-items-center ">
