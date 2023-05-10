@@ -7,7 +7,7 @@ function Footer() {
             <div>
                 <img src="https://i.ibb.co/0VHwxgR/logo-crv4-removebg-preview-5.png" alt="" />
             </div>
-            <ul className="flex flex-col text-white font-monsterrat gap-3">
+            <ul className="flex flex-col text-white font-monsterrat gap-8">
                     <Link to={'./'}>Inicio</Link>
                     <Link to={'/nosotros'}>Sobre nosotros</Link>
                     <Link to={'/productos'}>Productos</Link>
@@ -17,7 +17,7 @@ function Footer() {
         <div>
         <a href="http://qr.afip.gob.ar/?qr=WFNqQ8OVggESRy2O5S33tw,," target="_F960AFIPInfo"><img className="h-[240px] w-[200px]" src={"http://www.afip.gob.ar/images/f960/DATAWEB.jpg"} alt="" /></a>
         </div>
-        <div className="flex flex-col items-center gap-10 ">
+        <div className="flex flex-col items-center gap-14 ">
             <div className="flex flex-row gap-6">
                 <a href="https://www.facebook.com/crv4.Bijou" target="_blank"><img src="https://i.ibb.co/YcjTqBw/logoFace.png" alt="" /></a>
                 <a href="https://instagram.com/crv4bijou?igshid=MGNiNDI5ZTU=" target="_blank"><img src="https://i.ibb.co/mzN3Rcn/logo-Instagram.png" alt="" /></a>
