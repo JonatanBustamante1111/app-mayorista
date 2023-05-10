@@ -13,7 +13,7 @@ export default function ContactoNosotros() {
       </div>
       <a
       className="px-16 mb-20 md:mb-0 md:px-0"
-        href="http://api.whatsapp.com/send?phone=542644823420"
+        href="https://bit.ly/3NWSvtl"
         target="_blank"
       >
          <button

@@ -30,6 +30,7 @@ const CheckOut = () => {
   const { cart } = useContext(CartContext);
   const { carrito, setCarrito } = cart;
 
+
   const navigate = useNavigate();
 
   // muestra el total a pagar
@@ -146,16 +147,25 @@ const CheckOut = () => {
       .post("pagar", items)
       .then((res) => {
         window.open(res.data);
+
         //  cargamos el pedido a la base de datos
         pedidoBd();
+
         // vaciamos toda la infomacion a cero
         VaciarInfoCliente();
-        //  mandamos una alerta de exito
+
+        navigate("/");
         Swal.fire({
           icon: "success",
-          title: "¡En 48/72 hs habiles, despacharemos tu pedido!",
+          title: "¡En un plazo de 48 a 72 horas hábiles, despacharemos tu pedido! Por favor, envíanos un mensaje con tu nombre y apellido para informarnos que has realizado una compra.",
+          confirmButtonText: "Aceptar"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Redirigir a WhatsApp
+            window.location.href = "https://bit.ly/3LPOpka";
+          }
         });
-        navigate("/");
+        
       })
       .catch((err) => {
         console.error(err);
@@ -169,9 +179,11 @@ const CheckOut = () => {
     const docRef = doc(db, "pedidosCliente", pedido.id);
     await setDoc(docRef, pedido);
   };
+
   const VaciarInfoCliente = () => {
     // vacio los datos del carrito
     setCarrito([]);
+    localStorage.setItem('carrito', JSON.stringify([]));
     // vacio los datos del pedido
     setNombre("");
     setApellido("");
@@ -315,7 +327,7 @@ const CheckOut = () => {
                 required
                 type="text"
                 value={codigoPostal}
-                placeholder="Cod Postal (obligarorio)"
+                placeholder="Codigo Postal (obligarorio)"
                 className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4  text-blanco mb-5 "
                 onChange={(e) => setCodigoPostal(e.target.value)}
               />

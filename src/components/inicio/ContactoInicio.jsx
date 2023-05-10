@@ -9,7 +9,7 @@ export default function ContactoInicio() {
       <p className=" font-light text-md w-full my-4 mb-14 ">
       Estamos aquí para ayudarte en todo lo que necesites. Si tienes alguna duda o consulta, no dudes en contactarnos y uno de nuestros representantes te brindará la información necesaria de manera clara y concisa. 
       </p>
-      <a href="http://api.whatsapp.com/send?phone=542644823420" target="_blank">
+      <a href="https://bit.ly/3NWSvtl" target="_blank">
       <button
         className=" w-full sm:w-1/2 md:w-[282px]
         text-center font-semibold py-4 px-6 
