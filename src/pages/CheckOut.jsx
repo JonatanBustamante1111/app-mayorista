@@ -3,7 +3,7 @@ import { CartContext } from "../context/CartContext";
 import eApi from "../api/api";
 import CardCheckOut from "../components/CardCheckOut";
 import Swal from "sweetalert2";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 import Button from "../components/reutilizables/Button";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,6 @@ const CheckOut = () => {
   const [id, setId] = useState(null);
   const [items, setItems] = useState({});
   const [datos, setDatos] = useState([]);
-
   const { cart } = useContext(CartContext);
   const { carrito, setCarrito,numeroPedido,setNumeroPedido,nombrePedido,setNombrePedido } = cart;
 
@@ -47,19 +46,6 @@ const CheckOut = () => {
     const fechaActual = new Date().getTime();
     const numeroAleatorio = Math.floor(Math.random() * 1000000);
     return `${fechaActual}_${numeroAleatorio}`;
-  }
-// genera un numero de pedido unico
-  function generarNumeroPedido() {
-    const longitud = 8; // Longitud del número de pedido
-    const caracteres = '0123456789'; // Caracteres posibles para el número de pedido
-    let numeroPedidoCliente = '';
-    
-    for (let i = 0; i < longitud; i++) {
-      const randomIndex = Math.floor(Math.random() * caracteres.length);
-      numeroPedidoCliente += caracteres.charAt(randomIndex);
-    }
-    
-    return numeroPedidoCliente;
   }
 
   // objeto que guarda la informacion del pedido
@@ -102,9 +88,22 @@ const CheckOut = () => {
   }, []);
 
   useEffect(() => {
-    setNumeroPedido(generarNumeroPedido());
+    const docRef = collection(db, "pedidosCliente");
+    
+    // Lógica para obtener la cantidad de pedidos
+    const obtenerCantidadPedidos = async () => {
+      try {
+        const snapshot = await getDocs(docRef);
+        const cantidadPedidos = snapshot.docs.length;
+        setNumeroPedido(cantidadPedidos +1);
+      } catch (error) {
+        console.error("Error al obtener la cantidad de pedidos:", error);
+      }
+    };
+  
+    obtenerCantidadPedidos();
   }, []);
-  console.log(numeroPedido)
+
   // aca creamos un objeto con la informacion para Mpago.
   useEffect(() => {
     setItems({

@@ -14,6 +14,9 @@ function Footer() {
                     <Link to={'/contacto'}>Contacto</Link>
             </ul>
         </div>
+        <div>
+        <a href="http://qr.afip.gob.ar/?qr=WFNqQ8OVggESRy2O5S33tw,," target="_F960AFIPInfo"><img className="h-[200px]" src={"http://www.afip.gob.ar/images/f960/DATAWEB.jpg"} alt="" /></a>
+        </div>
         <div className="flex flex-col items-center gap-10 ">
             <div className="flex flex-row gap-6">
                 <a href="https://www.facebook.com/crv4.Bijou" target="_blank"><img src="https://i.ibb.co/YcjTqBw/logoFace.png" alt="" /></a>
