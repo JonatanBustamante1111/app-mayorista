@@ -3,7 +3,7 @@ import ContactoForm from "../../components/contacto/ContactoForm";
 
 export default function Contacto() {
   return (
-    <main className="grid md:grid-cols-2 md:mt-12 place-items-center">
+    <main className="grid md:grid-cols-2 md:mt-16 place-items-center">
       <ContactoForm />
       <section className="h-full">
         <img
