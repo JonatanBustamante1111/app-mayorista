@@ -28,7 +28,7 @@ const CheckOut = () => {
   const [datos, setDatos] = useState([]);
 
   const { cart } = useContext(CartContext);
-  const { carrito, setCarrito } = cart;
+  const { carrito, setCarrito,numeroPedido,setNumeroPedido,nombrePedido,setNombrePedido } = cart;
 
 
   const navigate = useNavigate();
@@ -42,22 +42,24 @@ const CheckOut = () => {
   const fechaActual = new Date();
   const fecha = format(fechaActual, "dd/MM/yyyy");
 
+  // genera un id unico
   function generarIdUnico() {
     const fechaActual = new Date().getTime();
     const numeroAleatorio = Math.floor(Math.random() * 1000000);
     return `${fechaActual}_${numeroAleatorio}`;
   }
+// genera un numero de pedido unico
   function generarNumeroPedido() {
     const longitud = 8; // Longitud del número de pedido
-    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Caracteres posibles para el número de pedido
-    let numeroPedido = '';
-  
+    const caracteres = '0123456789'; // Caracteres posibles para el número de pedido
+    let numeroPedidoCliente = '';
+    
     for (let i = 0; i < longitud; i++) {
       const randomIndex = Math.floor(Math.random() * caracteres.length);
-      numeroPedido += caracteres.charAt(randomIndex);
+      numeroPedidoCliente += caracteres.charAt(randomIndex);
     }
-  
-    return numeroPedido;
+    
+    return numeroPedidoCliente;
   }
 
   // objeto que guarda la informacion del pedido
@@ -76,9 +78,8 @@ const CheckOut = () => {
     dni,
     cliente,
     estado: "En proceso",
-    pedido:numeroPedido()
   };
-  
+
   // guarda los productos actuales del carrito en un array
   useEffect(() => {
     const data = [];
@@ -100,6 +101,10 @@ const CheckOut = () => {
     setId(generarIdUnico());
   }, []);
 
+  useEffect(() => {
+    setNumeroPedido(generarNumeroPedido());
+  }, []);
+  console.log(numeroPedido)
   // aca creamos un objeto con la informacion para Mpago.
   useEffect(() => {
     setItems({
@@ -136,7 +141,6 @@ const CheckOut = () => {
       !apellido ||
       !numero ||
       !dni ||
-      !piso ||
       !localidad ||
       !provinciaSeleccionada ||
       !codigoPostal ||
@@ -155,6 +159,10 @@ const CheckOut = () => {
     // asigna el id generado al pedido del cliente
     pedido.id = id;
 
+    // asigna el numero de pedido generado al pedido del cliente
+    pedido.numeroCliente = numeroPedido
+    console.log(numeroPedido)
+    console.log(pedido.numeroCliente)
     // enviamos el pedido del cliente por la api de Mpago
     eApi
       .post("pagar", items)
@@ -170,12 +178,15 @@ const CheckOut = () => {
         navigate("/");
         Swal.fire({
           icon: "success",
-          title: "¡En un plazo de 48 a 72 horas hábiles, despacharemos tu pedido! Por favor, envíanos un mensaje con tu nombre y apellido para informarnos que has realizado una compra.",
+          title: "¡En un plazo de 48 a 72 horas hábiles, despacharemos tu pedido! Por favor, envíanos un mensaje para informarnos la compra.",
           confirmButtonText: "Aceptar"
         }).then((result) => {
           if (result.isConfirmed) {
+            console.log(numeroPedido)
             // Redirigir a WhatsApp
-            window.location.href = "https://bit.ly/3LPOpka";
+            window.location.href = `https://api.whatsapp.com/send/?phone=5492644823420&text=Hola%20acabo%20de%20realizar%20un%20pedido%20a%20nombre%20de%20${nombrePedido}%20con%20el%20numero%20de%20pedido%20:%20${numeroPedido}`;
+            setNombrePedido('')
+            setNumeroPedido('')
           }
         });
         
@@ -235,7 +246,10 @@ const CheckOut = () => {
                 value={nombre}
                 placeholder="Nombre (obligatorio)"
                 className="w-full py-[6px]  border-secundario border-[1px] rounded-lg  bg-inherit  pl-4 pr-3  text-blanco mb-5 "
-                onChange={(e) => setNombre(e.target.value)}
+                onChange={(e) => {
+                  setNombrePedido(e.target.value)
+                  setNombre(e.target.value)
+                }}
               />
             </label>
             <label className="md:w-1/2">
