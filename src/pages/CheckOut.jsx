@@ -47,6 +47,18 @@ const CheckOut = () => {
     const numeroAleatorio = Math.floor(Math.random() * 1000000);
     return `${fechaActual}_${numeroAleatorio}`;
   }
+  function generarNumeroPedido() {
+    const longitud = 8; // Longitud del número de pedido
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Caracteres posibles para el número de pedido
+    let numeroPedido = '';
+  
+    for (let i = 0; i < longitud; i++) {
+      const randomIndex = Math.floor(Math.random() * caracteres.length);
+      numeroPedido += caracteres.charAt(randomIndex);
+    }
+  
+    return numeroPedido;
+  }
 
   // objeto que guarda la informacion del pedido
   const pedido = {
@@ -64,8 +76,9 @@ const CheckOut = () => {
     dni,
     cliente,
     estado: "En proceso",
+    pedido:numeroPedido()
   };
-
+  
   // guarda los productos actuales del carrito en un array
   useEffect(() => {
     const data = [];

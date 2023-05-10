@@ -16,7 +16,7 @@ export default function PedidoInfo() {
     const { pedidoId } = useParams();
     const navigate = useNavigate()
 
-    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, estado,numero,fecha,cliente, dni } = dato;
+    const { nombre, apellido, email, direccion, localidad, codigoPostal, provinciaSeleccionada, piso, datos, id, estado,numero,fecha,cliente, dni,pedido } = dato;
 
 
     let fondoDelSelect = 'bg-secundario'
@@ -87,7 +87,7 @@ export default function PedidoInfo() {
                 </article>
                 <article className='w-full flex justify-between px-8 '>
                     <div className=' flex flex-col gap-y-4'>
-                        <p className='text-3xl font-medium text-blanco'>N° de pedido:{''} <span className='font-bold'> 0000003 </span></p>
+                        <p className='text-3xl font-medium text-blanco'>N° de pedido:{''} <span className='font-bold'> {pedido} </span></p>
                         <p className='text-xl font-medium text-blanco'>Fecha: <span className='font-bold'> {fecha} </span></p>
                     </div>
                     <div>
