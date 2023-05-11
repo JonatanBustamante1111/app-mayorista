@@ -5,6 +5,7 @@ import PreguntasFrecuentes from "../../components/inicio/PreguntasFrecuentes";
 import ProductosDestacados from "../../components/inicio/ProductosDestacados";
 import ContactoInicio from "../../components/inicio/ContactoInicio";
 import GaleriaImgInicio from "../../components/inicio/GaleriaImgInicio";
+import QuienesSomos from "../../components/inicio/QuienesSomos";
 
 export default function Inicio() {
   return (
@@ -85,7 +86,8 @@ export default function Inicio() {
 
       <GaleriaImgInicio/>     
       <ProductosDestacados/>
-      <PreguntasFrecuentes />
+      <PreguntasFrecuentes/>
+      <QuienesSomos/>
       <ContactoInicio/>
     </main>
   );

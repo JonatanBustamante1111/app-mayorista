@@ -117,7 +117,7 @@ export default function Productos() {
         </aside>
         <article >
 
-          <div className='w-full grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3  gap-y-4 h-auto mb-10'>
+          <div className='w-full grid grid-cols-1 place-items-center sm:grid-cols-2 md:gap-x-2 lg:grid-cols-3 gap-y-4 h-auto mb-10'>
             {
               productosBuscados.length
                 ? productosBuscados.map(producto =>

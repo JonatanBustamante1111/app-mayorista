@@ -45,9 +45,9 @@ export default function NavbarLinks({flexDirection}) {
                                     Productos
                                 </Link>
                             </li>
-                            <li className={`link ${location.pathname === '/nosotros' ? 'activo' : ''}`}>
-                                <Link to={'/nosotros'}>
-                                    Nosotros
+                            <li className={`link ${location.pathname === '/promociones' ? 'activo' : ''}`}>
+                                <Link to={'/promociones'}>
+                                    promociones
                                 </Link>
                             </li>
                             <li className={`link ${location.pathname === '/contacto' ? 'activo' : ''}`}>

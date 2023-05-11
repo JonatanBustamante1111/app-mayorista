@@ -10,7 +10,7 @@ export default function PreguntasFrecuentes() {
           </h2>
           <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
         </div>
-        <div className="faq-page flex flex-col mb-40 sm:flex-row  sm:justify-center  ">
+        <div className="faq-page flex flex-col sm:flex-row  sm:justify-center  ">
           <div className="sm:w-full sm:mx-14">
             <FaqDropDown
               question="¿Cual es el monto mínimo?"

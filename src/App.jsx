@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Inicio from "./pages/client/Inicio";
 import Productos from "./pages/client/Productos";
 import Producto from "./pages/client/Producto";
-import Nosotros from "./pages/client/Nosotros";
 import Carrito from "./pages/client/Carrito";
 import AdminInicio from "./pages/admin/AdminInicio";
 import AdminEditarProducto from "./pages/admin/AdminEditarProducto";
@@ -14,6 +13,7 @@ import MiCuenta from "./pages/MiCuenta";
 import Contacto from "./pages/client/Contacto"; 
 import Pedidos from "./pages/admin/Pedidos";
 import Categorias from "./pages/admin/Categorias";
+import Promociones from "./pages/client/Promociones";
 
 // Components
 import Layout from "./components/Layout";
@@ -53,8 +53,8 @@ const App = () => {
           element: <Producto />,
         },
         {
-          path: "/nosotros",
-          element: <Nosotros />,
+          path: "/promociones",
+          element: <Promociones/>,
         },
         {
           path: "/contacto",
