@@ -1,3 +1,4 @@
+
 const QuienesSomos = () => {
   return (
     <section className="flex flex-col items-center w-full col-span-2">
@@ -16,8 +17,9 @@ const QuienesSomos = () => {
           compromiso y excelencia en atención.
         </p>
         </div>
-        <div className="w-full p-4 mr-4 sm:w-1/2 sm:p-0 sm:mr-10">
-        <img className=" rounded-md" src={'https://i.ibb.co/yB4WDyv/Whats-App-Image-2023-04-17-at-15-16-1-min.jpg'} alt="" />
+        <div  className="w-full p-4 mr-4 sm:w-1/2 sm:p-0 sm:mr-10">
+        <img 
+        className=" box rounded-md" src={'https://i.ibb.co/yB4WDyv/Whats-App-Image-2023-04-17-at-15-16-1-min.jpg'} alt="" />
             </div>
       </div>
   </section>
