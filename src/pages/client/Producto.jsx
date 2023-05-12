@@ -81,13 +81,14 @@ export default function Producto() {
       <div className="flex-col w-full items-center justify-center md:flex md:flex-row md:p-4 md:gap-10">
         <section className=" md:mt-24 md:w-1/2 md:px-4">
           <h2
-            className="pl-4 w-4/5 text-sm font-medium text-blanco py-5 lg:mx-0 lg:pl-0"
+            className="pl-4 w-4/5 text-sm font-medium text-blanco py-5 lg:mx-0 lg:pl-0
+            "
           >
-            <Link 
+            <Link className=" hover:text-secundario duration-300"
                onClick={() => {setCategoriaFiltrada(categoria), setSubCategoriaFiltrada('')}}
             to={`/productos`}>{categoria}</Link>
             {" / "}
-            <Link  onClick={() => {setCategoriaFiltrada(categoria), setSubCategoriaFiltrada(subcategoria)}} to={`/productos`}>
+            <Link className=" hover:text-secundario duration-300 " onClick={() => {setCategoriaFiltrada(categoria), setSubCategoriaFiltrada(subcategoria)}} to={`/productos`}>
               {subcategoria}
             </Link>
           </h2>
