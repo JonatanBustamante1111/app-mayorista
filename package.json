@@ -9,8 +9,6 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
     "algoliasearch": "^4.17.0",
@@ -18,11 +16,8 @@
     "bootstrap": "^5.2.3",
     "date-fns": "^2.29.3",
     "firebase": "^9.17.1",
-    "framer-motion": "^10.12.10",
-    "jsonwebtoken": "^9.0.0",
     "mercadopago": "^1.5.15",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-modal": "^3.16.1",
@@ -30,8 +25,7 @@
     "ssr-window": "^4.0.2",
     "sweetalert2": "^11.7.3",
     "swiper": "^9.2.0",
-    "uuid": "^9.0.0",
-    "whatsapp-api": "^0.0.1"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
