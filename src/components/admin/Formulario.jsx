@@ -84,13 +84,13 @@ export default function Formulario({
                 />
             </div>
             <div className="mb-8 flex flex-col gap-y-2">
-                <label className='text-blanco font-semibold text-base' htmlFor="descripcion">Descripcion:</label>
+                <label className='text-blanco font-semibold text-base' htmlFor="descripcion">Codigo del producto:</label>
                 <input
                     required
                     id="descripcion"
                     type="text"
                     className="p-3 border-secundario border rounded-xl  bg-inherit w-full text-blanco focus:outline-none"
-                    placeholder="Descripcion del Producto"
+                    placeholder="Codigo del producto"
                     value={camposProducto.descripcion}
                     onChange={(e) => setCamposProducto({ ...camposProducto, descripcion: e.target.value })}
                 />

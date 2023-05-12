@@ -4,7 +4,7 @@ import Formulario from "./Formulario";
 //import Error from '../components/Error'
 
 import { ref, uploadBytes, getDownloadURL, connectStorageEmulator } from "firebase/storage";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db, storage } from "../../utils/firebaseconfig";
 
 import Swal from "sweetalert2";
@@ -25,6 +25,15 @@ export default function AdminNuevoProducto({ handleModal,proveedores }) {
     imagen: "",
   });
   const [subCategoria, setSubCategoria] = useState("");
+
+  // Verificar si la descripción ya existe en la base de datos
+  const verificarDescripcionExistente = async (descripcion) => {
+  const productosRef = collection(db, "productos");
+  const q = query(productosRef, where("descripcion", "==", descripcion));
+  const querySnapshot = await getDocs(q);
+  return !querySnapshot.empty;
+  };
+
   // Create Product
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +43,20 @@ export default function AdminNuevoProducto({ handleModal,proveedores }) {
       console.log("Rellena todos los campos");
       return;
     }
+
+    // Verificar si la descripción ya existe
+    const descripcionExistente = await verificarDescripcionExistente(camposProducto.descripcion);
+    if (descripcionExistente) {
+        // Alerta
+        Swal.fire({
+          icon: "warning",
+          title: "¡Alerta!",
+          text: "El codigo se encuentra cargado",
+        });
+      return;
+    }
+  
+
     // Subimos la imagen al Storage y obtenemos la url para utilizarla en el documento a subir
     const storageRef = ref(storage, nombreArchivo);
     await uploadBytes(storageRef, archivoSeleccionado);
@@ -69,7 +92,6 @@ export default function AdminNuevoProducto({ handleModal,proveedores }) {
   const handleChangeArchivo = async (e) => {
     const archivo = await e.target.files[0];
     setArchivoSeleccionado(archivo);
-    console.log(archivo);
     setNombreArchivo(archivo.name);
   };
   return (

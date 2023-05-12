@@ -82,7 +82,7 @@ export default function Producto() {
         </section>
         <section className=" flex flex-col justify-center items-start p-4 gap-y-5 md:w-1/2  mt-24">
           <h2 className=" text-2xl md:text-3xl lg:text-4xl  font-monsterrat text-secundario font-bold">{`${nombre}`}</h2>
-          <p className="font-normal text-gray-300">{`${descripcion}`}</p>
+          <p className="font-normal text-gray-300">{`COD: ${descripcion}`}</p>
          { stock >= 1
           ?<p className="font-semibold text-blanco">{`${stock} Disponible/s`}</p>
           :<p className="font-semibold text-rojo">Sin stock</p>
