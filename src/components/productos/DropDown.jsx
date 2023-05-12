@@ -47,7 +47,7 @@ export default function DropDown({
 
       <h2
         onClick={filtrarPorTodosLosProductos}
-        className="font-medium text-blanco py-5 cursor-pointer">
+        className={`font-medium  py-5 cursor-pointer ${categoriaFiltrada === '' ? 'text-secundario' : 'text-blanco'}`}>
         Todos los productos</h2>
       {/* Recorremos las categorías y generamos un bloque para cada una */}
 

@@ -82,11 +82,12 @@ export default function Producto() {
         <section className=" md:mt-24 md:w-1/2 md:px-4">
           <h2
             className="pl-4 w-4/5 text-sm font-medium text-blanco py-5 lg:mx-0 lg:pl-0"
-            onClick={() => {setCategoriaFiltrada(categoria), setSubCategoriaFiltrada(subcategoria)}}
           >
-            <Link to={`/productos`}>{categoria}</Link>
+            <Link 
+               onClick={() => {setCategoriaFiltrada(categoria), setSubCategoriaFiltrada('')}}
+            to={`/productos`}>{categoria}</Link>
             {" / "}
-            <Link to={`/productos`}>
+            <Link  onClick={() => {setCategoriaFiltrada(categoria), setSubCategoriaFiltrada(subcategoria)}} to={`/productos`}>
               {subcategoria}
             </Link>
           </h2>
