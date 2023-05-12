@@ -52,7 +52,10 @@ const CartContextProvider = (props) => {
       carrito.forEach(item => acc ++);
       return acc;
     } 
-    
+    const handleFiltrado = (categoria,subcategoria) => {
+        console.log(categoria)
+        console.log(subcategoria)
+    }
 
       const cart = {
         carrito,
@@ -63,7 +66,8 @@ const CartContextProvider = (props) => {
         nombrePedido,
         setNombrePedido,
         numeroPedido,
-        setNumeroPedido
+        setNumeroPedido,
+        handleFiltrado
       };
 
     return (

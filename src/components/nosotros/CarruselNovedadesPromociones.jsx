@@ -23,7 +23,7 @@ export default function CarruselNovedadesPromociones() {
   }, []);
  
   return (
-    <article className="relative ">
+    <article className="relative z-0">
       <div className="swiper-button-prev swiper-button"></div>
       <div className="swiper-button-next swiper-button"></div>
       <div className=" w-full">
