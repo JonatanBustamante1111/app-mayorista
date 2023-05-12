@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { CartContext } from '../../context/CartContext';
 import { db } from "../../utils/firebaseconfig";
 import { getDocs, collection} from "firebase/firestore";
 import Card from '../../components/reutilizables/Card'
@@ -11,10 +12,12 @@ export default function Productos() {
   const [busqueda, setBusqueda] = useState('')
   const [productosBuscados, setProductosBuscados] = useState([])
   // Estados para las categorias y subcategorias
-  const [categoriaFiltrada, setCategoriaFiltrada] = useState('')
-  const [subCategoriaFiltrada, setSubCategoriaFiltrada] = useState('')
+  //const [categoriaFiltrada, setCategoriaFiltrada] = useState('')
+  //const [subCategoriaFiltrada, setSubCategoriaFiltrada] = useState('')
 
   const [filtradoResponsive, setFiltradoResponsive] = useState(false)
+  const { cart } = useContext(CartContext);
+  const { categoriaFiltrada, setCategoriaFiltrada, subCategoriaFiltrada, setSubCategoriaFiltrada } = cart
 
   // Read Products
   useEffect(() => {

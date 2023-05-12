@@ -20,7 +20,7 @@ export default function Producto() {
   const [dato, setDato] = useState({});
   const [productos, setProductos] = useState([]);
   const { productoId } = useParams();
-  const { handleFiltrado } = cart;
+  const {  categoriaFiltrada, setCategoriaFiltrada, subCategoriaFiltrada, setSubCategoriaFiltrada } = cart;
   const {
     descripcion,
     imagen,
@@ -82,7 +82,7 @@ export default function Producto() {
         <section className=" md:mt-24 md:w-1/2 md:px-4">
           <h2
             className="pl-4 w-4/5 text-sm font-medium text-blanco py-5 lg:mx-0 lg:pl-0"
-            onClick={() => handleFiltrado(categoria, subcategoria)}
+            onClick={() => {setCategoriaFiltrada(categoria), setSubCategoriaFiltrada(subcategoria)}}
           >
             <Link to={`/productos`}>{categoria}</Link>
             {" / "}
