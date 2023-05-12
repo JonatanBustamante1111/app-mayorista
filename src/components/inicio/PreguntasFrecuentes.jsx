@@ -11,7 +11,7 @@ export default function PreguntasFrecuentes() {
           <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
         </div>
         <div className="faq-page flex flex-col sm:flex-row  sm:justify-center  ">
-          <div className="sm:w-full sm:mx-14">
+          <div className="sm:w-full sm:mx-10">
             <FaqDropDown
               question="¿Cual es el monto mínimo?"
               answer="Para ingresar como cliente la primera compra es de $8000 como mínimo, una vez ingresado el mínimo es de $4500. Esta condición se mantiene siempre y cuando haya una compra dentro de un plazo de dos meses."
@@ -25,7 +25,7 @@ export default function PreguntasFrecuentes() {
               answer="Realizamos envios a todo el pais por medio de correo Andreani, Correo Argentino, BusPack o a convenir."
             />
           </div>
-          <div className="sm:w-full sm:mx-14">
+          <div className="sm:w-full sm:mx-10">
             <FaqDropDown
               question="¿Horario de atención?"
               answer="Atendemos de forma presencial en nuestro local ubicado en Capital - San Juaan lunes a viernes de 9 a 17.30 hs y los sábados de 10 a 13 hs. Online las 24 hs."
