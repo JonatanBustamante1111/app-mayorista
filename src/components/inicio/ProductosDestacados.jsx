@@ -7,12 +7,17 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Card from '../reutilizables/Card'
 
 export default function ProductosDestacados() {
 
   const [ productos, setProductos ] = useState([])
+
+  useEffect(() => {
+    AOS.init();
+  }, [])
 
   useEffect(() => {
     const consultarProductos = async () => {
@@ -25,7 +30,8 @@ export default function ProductosDestacados() {
   }, [])
 
   return (
-    <section className="flex flex-col gap-16 w-full col-span-2">
+    <section data-aos="fade-up"
+    data-aos-duration="3000"  className="flex flex-col gap-16 w-full col-span-2" >
       <article className="w-full text-center">
         <h2 className=" font-semibold text-2xl text-center text-blanco  mt-10 w-full">
           Productos destacados

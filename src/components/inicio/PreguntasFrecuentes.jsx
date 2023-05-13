@@ -1,9 +1,16 @@
 import React from 'react'
 import FaqDropDown from "./FaqDropDown";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 export default function PreguntasFrecuentes() {
+  useEffect(() => {
+    AOS.init();
+  }, [])
+
   return (
-    <section className="flex flex-col gap-16 w-full col-span-2">
+    <section data-aos="fade-up"
+    data-aos-duration="3000" className="flex flex-col gap-16 w-full col-span-2">
         <div className="w-full text-center">
           <h2 className=" font-semibold text-2xl text-center text-blanco  mt-10 w-full px-10 ">
             Preguntas frecuentes
