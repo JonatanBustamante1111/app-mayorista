@@ -1,48 +1,52 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import { collection, getDocs } from 'firebase/firestore'
-import { db } from '../../utils/firebaseconfig';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import Card from '../reutilizables/Card'
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../utils/firebaseconfig";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Card from "../reutilizables/Card";
 
 export default function ProductosDestacados() {
-
-  const [ productos, setProductos ] = useState([])
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
     AOS.init();
-  }, [])
+  }, []);
 
   useEffect(() => {
     const consultarProductos = async () => {
       const data = await getDocs(collection(db, "productos"));
-      setProductos(
-        data.docs.map(doc => ({ ...doc.data(), id: doc.id }))
-      )
-    }
-    consultarProductos()
-  }, [])
+      setProductos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    consultarProductos();
+  }, []);
 
   return (
-    <section data-aos="fade-up"
-    data-aos-duration="3000"  className="flex flex-col gap-16 w-full col-span-2" >
-      <article className="w-full text-center">
+    <section className="flex flex-col gap-16 w-full col-span-2 mb-16">
+      <article
+         data-aos="flip-right"
+         data-aos-easing="ease-out-cubic"
+         data-aos-duration="2000"
+        className="w-full text-center"
+      >
         <h2 className=" font-semibold text-2xl text-center text-blanco  mt-10 w-full">
           Productos destacados
         </h2>
         <div className="w-16 font-monsterrat border-2 border-secundario font-medium  text-base my-6 mx-auto"></div>
       </article>
-      <article className='relative z-0'>
-       
-         <div className='swiper-button-prev swiper-button'></div>
-         <div className='swiper-button-next swiper-button'></div>
-        <div className='mx-10'>
+      <article
+        data-aos="fade-up"
+        data-aos-duration="3000"
+        className="relative z-0"
+      >
+        <div className="swiper-button-prev swiper-button"></div>
+        <div className="swiper-button-next swiper-button"></div>
+        <div className="mx-10">
           <Swiper
             //params={swiperOptions}
             slidesPerView={1}
@@ -51,8 +55,8 @@ export default function ProductosDestacados() {
               clickable: true,
             }}
             navigation={{
-              prevEl: '.swiper-button-prev',
-              nextEl: '.swiper-button-next',
+              prevEl: ".swiper-button-prev",
+              nextEl: ".swiper-button-next",
             }}
             modules={[Navigation]}
             className="mySwiper"
@@ -79,17 +83,18 @@ export default function ProductosDestacados() {
               },
             }}
           >
-            {productos.map(producto =>
-              producto.destacado === 'si' 
-              ?
-              <SwiperSlide key={producto.id}>
-                  <Card producto={producto}/>
-              </SwiperSlide>
-              :''
+            {productos.map((producto) =>
+              producto.destacado === "si" ? (
+                <SwiperSlide key={producto.id}>
+                  <Card producto={producto} />
+                </SwiperSlide>
+              ) : (
+                ""
+              )
             )}
           </Swiper>
         </div>
       </article>
     </section>
-  )
+  );
 }
